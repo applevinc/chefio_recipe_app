@@ -1,5 +1,6 @@
 import 'package:chefio_recipe_app/src/core/assets/images.dart';
 import 'package:chefio_recipe_app/src/core/widgets/custom_button.dart';
+import 'package:chefio_recipe_app/src/view/auth/screens/sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -50,7 +51,14 @@ class OnboardingScreen extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 24.0.w),
                 child: CustomButton(
                   label: 'Get Started',
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const SignInScreen(),
+                      ),
+                    );
+                  },
                 ),
               ),
               SizedBox(height: 38.0.h),
