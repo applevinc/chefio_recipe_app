@@ -1,6 +1,7 @@
 import 'package:chefio_recipe_app/src/core/assets/icons.dart';
 import 'package:chefio_recipe_app/src/core/widgets/custom_button.dart';
-import 'package:chefio_recipe_app/src/view/auth/components/textfield.dart';
+import 'package:chefio_recipe_app/src/view/auth/widgets/textfield.dart';
+import 'package:chefio_recipe_app/src/view/auth/screens/verification_code.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -44,7 +45,14 @@ class ForgotPasswordScreen extends StatelessWidget {
                     SizedBox(height: 24.h),
                     CustomButton(
                       label: 'Submit',
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const PinCodeVerificationScreen(),
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),

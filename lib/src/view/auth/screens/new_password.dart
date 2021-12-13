@@ -1,13 +1,14 @@
 import 'package:chefio_recipe_app/src/core/assets/icons.dart';
 import 'package:chefio_recipe_app/src/core/theme/app_colors.dart';
 import 'package:chefio_recipe_app/src/core/widgets/custom_button.dart';
+import 'package:chefio_recipe_app/src/view/auth/screens/sign_in.dart';
 import 'package:chefio_recipe_app/src/view/auth/widgets/password_strength_view.dart';
 import 'package:chefio_recipe_app/src/view/auth/widgets/textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({Key? key}) : super(key: key);
+class NewPasswordScreen extends StatelessWidget {
+  const NewPasswordScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,7 @@ class SignUpScreen extends StatelessWidget {
                         Align(
                           alignment: Alignment.center,
                           child: Text(
-                            'Welcome!',
+                            'Reset your password',
                             style: Theme.of(context).textTheme.headline6,
                           ),
                         ),
@@ -36,16 +37,11 @@ class SignUpScreen extends StatelessWidget {
                         Align(
                           alignment: Alignment.center,
                           child: Text(
-                            'Please enter your account here',
+                            'Please enter your new password',
                             style: Theme.of(context).textTheme.bodyText1,
                           ),
                         ),
                         SizedBox(height: 32.h),
-                        const AuthTextField(
-                          hintText: 'Email or phone number',
-                          prefixIcon: AppIcons.email,
-                        ),
-                        SizedBox(height: 16.h),
                         const AuthTextField(
                           hintText: 'Password',
                           prefixIcon: AppIcons.lock,
@@ -68,8 +64,15 @@ class SignUpScreen extends StatelessWidget {
                     ),
                     SizedBox(height: 24.h),
                     CustomButton(
-                      label: 'Sign Up',
-                      onPressed: () {},
+                      label: 'Done',
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const SignInScreen(),
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -81,4 +84,3 @@ class SignUpScreen extends StatelessWidget {
     );
   }
 }
-

@@ -37,6 +37,7 @@ dependencies:
   google_fonts: ^2.1.0
   flutter_screenutil: ^5.0.1
   flutter_svg: ^1.0.0
+  pin_code_fields: ^7.3.0
 
 dev_dependencies:
   flutter_test:
