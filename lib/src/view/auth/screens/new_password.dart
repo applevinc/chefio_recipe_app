@@ -3,7 +3,7 @@ import 'package:chefio_recipe_app/src/core/theme/app_colors.dart';
 import 'package:chefio_recipe_app/src/core/widgets/custom_button.dart';
 import 'package:chefio_recipe_app/src/view/auth/screens/sign_in.dart';
 import 'package:chefio_recipe_app/src/view/auth/widgets/password_strength_view.dart';
-import 'package:chefio_recipe_app/src/view/auth/widgets/textfield.dart';
+import 'package:chefio_recipe_app/src/core/widgets/textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -42,7 +42,7 @@ class NewPasswordScreen extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: 32.h),
-                        const AuthTextField(
+                        const CustomTextField(
                           hintText: 'Password',
                           prefixIcon: AppIcons.lock,
                           obscureText: true,

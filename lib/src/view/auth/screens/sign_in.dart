@@ -1,9 +1,10 @@
 import 'package:chefio_recipe_app/src/core/assets/icons.dart';
 import 'package:chefio_recipe_app/src/core/theme/app_colors.dart';
 import 'package:chefio_recipe_app/src/core/widgets/custom_button.dart';
-import 'package:chefio_recipe_app/src/view/auth/widgets/textfield.dart';
+import 'package:chefio_recipe_app/src/core/widgets/textfield.dart';
 import 'package:chefio_recipe_app/src/view/auth/screens/forgot_password.dart';
 import 'package:chefio_recipe_app/src/view/auth/screens/sign_up.dart';
+import 'package:chefio_recipe_app/src/view/home/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -42,12 +43,12 @@ class SignInScreen extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: 32.h),
-                        const AuthTextField(
+                        const CustomTextField(
                           hintText: 'Email or phone number',
                           prefixIcon: AppIcons.email,
                         ),
                         SizedBox(height: 16.h),
-                        const AuthTextField(
+                        const CustomTextField(
                           hintText: 'Password',
                           prefixIcon: AppIcons.lock,
                           obscureText: true,
@@ -79,7 +80,14 @@ class SignInScreen extends StatelessWidget {
                       children: [
                         CustomButton(
                           label: 'Login',
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => const HomeScreen(),
+                              ),
+                            );
+                          },
                         ),
                         SizedBox(height: 24.h),
                         Align(

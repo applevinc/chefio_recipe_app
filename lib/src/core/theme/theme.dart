@@ -7,6 +7,7 @@ class AppTheme {
   static ThemeData get defaultTheme {
     return ThemeData(
       primaryColor: AppColors.primary,
+      scaffoldBackgroundColor: Colors.white,
       textTheme: TextTheme(
         headline6: GoogleFonts.inter(
           color: AppColors.mainText,

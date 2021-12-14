@@ -1,3 +1,7 @@
 class AppImages {
   static const String onboarding = 'assets/images/onboarding.png';
+  static const String profileImg1 = 'assets/images/profile_pic_1.png';
+  static const String profileImg2 = 'assets/images/profile_pic_2.png';
+  static const String pancake = 'assets/images/pancake.png';
+  static const String salad = 'assets/images/salad.png';
 }

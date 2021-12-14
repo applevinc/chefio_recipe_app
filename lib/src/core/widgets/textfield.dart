@@ -4,25 +4,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class AuthTextField extends StatefulWidget {
-  const AuthTextField({
+class CustomTextField extends StatefulWidget {
+  const CustomTextField({
     Key? key,
     required this.hintText,
     required this.prefixIcon,
     this.suffixIcon = AppIcons.showPassword,
     this.obscureText = false,
+    this.border = true,
   }) : super(key: key);
 
   final String hintText;
   final String prefixIcon;
   final String suffixIcon;
   final bool obscureText;
+  final bool? border;
 
   @override
-  State<AuthTextField> createState() => _AuthTextFieldState();
+  State<CustomTextField> createState() => _CustomTextFieldState();
 }
 
-class _AuthTextFieldState extends State<AuthTextField> {
+class _CustomTextFieldState extends State<CustomTextField> {
   late bool obscureText = widget.obscureText;
 
   _toggleObscureText() {
@@ -43,6 +45,8 @@ class _AuthTextFieldState extends State<AuthTextField> {
       obscureText: obscureText,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(vertical: 16.h),
+        filled: true,
+        fillColor: AppColors.form,
         hintText: widget.hintText,
         hintStyle: Theme.of(context).textTheme.bodyText1,
         prefixIcon: Padding(
@@ -60,7 +64,11 @@ class _AuthTextFieldState extends State<AuthTextField> {
             : null,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(32.r),
-          borderSide: const BorderSide(color: AppColors.outline),
+          borderSide: BorderSide(
+            //color: AppColors.outline,
+            width: widget.border == true ? 1.0 : 0,
+            style: widget.border == true ? BorderStyle.solid : BorderStyle.none,
+          ),
         ),
       ),
     );
