@@ -1,5 +1,13 @@
+import 'package:chefio_recipe_app/src/core/assets/icons.dart';
+import 'package:chefio_recipe_app/src/core/theme/colors.dart';
 import 'package:chefio_recipe_app/src/view/home/screens/home.dart';
+import 'package:chefio_recipe_app/src/view/notification/notification.dart';
+import 'package:chefio_recipe_app/src/view/profile/profile.dart';
+import 'package:chefio_recipe_app/src/view/scan/scan.dart';
+import 'package:chefio_recipe_app/src/view/upload/upload.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);
@@ -10,19 +18,13 @@ class BottomNavBar extends StatefulWidget {
 
 class _BottomNavBarState extends State<BottomNavBar> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
   static const List<Widget> _pages = <Widget>[
     HomeScreen(),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
+    UploadScreen(),
+    ScanScreen(),
+    NotificationsScreen(),
+    ProfileScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -36,23 +38,78 @@ class _BottomNavBarState extends State<BottomNavBar> {
     return Scaffold(
       body: _pages.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        currentIndex: _selectedIndex,
+        type: BottomNavigationBarType.fixed,
+        selectedLabelStyle: Theme.of(context)
+            .textTheme
+            .bodyText1!
+            .copyWith(fontSize: 12.sp, color: AppColors.primary),
+        unselectedLabelStyle:
+            Theme.of(context).textTheme.bodyText1!.copyWith(fontSize: 12.sp),
+        selectedItemColor: AppColors.primary,
+        unselectedItemColor: AppColors.secondaryText,
+        selectedIconTheme: const IconThemeData(color: AppColors.primary),
+        unselectedIconTheme: const IconThemeData(color: AppColors.secondaryText),
+        onTap: _onItemTapped,
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: SvgPicture.asset(
+              AppIcons.home,
+              color: _selectedIndex == 0 ? AppColors.primary : AppColors.secondaryText,
+            ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Business',
+            icon: SvgPicture.asset(
+              AppIcons.upload,
+              color: _selectedIndex == 1 ? AppColors.primary : AppColors.secondaryText,
+            ),
+            label: 'Upload',
+          ),
+          const BottomNavigationBarItem(
+            icon: SizedBox.shrink(),
+            label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'School',
+            icon: SvgPicture.asset(
+              AppIcons.notification,
+              color: _selectedIndex == 3 ? AppColors.primary : AppColors.secondaryText,
+            ),
+            label: 'Notification',
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              AppIcons.profile,
+              color: _selectedIndex == 4 ? AppColors.primary : AppColors.secondaryText,
+            ),
+            label: 'Profile',
           ),
         ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
-        onTap: _onItemTapped,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            backgroundColor: AppColors.primary,
+            elevation: 0.0,
+            child: SvgPicture.asset(AppIcons.scan),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const ScanScreen(),
+                ),
+              );
+            },
+          ),
+          SizedBox(height: 8.h),
+          Text(
+            'Scan',
+            style: Theme.of(context).textTheme.bodyText1!.copyWith(fontSize: 12.sp),
+          ),
+          SizedBox(height: 12.h),
+        ],
       ),
     );
   }
