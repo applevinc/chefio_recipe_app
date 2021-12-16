@@ -1,4 +1,4 @@
-import 'package:chefio_recipe_app/src/core/theme/app_colors.dart';
+import 'package:chefio_recipe_app/src/core/theme/colors.dart';
 import 'package:chefio_recipe_app/src/core/widgets/custom_button.dart';
 import 'package:chefio_recipe_app/src/view/auth/screens/new_password.dart';
 import 'package:flutter/material.dart';

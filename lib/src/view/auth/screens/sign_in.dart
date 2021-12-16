@@ -1,9 +1,10 @@
 import 'package:chefio_recipe_app/src/core/assets/icons.dart';
-import 'package:chefio_recipe_app/src/core/theme/app_colors.dart';
+import 'package:chefio_recipe_app/src/core/theme/colors.dart';
 import 'package:chefio_recipe_app/src/core/widgets/custom_button.dart';
 import 'package:chefio_recipe_app/src/core/widgets/textfield.dart';
 import 'package:chefio_recipe_app/src/view/auth/screens/forgot_password.dart';
 import 'package:chefio_recipe_app/src/view/auth/screens/sign_up.dart';
+import 'package:chefio_recipe_app/src/view/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:chefio_recipe_app/src/view/home/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -84,7 +85,7 @@ class SignInScreen extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (_) => const HomeScreen(),
+                                builder: (_) => const BottomNavBar(),
                               ),
                             );
                           },

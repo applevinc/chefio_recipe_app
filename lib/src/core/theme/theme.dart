@@ -1,4 +1,4 @@
-import 'package:chefio_recipe_app/src/core/theme/app_colors.dart';
+import 'package:chefio_recipe_app/src/core/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

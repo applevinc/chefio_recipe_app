@@ -1,5 +1,5 @@
 import 'package:chefio_recipe_app/src/core/assets/icons.dart';
-import 'package:chefio_recipe_app/src/core/theme/app_colors.dart';
+import 'package:chefio_recipe_app/src/core/theme/colors.dart';
 import 'package:chefio_recipe_app/src/core/widgets/custom_button.dart';
 import 'package:chefio_recipe_app/src/view/auth/widgets/password_strength_view.dart';
 import 'package:chefio_recipe_app/src/core/widgets/textfield.dart';
