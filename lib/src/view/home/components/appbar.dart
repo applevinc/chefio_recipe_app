@@ -1,7 +1,9 @@
 import 'package:chefio_recipe_app/src/core/assets/icons.dart';
 import 'package:chefio_recipe_app/src/core/theme/colors.dart';
+import 'package:chefio_recipe_app/src/core/widgets/grey_divider.dart';
 import 'package:chefio_recipe_app/src/core/widgets/textfield.dart';
 import 'package:chefio_recipe_app/src/view/home/components/circular_tab_button.dart';
+import 'package:chefio_recipe_app/src/view/search/screens/search_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -26,10 +28,17 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
             child: Column(
               children: [
                 SizedBox(height: 16.h),
-                const CustomTextField(
+                CustomTextField(
                   hintText: 'Search',
                   prefixIcon: AppIcons.search,
                   border: false,
+                  onTap: () {
+                    FocusScope.of(context).requestFocus(FocusNode());
+                    showSearch(
+                      context: context,
+                      delegate: SearchScreen(),
+                    );
+                  },
                 ),
                 SizedBox(height: 24.h),
                 Align(
@@ -48,11 +57,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
               ],
             ),
           ),
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: 8.h,
-            color: AppColors.form,
-          ),
+          const GreyDivider(),
         ],
       ),
       bottom: const _CustomTabbar(),

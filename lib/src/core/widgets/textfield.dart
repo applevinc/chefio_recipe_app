@@ -12,6 +12,7 @@ class CustomTextField extends StatefulWidget {
     this.suffixIcon = AppIcons.showPassword,
     this.obscureText = false,
     this.border = true,
+    this.onTap,
   }) : super(key: key);
 
   final String hintText;
@@ -19,6 +20,7 @@ class CustomTextField extends StatefulWidget {
   final String suffixIcon;
   final bool obscureText;
   final bool? border;
+  final Function()? onTap;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -43,6 +45,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   Widget build(BuildContext context) {
     return TextFormField(
       obscureText: obscureText,
+      onTap: widget.onTap,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(vertical: 16.h),
         filled: true,
