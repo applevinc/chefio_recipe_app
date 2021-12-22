@@ -20,43 +20,54 @@ class GridViewBody extends StatelessWidget {
       ),
       itemCount: 6,
       itemBuilder: (BuildContext context, index) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Image.asset(AppImages.profileImg1),
-                SizedBox(width: 8.w),
-                Text(
-                  'Calum Lewis',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText1!
-                      .copyWith(fontSize: 12.sp, color: AppColors.mainText),
-                )
-              ],
-            ),
-            SizedBox(height: 16.h),
-            const _GridViewImage(),
-            SizedBox(height: 16.h),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Pancake',
-                style: Theme.of(context)
-                    .textTheme
-                    .headline6!
-                    .copyWith(color: AppColors.headlineText, fontSize: 17.sp),
-              ),
-            ),
-            SizedBox(height: 8.h),
-            Text(
-              'Food • >60 mins',
-              style: Theme.of(context).textTheme.bodyText1!.copyWith(fontSize: 12.sp),
-            ),
-          ],
-        );
+        return const _Item();
       },
+    );
+  }
+}
+
+class _Item extends StatelessWidget {
+  const _Item({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Image.asset(AppImages.profileImg1),
+            SizedBox(width: 8.w),
+            Text(
+              'Calum Lewis',
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyText1!
+                  .copyWith(fontSize: 12.sp, color: AppColors.mainText),
+            )
+          ],
+        ),
+        SizedBox(height: 16.h),
+        const _GridViewImage(),
+        SizedBox(height: 16.h),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            'Pancake',
+            style: Theme.of(context)
+                .textTheme
+                .headline6!
+                .copyWith(color: AppColors.headlineText, fontSize: 17.sp),
+          ),
+        ),
+        SizedBox(height: 8.h),
+        Text(
+          'Food • >60 mins',
+          style: Theme.of(context).textTheme.bodyText1!.copyWith(fontSize: 12.sp),
+        ),
+      ],
     );
   }
 }

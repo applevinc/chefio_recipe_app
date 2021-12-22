@@ -21,6 +21,12 @@ class AppTheme {
           letterSpacing: 0.5.sp,
           fontWeight: FontWeight.w500,
         ),
+        bodyText2: GoogleFonts.inter(
+          color: AppColors.headlineText,
+          fontSize: 17.0.sp,
+          letterSpacing: 0.5.sp,
+          fontWeight: FontWeight.w700,
+        ),
       ),
       buttonTheme: ButtonThemeData(
         buttonColor: AppColors.primary,
@@ -38,6 +44,21 @@ class AppTheme {
             borderRadius: BorderRadius.circular(32.r),
           ),
         ),
+      ),
+      bottomSheetTheme: BottomSheetThemeData(
+        elevation: 0.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(32.r),
+            topRight: Radius.circular(32.r),
+          ),
+        ),
+      ),
+      sliderTheme: SliderThemeData(
+        activeTrackColor: AppColors.primary,
+        inactiveTrackColor: AppColors.form,
+        thumbColor: AppColors.primary,
+        trackShape: _CustomTrackShape(),
       ),
       colorScheme: ColorScheme.fromSwatch(
         brightness: Brightness.light,
@@ -58,5 +79,22 @@ class AppTheme {
         ),
       ).copyWith(secondary: AppColors.primary),
     );
+  }
+}
+
+class _CustomTrackShape extends RoundedRectSliderTrackShape {
+  @override
+  Rect getPreferredRect({
+    required RenderBox parentBox,
+    Offset offset = Offset.zero,
+    required SliderThemeData sliderTheme,
+    bool isEnabled = false,
+    bool isDiscrete = false,
+  }) {
+    final double? trackHeight = sliderTheme.trackHeight;
+    final double trackLeft = offset.dx;
+    final double trackTop = offset.dy + (parentBox.size.height - trackHeight!) / 2;
+    final double trackWidth = parentBox.size.width;
+    return Rect.fromLTWH(trackLeft, trackTop, trackWidth, trackHeight);
   }
 }
