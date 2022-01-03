@@ -13,4 +13,5 @@ class AppIcons {
   static const String notification = 'assets/icons/notification.svg';
   static const String profile = 'assets/icons/profile.svg';
   static const String upload = 'assets/icons/upload.svg';
+  static const String uploadImage = 'assets/icons/upload_image.svg';
 }

@@ -1,0 +1,115 @@
+import 'package:chefio_recipe_app/src/core/theme/colors.dart';
+import 'package:chefio_recipe_app/src/view/bottom_nav_bar/bottom_nav_bar.dart';
+import 'package:chefio_recipe_app/src/view/upload/screens/steps/step_one_view.dart';
+import 'package:chefio_recipe_app/src/view/upload/screens/steps/step_two_view.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+
+class UploadScreen extends StatelessWidget {
+  const UploadScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return WillPopScope(
+      onWillPop: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => const BottomNavBar(),
+          ),
+        );
+
+        return Future.value(false);
+      },
+      child: ChangeNotifierProvider(
+        create: (context) => UploadPageViewController(),
+        child: Scaffold(
+          appBar: AppBar(
+            elevation: 0.0,
+            backgroundColor: Colors.white,
+            leadingWidth: 85.w,
+            toolbarHeight: 40.h,
+            leading: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const BottomNavBar(),
+                  ),
+                );
+              },
+              child: Padding(
+                padding: EdgeInsets.only(top: 12.h, left: 24.w),
+                child: Text(
+                  'Cancel',
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyText2!
+                      .copyWith(color: AppColors.secondary),
+                ),
+              ),
+            ),
+            actions: [
+              Padding(
+                padding: EdgeInsets.only(top: 12.h, right: 24.w),
+                child: Consumer<UploadPageViewController>(
+                  builder: (BuildContext context, pageViewModel, Widget? child) {
+                    return RichText(
+                      text: TextSpan(
+                        text: '1',
+                        style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                            color: pageViewModel.pagNo == 0
+                                ? AppColors.headlineText
+                                : AppColors.secondaryText),
+                        children: <TextSpan>[
+                          TextSpan(
+                              text: '/', style: Theme.of(context).textTheme.bodyText2!),
+                          TextSpan(
+                            text: '2',
+                            style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                                color: pageViewModel.pagNo == 1
+                                    ? AppColors.headlineText
+                                    : AppColors.secondaryText),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+          body: const _Body(),
+        ),
+      ),
+    );
+  }
+}
+
+class _Body extends StatelessWidget {
+  const _Body({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final PageController controller = PageController();
+    return PageView(
+      controller: controller,
+      physics: const NeverScrollableScrollPhysics(),
+      children: <Widget>[
+        StepOneView(pageController: controller),
+        const StepTwoView(),
+      ],
+    );
+  }
+}
+
+class UploadPageViewController extends ChangeNotifier {
+  int _pageNo = 0;
+  int get pagNo => _pageNo;
+
+  setPageNo(int page) {
+    _pageNo = page;
+    notifyListeners();
+  }
+}

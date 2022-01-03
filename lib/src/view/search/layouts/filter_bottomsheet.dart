@@ -30,7 +30,7 @@ class AddFilterView extends StatelessWidget {
           SizedBox(height: 16.h),
           const HorizontalListViewCircleTabButtons(),
           SizedBox(height: 32.h),
-          const _CookingDuration(),
+          const CookingDuration(),
           SizedBox(height: 52.h),
           const _Actions(),
         ],
@@ -39,8 +39,8 @@ class AddFilterView extends StatelessWidget {
   }
 }
 
-class _CookingDuration extends StatelessWidget {
-  const _CookingDuration({Key? key}) : super(key: key);
+class CookingDuration extends StatelessWidget {
+  const CookingDuration({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +89,7 @@ class _CookingDuration extends StatelessWidget {
             )
           ],
         ),
-        SizedBox(height: 24.h),
+        SizedBox(height: 5.h),
         const CookingDurationSlider(),
       ],
     );
