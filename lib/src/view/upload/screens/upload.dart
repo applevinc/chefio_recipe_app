@@ -98,7 +98,7 @@ class _Body extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       children: <Widget>[
         StepOneView(pageController: controller),
-        const StepTwoView(),
+        StepTwoView(pageController: controller),
       ],
     );
   }

@@ -4,4 +4,5 @@ class AppImages {
   static const String profileImg2 = 'assets/images/profile_pic_2.png';
   static const String pancake = 'assets/images/pancake.png';
   static const String salad = 'assets/images/salad.png';
+  static const String uploadSuccess = 'assets/images/upload_success.png';
 }

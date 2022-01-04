@@ -3,6 +3,7 @@ import 'package:chefio_recipe_app/src/core/theme/colors.dart';
 import 'package:chefio_recipe_app/src/core/widgets/custom_button.dart';
 import 'package:chefio_recipe_app/src/view/search/layouts/filter_bottomsheet.dart';
 import 'package:chefio_recipe_app/src/view/upload/screens/upload.dart';
+import 'package:chefio_recipe_app/src/view/upload/widgets/textformfield.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,7 +17,7 @@ class StepOneView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var vm = context.watch<UploadPageViewController>();
+    var pageNotifier = context.watch<UploadPageViewController>();
 
     return CustomScrollView(
       physics: const BouncingScrollPhysics(),
@@ -29,12 +30,12 @@ class StepOneView extends StatelessWidget {
               children: [
                 const _UploadImage(),
                 SizedBox(height: 24.h),
-                const _UploadFormField(
+                const UploadFormField(
                   label: 'Food Name',
                   hintText: 'Enter food name',
                 ),
                 SizedBox(height: 24.h),
-                const _UploadFormField(
+                const UploadFormField(
                   label: 'Description',
                   hintText: 'Tell a little about your food',
                   maxLines: 3,
@@ -46,7 +47,7 @@ class StepOneView extends StatelessWidget {
                   label: 'NEXT',
                   onPressed: () {
                     pageController.jumpToPage(1);
-                    vm.setPageNo(1);
+                    pageNotifier.setPageNo(1);
                   },
                 ),
               ],
@@ -58,47 +59,7 @@ class StepOneView extends StatelessWidget {
   }
 }
 
-class _UploadFormField extends StatelessWidget {
-  const _UploadFormField({
-    Key? key,
-    required this.label,
-    required this.hintText,
-    this.maxLines,
-  }) : super(key: key);
 
-  final String label;
-  final String hintText;
-  final int? maxLines;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          label,
-          style: Theme.of(context).textTheme.bodyText2,
-        ),
-        SizedBox(height: 10.h),
-        TextFormField(
-          maxLines: maxLines,
-          decoration: InputDecoration(
-            hintText: hintText,
-            hintStyle: Theme.of(context).textTheme.bodyText1,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(32.r),
-              borderSide: const BorderSide(
-                //color: AppColors.outline,
-                width: 1.0,
-                style: BorderStyle.solid,
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
 
 class _UploadImage extends StatelessWidget {
   const _UploadImage({Key? key}) : super(key: key);
