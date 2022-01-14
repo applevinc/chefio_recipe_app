@@ -18,13 +18,16 @@ class StepTwoView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const _Ingredients(),
-        const GreyDivider(),
-        const _Steps(),
-        _Actions(pageController: pageController),
-      ],
+    return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
+      child: Column(
+        children: [
+          const _Ingredients(),
+          const GreyDivider(),
+          const _Steps(),
+          _Actions(pageController: pageController),
+        ],
+      ),
     );
   }
 }
@@ -36,48 +39,44 @@ class _Ingredients extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Ingredients',
-                  style: Theme.of(context).textTheme.bodyText2,
-                ),
-                TextButton.icon(
-                  icon: const Icon(Icons.add, color: AppColors.headlineText),
-                  label: Text(
-                    'Group',
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyText1!
-                        .copyWith(color: AppColors.headlineText),
-                  ),
-                  onPressed: () {},
-                ),
-              ],
-            ),
-            Flexible(
-              child: ListView.separated(
-                physics: const NeverScrollableScrollPhysics(),
-                padding: EdgeInsets.only(bottom: 32.h, top: 26.h),
-                shrinkWrap: true,
-                itemCount: 2,
-                itemBuilder: (BuildContext context, int index) {
-                  return const _IngredientItem();
-                },
-                separatorBuilder: (BuildContext context, int index) {
-                  return SizedBox(height: 24.h);
-                },
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Ingredients',
+                style: Theme.of(context).textTheme.bodyText2,
               ),
-            ),
-            const AddIngredient(),
-          ],
-        ),
+              TextButton.icon(
+                icon: const Icon(Icons.add, color: AppColors.headlineText),
+                label: Text(
+                  'Group',
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyText1!
+                      .copyWith(color: AppColors.headlineText),
+                ),
+                onPressed: () {},
+              ),
+            ],
+          ),
+          ListView.separated(
+            physics: const NeverScrollableScrollPhysics(),
+            padding: EdgeInsets.only(bottom: 32.h, top: 26.h),
+            shrinkWrap: true,
+            itemCount: 2,
+            itemBuilder: (BuildContext context, int index) {
+              return const _IngredientItem();
+            },
+            separatorBuilder: (BuildContext context, int index) {
+              return SizedBox(height: 24.h);
+            },
+          ),
+          const AddIngredient(),
+        ],
       ),
     );
   }
@@ -220,7 +219,7 @@ class _Actions extends StatelessWidget {
               labelColor: AppColors.mainText,
               onPressed: () {
                 pageController.jumpToPage(0);
-                pageNotifier.setPageNo(1);
+                pageNotifier.setPageNo(0);
               },
             ),
           ),

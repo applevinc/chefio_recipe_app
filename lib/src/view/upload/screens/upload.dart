@@ -59,7 +59,7 @@ class UploadScreen extends StatelessWidget {
                       text: TextSpan(
                         text: '1',
                         style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                            color: pageViewModel.pagNo == 0
+                            color: pageViewModel.pageNo == 0
                                 ? AppColors.headlineText
                                 : AppColors.secondaryText),
                         children: <TextSpan>[
@@ -68,7 +68,7 @@ class UploadScreen extends StatelessWidget {
                           TextSpan(
                             text: '2',
                             style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                                color: pageViewModel.pagNo == 1
+                                color: pageViewModel.pageNo == 1
                                     ? AppColors.headlineText
                                     : AppColors.secondaryText),
                           ),
@@ -106,7 +106,7 @@ class _Body extends StatelessWidget {
 
 class UploadPageViewController extends ChangeNotifier {
   int _pageNo = 0;
-  int get pagNo => _pageNo;
+  int get pageNo => _pageNo;
 
   setPageNo(int page) {
     _pageNo = page;
