@@ -10,6 +10,8 @@ class GridViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
+      shrinkWrap: true,
+      primary: false,
       physics: const BouncingScrollPhysics(),
       padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
       gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(

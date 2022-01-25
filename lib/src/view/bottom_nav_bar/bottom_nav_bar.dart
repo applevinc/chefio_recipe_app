@@ -17,12 +17,12 @@ class BottomNavBar extends StatefulWidget {
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
-  int _selectedIndex = 0;
+  late int _selectedIndex = 0;
 
-  static const List<Widget> _pages = <Widget>[
+  static const _pages = [
     HomeScreen(),
     UploadScreen(),
-    ScanScreen(),
+    null,
     NotificationsScreen(),
     ProfileScreen(),
   ];
@@ -104,11 +104,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
                   elevation: 0.0,
                   child: SvgPicture.asset(AppIcons.scan),
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => const ScanScreen(),
-                      ),
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return const ScanScreen();
+                      },
                     );
                   },
                 ),

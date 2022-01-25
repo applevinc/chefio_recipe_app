@@ -40,6 +40,9 @@ dependencies:
   pin_code_fields: ^7.3.0
   provider: ^6.0.1
   dotted_border: ^2.0.0+2
+  camera: ^0.9.4+6
+  path: ^1.8.0
+  path_provider: ^2.0.8
 
 dev_dependencies:
   flutter_test:

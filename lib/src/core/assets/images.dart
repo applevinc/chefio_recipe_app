@@ -5,4 +5,7 @@ class AppImages {
   static const String pancake = 'assets/images/pancake.png';
   static const String salad = 'assets/images/salad.png';
   static const String uploadSuccess = 'assets/images/upload_success.png';
+  static const String food = 'assets/images/food.png';
+  static const String ingredients = 'assets/images/ingredients.png';
+  static const String capturedFood = 'assets/images/captured_food.png';
 }
