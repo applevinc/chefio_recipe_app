@@ -247,7 +247,7 @@ class ScanCameraScreenState extends State<ScanCameraScreen> {
             );
           } catch (e) {
             // If an error occurs, log the error to the console.
-            print(e);
+            //print(e);
           }
         },
         child: const Icon(Icons.camera_alt),

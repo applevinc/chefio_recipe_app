@@ -3,7 +3,7 @@ import 'package:chefio_recipe_app/src/core/assets/images.dart';
 import 'package:chefio_recipe_app/src/core/theme/colors.dart';
 import 'package:chefio_recipe_app/src/core/widgets/custom_button.dart';
 import 'package:chefio_recipe_app/src/core/widgets/grey_divider.dart';
-import 'package:chefio_recipe_app/src/view/bottom_nav_bar/bottom_nav_bar.dart';
+import 'package:chefio_recipe_app/src/core/widgets/bottom_nav_bar.dart';
 import 'package:chefio_recipe_app/src/view/upload/screens/upload.dart';
 import 'package:chefio_recipe_app/src/view/upload/widgets/add_ingredient_button.dart';
 import 'package:flutter/material.dart';

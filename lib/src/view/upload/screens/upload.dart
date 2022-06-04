@@ -1,5 +1,5 @@
 import 'package:chefio_recipe_app/src/core/theme/colors.dart';
-import 'package:chefio_recipe_app/src/view/bottom_nav_bar/bottom_nav_bar.dart';
+import 'package:chefio_recipe_app/src/core/widgets/bottom_nav_bar.dart';
 import 'package:chefio_recipe_app/src/view/upload/screens/steps/step_one_view.dart';
 import 'package:chefio_recipe_app/src/view/upload/screens/steps/step_two_view.dart';
 import 'package:flutter/material.dart';
