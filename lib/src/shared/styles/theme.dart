@@ -8,26 +8,7 @@ class AppTheme {
     return ThemeData(
       primaryColor: AppColors.primary,
       scaffoldBackgroundColor: Colors.white,
-      textTheme: TextTheme(
-        headline6: GoogleFonts.inter(
-          color: AppColors.mainText,
-          fontSize: 22.0.sp,
-          letterSpacing: 0.5.sp,
-          fontWeight: FontWeight.bold,
-        ),
-        bodyText1: GoogleFonts.inter(
-          color: AppColors.secondaryText,
-          fontSize: 15.0.sp,
-          letterSpacing: 0.5.sp,
-          fontWeight: FontWeight.w500,
-        ),
-        bodyText2: GoogleFonts.inter(
-          color: AppColors.headlineText,
-          fontSize: 17.0.sp,
-          letterSpacing: 0.5.sp,
-          fontWeight: FontWeight.w700,
-        ),
-      ),
+      textTheme: GoogleFonts.interTextTheme(),
       buttonTheme: ButtonThemeData(
         buttonColor: AppColors.primary,
         shape: RoundedRectangleBorder(

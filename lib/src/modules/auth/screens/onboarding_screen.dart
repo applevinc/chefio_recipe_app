@@ -1,4 +1,7 @@
 import 'package:chefio_recipe_app/src/shared/assets/images.dart';
+import 'package:chefio_recipe_app/src/shared/styles/colors.dart';
+import 'package:chefio_recipe_app/src/shared/styles/text.dart';
+import 'package:chefio_recipe_app/src/shared/utils/navigator.dart';
 import 'package:chefio_recipe_app/src/shared/widgets/buttons/custom_button.dart';
 import 'package:chefio_recipe_app/src/modules/auth/screens/sign_in.dart';
 import 'package:flutter/material.dart';
@@ -31,17 +34,22 @@ class OnboardingScreen extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Text(
                   'Start Cooking',
-                  style: Theme.of(context).textTheme.headline6,
+                  style: AppText.bold700(context).copyWith(
+                    fontSize: 22.sp,
+                  ),
                 ),
               ),
               SizedBox(height: 16.0.h),
               Align(
                 alignment: Alignment.center,
                 child: SizedBox(
-                  width: 209.w,
+                  width: 220.w,
                   child: Text(
                     'Let’s join our community to cook better food!',
-                    style: Theme.of(context).textTheme.bodyText1,
+                    style: AppText.bold500(context).copyWith(
+                      fontSize: 17.sp,
+                      color: AppColors.secondaryText,
+                    ),
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -52,12 +60,7 @@ class OnboardingScreen extends StatelessWidget {
                 child: CustomButton(
                   label: 'Get Started',
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => const SignInScreen(),
-                      ),
-                    );
+                    AppNavigator.pushAndRemoveUntil(context, const SignInScreen());
                   },
                 ),
               ),

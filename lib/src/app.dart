@@ -1,6 +1,6 @@
 import 'package:chefio_recipe_app/src/config/providers_wrapper.dart';
 import 'package:chefio_recipe_app/src/shared/styles/theme.dart';
-import 'package:chefio_recipe_app/src/modules/auth/screens/onboarding.dart';
+import 'package:chefio_recipe_app/src/modules/auth/screens/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
