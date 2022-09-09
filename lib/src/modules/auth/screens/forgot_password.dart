@@ -15,6 +15,15 @@ class ForgotPasswordScreen extends StatefulWidget {
 }
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
+  final _formKey = GlobalKey<FormState>();
+  late final TextEditingController emailController;
+
+  @override
+  void initState() {
+    super.initState();
+    emailController = TextEditingController();
+  }
+
   @override
   Widget build(BuildContext context) {
     return AuthView(
@@ -22,9 +31,10 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       subtitle: 'Enter your email to recover your password',
       body: Column(
         children: [
-          const CustomTextField(
+          CustomTextField(
             hintText: 'Email or phone number',
-            prefixIcon: AppIcons.email,
+            prefixIcon: const TextFieldIcon(icon: AppIcons.email),
+            controller: emailController,
           ),
           SizedBox(height: 24.h),
           CustomButton(

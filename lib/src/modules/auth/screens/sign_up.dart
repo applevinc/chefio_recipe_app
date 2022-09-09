@@ -6,11 +6,35 @@ import 'package:chefio_recipe_app/src/shared/utils/navigator.dart';
 import 'package:chefio_recipe_app/src/shared/widgets/buttons/custom_button.dart';
 import 'package:chefio_recipe_app/src/modules/auth/widgets/password_strength_view.dart';
 import 'package:chefio_recipe_app/src/shared/widgets/inputs/custom_textfield.dart';
+import 'package:chefio_recipe_app/src/shared/widgets/inputs/password_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
+
+  @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
+  final _formKey = GlobalKey<FormState>();
+  late final TextEditingController emailController;
+  late final TextEditingController passwordController;
+
+  @override
+  void initState() {
+    super.initState();
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,20 +70,13 @@ class SignUpScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 32.h),
-                    const CustomTextField(
+                    CustomTextField(
                       hintText: 'Email or phone number',
-                      prefixIcon: AppIcons.email,
+                      prefixIcon: const TextFieldIcon(icon: AppIcons.email),
+                      controller: emailController,
                     ),
                     SizedBox(height: 16.h),
-                    CustomTextField(
-                      hintText: 'Password',
-                      prefixIcon: AppIcons.lock,
-                      obscureText: true,
-                      suffixIcon: PasswordIcon(
-                        true,
-                        onTap: () {},
-                      ),
-                    ),
+                    PasswordTextField(controller: passwordController),
                     SizedBox(height: 24.h),
                     Align(
                       alignment: Alignment.centerLeft,

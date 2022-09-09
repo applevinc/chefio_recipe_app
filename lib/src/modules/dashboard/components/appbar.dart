@@ -7,11 +7,24 @@ import 'package:chefio_recipe_app/src/modules/search/screens/search_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
+class HomeAppBar extends StatefulWidget implements PreferredSizeWidget {
   const HomeAppBar({Key? key}) : super(key: key);
 
   @override
   Size get preferredSize => Size.fromHeight(278.h);
+
+  @override
+  State<HomeAppBar> createState() => _HomeAppBarState();
+}
+
+class _HomeAppBarState extends State<HomeAppBar> {
+  late final TextEditingController searchController;
+
+  @override
+  void initState() {
+    super.initState();
+    searchController = TextEditingController();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +43,8 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                 SizedBox(height: 16.h),
                 CustomTextField(
                   hintText: 'Search',
-                  prefixIcon: AppIcons.search,
-                  border: false,
+                  controller: searchController,
+                  prefixIcon: const TextFieldIcon(icon: AppIcons.search),
                   onTap: () {
                     FocusScope.of(context).requestFocus(FocusNode());
                     showSearch(
