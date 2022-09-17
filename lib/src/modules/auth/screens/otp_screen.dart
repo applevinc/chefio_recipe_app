@@ -26,7 +26,7 @@ class _OTPScreenState extends State<OTPScreen> {
           SizedBox(height: 48.h),
           const _CodeExpiration(),
           SizedBox(height: 24.h),
-          CustomButton(
+          AppButton(
             label: 'Verify',
             onPressed: () {
               Navigator.push(
@@ -38,7 +38,7 @@ class _OTPScreenState extends State<OTPScreen> {
             },
           ),
           SizedBox(height: 16.h),
-          CustomButton(
+          AppButton(
             label: 'Send again',
             labelColor: AppColors.secondaryText,
             showBorder: true,

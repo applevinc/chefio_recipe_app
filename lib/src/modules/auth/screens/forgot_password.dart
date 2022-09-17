@@ -37,7 +37,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             controller: emailController,
           ),
           SizedBox(height: 24.h),
-          CustomButton(
+          AppButton(
             label: 'Submit',
             onPressed: () {
               AppNavigator.to(context, const OTPScreen());

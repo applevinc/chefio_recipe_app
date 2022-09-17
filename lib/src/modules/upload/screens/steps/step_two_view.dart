@@ -213,7 +213,7 @@ class _Actions extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: CustomButton(
+            child: AppButton(
               label: 'Back',
               bgColor: AppColors.form,
               labelColor: AppColors.mainText,
@@ -225,7 +225,7 @@ class _Actions extends StatelessWidget {
           ),
           SizedBox(width: 15.w),
           Expanded(
-            child: CustomButton(
+            child: AppButton(
               label: 'Next',
               onPressed: () {
                 showDialog(
@@ -266,7 +266,7 @@ class _Actions extends StatelessWidget {
                         ],
                       ),
                       actions: [
-                        CustomButton(
+                        AppButton(
                           label: 'Back to Home',
                           onPressed: () {
                             Navigator.push(

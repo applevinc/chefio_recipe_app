@@ -2,7 +2,7 @@ import 'package:chefio_recipe_app/src/modules/auth/widgets/auth_view.dart';
 import 'package:chefio_recipe_app/src/shared/styles/colors.dart';
 import 'package:chefio_recipe_app/src/shared/utils/navigator.dart';
 import 'package:chefio_recipe_app/src/shared/widgets/buttons/custom_button.dart';
-import 'package:chefio_recipe_app/src/modules/auth/screens/sign_in.dart';
+import 'package:chefio_recipe_app/src/modules/auth/screens/sign_in_screen.dart';
 import 'package:chefio_recipe_app/src/modules/auth/widgets/password_strength_view.dart';
 import 'package:chefio_recipe_app/src/shared/widgets/inputs/password_textfield.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +46,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
           SizedBox(height: 16.h),
           const PasswordStrengthView(),
           SizedBox(height: 24.h),
-          CustomButton(
+          AppButton(
             label: 'Done',
             onPressed: () {
               AppNavigator.pushAndRemoveUntil(context, const SignInScreen());

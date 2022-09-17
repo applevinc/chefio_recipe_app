@@ -3,7 +3,7 @@ import 'package:chefio_recipe_app/src/shared/styles/colors.dart';
 import 'package:chefio_recipe_app/src/shared/styles/text.dart';
 import 'package:chefio_recipe_app/src/shared/utils/navigator.dart';
 import 'package:chefio_recipe_app/src/shared/widgets/buttons/custom_button.dart';
-import 'package:chefio_recipe_app/src/modules/auth/screens/sign_in.dart';
+import 'package:chefio_recipe_app/src/modules/auth/screens/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -57,7 +57,7 @@ class OnboardingScreen extends StatelessWidget {
               const Spacer(flex: 2),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 24.0.w),
-                child: CustomButton(
+                child: AppButton(
                   label: 'Get Started',
                   onPressed: () {
                     AppNavigator.pushAndRemoveUntil(context, const SignInScreen());

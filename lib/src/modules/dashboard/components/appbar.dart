@@ -65,7 +65,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
                   ),
                 ),
                 SizedBox(height: 16.h),
-                const HorizontalListViewCircleTabButtons(),
+               // const HorizontalListViewCircleTabButtons(),
                 SizedBox(height: 23.h),
               ],
             ),

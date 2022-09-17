@@ -5,8 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class CustomButton extends StatelessWidget {
-  const CustomButton({
+class AppButton extends StatelessWidget {
+  const AppButton({
     Key? key,
     required this.label,
     required this.onPressed,
@@ -14,6 +14,7 @@ class CustomButton extends StatelessWidget {
     this.bgColor,
     this.showBorder = false,
     this.labelColor = Colors.white,
+    this.isLoading = false,
   }) : super(key: key);
 
   final String label;
@@ -21,11 +22,13 @@ class CustomButton extends StatelessWidget {
   final Color? bgColor;
   final Color? labelColor;
   final Color? borderColor;
-  final bool? showBorder;
+  final bool showBorder;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
+      onPressed: isLoading ? () {} : onPressed,
       style: ElevatedButton.styleFrom(
         primary: bgColor,
         side: showBorder == true
@@ -34,22 +37,24 @@ class CustomButton extends StatelessWidget {
               )
             : null,
       ),
-      child: Text(
-        label,
-        style: GoogleFonts.inter(
-          color: labelColor,
-          fontSize: 15.0.sp,
-          fontWeight: FontWeight.w700,
-          letterSpacing: 0.105.sp,
-        ),
-      ),
-      onPressed: onPressed,
+      child: isLoading
+          ? const CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.white))
+          : Text(
+              label,
+              style: GoogleFonts.inter(
+                color: labelColor,
+                fontSize: 15.0.sp,
+                fontWeight: FontWeight.w700,
+                letterSpacing: 0.105.sp,
+              ),
+            ),
     );
   }
 }
 
-class CustomButtonWithIcon extends StatelessWidget {
-  const CustomButtonWithIcon({
+class AppButtonWithIcon extends StatelessWidget {
+  const AppButtonWithIcon({
     Key? key,
     required this.label,
     required this.onPressed,

@@ -43,7 +43,7 @@ class StepOneView extends StatelessWidget {
                 SizedBox(height: 24.h),
                 const CookingDuration(),
                 const Spacer(),
-                CustomButton(
+                AppButton(
                   label: 'NEXT',
                   onPressed: () {
                     pageController.jumpToPage(1);

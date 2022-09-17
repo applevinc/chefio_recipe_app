@@ -28,7 +28,7 @@ class AddFilterView extends StatelessWidget {
             ),
           ),
           SizedBox(height: 16.h),
-          const HorizontalListViewCircleTabButtons(),
+         // const HorizontalListViewCircleTabButtons(),
           SizedBox(height: 32.h),
           const CookingDuration(),
           SizedBox(height: 52.h),

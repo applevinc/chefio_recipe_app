@@ -92,7 +92,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ],
                 ),
                 SizedBox(height: 24.h),
-                CustomButton(
+                AppButton(
                   label: 'Sign Up',
                   onPressed: () {
                     AppNavigator.to(context, const OTPScreen());

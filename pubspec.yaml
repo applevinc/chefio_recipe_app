@@ -47,6 +47,9 @@ dependencies:
   intl: ^0.17.0
   uuid: ^3.0.6
   all_validations_br: ^2.3.0
+  equatable: ^2.0.5
+  top_snackbar_flutter: ^2.1.1
+  image_picker: ^0.8.5+3
 
 dev_dependencies:
   flutter_test:

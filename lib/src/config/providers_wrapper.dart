@@ -11,7 +11,7 @@ class ProvidersWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => CircleButtonModelNotifier()),
+       // ChangeNotifierProvider(create: (context) => CircleButtonModelNotifier()),
       ],
       child: child,
     );
