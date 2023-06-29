@@ -1,4 +1,3 @@
-import 'package:chefio_recipe_app/src/modules/dashboard/components/circular_tab_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -9,11 +8,6 @@ class ProvidersWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-       // ChangeNotifierProvider(create: (context) => CircleButtonModelNotifier()),
-      ],
-      child: child,
-    );
+    return child;
   }
 }

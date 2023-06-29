@@ -1,12 +1,15 @@
+import 'package:chefio_recipe_app/src/config/locator/locator.dart';
+import 'package:chefio_recipe_app/src/modules/auth/screens/sign_in/sign_in_viewmodel.dart';
 import 'package:chefio_recipe_app/src/shared/assets/images.dart';
 import 'package:chefio_recipe_app/src/shared/styles/colors.dart';
 import 'package:chefio_recipe_app/src/shared/styles/text.dart';
 import 'package:chefio_recipe_app/src/shared/utils/navigator.dart';
 import 'package:chefio_recipe_app/src/shared/widgets/buttons/custom_button.dart';
-import 'package:chefio_recipe_app/src/modules/auth/screens/sign_in_screen.dart';
+import 'package:chefio_recipe_app/src/modules/auth/screens/sign_in/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
@@ -60,7 +63,13 @@ class OnboardingScreen extends StatelessWidget {
                 child: AppButton(
                   label: 'Get Started',
                   onPressed: () {
-                    AppNavigator.pushAndRemoveUntil(context, const SignInScreen());
+                    AppNavigator.pushAndRemoveUntil(
+                      context,
+                      ChangeNotifierProvider(
+                        create: (context) => locator<SignInViewModel>(),
+                        child: const SignInScreen(),
+                      ),
+                    );
                   },
                 ),
               ),

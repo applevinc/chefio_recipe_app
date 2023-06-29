@@ -22,10 +22,7 @@ class ScanScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final options = <_ScanOption>[
-      _ScanOption(label: 'Food', img: AppImages.food),
-      _ScanOption(label: 'Ingredient', img: AppImages.ingredients)
-    ];
+    final options = <_ScanOption>[_ScanOption(label: 'Food', img: AppImages.food), _ScanOption(label: 'Ingredient', img: AppImages.ingredients)];
 
     return Container(
       padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
@@ -82,10 +79,7 @@ class ScanScreen extends StatelessWidget {
                       const Spacer(),
                       Text(
                         options[index].label,
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyText2!
-                            .copyWith(fontSize: 15.sp),
+                        style: Theme.of(context).textTheme.bodyText2!.copyWith(fontSize: 15.sp),
                       ),
                     ],
                   ),
@@ -302,10 +296,7 @@ class ScannedFoodScreen extends StatelessWidget {
                   SizedBox(height: 32.h),
                   Text(
                     'Pancakes',
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline6!
-                        .copyWith(color: AppColors.headlineText),
+                    style: Theme.of(context).textTheme.headline6!.copyWith(color: AppColors.headlineText),
                   ),
                   SizedBox(height: 24.h),
                 ],

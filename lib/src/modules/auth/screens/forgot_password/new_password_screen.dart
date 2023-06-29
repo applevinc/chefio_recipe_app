@@ -2,7 +2,7 @@ import 'package:chefio_recipe_app/src/modules/auth/widgets/auth_view.dart';
 import 'package:chefio_recipe_app/src/shared/styles/colors.dart';
 import 'package:chefio_recipe_app/src/shared/utils/navigator.dart';
 import 'package:chefio_recipe_app/src/shared/widgets/buttons/custom_button.dart';
-import 'package:chefio_recipe_app/src/modules/auth/screens/sign_in_screen.dart';
+import 'package:chefio_recipe_app/src/modules/auth/screens/sign_in/sign_in_screen.dart';
 import 'package:chefio_recipe_app/src/modules/auth/widgets/password_strength_view.dart';
 import 'package:chefio_recipe_app/src/shared/widgets/inputs/password_textfield.dart';
 import 'package:flutter/material.dart';
@@ -37,10 +37,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
             alignment: Alignment.centerLeft,
             child: Text(
               'Your Password must contain:',
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText1!
-                  .copyWith(color: AppColors.mainText, fontSize: 17.sp),
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: AppColors.mainText, fontSize: 17.sp),
             ),
           ),
           SizedBox(height: 16.h),

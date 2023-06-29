@@ -44,10 +44,7 @@ class _Item extends StatelessWidget {
             SizedBox(width: 8.w),
             Text(
               'Calum Lewis',
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText1!
-                  .copyWith(fontSize: 12.sp, color: AppColors.mainText),
+              style: Theme.of(context).textTheme.bodyText1!.copyWith(fontSize: 12.sp, color: AppColors.mainText),
             )
           ],
         ),
@@ -58,10 +55,7 @@ class _Item extends StatelessWidget {
           alignment: Alignment.centerLeft,
           child: Text(
             'Pancake',
-            style: Theme.of(context)
-                .textTheme
-                .headline6!
-                .copyWith(color: AppColors.headlineText, fontSize: 17.sp),
+            style: Theme.of(context).textTheme.headline6!.copyWith(color: AppColors.headlineText, fontSize: 17.sp),
           ),
         ),
         SizedBox(height: 8.h),

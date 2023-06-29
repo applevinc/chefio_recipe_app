@@ -28,7 +28,7 @@ class AddFilterView extends StatelessWidget {
             ),
           ),
           SizedBox(height: 16.h),
-         // const HorizontalListViewCircleTabButtons(),
+          // const HorizontalListViewCircleTabButtons(),
           SizedBox(height: 32.h),
           const CookingDuration(),
           SizedBox(height: 52.h),
@@ -54,10 +54,7 @@ class CookingDuration extends StatelessWidget {
             children: <TextSpan>[
               TextSpan(
                 text: '(in minutes)',
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyText2!
-                    .copyWith(color: AppColors.secondaryText),
+                style: Theme.of(context).textTheme.bodyText2!.copyWith(color: AppColors.secondaryText),
               ),
             ],
           ),
@@ -68,24 +65,15 @@ class CookingDuration extends StatelessWidget {
           children: [
             Text(
               '<10',
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText1!
-                  .copyWith(color: AppColors.primary, fontWeight: FontWeight.w700),
+              style: Theme.of(context).textTheme.bodyText1!.copyWith(color: AppColors.primary, fontWeight: FontWeight.w700),
             ),
             Text(
               '30',
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText1!
-                  .copyWith(color: AppColors.primary, fontWeight: FontWeight.w700),
+              style: Theme.of(context).textTheme.bodyText1!.copyWith(color: AppColors.primary, fontWeight: FontWeight.w700),
             ),
             Text(
               '60',
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText1!
-                  .copyWith(color: AppColors.primary, fontWeight: FontWeight.w700),
+              style: Theme.of(context).textTheme.bodyText1!.copyWith(color: AppColors.primary, fontWeight: FontWeight.w700),
             )
           ],
         ),

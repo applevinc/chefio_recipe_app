@@ -1,5 +1,7 @@
-import 'package:chefio_recipe_app/src/modules/auth/auth.dart';
-import 'package:chefio_recipe_app/src/modules/auth/controllers/auth_controller.dart';
+import 'package:chefio_recipe_app/src/modules/auth/screens/sign_in/sign_in_viewmodel.dart';
+import 'package:chefio_recipe_app/src/modules/auth/screens/forgot_password/forgot_password.dart';
+import 'package:chefio_recipe_app/src/modules/auth/screens/sign_up/sign_up_screen.dart';
+import 'package:chefio_recipe_app/src/modules/auth/widgets/auth_view.dart';
 import 'package:chefio_recipe_app/src/shared/assets/icons.dart';
 import 'package:chefio_recipe_app/src/shared/helper_functions/helper_functions.dart';
 import 'package:chefio_recipe_app/src/shared/models/failure.dart';
@@ -11,17 +13,17 @@ import 'package:chefio_recipe_app/src/shared/widgets/inputs/custom_textfield.dar
 import 'package:chefio_recipe_app/src/modules/dashboard/screens/dashboard_view.dart';
 import 'package:chefio_recipe_app/src/shared/widgets/inputs/password_textfield.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
-class SignInScreen extends ConsumerStatefulWidget {
+class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _SignInScreenState();
+  State<SignInScreen> createState() => _SignInScreenState();
 }
 
-class _SignInScreenState extends ConsumerState<SignInScreen> {
+class _SignInScreenState extends State<SignInScreen> {
   final _formKey = GlobalKey<FormState>();
   late final TextEditingController emailController;
   late final TextEditingController passwordController;
@@ -42,24 +44,27 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
 
   void signIn() async {
     if (_formKey.currentState!.validate()) {
-      final controller = ref.read(authProvider.notifier);
+      final controller = context.read<SignInViewModel>();
 
       try {
         await controller.signIn(
           email: emailController.text.trim(),
           password: passwordController.text.trim(),
         );
-        NotificationMessage.showSucess(context, message: 'Login successful');
-        AppNavigator.pushAndRemoveUntil(context, const DashBoardView());
-      } on Failure {
-        NotificationMessage.showError(context, message: 'Failed to create an account');
+
+        if (mounted) {
+          Messenger.success(context, message: 'Login successful');
+          AppNavigator.to(context, const DashBoardView());
+        }
+      } on Failure catch (e) {
+        Messenger.error(context, message: e.message);
       }
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final authState = ref.watch(authProvider);
+    final viewModel = context.watch<SignInViewModel>();
 
     return AuthView(
       title: 'Welcome Back!',
@@ -103,7 +108,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
             SizedBox(height: 72.h),
             AppButton(
               label: 'Login',
-              isLoading: authState == AuthState.loading,
+              isLoading: viewModel.isBusy,
               onPressed: signIn,
             ),
             SizedBox(height: 24.h),

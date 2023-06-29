@@ -13,11 +13,8 @@ import 'package:google_fonts/google_fonts.dart';
 class SearchScreen extends SearchDelegate {
   SearchScreen()
       : super(
-            searchFieldStyle: GoogleFonts.inter(
-                color: AppColors.secondaryText,
-                fontSize: 15.0.sp,
-                letterSpacing: 0.5.sp,
-                fontWeight: FontWeight.w500),
+            searchFieldStyle:
+                GoogleFonts.inter(color: AppColors.secondaryText, fontSize: 15.0.sp, letterSpacing: 0.5.sp, fontWeight: FontWeight.w500),
             keyboardType: TextInputType.text,
             textInputAction: TextInputAction.search);
 
@@ -29,8 +26,7 @@ class SearchScreen extends SearchDelegate {
         elevation: 0.0,
         backgroundColor: Colors.white,
         toolbarHeight: 96.h,
-        toolbarTextStyle:
-            Theme.of(context).textTheme.bodyText1!.copyWith(color: AppColors.mainText),
+        toolbarTextStyle: Theme.of(context).textTheme.bodyText1!.copyWith(color: AppColors.mainText),
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,

@@ -1,8 +1,8 @@
+import 'package:chefio_recipe_app/src/modules/auth/screens/forgot_password/new_password_screen.dart';
 import 'package:chefio_recipe_app/src/modules/auth/widgets/auth_view.dart';
 import 'package:chefio_recipe_app/src/shared/styles/colors.dart';
 import 'package:chefio_recipe_app/src/shared/styles/text.dart';
 import 'package:chefio_recipe_app/src/shared/widgets/buttons/custom_button.dart';
-import 'package:chefio_recipe_app/src/modules/auth/screens/new_password_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';

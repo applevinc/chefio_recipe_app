@@ -1,7 +1,7 @@
 import 'package:chefio_recipe_app/src/modules/auth/services/interfaces/auth_service.dart';
 import 'package:chefio_recipe_app/src/shared/utils/utils.dart';
 
-class FakeAuthServiceImpl implements IAuthService {
+class FakeAuthService implements IAuthService {
   @override
   Future<void> resetPassword({required String newPassword}) async {
     await Future.delayed(networkDelay);

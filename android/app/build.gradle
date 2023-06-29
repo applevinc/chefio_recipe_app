@@ -50,6 +50,25 @@ android {
         versionName flutterVersionName
     }
 
+    flavorDimensions "app"
+    productFlavors {
+ 
+        dev {
+            dimension "app"
+            resValue "string", "app_name", "Chefio(dev)"
+        }
+
+        qa {
+           dimension "app"
+           resValue "string", "app_name", "Chefio(qa)"
+        }
+
+        prod {
+            dimension "app"
+            resValue "string", "app_name", "Chefio"
+        }
+    }
+
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.

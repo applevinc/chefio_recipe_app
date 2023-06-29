@@ -9,7 +9,7 @@ class AddIngredient extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        primary: Colors.white,
+        backgroundColor: Colors.white,
         side: const BorderSide(color: AppColors.outline),
       ),
       child: Row(
@@ -19,10 +19,7 @@ class AddIngredient extends StatelessWidget {
           SizedBox(width: 5.w),
           Text(
             'Ingredient',
-            style: Theme.of(context)
-                .textTheme
-                .bodyText1!
-                .copyWith(color: AppColors.headlineText),
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: AppColors.headlineText),
           ),
         ],
       ),

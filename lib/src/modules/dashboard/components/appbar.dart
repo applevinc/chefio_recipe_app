@@ -58,14 +58,11 @@ class _HomeAppBarState extends State<HomeAppBar> {
                   alignment: Alignment.centerLeft,
                   child: Text(
                     'Category',
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline6!
-                        .copyWith(color: AppColors.headlineText),
+                    style: Theme.of(context).textTheme.headline6!.copyWith(color: AppColors.headlineText),
                   ),
                 ),
                 SizedBox(height: 16.h),
-               // const HorizontalListViewCircleTabButtons(),
+                // const HorizontalListViewCircleTabButtons(),
                 SizedBox(height: 23.h),
               ],
             ),
@@ -104,15 +101,9 @@ class _CustomTabbar extends StatelessWidget implements PreferredSizeWidget {
         ),
         TabBar(
           labelColor: const Color(0xff3e5481),
-          labelStyle: Theme.of(context)
-              .textTheme
-              .bodyText1!
-              .copyWith(fontWeight: FontWeight.w600),
+          labelStyle: Theme.of(context).textTheme.bodyText1!.copyWith(fontWeight: FontWeight.w600),
           unselectedLabelColor: AppColors.secondaryText,
-          unselectedLabelStyle: Theme.of(context)
-              .textTheme
-              .bodyText1!
-              .copyWith(fontWeight: FontWeight.w600),
+          unselectedLabelStyle: Theme.of(context).textTheme.bodyText1!.copyWith(fontWeight: FontWeight.w600),
           indicatorColor: AppColors.primary,
           indicatorWeight: 3.h,
           tabs: const [

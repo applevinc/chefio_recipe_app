@@ -1,0 +1,44 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Chefio(dev)",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/src/main/main_dev.dart",
+            "args": [
+                "--flavor",
+                "dev",
+                "--target",
+                "lib/src/main/main_dev.dart"
+            ]
+        },
+        {
+            "name": "Chefio(qa)",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/src/main/main_qa.dart",
+            "args": [
+                "--flavor",
+                "qa",
+                "--target",
+                "lib/src/main/main_qa.dart"
+            ]
+        },
+        {
+            "name": "Chefio",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/src/main/main_prod.dart",
+            "args": [
+                "--flavor",
+                "prod",
+                "--target",
+                "lib/src/main/main_prod.dart"
+            ]
+        },
+    ]
+}

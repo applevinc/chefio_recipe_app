@@ -1,7 +1,7 @@
 import 'package:chefio_recipe_app/src/shared/models/user.dart';
 
-class DataStore {
-  DataStore._();
+class AppSession {
+  AppSession._();
 
   static User? user;
   static bool isLoggedIn = false;

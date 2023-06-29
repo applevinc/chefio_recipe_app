@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppTheme {
-  static ThemeData get defaultTheme {
+  static ThemeData get theme {
     return ThemeData(
       primaryColor: AppColors.primary,
       scaffoldBackgroundColor: Colors.white,
@@ -18,7 +18,7 @@ class AppTheme {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          primary: AppColors.primary,
+          backgroundColor: AppColors.primary,
           elevation: 0.0,
           minimumSize: Size(327.w, 56.h),
           shape: RoundedRectangleBorder(

@@ -38,8 +38,7 @@ class AppButton extends StatelessWidget {
             : null,
       ),
       child: isLoading
-          ? const CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(Colors.white))
+          ? const CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.white))
           : Text(
               label,
               style: GoogleFonts.inter(

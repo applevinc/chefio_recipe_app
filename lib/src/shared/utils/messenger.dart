@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
-class NotificationMessage {
+class Messenger {
   static show(
     BuildContext context, {
     required String message,
@@ -17,7 +17,7 @@ class NotificationMessage {
     );
   }
 
-  static showError(
+  static error(
     BuildContext context, {
     required String message,
   }) {
@@ -30,7 +30,7 @@ class NotificationMessage {
     );
   }
 
-  static showSucess(
+  static success(
     BuildContext context, {
     required String message,
   }) {

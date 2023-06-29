@@ -6,7 +6,7 @@ class AppText {
   AppText._();
 
   static TextStyle bold400(BuildContext context) {
-    return Theme.of(context).textTheme.bodyText1!.copyWith(
+    return Theme.of(context).textTheme.bodyLarge!.copyWith(
           color: AppColors.mainText,
           fontWeight: FontWeight.w400,
           letterSpacing: 0.5.sp,
@@ -14,7 +14,7 @@ class AppText {
   }
 
   static TextStyle bold300(BuildContext context) {
-    return Theme.of(context).textTheme.bodyText1!.copyWith(
+    return Theme.of(context).textTheme.bodyLarge!.copyWith(
           color: AppColors.mainText,
           fontWeight: FontWeight.w300,
           letterSpacing: 0.5.sp,
@@ -22,7 +22,7 @@ class AppText {
   }
 
   static TextStyle bold500(BuildContext context) {
-    return Theme.of(context).textTheme.bodyText1!.copyWith(
+    return Theme.of(context).textTheme.bodyLarge!.copyWith(
           color: AppColors.mainText,
           fontWeight: FontWeight.w500,
           letterSpacing: 0.5.sp,
@@ -30,7 +30,7 @@ class AppText {
   }
 
   static TextStyle bold700(BuildContext context) {
-    return Theme.of(context).textTheme.bodyText1!.copyWith(
+    return Theme.of(context).textTheme.bodyLarge!.copyWith(
           color: AppColors.mainText,
           fontWeight: FontWeight.w700,
           letterSpacing: 0.5.sp,
@@ -38,7 +38,7 @@ class AppText {
   }
 
   static TextStyle bold900(BuildContext context) {
-    return Theme.of(context).textTheme.bodyText1!.copyWith(
+    return Theme.of(context).textTheme.bodyLarge!.copyWith(
           color: AppColors.mainText,
           fontWeight: FontWeight.w900,
           letterSpacing: 0.5.sp,

@@ -54,10 +54,7 @@ class _Ingredients extends StatelessWidget {
                 icon: const Icon(Icons.add, color: AppColors.headlineText),
                 label: Text(
                   'Group',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText1!
-                      .copyWith(color: AppColors.headlineText),
+                  style: Theme.of(context).textTheme.bodyText1!.copyWith(color: AppColors.headlineText),
                 ),
                 onPressed: () {},
               ),
@@ -144,10 +141,7 @@ class _Steps extends StatelessWidget {
                     ),
                     child: Text(
                       '1',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyText2!
-                          .copyWith(color: Colors.white, fontSize: 12.sp),
+                      style: Theme.of(context).textTheme.bodyText2!.copyWith(color: Colors.white, fontSize: 12.sp),
                     ),
                   ),
                   SizedBox(height: 16.h),
@@ -163,10 +157,7 @@ class _Steps extends StatelessWidget {
                       maxLines: 4,
                       decoration: InputDecoration(
                         hintText: 'Tell a little about your food',
-                        hintStyle: Theme.of(context)
-                            .textTheme
-                            .bodyText1!
-                            .copyWith(fontSize: 12.sp),
+                        hintStyle: Theme.of(context).textTheme.bodyText1!.copyWith(fontSize: 12.sp),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8.r),
                           borderSide: const BorderSide(
@@ -258,10 +249,7 @@ class _Actions extends StatelessWidget {
                           SizedBox(height: 8.h),
                           Text(
                             'Your recipe has been uploaded, you can see it on your profile',
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyText1!
-                                .copyWith(color: AppColors.mainText),
+                            style: Theme.of(context).textTheme.bodyText1!.copyWith(color: AppColors.mainText),
                           ),
                         ],
                       ),

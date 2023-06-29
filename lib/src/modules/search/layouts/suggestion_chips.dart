@@ -16,10 +16,7 @@ class SearchSuggestions extends StatelessWidget {
         children: [
           Text(
             'Search suggestions',
-            style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                color: AppColors.headlineText,
-                fontSize: 17.sp,
-                fontWeight: FontWeight.w700),
+            style: Theme.of(context).textTheme.bodyText1!.copyWith(color: AppColors.headlineText, fontSize: 17.sp, fontWeight: FontWeight.w700),
           ),
           SizedBox(height: 24.h),
           Wrap(
@@ -30,15 +27,9 @@ class SearchSuggestions extends StatelessWidget {
               return ChoiceChip(
                 label: Text(
                   suggestion,
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText1!
-                      .copyWith(color: AppColors.headlineText),
+                  style: Theme.of(context).textTheme.bodyText1!.copyWith(color: AppColors.headlineText),
                 ),
-                labelStyle: Theme.of(context)
-                    .textTheme
-                    .bodyText1!
-                    .copyWith(color: AppColors.headlineText),
+                labelStyle: Theme.of(context).textTheme.bodyText1!.copyWith(color: AppColors.headlineText),
                 disabledColor: AppColors.form,
                 selected: false,
               );

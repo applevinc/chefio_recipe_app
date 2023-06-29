@@ -43,12 +43,8 @@ class _DashBoardViewState extends State<DashBoardView> {
           : BottomNavigationBar(
               currentIndex: _selectedIndex,
               type: BottomNavigationBarType.fixed,
-              selectedLabelStyle: Theme.of(context)
-                  .textTheme
-                  .bodyText1!
-                  .copyWith(fontSize: 12.sp, color: AppColors.primary),
-              unselectedLabelStyle:
-                  Theme.of(context).textTheme.bodyText1!.copyWith(fontSize: 12.sp),
+              selectedLabelStyle: Theme.of(context).textTheme.bodyText1!.copyWith(fontSize: 12.sp, color: AppColors.primary),
+              unselectedLabelStyle: Theme.of(context).textTheme.bodyText1!.copyWith(fontSize: 12.sp),
               selectedItemColor: AppColors.primary,
               unselectedItemColor: AppColors.secondaryText,
               selectedIconTheme: const IconThemeData(color: AppColors.primary),
@@ -58,16 +54,14 @@ class _DashBoardViewState extends State<DashBoardView> {
                 BottomNavigationBarItem(
                   icon: SvgPicture.asset(
                     AppIcons.home,
-                    color:
-                        _selectedIndex == 0 ? AppColors.primary : AppColors.secondaryText,
+                    color: _selectedIndex == 0 ? AppColors.primary : AppColors.secondaryText,
                   ),
                   label: 'Home',
                 ),
                 BottomNavigationBarItem(
                   icon: SvgPicture.asset(
                     AppIcons.upload,
-                    color:
-                        _selectedIndex == 1 ? AppColors.primary : AppColors.secondaryText,
+                    color: _selectedIndex == 1 ? AppColors.primary : AppColors.secondaryText,
                   ),
                   label: 'Upload',
                 ),
@@ -78,16 +72,14 @@ class _DashBoardViewState extends State<DashBoardView> {
                 BottomNavigationBarItem(
                   icon: SvgPicture.asset(
                     AppIcons.notification,
-                    color:
-                        _selectedIndex == 3 ? AppColors.primary : AppColors.secondaryText,
+                    color: _selectedIndex == 3 ? AppColors.primary : AppColors.secondaryText,
                   ),
                   label: 'Notification',
                 ),
                 BottomNavigationBarItem(
                   icon: SvgPicture.asset(
                     AppIcons.profile,
-                    color:
-                        _selectedIndex == 4 ? AppColors.primary : AppColors.secondaryText,
+                    color: _selectedIndex == 4 ? AppColors.primary : AppColors.secondaryText,
                   ),
                   label: 'Profile',
                 ),
