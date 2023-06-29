@@ -1,9 +1,12 @@
+import 'package:chefio_recipe_app/src/config/locator/locator.dart';
+import 'package:chefio_recipe_app/src/modules/auth/screens/forgot_password/forget_password_viewmodel.dart';
 import 'package:chefio_recipe_app/src/modules/auth/screens/sign_in/sign_in_viewmodel.dart';
-import 'package:chefio_recipe_app/src/modules/auth/screens/forgot_password/forgot_password.dart';
+import 'package:chefio_recipe_app/src/modules/auth/screens/forgot_password/forgot_password_screen.dart';
 import 'package:chefio_recipe_app/src/modules/auth/screens/sign_up/sign_up_screen.dart';
+import 'package:chefio_recipe_app/src/modules/auth/screens/sign_up/sign_up_viewmodel.dart';
+import 'package:chefio_recipe_app/src/modules/auth/services/interfaces/i_auth_service.dart';
 import 'package:chefio_recipe_app/src/modules/auth/widgets/auth_view.dart';
 import 'package:chefio_recipe_app/src/shared/assets/icons.dart';
-import 'package:chefio_recipe_app/src/shared/helper_functions/helper_functions.dart';
 import 'package:chefio_recipe_app/src/shared/models/failure.dart';
 import 'package:chefio_recipe_app/src/shared/styles/colors.dart';
 import 'package:chefio_recipe_app/src/shared/styles/text.dart';
@@ -44,10 +47,10 @@ class _SignInScreenState extends State<SignInScreen> {
 
   void signIn() async {
     if (_formKey.currentState!.validate()) {
-      final controller = context.read<SignInViewModel>();
+      final viewModel = context.read<SignInViewModel>();
 
       try {
-        await controller.signIn(
+        await viewModel.execute(
           email: emailController.text.trim(),
           password: passwordController.text.trim(),
         );
@@ -80,20 +83,27 @@ class _SignInScreenState extends State<SignInScreen> {
               controller: emailController,
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Please enter your email';
+                  return 'Please enter your email or phone number';
                 }
-                if (Validator.isNotValidEmail(value)) {
-                  return 'Please enter a valid email';
-                }
+
                 return null;
               },
             ),
             SizedBox(height: 16.h),
-            PasswordTextField(controller: passwordController),
+            PasswordTextField(
+              controller: passwordController,
+              validated: false,
+            ),
             SizedBox(height: 24.h),
             GestureDetector(
               onTap: () {
-                AppNavigator.to(context, const ForgotPasswordScreen());
+                AppNavigator.to(
+                  context,
+                  ChangeNotifierProvider(
+                    create: (context) => ForgotPasswordViewModel(authService: locator<IAuthService>()),
+                    child: const ForgotPasswordScreen(),
+                  ),
+                );
               },
               child: Align(
                 alignment: Alignment.centerRight,
@@ -108,7 +118,7 @@ class _SignInScreenState extends State<SignInScreen> {
             SizedBox(height: 72.h),
             AppButton(
               label: 'Login',
-              isLoading: viewModel.isBusy,
+              isBusy: viewModel.isBusy,
               onPressed: signIn,
             ),
             SizedBox(height: 24.h),
@@ -130,7 +140,13 @@ class _SignInScreenState extends State<SignInScreen> {
             SizedBox(height: 24.h),
             GestureDetector(
               onTap: () {
-                AppNavigator.to(context, const SignUpScreen());
+                AppNavigator.to(
+                  context,
+                  ChangeNotifierProvider(
+                    create: (context) => SignUpViewModel(authService: locator<IAuthService>()),
+                    child: const SignUpScreen(),
+                  ),
+                );
               },
               child: Align(
                 alignment: Alignment.center,

@@ -1,14 +1,20 @@
-import 'package:chefio_recipe_app/src/modules/auth/screens/otp_screen.dart';
+import 'package:chefio_recipe_app/src/config/locator/locator.dart';
+import 'package:chefio_recipe_app/src/modules/auth/screens/sign_up/confirmation/confirm_signup_screen.dart';
+import 'package:chefio_recipe_app/src/modules/auth/screens/sign_up/confirmation/confirm_signup_viewmodel.dart';
+import 'package:chefio_recipe_app/src/modules/auth/screens/sign_up/sign_up_viewmodel.dart';
+import 'package:chefio_recipe_app/src/modules/auth/services/interfaces/i_auth_service.dart';
 import 'package:chefio_recipe_app/src/shared/assets/icons.dart';
+import 'package:chefio_recipe_app/src/shared/models/failure.dart';
 import 'package:chefio_recipe_app/src/shared/styles/colors.dart';
 import 'package:chefio_recipe_app/src/shared/styles/text.dart';
-import 'package:chefio_recipe_app/src/shared/utils/navigator.dart';
+import 'package:chefio_recipe_app/src/shared/utils/utils.dart';
 import 'package:chefio_recipe_app/src/shared/widgets/buttons/custom_button.dart';
 import 'package:chefio_recipe_app/src/modules/auth/widgets/password_strength_view.dart';
 import 'package:chefio_recipe_app/src/shared/widgets/inputs/custom_textfield.dart';
 import 'package:chefio_recipe_app/src/shared/widgets/inputs/password_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -36,8 +42,33 @@ class _SignUpScreenState extends State<SignUpScreen> {
     super.dispose();
   }
 
+  void submit() async {
+    if (_formKey.currentState!.validate()) {
+      try {
+        await context.read<SignUpViewModel>().execute(
+              email: emailController.text.trim(),
+              password: passwordController.text.trim(),
+            );
+
+        if (mounted) {
+          AppNavigator.to(
+            context,
+            ChangeNotifierProvider(
+              create: (context) => ConfirmSignUpViewModel(authService: locator<IAuthService>()),
+              child: const ConfirmSignUpScreen(),
+            ),
+          );
+        }
+      } on Failure catch (e) {
+        Messenger.error(context, message: e.message);
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.watch<SignUpViewModel>();
+
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -76,6 +107,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         hintText: 'Email or phone number',
                         prefixIcon: const TextFieldIcon(icon: AppIcons.email),
                         controller: emailController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your email or phone number';
+                          }
+
+                          return null;
+                        },
                       ),
                       SizedBox(height: 16.h),
                       PasswordTextField(controller: passwordController),
@@ -96,9 +134,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   SizedBox(height: 24.h),
                   AppButton(
                     label: 'Sign Up',
-                    onPressed: () {
-                      AppNavigator.to(context, const OTPScreen());
-                    },
+                    isBusy: viewModel.isBusy,
+                    onPressed: submit,
                   ),
                 ],
               ),

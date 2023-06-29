@@ -1,5 +1,6 @@
 import 'package:chefio_recipe_app/src/config/locator/locator.dart';
 import 'package:chefio_recipe_app/src/modules/auth/screens/sign_in/sign_in_viewmodel.dart';
+import 'package:chefio_recipe_app/src/modules/auth/services/interfaces/i_auth_service.dart';
 import 'package:chefio_recipe_app/src/shared/assets/images.dart';
 import 'package:chefio_recipe_app/src/shared/styles/colors.dart';
 import 'package:chefio_recipe_app/src/shared/styles/text.dart';
@@ -66,7 +67,7 @@ class OnboardingScreen extends StatelessWidget {
                     AppNavigator.pushAndRemoveUntil(
                       context,
                       ChangeNotifierProvider(
-                        create: (context) => locator<SignInViewModel>(),
+                        create: (context) => SignInViewModel(authService: locator<IAuthService>()),
                         child: const SignInScreen(),
                       ),
                     );

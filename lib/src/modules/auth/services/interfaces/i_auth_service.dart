@@ -3,15 +3,17 @@ abstract class IAuthService {
     required String email,
     required String password,
   });
+
   Future<void> signUp({
     required String email,
     required String password,
   });
-  Future<void> sendOtp({
-    required String email,
-  });
+
+  Future<void> verifyNewUser({required String email});
+
   Future<void> verifyOtp(int token);
-  Future<void> resetPassword({
-    required String newPassword,
-  });
+
+  Future<void> forgotPassword({required String email});
+
+  Future<void> resetPassword({required String newPassword});
 }

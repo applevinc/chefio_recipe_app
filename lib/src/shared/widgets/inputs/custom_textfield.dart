@@ -74,8 +74,9 @@ class CustomTextField extends StatelessWidget {
       ),
     );
 
-    var field = TextFormField(
+    final field = TextFormField(
       //autofocus: true,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       style: AppText.bold400(context).copyWith(
         fontWeight: FontWeight.w500,
         fontSize: 15.sp,

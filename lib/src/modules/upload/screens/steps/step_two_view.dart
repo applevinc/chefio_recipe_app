@@ -206,7 +206,7 @@ class _Actions extends StatelessWidget {
           Expanded(
             child: AppButton(
               label: 'Back',
-              bgColor: AppColors.form,
+              backgroundColor: AppColors.form,
               labelColor: AppColors.mainText,
               onPressed: () {
                 pageController.jumpToPage(0);

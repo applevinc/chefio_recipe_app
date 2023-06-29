@@ -3,3 +3,7 @@ class Failure {
 
   Failure(this.message);
 }
+
+class InternalFailure extends Failure {
+  InternalFailure() : super('Something went wrong');
+}

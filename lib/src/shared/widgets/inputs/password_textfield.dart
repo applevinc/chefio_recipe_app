@@ -29,6 +29,7 @@ class PasswordTextField extends StatefulWidget {
     this.title,
     this.showStrength = false,
     this.textInputAction,
+    this.validated = true,
   }) : super(key: key);
 
   final TextEditingController controller;
@@ -36,6 +37,7 @@ class PasswordTextField extends StatefulWidget {
   final String? title;
   final bool showStrength;
   final TextInputAction? textInputAction;
+  final bool validated;
 
   @override
   State<PasswordTextField> createState() => _PasswordTextFieldState();
@@ -95,7 +97,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
         onTap: _onToggleVisibility,
       ),
       onChanged: (value) => _checkStrength(value),
-      validator: (value) {
+      validator: widget.validated ? (value) {
         if (value == null || value.isEmpty) {
           return 'Please enter your password';
         }
@@ -103,7 +105,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
           return 'Password must be a minimum of 8 characters';
         }
         return null;
-      },
+      } : null,
     );
 
     if (widget.showStrength) {
