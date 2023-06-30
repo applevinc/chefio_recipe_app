@@ -9,7 +9,7 @@ import 'package:chefio_recipe_app/src/shared/styles/colors.dart';
 import 'package:chefio_recipe_app/src/shared/styles/text.dart';
 import 'package:chefio_recipe_app/src/shared/utils/utils.dart';
 import 'package:chefio_recipe_app/src/shared/widgets/buttons/custom_button.dart';
-import 'package:chefio_recipe_app/src/modules/auth/widgets/password_strength_view.dart';
+import 'package:chefio_recipe_app/src/modules/auth/screens/password_validator/password_strength_component.dart';
 import 'package:chefio_recipe_app/src/shared/widgets/inputs/custom_textfield.dart';
 import 'package:chefio_recipe_app/src/shared/widgets/inputs/password_textfield.dart';
 import 'package:flutter/material.dart';
@@ -60,7 +60,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           );
         }
       } on Failure catch (e) {
-        Messenger.error(context, message: e.message);
+        Messenger.error(context: context, message: e.message);
       }
     }
   }
@@ -116,7 +116,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         },
                       ),
                       SizedBox(height: 16.h),
-                      PasswordTextField(controller: passwordController),
+                      PasswordTextField(
+                        controller: passwordController,
+                        onChanged: (value) => viewModel.validate(value),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your password';
+                          }
+
+                          return null;
+                        },
+                      ),
                       SizedBox(height: 24.h),
                       Align(
                         alignment: Alignment.centerLeft,
@@ -128,7 +138,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ),
                       SizedBox(height: 16.h),
-                      const PasswordStrengthView(),
+                      PasswordStrengthComponent(
+                        containsNumber: viewModel.containsNumber,
+                        containsSixCharacters: viewModel.containsSixCharacters,
+                      ),
                     ],
                   ),
                   SizedBox(height: 24.h),

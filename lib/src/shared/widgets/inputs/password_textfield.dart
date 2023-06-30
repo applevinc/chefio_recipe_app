@@ -5,22 +5,6 @@ import 'package:chefio_recipe_app/src/shared/widgets/inputs/custom_textfield.dar
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-enum PasswordStrength {
-  sixCharacters,
-  alpanumberic,
-}
-
-// ignore: must_be_immutable
-class _StrengthBar {
-  bool isFilled;
-  Color color;
-
-  _StrengthBar({
-    this.color = AppColors.primary,
-    this.isFilled = false,
-  });
-}
-
 class PasswordTextField extends StatefulWidget {
   const PasswordTextField({
     Key? key,
@@ -29,7 +13,8 @@ class PasswordTextField extends StatefulWidget {
     this.title,
     this.showStrength = false,
     this.textInputAction,
-    this.validated = true,
+    this.validator,
+    this.onChanged,
   }) : super(key: key);
 
   final TextEditingController controller;
@@ -37,50 +22,20 @@ class PasswordTextField extends StatefulWidget {
   final String? title;
   final bool showStrength;
   final TextInputAction? textInputAction;
-  final bool validated;
+  final String? Function(String?)? validator;
+  final Function(String)? onChanged;
 
   @override
   State<PasswordTextField> createState() => _PasswordTextFieldState();
 }
 
 class _PasswordTextFieldState extends State<PasswordTextField> {
-  final List<_StrengthBar> _strengthBars = [];
   bool _hidePassword = true;
-  final bool _isMediumStrengthCheck = false;
-  final bool _isStrongStrengthCheck = false;
 
   void _onToggleVisibility() {
     setState(() {
       _hidePassword = !_hidePassword;
     });
-  }
-
-  //TODO: Add password strength logic
-  void _checkStrength(String value) {
-    // if (value.isEmpty) {
-    //   _isMediumStrengthCheck = false;
-    //   _isStrongStrengthCheck = false;
-    // } else {
-    //   if (_isMediumStrengthCheck == false) {
-    //     if (PasswordValidator.isMediumStrength(value)) {
-    //       _isMediumStrengthCheck = true;
-    //       _strengthBars.addAll([
-    //         _StrengthBar(color: AppColors.blue),
-    //         _StrengthBar(),
-    //       ]);
-    //       setState(() {});
-    //     }
-    //   } else if (_isStrongStrengthCheck == false) {
-    //     if (PasswordValidator.isStrongStrength(value)) {
-    //       _isStrongStrengthCheck = true;
-    //       _strengthBars.addAll([
-    //         _StrengthBar(),
-    //         _StrengthBar(color: AppColors.blue),
-    //       ]);
-    //       setState(() {});
-    //     }
-    //   }
-    // }
   }
 
   @override
@@ -96,55 +51,20 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
         _hidePassword,
         onTap: _onToggleVisibility,
       ),
-      onChanged: (value) => _checkStrength(value),
-      validator: widget.validated ? (value) {
-        if (value == null || value.isEmpty) {
-          return 'Please enter your password';
-        }
-        if (PasswordValidator.isNotCorrectLength(value)) {
-          return 'Password must be a minimum of 8 characters';
-        }
-        return null;
-      } : null,
+      onChanged: widget.onChanged,
+      validator: widget.validator ??
+          (value) {
+            if (value == null || value.isEmpty) {
+              return 'Please enter your password';
+            }
+            if (PasswordValidator.isNotCorrectLength(value)) {
+              return 'Password must be a minimum of 8 characters';
+            }
+            return null;
+          },
     );
-
-    if (widget.showStrength) {
-      return Column(
-        children: [
-          field,
-          SizedBox(height: 8.h),
-          _strengthBars.isNotEmpty
-              ? Wrap(
-                  spacing: 8.w,
-                  children: List.generate(_strengthBars.length, (index) {
-                    final bar = _strengthBars[index];
-                    return strengthBar(bar);
-                  }),
-                )
-              : const SizedBox.shrink(),
-        ],
-      );
-    }
 
     return field;
-  }
-
-  Widget strengthBar(_StrengthBar bar) {
-    return Wrap(
-      spacing: 8.w,
-      children: List.generate(2, (index) => indicator(bar)),
-    );
-  }
-
-  Widget indicator(_StrengthBar bar) {
-    return Container(
-      width: 70.w,
-      height: 4.h,
-      decoration: BoxDecoration(
-        color: bar.color,
-        borderRadius: BorderRadius.circular(5.r),
-      ),
-    );
   }
 }
 

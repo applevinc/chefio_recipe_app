@@ -8,7 +8,7 @@ import 'package:chefio_recipe_app/src/shared/styles/colors.dart';
 import 'package:chefio_recipe_app/src/shared/utils/utils.dart';
 import 'package:chefio_recipe_app/src/shared/widgets/buttons/custom_button.dart';
 import 'package:chefio_recipe_app/src/modules/auth/screens/sign_in/sign_in_screen.dart';
-import 'package:chefio_recipe_app/src/modules/auth/widgets/password_strength_view.dart';
+import 'package:chefio_recipe_app/src/modules/auth/screens/password_validator/password_strength_component.dart';
 import 'package:chefio_recipe_app/src/shared/widgets/inputs/password_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -52,7 +52,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
           );
         }
       } on Failure catch (e) {
-        Messenger.error(context, message: e.message);
+        Messenger.error(context: context, message: e.message);
       }
     }
   }
@@ -81,7 +81,10 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
               ),
             ),
             SizedBox(height: 16.h),
-            const PasswordStrengthView(),
+            PasswordStrengthComponent(
+              containsNumber: viewModel.containsNumber,
+              containsSixCharacters: viewModel.containsSixCharacters,
+            ),
             SizedBox(height: 24.h),
             AppButton(
               label: 'Done',

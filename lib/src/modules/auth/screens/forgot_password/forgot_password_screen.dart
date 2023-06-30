@@ -51,7 +51,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           );
         }
       } on Failure catch (e) {
-        Messenger.error(context, message: e.message);
+        Messenger.error(context: context, message: e.message);
       }
     }
   }

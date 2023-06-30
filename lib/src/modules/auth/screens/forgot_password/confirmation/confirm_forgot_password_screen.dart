@@ -47,7 +47,7 @@ class _ConfirmForgotPasswordScreenState extends State<ConfirmForgotPasswordScree
           );
         }
       } on Failure catch (e) {
-        Messenger.error(context, message: e.message);
+        Messenger.error(context: context, message: e.message);
       }
     }
   }

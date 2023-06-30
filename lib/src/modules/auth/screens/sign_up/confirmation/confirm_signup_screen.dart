@@ -35,7 +35,7 @@ class _ConfirmSignUpScreenState extends State<ConfirmSignUpScreen> {
 
         if (mounted) {}
       } on Failure catch (e) {
-        Messenger.error(context, message: e.message);
+        Messenger.error(context: context, message: e.message);
       }
     }
   }

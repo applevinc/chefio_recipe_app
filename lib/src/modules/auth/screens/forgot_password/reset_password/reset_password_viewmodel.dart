@@ -1,7 +1,7 @@
+import 'package:chefio_recipe_app/src/modules/auth/screens/password_validator/password_validator_helper.dart';
 import 'package:chefio_recipe_app/src/modules/auth/services/interfaces/i_auth_service.dart';
-import 'package:chefio_recipe_app/src/shared/viewmodels/base_viewmodel.dart';
 
-class ResetPasswordViewModel extends BaseViewModel {
+class ResetPasswordViewModel extends PasswordValidatorHelper {
   final IAuthService _authService;
 
   ResetPasswordViewModel({required IAuthService authService}) : _authService = authService;

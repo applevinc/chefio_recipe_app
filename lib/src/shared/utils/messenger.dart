@@ -4,46 +4,43 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class Messenger {
-  static show(
-    BuildContext context, {
+  static success({
+    required BuildContext context,
     required String message,
   }) {
     snackBar(
-      context,
-      child: CustomSnackBar.info(
-        label: 'Info',
+      context: context,
+      child: CustomMessenger.success(
         message: message,
       ),
     );
   }
 
-  static error(
-    BuildContext context, {
+  static error({
+    required BuildContext context,
     required String message,
   }) {
     snackBar(
-      context,
-      child: CustomSnackBar.error(
-        label: 'Failed',
+      context: context,
+      child: CustomMessenger.error(
         message: message,
       ),
     );
   }
 
-  static success(
-    BuildContext context, {
+  static info({
+    required BuildContext context,
     required String message,
   }) {
     snackBar(
-      context,
-      child: CustomSnackBar.success(
-        label: 'Success',
+      context: context,
+      child: CustomMessenger.info(
         message: message,
       ),
     );
   }
 
-  static snackBar(BuildContext context, {required Widget child}) {
+  static snackBar({required BuildContext context, required Widget child}) {
     showTopSnackBar(
       context,
       child,
@@ -52,64 +49,74 @@ class Messenger {
   }
 }
 
-class CustomSnackBar extends StatelessWidget {
-  final String label;
+class CustomMessenger extends StatelessWidget {
+  final IconData icon;
+  final Color iconColor;
   final String message;
-  final Color backgroundColor;
 
-  const CustomSnackBar.success({
+  const CustomMessenger.success({
     Key? key,
-    required this.label,
     required this.message,
-    this.backgroundColor = Colors.green,
+    this.icon = Icons.check_circle,
+    this.iconColor = Colors.green,
   }) : super(key: key);
 
-  const CustomSnackBar.error({
+  const CustomMessenger.error({
     Key? key,
-    required this.label,
     required this.message,
-    this.backgroundColor = AppColors.secondary,
+    this.icon = Icons.error,
+    this.iconColor = Colors.red,
   }) : super(key: key);
 
-  const CustomSnackBar.info({
+  const CustomMessenger.info({
     Key? key,
-    required this.label,
     required this.message,
-    this.backgroundColor = Colors.black,
+    this.icon = Icons.info,
+    this.iconColor = Colors.black,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final textStyle = AppText.bold500(context).copyWith(
-      color: Colors.white,
-      fontSize: 15.sp,
-    );
-
-    return Container(
-      clipBehavior: Clip.hardEdge,
-      width: double.infinity,
-      margin: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
-      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 15.h),
-      decoration: BoxDecoration(
-        color: backgroundColor,
-        borderRadius: BorderRadius.circular(5.r),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            label,
-            style: textStyle.copyWith(
-              fontSize: 12.sp,
-              fontWeight: FontWeight.w500,
+    return UnconstrainedBox(
+      child: Container(
+        margin: EdgeInsets.only(top: 22.h, left: 20.w, right: 20.w),
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(50.r),
+          boxShadow: const [
+            BoxShadow(
+              color: Color(0x07000000),
+              blurRadius: 13,
+              offset: Offset(0, 4),
+              spreadRadius: 4,
             ),
-          ),
-          SizedBox(height: 4.h),
-          Text(
-            message,
-            style: textStyle,
-          ),
-        ],
+          ],
+        ),
+        alignment: Alignment.center,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              icon,
+              size: 20.sp,
+              color: iconColor,
+            ),
+            SizedBox(width: 12.w),
+            SizedBox(
+              width: 250.w,
+              child: Text(
+                message,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: AppText.bold400(context).copyWith(
+                  color: Colors.black54,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -56,11 +56,11 @@ class _SignInScreenState extends State<SignInScreen> {
         );
 
         if (mounted) {
-          Messenger.success(context, message: 'Login successful');
+          Messenger.success(context: context, message: 'Login successful');
           AppNavigator.to(context, const DashBoardView());
         }
       } on Failure catch (e) {
-        Messenger.error(context, message: e.message);
+        Messenger.error(context: context, message: e.message);
       }
     }
   }
@@ -92,7 +92,13 @@ class _SignInScreenState extends State<SignInScreen> {
             SizedBox(height: 16.h),
             PasswordTextField(
               controller: passwordController,
-              validated: false,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter your password';
+                }
+
+                return null;
+              },
             ),
             SizedBox(height: 24.h),
             GestureDetector(
