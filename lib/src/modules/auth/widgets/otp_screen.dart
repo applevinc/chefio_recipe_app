@@ -11,13 +11,17 @@ class OTPScreen extends StatelessWidget {
     Key? key,
     required this.controller,
     required this.time,
+    required this.isVerifying,
     required this.verify,
+    required this.isResending,
     required this.resend,
   }) : super(key: key);
 
   final TextEditingController controller;
   final String time;
+  final bool isVerifying;
   final Function() verify;
+  final bool isResending;
   final Function() resend;
 
   @override
@@ -33,14 +37,19 @@ class OTPScreen extends StatelessWidget {
           SizedBox(height: 24.h),
           AppButton(
             label: 'Verify',
+            isBusy: isVerifying,
+            disabled: isResending,
             onPressed: verify,
           ),
           SizedBox(height: 16.h),
           AppButton(
             label: 'Send again',
-            labelColor: AppColors.secondaryText,
+            labelColor: isVerifying ? Colors.white : AppColors.secondaryText,
             showBorder: true,
-            backgroundColor: Colors.white,
+            backgroundColor: Colors.transparent,
+            loadingIndicatorColor: AppColors.primary,
+            disabled: isVerifying,
+            isBusy: isResending,
             onPressed: resend,
           ),
         ],

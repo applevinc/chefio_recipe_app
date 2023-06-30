@@ -1,6 +1,3 @@
-import 'package:chefio_recipe_app/src/config/locator/locator.dart';
-import 'package:chefio_recipe_app/src/modules/auth/screens/sign_in/sign_in_viewmodel.dart';
-import 'package:chefio_recipe_app/src/modules/auth/services/interfaces/i_auth_service.dart';
 import 'package:chefio_recipe_app/src/shared/assets/images.dart';
 import 'package:chefio_recipe_app/src/shared/styles/colors.dart';
 import 'package:chefio_recipe_app/src/shared/styles/text.dart';
@@ -10,7 +7,6 @@ import 'package:chefio_recipe_app/src/modules/auth/screens/sign_in/sign_in_scree
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
@@ -43,7 +39,7 @@ class OnboardingScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 16.0.h),
+              SizedBox(height: 16.h),
               Align(
                 alignment: Alignment.center,
                 child: SizedBox(
@@ -60,21 +56,15 @@ class OnboardingScreen extends StatelessWidget {
               ),
               const Spacer(flex: 2),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24.0.w),
+                padding: EdgeInsets.symmetric(horizontal: 24.w),
                 child: AppButton(
                   label: 'Get Started',
                   onPressed: () {
-                    AppNavigator.pushAndRemoveUntil(
-                      context,
-                      ChangeNotifierProvider(
-                        create: (context) => SignInViewModel(authService: locator<IAuthService>()),
-                        child: const SignInScreen(),
-                      ),
-                    );
+                    AppNavigator.pushAndRemoveUntil(context, const SignInScreen());
                   },
                 ),
               ),
-              SizedBox(height: 38.0.h),
+              SizedBox(height: 38.h),
             ],
           ),
         ),

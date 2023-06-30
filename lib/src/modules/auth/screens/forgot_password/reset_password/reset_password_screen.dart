@@ -68,7 +68,17 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
         key: _formKey,
         child: Column(
           children: [
-            PasswordTextField(controller: passwordController),
+            PasswordTextField(
+              controller: passwordController,
+              onChanged: (value) => viewModel.validate(value),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter your password';
+                }
+
+                return null;
+              },
+            ),
             SizedBox(height: 24.h),
             Align(
               alignment: Alignment.centerLeft,

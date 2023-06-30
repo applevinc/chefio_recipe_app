@@ -12,25 +12,36 @@ class AppButton extends StatelessWidget {
     required this.onPressed,
     this.borderColor,
     this.backgroundColor,
+    this.disabledBackgroundColor,
     this.showBorder = false,
     this.labelColor = Colors.white,
+    this.loadingIndicatorColor = Colors.white,
     this.isBusy = false,
+    this.disabled = false,
   }) : super(key: key);
 
   final String label;
   final Function() onPressed;
   final Color? backgroundColor;
+  final Color? disabledBackgroundColor;
   final Color? labelColor;
   final Color? borderColor;
+  final Color loadingIndicatorColor;
   final bool showBorder;
   final bool isBusy;
+  final bool disabled;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: isBusy ? () {} : onPressed,
+      onPressed: disabled
+          ? null
+          : isBusy
+              ? () {}
+              : onPressed,
       style: ElevatedButton.styleFrom(
         backgroundColor: backgroundColor,
+        disabledBackgroundColor: disabledBackgroundColor,
         side: showBorder == true
             ? const BorderSide(
                 color: AppColors.outline,
@@ -40,7 +51,7 @@ class AppButton extends StatelessWidget {
       child: isBusy
           ? Transform.scale(
               scale: 0.7,
-              child: const CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.white)),
+              child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(loadingIndicatorColor)),
             )
           : Text(
               label,

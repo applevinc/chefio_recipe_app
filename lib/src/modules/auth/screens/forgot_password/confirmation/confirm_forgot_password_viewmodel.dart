@@ -1,8 +1,10 @@
+import 'package:chefio_recipe_app/src/modules/auth/screens/otp_timer_helper.dart';
 import 'package:chefio_recipe_app/src/modules/auth/services/interfaces/i_auth_service.dart';
 import 'package:chefio_recipe_app/src/shared/models/failure.dart';
-import 'package:chefio_recipe_app/src/shared/viewmodels/base_viewmodel.dart';
 
-class ConfirmForgotPasswordViewModel extends BaseViewModel {
+enum ConfirmForgotPasswordLoadingState { verify, resend }
+
+class ConfirmForgotPasswordViewModel extends OtpTimerHelper {
   final IAuthService _authService;
 
   ConfirmForgotPasswordViewModel({required IAuthService authService}) : _authService = authService;
@@ -11,10 +13,20 @@ class ConfirmForgotPasswordViewModel extends BaseViewModel {
     if (pin.isEmpty) throw InternalFailure();
 
     try {
-      setBusy(true);
+      setBusyForObject(ConfirmForgotPasswordLoadingState.verify, true);
       await _authService.verifyOtp(int.parse(pin));
     } finally {
-      setBusy(false);
+      setBusyForObject(ConfirmForgotPasswordLoadingState.verify, false);
+    }
+  }
+
+  Future<void> resendOtp({required String email}) async {
+    try {
+      setBusyForObject(ConfirmForgotPasswordLoadingState.resend, true);
+      await _authService.forgotPassword(email: email);
+      initTimer();
+    } finally {
+      setBusyForObject(ConfirmForgotPasswordLoadingState.resend, false);
     }
   }
 }

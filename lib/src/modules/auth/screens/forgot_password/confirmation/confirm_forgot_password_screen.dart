@@ -10,7 +10,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ConfirmForgotPasswordScreen extends StatefulWidget {
-  const ConfirmForgotPasswordScreen({Key? key}) : super(key: key);
+  const ConfirmForgotPasswordScreen({Key? key, required this.email}) : super(key: key);
+
+  final String email;
 
   @override
   State<ConfirmForgotPasswordScreen> createState() => _ConfirmForgotPasswordScreenState();
@@ -24,12 +26,19 @@ class _ConfirmForgotPasswordScreenState extends State<ConfirmForgotPasswordScree
   void initState() {
     super.initState();
     controller = TextEditingController();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      init();
+    });
   }
 
   @override
   void dispose() {
     controller.dispose();
     super.dispose();
+  }
+
+  void init() {
+    context.read<ConfirmForgotPasswordViewModel>().initTimer();
   }
 
   void submit() async {
@@ -52,6 +61,15 @@ class _ConfirmForgotPasswordScreenState extends State<ConfirmForgotPasswordScree
     }
   }
 
+  void resendOtp() async {
+    try {
+      await context.read<ConfirmForgotPasswordViewModel>().resendOtp(email: widget.email);
+      Messenger.success(context: context, message: 'Token has been sent to your email');
+    } on Failure catch (e) {
+      Messenger.error(context: context, message: e.message);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<ConfirmForgotPasswordViewModel>();
@@ -60,9 +78,11 @@ class _ConfirmForgotPasswordScreenState extends State<ConfirmForgotPasswordScree
       key: _formKey,
       child: OTPScreen(
         controller: controller,
-        time: '',
-        resend: () {},
+        time: viewModel.timeLeft,
+        resend: resendOtp,
         verify: submit,
+        isResending: viewModel.busy(ConfirmForgotPasswordLoadingState.resend),
+        isVerifying: viewModel.busy(ConfirmForgotPasswordLoadingState.verify),
       ),
     );
   }

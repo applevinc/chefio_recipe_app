@@ -55,7 +55,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             context,
             ChangeNotifierProvider(
               create: (context) => ConfirmSignUpViewModel(authService: locator<IAuthService>()),
-              child: const ConfirmSignUpScreen(),
+              child: ConfirmSignUpScreen(email: emailController.text.trim()),
             ),
           );
         }

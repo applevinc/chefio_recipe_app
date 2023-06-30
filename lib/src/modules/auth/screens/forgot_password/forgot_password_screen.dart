@@ -46,7 +46,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             context,
             ChangeNotifierProvider(
               create: (context) => ConfirmForgotPasswordViewModel(authService: locator<IAuthService>()),
-              child: const ConfirmForgotPasswordScreen(),
+              child: ConfirmForgotPasswordScreen(email: emailController.text.trim()),
             ),
           );
         }

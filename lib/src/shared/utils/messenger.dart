@@ -1,6 +1,7 @@
 import 'package:chefio_recipe_app/src/shared/styles/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class Messenger {
@@ -104,20 +105,47 @@ class CustomMessenger extends StatelessWidget {
               color: iconColor,
             ),
             SizedBox(width: 12.w),
-            SizedBox(
-              width: 250.w,
-              child: Text(
-                message,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: AppText.bold400(context).copyWith(
-                  color: Colors.black54,
-                ),
+            Text(
+              message,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: AppText.bold400(context).copyWith(
+                color: Colors.black54,
               ),
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class ToastMessenger {
+  static info({
+    required String message,
+  }) {
+    Fluttertoast.showToast(
+      msg: message,
+      toastLength: Toast.LENGTH_LONG,
+    );
+  }
+
+  static error({
+    required String message,
+  }) {
+    Fluttertoast.showToast(
+      msg: message,
+      toastLength: Toast.LENGTH_LONG,
+      backgroundColor: Colors.red,
+    );
+  }
+
+  static success({
+    required String message,
+  }) {
+    Fluttertoast.showToast(
+      msg: message,
+      toastLength: Toast.LENGTH_LONG,
     );
   }
 }

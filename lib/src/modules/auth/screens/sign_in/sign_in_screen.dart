@@ -69,114 +69,119 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget build(BuildContext context) {
     final viewModel = context.watch<SignInViewModel>();
 
-    return AuthView(
-      title: 'Welcome Back!',
-      subtitle: 'Please enter your account here',
-      body: Form(
-        key: _formKey,
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-        child: Column(
-          children: [
-            CustomTextField(
-              hintText: 'Email or phone number',
-              prefixIcon: const TextFieldIcon(icon: AppIcons.email),
-              controller: emailController,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your email or phone number';
-                }
+    return WillPopScope(
+      onWillPop: () {
+        return Future.value(false);
+      },
+      child: AuthView(
+        title: 'Welcome Back!',
+        subtitle: 'Please enter your account here',
+        body: Form(
+          key: _formKey,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          child: Column(
+            children: [
+              CustomTextField(
+                hintText: 'Email or phone number',
+                prefixIcon: const TextFieldIcon(icon: AppIcons.email),
+                controller: emailController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your email or phone number';
+                  }
 
-                return null;
-              },
-            ),
-            SizedBox(height: 16.h),
-            PasswordTextField(
-              controller: passwordController,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your password';
-                }
+                  return null;
+                },
+              ),
+              SizedBox(height: 16.h),
+              PasswordTextField(
+                controller: passwordController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your password';
+                  }
 
-                return null;
-              },
-            ),
-            SizedBox(height: 24.h),
-            GestureDetector(
-              onTap: () {
-                AppNavigator.to(
-                  context,
-                  ChangeNotifierProvider(
-                    create: (context) => ForgotPasswordViewModel(authService: locator<IAuthService>()),
-                    child: const ForgotPasswordScreen(),
+                  return null;
+                },
+              ),
+              SizedBox(height: 24.h),
+              GestureDetector(
+                onTap: () {
+                  AppNavigator.to(
+                    context,
+                    ChangeNotifierProvider(
+                      create: (context) => ForgotPasswordViewModel(authService: locator<IAuthService>()),
+                      child: const ForgotPasswordScreen(),
+                    ),
+                  );
+                },
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    'Forgot password?',
+                    style: AppText.bold500(context).copyWith(
+                      fontSize: 15.sp,
+                    ),
                   ),
-                );
-              },
-              child: Align(
-                alignment: Alignment.centerRight,
+                ),
+              ),
+              SizedBox(height: 72.h),
+              AppButton(
+                label: 'Login',
+                isBusy: viewModel.isBusy,
+                onPressed: signIn,
+              ),
+              SizedBox(height: 24.h),
+              Align(
+                alignment: Alignment.center,
                 child: Text(
-                  'Forgot password?',
+                  'Or continue with',
                   style: AppText.bold500(context).copyWith(
                     fontSize: 15.sp,
+                    color: AppColors.secondaryText,
                   ),
                 ),
               ),
-            ),
-            SizedBox(height: 72.h),
-            AppButton(
-              label: 'Login',
-              isBusy: viewModel.isBusy,
-              onPressed: signIn,
-            ),
-            SizedBox(height: 24.h),
-            Align(
-              alignment: Alignment.center,
-              child: Text(
-                'Or continue with',
-                style: AppText.bold500(context).copyWith(
-                  fontSize: 15.sp,
-                  color: AppColors.secondaryText,
-                ),
+              SizedBox(height: 24.h),
+              AppButtonWithIcon(
+                label: 'Google',
+                onPressed: () {},
               ),
-            ),
-            SizedBox(height: 24.h),
-            AppButtonWithIcon(
-              label: 'Google',
-              onPressed: () {},
-            ),
-            SizedBox(height: 24.h),
-            GestureDetector(
-              onTap: () {
-                AppNavigator.to(
-                  context,
-                  ChangeNotifierProvider(
-                    create: (context) => SignUpViewModel(authService: locator<IAuthService>()),
-                    child: const SignUpScreen(),
-                  ),
-                );
-              },
-              child: Align(
-                alignment: Alignment.center,
-                child: RichText(
-                  text: TextSpan(
-                    text: 'Don’t have any account? ',
-                    style: AppText.bold500(context).copyWith(
-                      fontSize: 16.sp,
+              SizedBox(height: 24.h),
+              GestureDetector(
+                onTap: () {
+                  AppNavigator.to(
+                    context,
+                    ChangeNotifierProvider(
+                      create: (context) => SignUpViewModel(authService: locator<IAuthService>()),
+                      child: const SignUpScreen(),
                     ),
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: 'Sign Up',
-                        style: AppText.bold700(context).copyWith(
-                          fontSize: 16.sp,
-                          color: AppColors.primary,
-                        ),
+                  );
+                },
+                child: Align(
+                  alignment: Alignment.center,
+                  child: RichText(
+                    text: TextSpan(
+                      text: 'Don’t have any account? ',
+                      style: AppText.bold500(context).copyWith(
+                        fontSize: 16.sp,
                       ),
-                    ],
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: 'Sign Up',
+                          style: AppText.bold700(context).copyWith(
+                            fontSize: 16.sp,
+                            color: AppColors.primary,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-            SizedBox(height: 41.h),
-          ],
+              SizedBox(height: 41.h),
+            ],
+          ),
         ),
       ),
     );
