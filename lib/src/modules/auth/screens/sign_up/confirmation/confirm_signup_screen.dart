@@ -2,7 +2,8 @@ import 'package:chefio_recipe_app/src/modules/auth/screens/sign_in/sign_in_scree
 import 'package:chefio_recipe_app/src/modules/auth/screens/sign_up/confirmation/confirm_signup_viewmodel.dart';
 import 'package:chefio_recipe_app/src/modules/auth/widgets/otp_screen.dart';
 import 'package:chefio_recipe_app/src/shared/models/failure.dart';
-import 'package:chefio_recipe_app/src/shared/utils/utils.dart';
+import 'package:chefio_recipe_app/src/shared/utils/messenger.dart';
+import 'package:chefio_recipe_app/src/shared/utils/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

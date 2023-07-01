@@ -1,4 +1,5 @@
 import 'package:chefio_recipe_app/src/config/app_config.dart';
+import 'package:chefio_recipe_app/src/modules/dashboard/screens/home/home_viewmodel.dart';
 import 'package:get_it/get_it.dart';
 
 final GetIt _diContainer = GetIt.instance;
@@ -14,9 +15,5 @@ void initGlobalDI({required GetIt envDiContainer}) async {
 //  locator.registerLazySingleton<IFileService>(() => FileService());
 
   // controllers
-  /* locator.registerLazySingleton(
-      () => HomeController(dashBoardService: locator<IDashBoardService>()));
-  locator.registerLazySingleton(
-      () => SplashScreenController(authService: locator<IAuthService>()));
-      */
+  locator.registerLazySingleton(() => HomeViewModel());
 }

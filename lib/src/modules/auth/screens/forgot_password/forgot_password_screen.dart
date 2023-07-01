@@ -6,7 +6,8 @@ import 'package:chefio_recipe_app/src/modules/auth/services/interfaces/i_auth_se
 import 'package:chefio_recipe_app/src/modules/auth/widgets/auth_view.dart';
 import 'package:chefio_recipe_app/src/shared/assets/icons.dart';
 import 'package:chefio_recipe_app/src/shared/models/failure.dart';
-import 'package:chefio_recipe_app/src/shared/utils/utils.dart';
+import 'package:chefio_recipe_app/src/shared/utils/messenger.dart';
+import 'package:chefio_recipe_app/src/shared/utils/navigator.dart';
 import 'package:chefio_recipe_app/src/shared/widgets/buttons/custom_button.dart';
 import 'package:chefio_recipe_app/src/shared/widgets/inputs/custom_textfield.dart';
 import 'package:flutter/material.dart';

@@ -1,5 +1,4 @@
 import 'package:chefio_recipe_app/src/shared/styles/colors.dart';
-import 'package:chefio_recipe_app/src/modules/dashboard/components/circular_tab_button.dart';
 import 'package:chefio_recipe_app/src/modules/search/components/circular_button.dart';
 import 'package:chefio_recipe_app/src/modules/search/components/cooking_duration_slider.dart';
 import 'package:flutter/material.dart';
@@ -17,14 +16,14 @@ class AddFilterView extends StatelessWidget {
         children: [
           Text(
             'Add a Filter',
-            style: Theme.of(context).textTheme.bodyText2,
+            style: Theme.of(context).textTheme.bodyMedium,
           ),
           SizedBox(height: 32.h),
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
               'Category',
-              style: Theme.of(context).textTheme.bodyText2,
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
           ),
           SizedBox(height: 16.h),
@@ -50,11 +49,11 @@ class CookingDuration extends StatelessWidget {
         RichText(
           text: TextSpan(
             text: 'Cooking Duration ',
-            style: Theme.of(context).textTheme.bodyText2,
+            style: Theme.of(context).textTheme.bodyMedium,
             children: <TextSpan>[
               TextSpan(
                 text: '(in minutes)',
-                style: Theme.of(context).textTheme.bodyText2!.copyWith(color: AppColors.secondaryText),
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: AppColors.secondaryText),
               ),
             ],
           ),
@@ -65,15 +64,15 @@ class CookingDuration extends StatelessWidget {
           children: [
             Text(
               '<10',
-              style: Theme.of(context).textTheme.bodyText1!.copyWith(color: AppColors.primary, fontWeight: FontWeight.w700),
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: AppColors.primary, fontWeight: FontWeight.w700),
             ),
             Text(
               '30',
-              style: Theme.of(context).textTheme.bodyText1!.copyWith(color: AppColors.primary, fontWeight: FontWeight.w700),
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: AppColors.primary, fontWeight: FontWeight.w700),
             ),
             Text(
               '60',
-              style: Theme.of(context).textTheme.bodyText1!.copyWith(color: AppColors.primary, fontWeight: FontWeight.w700),
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: AppColors.primary, fontWeight: FontWeight.w700),
             )
           ],
         ),

@@ -1,7 +1,7 @@
 import 'package:chefio_recipe_app/src/shared/assets/icons.dart';
 import 'package:chefio_recipe_app/src/shared/styles/colors.dart';
 import 'package:chefio_recipe_app/src/shared/widgets/others/grey_divider.dart';
-import 'package:chefio_recipe_app/src/modules/dashboard/screens/gridview.dart';
+import 'package:chefio_recipe_app/src/modules/dashboard/screens/home/components/recipes_grid.dart';
 import 'package:chefio_recipe_app/src/modules/search/layouts/filter_bottomsheet.dart';
 import 'package:chefio_recipe_app/src/modules/search/layouts/history_listview.dart';
 import 'package:chefio_recipe_app/src/modules/search/layouts/suggestion_chips.dart';
@@ -26,12 +26,12 @@ class SearchScreen extends SearchDelegate {
         elevation: 0.0,
         backgroundColor: Colors.white,
         toolbarHeight: 96.h,
-        toolbarTextStyle: Theme.of(context).textTheme.bodyText1!.copyWith(color: AppColors.mainText),
+        toolbarTextStyle: Theme.of(context).textTheme.bodyLarge!.copyWith(color: AppColors.mainText),
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: AppColors.form,
-        hintStyle: Theme.of(context).textTheme.bodyText1,
+        hintStyle: Theme.of(context).textTheme.bodyLarge,
         contentPadding: EdgeInsets.symmetric(horizontal: 27.w, vertical: 19.h),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(32.r),
@@ -82,7 +82,7 @@ class SearchScreen extends SearchDelegate {
     return Column(
       children: const [
         GreyDivider(),
-        Expanded(child: GridViewBody()),
+        Expanded(child: RecipesGrid()),
       ],
     );
   }

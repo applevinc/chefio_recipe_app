@@ -5,7 +5,7 @@ import 'package:camera/camera.dart';
 import 'package:chefio_recipe_app/src/shared/assets/images.dart';
 import 'package:chefio_recipe_app/src/shared/styles/colors.dart';
 import 'package:chefio_recipe_app/src/shared/widgets/others/grey_divider.dart';
-import 'package:chefio_recipe_app/src/modules/dashboard/screens/gridview.dart';
+import 'package:chefio_recipe_app/src/modules/dashboard/screens/home/components/recipes_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -307,7 +307,7 @@ class ScannedFoodScreen extends StatelessWidget {
             child: Column(
               children: const [
                 GreyDivider(),
-                GridViewBody(),
+                RecipesGrid(),
               ],
             ),
           )

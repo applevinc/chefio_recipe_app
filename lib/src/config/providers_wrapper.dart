@@ -1,6 +1,7 @@
 import 'package:chefio_recipe_app/src/config/locator/locator.dart';
 import 'package:chefio_recipe_app/src/modules/auth/screens/sign_in/sign_in_viewmodel.dart';
 import 'package:chefio_recipe_app/src/modules/auth/services/interfaces/i_auth_service.dart';
+import 'package:chefio_recipe_app/src/modules/dashboard/screens/home/home_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,6 +15,7 @@ class ProvidersWrapper extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => SignInViewModel(authService: locator<IAuthService>())),
+        ChangeNotifierProvider(create: (_) => HomeViewModel()),
       ],
       child: child,
     );

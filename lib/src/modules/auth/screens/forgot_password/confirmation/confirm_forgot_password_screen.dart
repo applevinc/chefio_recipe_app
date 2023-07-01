@@ -5,7 +5,8 @@ import 'package:chefio_recipe_app/src/modules/auth/screens/forgot_password/reset
 import 'package:chefio_recipe_app/src/modules/auth/services/interfaces/i_auth_service.dart';
 import 'package:chefio_recipe_app/src/modules/auth/widgets/otp_screen.dart';
 import 'package:chefio_recipe_app/src/shared/models/failure.dart';
-import 'package:chefio_recipe_app/src/shared/utils/utils.dart';
+import 'package:chefio_recipe_app/src/shared/utils/messenger.dart';
+import 'package:chefio_recipe_app/src/shared/utils/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
