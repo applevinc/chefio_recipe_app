@@ -15,7 +15,7 @@ class ProvidersWrapper extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => SignInViewModel(authService: locator<IAuthService>())),
-        ChangeNotifierProvider(create: (_) => HomeViewModel()),
+        ChangeNotifierProvider(create: (_) => locator<HomeViewModel>()),
       ],
       child: child,
     );

@@ -14,7 +14,7 @@ void main() async {
       appName: '$appName(dev)',
       diContainer: devLocator,
     );
-    initGlobalDI(envDiContainer: config.diContainer);
+    initGlobalDI(envLocator: config.diContainer);
     initContainers(appConfig: config);
     runApp(const ProvidersWrapper(child: ChefioApp()));
   });

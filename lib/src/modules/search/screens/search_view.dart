@@ -1,7 +1,6 @@
 import 'package:chefio_recipe_app/src/shared/assets/icons.dart';
 import 'package:chefio_recipe_app/src/shared/styles/colors.dart';
 import 'package:chefio_recipe_app/src/shared/widgets/others/grey_divider.dart';
-import 'package:chefio_recipe_app/src/modules/dashboard/screens/home/components/recipes_grid.dart';
 import 'package:chefio_recipe_app/src/modules/search/layouts/filter_bottomsheet.dart';
 import 'package:chefio_recipe_app/src/modules/search/layouts/history_listview.dart';
 import 'package:chefio_recipe_app/src/modules/search/layouts/suggestion_chips.dart';
@@ -13,10 +12,15 @@ import 'package:google_fonts/google_fonts.dart';
 class SearchScreen extends SearchDelegate {
   SearchScreen()
       : super(
-            searchFieldStyle:
-                GoogleFonts.inter(color: AppColors.secondaryText, fontSize: 15.0.sp, letterSpacing: 0.5.sp, fontWeight: FontWeight.w500),
-            keyboardType: TextInputType.text,
-            textInputAction: TextInputAction.search);
+          searchFieldStyle: GoogleFonts.inter(
+            color: AppColors.secondaryText,
+            fontSize: 15.0.sp,
+            letterSpacing: 0.5.sp,
+            fontWeight: FontWeight.w500,
+          ),
+          keyboardType: TextInputType.text,
+          textInputAction: TextInputAction.search,
+        );
 
   @override
   ThemeData appBarTheme(BuildContext context) {
@@ -82,7 +86,7 @@ class SearchScreen extends SearchDelegate {
     return Column(
       children: const [
         GreyDivider(),
-        Expanded(child: RecipesGrid()),
+        //RecipesGrid(),
       ],
     );
   }

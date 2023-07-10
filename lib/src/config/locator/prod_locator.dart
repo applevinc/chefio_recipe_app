@@ -8,15 +8,4 @@ void initContainers({required AppConfig appConfig}) async {
   prodLocator.registerLazySingleton<AppConfig>(() => appConfig);
 
   //service
-  //service
-  /*devDIContainer.registerLazySingleton<IAuthService>(() => FakeAuthService(
-        localAuthService: devDIContainer<LocalAuthService>(),
-        storageService: devDIContainer<LocalStorageService>(),
-      ));
-      */
-
-  // external
-  /* devDIContainer.registerLazySingleton<LocalStorageService>(() => LocalStorageService());
-  devDIContainer.registerLazySingleton<LocalAuthService>(() => LocalAuthService());
-  */
 }

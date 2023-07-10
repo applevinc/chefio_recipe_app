@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:faker/faker.dart';
 import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 
@@ -20,7 +23,7 @@ class Utils {
   }
 
   static String getCurrencyFormat(double amount, {int decimalDigits = 2}) {
-    final formatter = NumberFormat.currency(
+    final NumberFormat formatter = NumberFormat.currency(
       symbol: '',
       decimalDigits: decimalDigits,
     );
@@ -31,6 +34,10 @@ class Utils {
     return NumberFormat.currency().parse(s).toInt().toString();
   }
 }
+
+final Faker faker = Faker();
+
+final Random random = Random();
 
 Future<void> fakeNetworkDelay({int seconds = 2}) async {
   await Future.delayed(Duration(seconds: seconds));

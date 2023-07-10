@@ -1,38 +1,27 @@
 import 'dart:ui';
-import 'package:chefio_recipe_app/src/shared/assets/images.dart';
+import 'package:chefio_recipe_app/src/modules/shared/recipe/views/recipe-grid-item/recipe_grid_item_viewmodel.dart';
+import 'package:chefio_recipe_app/src/shared/extensions/string.dart';
 import 'package:chefio_recipe_app/src/shared/styles/styles.dart';
+import 'package:chefio_recipe_app/src/shared/widgets/others/custom_cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
-class RecipesGrid extends StatelessWidget {
-  const RecipesGrid({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return GridView.builder(
-      shrinkWrap: true,
-      primary: false,
-      physics: const BouncingScrollPhysics(),
-      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 25.w,
-        mainAxisSpacing: 32.h,
-        childAspectRatio: 151.w / 264.h,
-      ),
-      itemCount: 10,
-      itemBuilder: (BuildContext context, index) => const RecipeGridItem(),
-    );
-  }
-}
-
-class RecipeGridItem extends StatelessWidget {
+class RecipeGridItem extends StatefulWidget {
   const RecipeGridItem({
     Key? key,
   }) : super(key: key);
 
   @override
+  State<RecipeGridItem> createState() => _RecipeGridItemState();
+}
+
+class _RecipeGridItemState extends State<RecipeGridItem> {
+  @override
   Widget build(BuildContext context) {
+    final recipe = context.watch<RecipeGridItemViewModel>().recipe;
+    final user = recipe.user;
+
     return GestureDetector(
       onTap: () {},
       child: Column(
@@ -40,30 +29,32 @@ class RecipeGridItem extends StatelessWidget {
         children: [
           Row(
             children: [
-              Image.asset(
-                AppImages.profileImg1,
+              CustomCacheNetworkImage(
+                image: user.photoUrl,
                 height: 31.h,
                 width: 31.h,
-                fit: BoxFit.cover,
+                borderRadius: BorderRadius.circular(11.r),
               ),
               SizedBox(width: 8.w),
-              Text(
-                'Calum Lewis',
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: AppText.bold500(context).copyWith(
-                  fontSize: 12.sp,
+              Expanded(
+                child: Text(
+                  user.fullName.toTitleCase,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: AppText.bold500(context).copyWith(
+                    fontSize: 12.sp,
+                  ),
                 ),
-              )
+              ),
             ],
           ),
           SizedBox(height: 16.h),
-          const _GridViewImage(),
+          _GridViewImage(imageUrl: recipe.coverPhotoUrl),
           SizedBox(height: 16.h),
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              'Pancake',
+              recipe.title.toTitleCase,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: AppText.bold700(context).copyWith(
@@ -74,7 +65,7 @@ class RecipeGridItem extends StatelessWidget {
           ),
           SizedBox(height: 8.h),
           Text(
-            'Food • >60 mins',
+            'Food • >${recipe.duration} mins',
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: AppText.bold500(context).copyWith(
@@ -89,20 +80,19 @@ class RecipeGridItem extends StatelessWidget {
 }
 
 class _GridViewImage extends StatelessWidget {
-  const _GridViewImage({Key? key}) : super(key: key);
+  const _GridViewImage({Key? key, required this.imageUrl}) : super(key: key);
+
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        ClipRRect(
+        CustomCacheNetworkImage(
+          image: imageUrl,
+          height: 151.h,
+          width: 151.h,
           borderRadius: BorderRadius.circular(16.r),
-          child: Image.asset(
-            AppImages.pancake,
-            height: 151.h,
-            width: 151.h,
-            fit: BoxFit.cover,
-          ),
         ),
         const _Favourite(),
       ],

@@ -1,5 +1,5 @@
 import 'package:chefio_recipe_app/src/modules/auth/services/interfaces/i_auth_service.dart';
-import 'package:chefio_recipe_app/src/shared/utils/constants.dart';
+import 'package:chefio_recipe_app/src/shared/utils/utils.dart';
 
 class FakeAuthService implements IAuthService {
   @override
