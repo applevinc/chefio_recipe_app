@@ -74,6 +74,7 @@ class HomeViewModel extends BaseViewModel {
   }
 
   Future<void> _getRecipes(Category category) async {
+    clearErrors();
     _recipes = await _recipeService.getRecipes(category: category);
   }
 }

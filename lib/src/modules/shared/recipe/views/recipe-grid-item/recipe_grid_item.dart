@@ -1,107 +1,105 @@
 import 'dart:ui';
+import 'package:chefio_recipe_app/src/modules/shared/recipe/views/detail/recipe_detail_screen.dart';
+import 'package:chefio_recipe_app/src/modules/shared/recipe/views/detail/recipe_detail_viewmodel.dart';
 import 'package:chefio_recipe_app/src/modules/shared/recipe/views/recipe-grid-item/recipe_grid_item_viewmodel.dart';
 import 'package:chefio_recipe_app/src/shared/extensions/string.dart';
 import 'package:chefio_recipe_app/src/shared/styles/styles.dart';
+import 'package:chefio_recipe_app/src/shared/utils/navigator.dart';
 import 'package:chefio_recipe_app/src/shared/widgets/others/custom_cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-class RecipeGridItem extends StatefulWidget {
+class RecipeGridItem extends StatelessWidget {
   const RecipeGridItem({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<RecipeGridItem> createState() => _RecipeGridItemState();
-}
-
-class _RecipeGridItemState extends State<RecipeGridItem> {
-  @override
   Widget build(BuildContext context) {
     final recipe = context.watch<RecipeGridItemViewModel>().recipe;
     final user = recipe.user;
 
-    return GestureDetector(
-      onTap: () {},
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              CustomCacheNetworkImage(
-                image: user.photoUrl,
-                height: 31.h,
-                width: 31.h,
-                borderRadius: BorderRadius.circular(11.r),
-              ),
-              SizedBox(width: 8.w),
-              Expanded(
-                child: Text(
-                  user.fullName.toTitleCase,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: AppText.bold500(context).copyWith(
-                    fontSize: 12.sp,
-                  ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            CustomCacheNetworkImage(
+              image: user.photoUrl,
+              height: 31.h,
+              width: 31.h,
+              borderRadius: BorderRadius.circular(11.r),
+            ),
+            SizedBox(width: 8.w),
+            Expanded(
+              child: Text(
+                user.fullName.toTitleCase,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: AppText.bold500(context).copyWith(
+                  fontSize: 12.sp,
                 ),
               ),
-            ],
-          ),
-          SizedBox(height: 16.h),
-          _GridViewImage(imageUrl: recipe.coverPhotoUrl),
-          SizedBox(height: 16.h),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              recipe.title.toTitleCase,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: AppText.bold700(context).copyWith(
-                color: AppColors.headlineText,
-                fontSize: 17.sp,
+            ),
+          ],
+        ),
+        SizedBox(height: 16.h),
+        Stack(
+          children: [
+            GestureDetector(
+              onTap: () {
+                AppNavigator.to(
+                  context,
+                  ChangeNotifierProvider(
+                    create: (_) => RecipeDetailViewModel(recipe),
+                    child: const RecipeDetailScreen(),
+                  ),
+                );
+              },
+              child: Hero(
+                tag: recipe.id,
+                child: CustomCacheNetworkImage(
+                  image: recipe.coverPhotoUrl,
+                  height: 151.h,
+                  width: 151.h,
+                  borderRadius: BorderRadius.circular(16.r),
+                ),
               ),
             ),
-          ),
-          SizedBox(height: 8.h),
-          Text(
-            'Food • >${recipe.duration} mins',
+            const _FavouriteButton(),
+          ],
+        ),
+        SizedBox(height: 16.h),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            recipe.title.toTitleCase,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: AppText.bold500(context).copyWith(
-              fontSize: 12.sp,
-              color: AppColors.secondaryText,
+            style: AppText.bold700(context).copyWith(
+              color: AppColors.headlineText,
+              fontSize: 17.sp,
             ),
           ),
-        ],
-      ),
-    );
-  }
-}
-
-class _GridViewImage extends StatelessWidget {
-  const _GridViewImage({Key? key, required this.imageUrl}) : super(key: key);
-
-  final String imageUrl;
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        CustomCacheNetworkImage(
-          image: imageUrl,
-          height: 151.h,
-          width: 151.h,
-          borderRadius: BorderRadius.circular(16.r),
         ),
-        const _Favourite(),
+        SizedBox(height: 8.h),
+        Text(
+          'Food • >${recipe.duration} mins',
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: AppText.bold500(context).copyWith(
+            fontSize: 12.sp,
+            color: AppColors.secondaryText,
+          ),
+        ),
       ],
     );
   }
 }
 
-class _Favourite extends StatelessWidget {
-  const _Favourite({
+class _FavouriteButton extends StatelessWidget {
+  const _FavouriteButton({
     Key? key,
   }) : super(key: key);
 

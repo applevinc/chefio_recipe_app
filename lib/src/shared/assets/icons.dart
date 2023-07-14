@@ -18,4 +18,5 @@ class AppIcons {
   static const String uploadImage = 'assets/icons/upload_image.svg';
   static const String dragIcon = 'assets/icons/drag_icon.svg';
   static const String camera = 'assets/icons/camera.svg';
+  static const String heart = 'assets/icons/heart.svg';
 }
