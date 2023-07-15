@@ -37,7 +37,7 @@ class _Item extends StatelessWidget {
               SizedBox(width: 17.w),
               Text(
                 'Pancakes',
-                style: Theme.of(context).textTheme.bodyText1!.copyWith(color: AppColors.headlineText),
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: AppColors.headlineText),
               ),
             ],
           ),

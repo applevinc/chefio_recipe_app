@@ -48,13 +48,13 @@ class _Ingredients extends StatelessWidget {
             children: [
               Text(
                 'Ingredients',
-                style: Theme.of(context).textTheme.bodyText2,
+                style: Theme.of(context).textTheme.bodyMedium,
               ),
               TextButton.icon(
                 icon: const Icon(Icons.add, color: AppColors.headlineText),
                 label: Text(
                   'Group',
-                  style: Theme.of(context).textTheme.bodyText1!.copyWith(color: AppColors.headlineText),
+                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: AppColors.headlineText),
                 ),
                 onPressed: () {},
               ),
@@ -94,7 +94,7 @@ class _IngredientItem extends StatelessWidget {
           child: TextFormField(
             decoration: InputDecoration(
               hintText: 'Enter ingredient',
-              hintStyle: Theme.of(context).textTheme.bodyText1,
+              hintStyle: Theme.of(context).textTheme.bodyLarge,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(32.r),
                 borderSide: const BorderSide(
@@ -124,7 +124,7 @@ class _Steps extends StatelessWidget {
             alignment: Alignment.centerLeft,
             child: Text(
               'Steps',
-              style: Theme.of(context).textTheme.bodyText2,
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
           ),
           SizedBox(height: 24.h),
@@ -141,7 +141,7 @@ class _Steps extends StatelessWidget {
                     ),
                     child: Text(
                       '1',
-                      style: Theme.of(context).textTheme.bodyText2!.copyWith(color: Colors.white, fontSize: 12.sp),
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Colors.white, fontSize: 12.sp),
                     ),
                   ),
                   SizedBox(height: 16.h),
@@ -157,7 +157,7 @@ class _Steps extends StatelessWidget {
                       maxLines: 4,
                       decoration: InputDecoration(
                         hintText: 'Tell a little about your food',
-                        hintStyle: Theme.of(context).textTheme.bodyText1!.copyWith(fontSize: 12.sp),
+                        hintStyle: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 12.sp),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8.r),
                           borderSide: const BorderSide(
@@ -244,12 +244,12 @@ class _Actions extends StatelessWidget {
                           SizedBox(height: 32.h),
                           Text(
                             'Upload Success',
-                            style: Theme.of(context).textTheme.headline6,
+                            style: Theme.of(context).textTheme.titleLarge,
                           ),
                           SizedBox(height: 8.h),
                           Text(
                             'Your recipe has been uploaded, you can see it on your profile',
-                            style: Theme.of(context).textTheme.bodyText1!.copyWith(color: AppColors.mainText),
+                            style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: AppColors.mainText),
                           ),
                         ],
                       ),

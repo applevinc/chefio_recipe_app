@@ -43,7 +43,7 @@ class UploadScreen extends StatelessWidget {
                 padding: EdgeInsets.only(top: 12.h, left: 24.w),
                 child: Text(
                   'Cancel',
-                  style: Theme.of(context).textTheme.bodyText2!.copyWith(color: AppColors.secondary),
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: AppColors.secondary),
                 ),
               ),
             ),
@@ -57,15 +57,15 @@ class UploadScreen extends StatelessWidget {
                         text: '1',
                         style: Theme.of(context)
                             .textTheme
-                            .bodyText2!
+                            .bodyMedium!
                             .copyWith(color: pageViewModel.pageNo == 0 ? AppColors.headlineText : AppColors.secondaryText),
                         children: <TextSpan>[
-                          TextSpan(text: '/', style: Theme.of(context).textTheme.bodyText2!),
+                          TextSpan(text: '/', style: Theme.of(context).textTheme.bodyMedium!),
                           TextSpan(
                             text: '2',
                             style: Theme.of(context)
                                 .textTheme
-                                .bodyText2!
+                                .bodyMedium!
                                 .copyWith(color: pageViewModel.pageNo == 1 ? AppColors.headlineText : AppColors.secondaryText),
                           ),
                         ],

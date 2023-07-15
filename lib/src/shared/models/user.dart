@@ -7,6 +7,7 @@ class User extends Equatable {
   final int recipeCount;
   final int followingCount;
   final int followersCount;
+  final String photoUrl;
 
   const User({
     required this.id,
@@ -15,7 +16,12 @@ class User extends Equatable {
     required this.recipeCount,
     required this.followingCount,
     required this.followersCount,
+    required this.photoUrl,
   });
+
+  String get fullName {
+    return '$firstName $lastName';
+  }
 
   User copyWith({
     String? id,
@@ -24,6 +30,7 @@ class User extends Equatable {
     int? recipeCount,
     int? followingCount,
     int? followersCount,
+    String? photoUrl,
   }) {
     return User(
       id: id ?? this.id,
@@ -32,6 +39,7 @@ class User extends Equatable {
       recipeCount: recipeCount ?? this.recipeCount,
       followingCount: followingCount ?? this.followingCount,
       followersCount: followersCount ?? this.followersCount,
+      photoUrl: photoUrl ?? this.photoUrl,
     );
   }
 
@@ -54,6 +62,7 @@ class User extends Equatable {
       recipeCount: json['recipeCount'] as int,
       followingCount: json['followingCount'] as int,
       followersCount: json['followersCount'] as int,
+      photoUrl: '',
     );
   }
 

@@ -33,6 +33,16 @@ class Utils {
   static String getNumberFromFormattedAmount(String s) {
     return NumberFormat.currency().parse(s).toInt().toString();
   }
+
+  static String formatNumber(int number) {
+    if (number >= 1000) {
+      double num = number / 1000.0;
+      String formattedNumber = num.toStringAsFixed(1);
+      return '${formattedNumber}k';
+    } else {
+      return number.toString();
+    }
+  }
 }
 
 final Faker faker = Faker();

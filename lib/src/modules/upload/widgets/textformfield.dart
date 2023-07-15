@@ -20,14 +20,14 @@ class UploadFormField extends StatelessWidget {
       children: [
         Text(
           label,
-          style: Theme.of(context).textTheme.bodyText2,
+          style: Theme.of(context).textTheme.bodyMedium,
         ),
         SizedBox(height: 10.h),
         TextFormField(
           maxLines: maxLines,
           decoration: InputDecoration(
             hintText: hintText,
-            hintStyle: Theme.of(context).textTheme.bodyText1,
+            hintStyle: Theme.of(context).textTheme.bodyLarge,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(32.r),
               borderSide: const BorderSide(

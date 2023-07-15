@@ -2,7 +2,6 @@ import 'dart:io';
 import 'dart:ui';
 
 import 'package:camera/camera.dart';
-import 'package:chefio_recipe_app/src/modules/shared/recipe/views/recipes_grid.dart';
 import 'package:chefio_recipe_app/src/shared/assets/images.dart';
 import 'package:chefio_recipe_app/src/shared/styles/colors.dart';
 import 'package:chefio_recipe_app/src/shared/widgets/others/grey_divider.dart';
@@ -37,7 +36,7 @@ class ScanScreen extends StatelessWidget {
         children: <Widget>[
           Text(
             'Choose one option',
-            style: Theme.of(context).textTheme.bodyText2,
+            style: Theme.of(context).textTheme.bodyMedium,
           ),
           SizedBox(height: 29.h),
           Wrap(
@@ -79,7 +78,7 @@ class ScanScreen extends StatelessWidget {
                       const Spacer(),
                       Text(
                         options[index].label,
-                        style: Theme.of(context).textTheme.bodyText2!.copyWith(fontSize: 15.sp),
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 15.sp),
                       ),
                     ],
                   ),
@@ -296,7 +295,7 @@ class ScannedFoodScreen extends StatelessWidget {
                   SizedBox(height: 32.h),
                   Text(
                     'Pancakes',
-                    style: Theme.of(context).textTheme.headline6!.copyWith(color: AppColors.headlineText),
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(color: AppColors.headlineText),
                   ),
                   SizedBox(height: 24.h),
                 ],

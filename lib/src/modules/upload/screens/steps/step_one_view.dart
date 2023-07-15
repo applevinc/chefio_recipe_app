@@ -83,7 +83,7 @@ class _UploadImage extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Text(
                   'Add Cover Photo',
-                  style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                         color: AppColors.headlineText,
                         fontWeight: FontWeight.w700,
                       ),
@@ -94,7 +94,7 @@ class _UploadImage extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Text(
                   '(up to 12 Mb)',
-                  style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                         fontSize: 12.sp,
                         color: AppColors.secondaryText,
                       ),

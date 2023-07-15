@@ -1,4 +1,7 @@
+import 'package:chefio_recipe_app/src/config/app_session.dart';
 import 'package:chefio_recipe_app/src/modules/auth/services/interfaces/i_auth_service.dart';
+import 'package:chefio_recipe_app/src/shared/models/user.dart';
+import 'package:chefio_recipe_app/src/shared/utils/constants.dart';
 import 'package:chefio_recipe_app/src/shared/utils/utils.dart';
 
 class FakeAuthService implements IAuthService {
@@ -18,6 +21,15 @@ class FakeAuthService implements IAuthService {
     required String password,
   }) async {
     await fakeNetworkDelay();
+    AppSession.user = User(
+      id: Utils.getGuid(),
+      firstName: faker.person.firstName(),
+      lastName: faker.person.firstName(),
+      recipeCount: random.nextInt(50),
+      followingCount: random.nextInt(2000),
+      followersCount: random.nextInt(2000),
+      photoUrl: getOneProfilePhoto(),
+    );
   }
 
   @override
