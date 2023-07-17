@@ -1,3 +1,6 @@
+import 'package:chefio_recipe_app/src/modules/profile/screens/profile_screen.dart';
+import 'package:chefio_recipe_app/src/modules/profile/screens/profile_viewmodel.dart';
+import 'package:chefio_recipe_app/src/modules/shared/recipe/models/recipe.dart';
 import 'package:chefio_recipe_app/src/modules/shared/recipe/views/detail/components/recipe_detail_ingredients_view.dart';
 import 'package:chefio_recipe_app/src/modules/shared/recipe/views/detail/components/recipe_detail_steps_view.dart';
 import 'package:chefio_recipe_app/src/modules/shared/recipe/views/detail/recipe_detail_viewmodel.dart';
@@ -5,6 +8,7 @@ import 'package:chefio_recipe_app/src/shared/assets/assets.dart';
 import 'package:chefio_recipe_app/src/shared/extensions/string.dart';
 import 'package:chefio_recipe_app/src/shared/styles/colors.dart';
 import 'package:chefio_recipe_app/src/shared/styles/text.dart';
+import 'package:chefio_recipe_app/src/shared/utils/navigator.dart';
 import 'package:chefio_recipe_app/src/shared/widgets/others/custom_cached_network_image.dart';
 import 'package:chefio_recipe_app/src/shared/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -97,7 +101,7 @@ class _Sheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final viewmodel = context.read<RecipeDetailViewModel>();
-    final recipe = viewmodel.recipe;
+    final Recipe recipe = viewmodel.recipe;
 
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 24.w),
@@ -160,22 +164,33 @@ class _Sheet extends StatelessWidget {
                 SizedBox(height: 16.h),
                 Row(
                   children: [
-                    Row(
-                      children: [
-                        CustomCacheNetworkImage(
-                          image: recipe.user.photoUrl,
-                          height: 32.h,
-                          width: 32.h,
-                          shape: BoxShape.circle,
-                        ),
-                        SizedBox(width: 8.w),
-                        Text(
-                          recipe.user.fullName.toTitleCase,
-                          style: AppText.bold700(context).copyWith(
-                            fontSize: 15.sp,
+                    GestureDetector(
+                      onTap: () {
+                        AppNavigator.to(
+                          context,
+                          ChangeNotifierProvider(
+                            create: (_) => ProfileViewModel(recipe.user),
+                            child: const ProfileScreen(),
                           ),
-                        ),
-                      ],
+                        );
+                      },
+                      child: Row(
+                        children: [
+                          CustomCacheNetworkImage(
+                            image: recipe.user.photoUrl,
+                            height: 32.h,
+                            width: 32.h,
+                            shape: BoxShape.circle,
+                          ),
+                          SizedBox(width: 8.w),
+                          Text(
+                            recipe.user.fullName.toTitleCase,
+                            style: AppText.bold700(context).copyWith(
+                              fontSize: 15.sp,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                     const Spacer(),
                     Row(

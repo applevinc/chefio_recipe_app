@@ -19,15 +19,21 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final User user = context.read<ProfileViewModel>().user;
+    final viewmodel = context.watch<ProfileViewModel>();
+    final User user = viewmodel.user;
+    final bool? isAuthUserProfile = viewmodel.isAuthUserProfile;
+
+    if (isAuthUserProfile == null) {
+      return const SizedBox.shrink();
+    }
 
     return DefaultTabController(
       length: 2,
       child: Scaffold(
         body: SafeArea(
+          bottom: false,
           child: NestedScrollView(
             headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-              // These are the slivers that show up in the "outer" scroll view.
               return <Widget>[
                 SliverPadding(
                   padding: EdgeInsets.only(top: 20.h, bottom: 24.h),
@@ -60,13 +66,20 @@ class ProfileScreen extends StatelessWidget {
                             _CountColumn(label: 'Followers', count: user.followersCount),
                           ],
                         ),
+                        if (isAuthUserProfile == false)
+                          Padding(
+                            padding: EdgeInsets.only(top: 32.h),
+                            child: AppButton(
+                              label: 'Follow',
+                              onPressed: () {},
+                            ),
+                          ),
                       ],
                     ),
                   ),
                 ),
                 SliverPersistentHeader(
                   pinned: true,
-                  floating: true,
                   delegate: SliverAppBarDelegate(
                     maxHeight: 70.h,
                     minHeight: 70.h,

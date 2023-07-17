@@ -1,6 +1,8 @@
+import 'package:chefio_recipe_app/src/shared/models/user.dart';
+
 class Recipe {
   final String id;
-  final Chef user;
+  final User user;
   final String title;
   final String description;
   final int duration;
@@ -20,24 +22,6 @@ class Recipe {
     required this.ingredients,
     required this.steps,
   });
-}
-
-class Chef {
-  final String id;
-  final String photoUrl;
-  final String firstName;
-  final String lastName;
-
-  Chef({
-    required this.id,
-    required this.photoUrl,
-    required this.firstName,
-    required this.lastName,
-  });
-
-  String get fullName {
-    return '$firstName $lastName';
-  }
 }
 
 class CookingStep {

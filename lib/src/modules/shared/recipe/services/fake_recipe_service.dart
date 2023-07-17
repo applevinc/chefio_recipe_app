@@ -1,6 +1,7 @@
 import 'package:chefio_recipe_app/src/modules/shared/category/models/category.dart';
 import 'package:chefio_recipe_app/src/modules/shared/recipe/models/recipe.dart';
 import 'package:chefio_recipe_app/src/modules/shared/recipe/services/i_recipe_service.dart';
+import 'package:chefio_recipe_app/src/shared/models/user.dart';
 import 'package:chefio_recipe_app/src/shared/utils/constants.dart';
 import 'package:chefio_recipe_app/src/shared/utils/utils.dart';
 
@@ -21,11 +22,14 @@ class FakeRecipeService implements IRecipeService {
       random.nextInt(200) + 25,
       (index) => Recipe(
         id: Utils.getGuid(),
-        user: Chef(
+        user: User(
           id: Utils.getGuid(),
           photoUrl: getOneProfilePhoto(),
           firstName: faker.person.firstName(),
           lastName: faker.person.firstName(),
+          recipeCount: random.nextInt(50),
+          followingCount: random.nextInt(2000),
+          followersCount: random.nextInt(2000),
         ),
         coverPhotoUrl: getOneMealPhoto(),
         description: faker.lorem.sentence(),
@@ -55,11 +59,14 @@ class FakeRecipeService implements IRecipeService {
       random.nextInt(200) + 25,
       (index) => Recipe(
         id: Utils.getGuid(),
-        user: Chef(
+        user: User(
           id: Utils.getGuid(),
           photoUrl: getOneProfilePhoto(),
           firstName: faker.person.firstName(),
           lastName: faker.person.firstName(),
+          recipeCount: random.nextInt(50),
+          followingCount: random.nextInt(2000),
+          followersCount: random.nextInt(2000),
         ),
         coverPhotoUrl: getOneMealPhoto(),
         description: faker.lorem.sentence(),
@@ -89,11 +96,14 @@ class FakeRecipeService implements IRecipeService {
       random.nextInt(200) + 25,
       (index) => Recipe(
         id: Utils.getGuid(),
-        user: Chef(
+        user: User(
           id: Utils.getGuid(),
           photoUrl: getOneProfilePhoto(),
           firstName: faker.person.firstName(),
           lastName: faker.person.firstName(),
+          recipeCount: random.nextInt(50),
+          followingCount: random.nextInt(2000),
+          followersCount: random.nextInt(2000),
         ),
         coverPhotoUrl: getOneMealPhoto(),
         description: faker.lorem.sentence(),
