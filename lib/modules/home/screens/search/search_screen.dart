@@ -1,11 +1,35 @@
 import 'package:chefio_recipe_app/modules/home/screens/search/components/search_appbar_component.dart';
-import 'package:chefio_recipe_app/shared/styles/styles.dart';
-import 'package:chefio_recipe_app/shared/widgets/widgets.dart';
+import 'package:chefio_recipe_app/modules/home/screens/search/components/search_history_view.dart';
+import 'package:chefio_recipe_app/modules/home/screens/search/components/search_suggestions_view.dart';
+import 'package:chefio_recipe_app/modules/home/screens/search/search_viewmodel.dart';
+import 'package:chefio_recipe_app/modules/shared/recipe/models/recipe.dart';
+import 'package:chefio_recipe_app/modules/shared/recipe/views/recipes_grid.dart';
+import 'package:chefio_recipe_app/shared/widgets/others/custom_shimmer.dart';
+import 'package:chefio_recipe_app/shared/widgets/others/error_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
-class SearchScreen extends StatelessWidget {
+class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
+
+  @override
+  State<SearchScreen> createState() => _SearchScreenState();
+}
+
+class _SearchScreenState extends State<SearchScreen> {
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      init();
+    });
+  }
+
+  void init() async {
+    await context.read<SearchViewModel>().init();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,12 +38,44 @@ class SearchScreen extends StatelessWidget {
         bottom: false,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            SearchAppBarComponent(),
-            GreyDivider(),
-            _SearchHistoryView(),
-            GreyDivider(),
-            _SearchSuggestions(),
+          children: [
+            const SearchAppBarComponent(),
+            Consumer<SearchViewModel>(
+              builder: (context, viewmodel, _) {
+                if (viewmodel.busy(SearchLoadingState.init)) {
+                  return const _InitShimmerView();
+                }
+
+                if (viewmodel.busy(SearchLoadingState.search)) {
+                  return const RecipesGridShimmer(isExpanded: true);
+                }
+
+                if (viewmodel.hasErrorForKey(SearchErrorState.init)) {
+                  return ErrorView(
+                    error: viewmodel.error(SearchErrorState.init),
+                    refetch: init,
+                  );
+                }
+
+                final List<Recipe> recipes = viewmodel.recipes;
+
+                if (recipes.isEmpty) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      SearchHistoryView(),
+                      SearchSuggestionView(),
+                    ],
+                  );
+                }
+
+                return RecipesGrid(
+                  recipes: viewmodel.recipes,
+                  isBusy: viewmodel.busy(SearchLoadingState.search),
+                  canRefetch: false,
+                );
+              },
+            ),
           ],
         ),
       ),
@@ -27,111 +83,48 @@ class SearchScreen extends StatelessWidget {
   }
 }
 
-class _SearchHistoryView extends StatelessWidget {
-  const _SearchHistoryView({
-    Key? key,
-  }) : super(key: key);
+class _InitShimmerView extends StatelessWidget {
+  const _InitShimmerView();
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      padding: EdgeInsets.symmetric(vertical: 14.h, horizontal: 24.w),
-      itemCount: 2,
-      shrinkWrap: true,
-      itemBuilder: (context, index) {
-        return item(context: context, title: 'Pancakes');
-      },
-      separatorBuilder: (context, index) => SizedBox(height: 4.h),
-    );
-  }
-
-  Widget item({required BuildContext context, required String title}) {
-    return InkWell(
-      onTap: () {},
-      child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 10.h),
-        child: Row(
-          children: [
-            Row(
+    return CustomShimmer(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ShimmerContainer(height: 8.h),
+          ListView.separated(
+            itemCount: 4,
+            shrinkWrap: true,
+            padding: EdgeInsets.symmetric(vertical: 14.h, horizontal: 24.w),
+            physics: const NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) => ShimmerContainer(height: 27.h),
+            separatorBuilder: (context, index) => SizedBox(height: 24.h),
+          ),
+          ShimmerContainer(height: 8.h),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 24.h, horizontal: 24.w),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Icon(
-                  Icons.history,
-                  color: AppColors.secondaryText,
-                  size: 24.sp,
-                ),
-                SizedBox(width: 17.w),
-                Text(
-                  'Pancakes',
-                  style: AppText.bold500(context).copyWith(
-                    fontSize: 17.sp,
+                ShimmerContainer(height: 27.h, width: 147.w),
+                SizedBox(height: 24.h),
+                Wrap(
+                  spacing: 8.w,
+                  runSpacing: 16.h,
+                  children: List.generate(
+                    8,
+                    (index) => ShimmerContainer(
+                      height: 48.h,
+                      width: 118.w,
+                      borderRadius: BorderRadius.circular(32.r),
+                    ),
                   ),
                 ),
               ],
             ),
-            const Spacer(),
-            const Icon(
-              Icons.north_west,
-              color: AppColors.secondaryText,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-const List<String> _suggestions = ['sushi', 'sandwich', 'seafood', 'fried rice'];
-
-class _SearchSuggestions extends StatelessWidget {
-  const _SearchSuggestions({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 24.h, horizontal: 24.w),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Search suggestions',
-            style: AppText.bold700(context).copyWith(
-              color: AppColors.headlineText,
-              fontSize: 17.sp,
-            ),
-          ),
-          SizedBox(height: 24.h),
-          Wrap(
-            spacing: 8.w,
-            runSpacing: 16.h,
-            children: List.generate(
-              _suggestions.length,
-              (index) => choice(context: context, label: _suggestions[index]),
-            ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget choice({required BuildContext context, required String label}) {
-    return UnconstrainedBox(
-      child: GestureDetector(
-        onTap: () {},
-        child: Container(
-          padding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 24.w),
-          decoration: BoxDecoration(
-            color: AppColors.form,
-            borderRadius: BorderRadius.circular(32.r),
-          ),
-          alignment: Alignment.center,
-          child: Text(
-            label,
-            style: AppText.bold500(context).copyWith(
-              color: AppColors.headlineText,
-              fontSize: 15.sp,
-            ),
-          ),
-        ),
       ),
     );
   }

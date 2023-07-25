@@ -1,7 +1,9 @@
+import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/modules/home/screens/components/home_categories_component.dart';
 import 'package:chefio_recipe_app/modules/home/screens/home_viewmodel.dart';
 import 'package:chefio_recipe_app/modules/home/screens/search/search_screen.dart';
 import 'package:chefio_recipe_app/modules/home/screens/search/search_viewmodel.dart';
+import 'package:chefio_recipe_app/modules/home/services/i_search_service.dart';
 import 'package:chefio_recipe_app/modules/shared/recipe/views/recipes_grid.dart';
 import 'package:chefio_recipe_app/shared/assets/assets.dart';
 import 'package:chefio_recipe_app/shared/styles/styles.dart';
@@ -73,7 +75,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   AppNavigator.to(
                     context,
                     ChangeNotifierProvider(
-                      create: (_) => SearchViewModel(),
+                      create: (_) => SearchViewModel(
+                        searchService: locator<ISearchService>(),
+                      ),
                       child: const SearchScreen(),
                     ),
                   );

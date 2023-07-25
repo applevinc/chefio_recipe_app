@@ -11,14 +11,16 @@ class RecipesGrid extends StatelessWidget {
     Key? key,
     this.isBusy = false,
     required this.recipes,
-    required this.onRefresh,
+    this.onRefresh,
     this.isExpanded = true,
     this.physics,
+    this.canRefetch = true,
   }) : super(key: key);
 
   final bool isBusy;
   final List<Recipe> recipes;
-  final Future<void> Function() onRefresh;
+  final bool canRefetch;
+  final Future<void> Function()? onRefresh;
   final bool isExpanded;
   final ScrollPhysics? physics;
 
@@ -28,25 +30,33 @@ class RecipesGrid extends StatelessWidget {
       return RecipesGridShimmer(isExpanded: isExpanded);
     }
 
-    final child = RefreshIndicator(
-      onRefresh: onRefresh,
-      child: GridView.builder(
-        primary: false,
-        physics: physics ?? const BouncingScrollPhysics(),
-        padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 25.w,
-          mainAxisSpacing: 32.h,
-          childAspectRatio: 151.w / 264.h,
-        ),
-        itemCount: recipes.length,
-        itemBuilder: (context, index) => ChangeNotifierProvider(
-          create: (_) => RecipeGridItemViewModel(recipes[index]),
-          child: const RecipeGridItem(),
-        ),
+    final grid = GridView.builder(
+      primary: false,
+      physics: physics ?? const BouncingScrollPhysics(),
+      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        crossAxisSpacing: 25.w,
+        mainAxisSpacing: 32.h,
+        childAspectRatio: 151.w / 264.h,
+      ),
+      itemCount: recipes.length,
+      itemBuilder: (context, index) => ChangeNotifierProvider(
+        create: (_) => RecipeGridItemViewModel(recipes[index]),
+        child: const RecipeGridItem(),
       ),
     );
+
+    Widget child;
+
+    if (canRefetch && onRefresh != null) {
+      child = RefreshIndicator(
+        onRefresh: onRefresh!,
+        child: grid,
+      );
+    } else {
+      child = grid;
+    }
 
     if (isExpanded) {
       return Expanded(child: child);

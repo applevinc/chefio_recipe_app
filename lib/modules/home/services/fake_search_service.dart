@@ -1,3 +1,5 @@
+import 'package:chefio_recipe_app/modules/home/models/search_history.dart';
+import 'package:chefio_recipe_app/modules/home/models/search_suggestion.dart';
 import 'package:chefio_recipe_app/modules/home/services/i_search_service.dart';
 import 'package:chefio_recipe_app/modules/shared/recipe/models/recipe.dart';
 import 'package:chefio_recipe_app/shared/models/user.dart';
@@ -40,5 +42,23 @@ class FakeSearchService implements ISearchService {
       ),
     );
     return items;
+  }
+
+  @override
+  Future<List<SearchHistory>> getSearchHistory() async {
+    await fakeNetworkDelay();
+    return List.generate(
+      random.nextInt(5) + 2,
+      (index) => SearchHistory(text: faker.lorem.word()),
+    );
+  }
+
+  @override
+  Future<List<SearchSuggestion>> getSearchSuggestion() async {
+    await fakeNetworkDelay();
+    return List.generate(
+      random.nextInt(5) + 2,
+      (index) => SearchSuggestion(text: faker.lorem.word()),
+    );
   }
 }

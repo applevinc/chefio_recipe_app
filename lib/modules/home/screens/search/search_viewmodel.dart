@@ -1,3 +1,63 @@
+import 'package:chefio_recipe_app/modules/home/models/search_history.dart';
+import 'package:chefio_recipe_app/modules/home/models/search_suggestion.dart';
+import 'package:chefio_recipe_app/modules/home/services/i_search_service.dart';
+import 'package:chefio_recipe_app/modules/shared/recipe/models/recipe.dart';
+import 'package:chefio_recipe_app/shared/models/failure.dart';
 import 'package:chefio_recipe_app/shared/viewmodels/base_viewmodel.dart';
 
-class SearchViewModel extends BaseViewModel {}
+enum SearchLoadingState { init, search }
+
+enum SearchErrorState { init, search }
+
+class SearchViewModel extends BaseViewModel {
+  final ISearchService _searchService;
+
+  SearchViewModel({required ISearchService searchService})
+      : _searchService = searchService;
+
+  List<Recipe> _recipes = [];
+  List<Recipe> get recipes => _recipes;
+
+  List<SearchHistory> _searchHistory = [];
+  List<SearchHistory> get searchHistories => _searchHistory;
+
+  List<SearchSuggestion> _searchSuggestion = [];
+  List<SearchSuggestion> get searchSuggestions => _searchSuggestion;
+
+  Future<void> init() async {
+    clearErrors();
+
+    try {
+      setBusyForObject(SearchLoadingState.init, true);
+      await Future.wait([
+        _getSearchHistory(),
+        _getSearchSuggestion(),
+      ]);
+    } on Failure catch (e) {
+      setErrorForObject(SearchErrorState.init, e);
+    } finally {
+      setBusyForObject(SearchLoadingState.init, false);
+    }
+  }
+
+  Future<void> _getSearchHistory() async {
+    _searchHistory = await _searchService.getSearchHistory();
+  }
+
+  Future<void> _getSearchSuggestion() async {
+    _searchSuggestion = await _searchService.getSearchSuggestion();
+  }
+
+  Future<void> execute(String query) async {
+    clearErrors();
+
+    try {
+      setBusyForObject(SearchLoadingState.search, true);
+      _recipes = await _searchService.search(query);
+    } on Failure catch (e) {
+      setErrorForObject(SearchErrorState.search, e);
+    } finally {
+      setBusyForObject(SearchLoadingState.search, false);
+    }
+  }
+}
