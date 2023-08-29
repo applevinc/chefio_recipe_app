@@ -2,7 +2,6 @@ import 'package:chefio_recipe_app/modules/home/screens/search/components/search_
 import 'package:chefio_recipe_app/modules/home/screens/search/components/search_history_view.dart';
 import 'package:chefio_recipe_app/modules/home/screens/search/components/search_suggestions_view.dart';
 import 'package:chefio_recipe_app/modules/home/screens/search/search_viewmodel.dart';
-import 'package:chefio_recipe_app/modules/shared/recipe/models/recipe.dart';
 import 'package:chefio_recipe_app/modules/shared/recipe/views/recipes_grid.dart';
 import 'package:chefio_recipe_app/shared/widgets/others/custom_shimmer.dart';
 import 'package:chefio_recipe_app/shared/widgets/others/error_view.dart';
@@ -43,7 +42,7 @@ class _SearchScreenState extends State<SearchScreen> {
             Consumer<SearchViewModel>(
               builder: (context, viewmodel, _) {
                 if (viewmodel.busy(SearchLoadingState.init)) {
-                  return const _InitShimmerView();
+                  return const SearchShimmerView();
                 }
 
                 if (viewmodel.busy(SearchLoadingState.search)) {
@@ -57,7 +56,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   );
                 }
 
-                final List<Recipe> recipes = viewmodel.recipes;
+                final recipes = viewmodel.recipes;
 
                 if (recipes.isEmpty) {
                   return Column(
@@ -83,8 +82,8 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 }
 
-class _InitShimmerView extends StatelessWidget {
-  const _InitShimmerView();
+class SearchShimmerView extends StatelessWidget {
+  const SearchShimmerView({super.key});
 
   @override
   Widget build(BuildContext context) {

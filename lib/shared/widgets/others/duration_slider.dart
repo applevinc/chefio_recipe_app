@@ -1,27 +1,22 @@
 import 'package:flutter/material.dart';
 
-class DurationSlider extends StatefulWidget {
+class DurationSlider extends StatelessWidget {
   const DurationSlider({
     Key? key,
+    required this.value,
+    required this.onChanged,
   }) : super(key: key);
 
-  @override
-  State<DurationSlider> createState() => _DurationSliderState();
-}
-
-class _DurationSliderState extends State<DurationSlider> {
-  double _currentSliderValue = 30;
+  final double value;
+  final Function(double) onChanged;
 
   @override
   Widget build(BuildContext context) {
     return Slider(
-      value: _currentSliderValue,
+      value: value,
       max: 60,
-      onChanged: (value) {
-        setState(() {
-          _currentSliderValue = value;
-        });
-      },
+      divisions: 2,
+      onChanged: onChanged,
     );
   }
 }

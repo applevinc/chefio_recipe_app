@@ -1,4 +1,6 @@
-import 'package:chefio_recipe_app/modules/home/screens/search/components/search_filter_sheet.dart';
+import 'package:chefio_recipe_app/modules/home/models/search_filter_request.dart';
+import 'package:chefio_recipe_app/modules/home/screens/search/layouts/filter/search_filter_sheet.dart';
+import 'package:chefio_recipe_app/modules/home/screens/search/layouts/filter/search_filter_viewmodel.dart';
 import 'package:chefio_recipe_app/modules/home/screens/search/search_viewmodel.dart';
 import 'package:chefio_recipe_app/shared/assets/icons.dart';
 import 'package:chefio_recipe_app/shared/styles/styles.dart';
@@ -30,9 +32,33 @@ class _SearchAppBarComponentState extends State<SearchAppBarComponent> {
     super.dispose();
   }
 
+  void onTapFilterIcon() async {
+    final viewModel = context.read<SearchViewModel>();
+    final catergories = viewModel.categories;
+
+    if (catergories.isEmpty) {
+      return;
+    }
+
+    final result = await showModalBottomSheet(
+      context: context,
+      useRootNavigator: true,
+      builder: (context) => ChangeNotifierProvider(
+        create: (_) => SearchFilterViewModel(categories: catergories),
+        child: const SearchFilterSheet(),
+      ),
+    );
+
+    if (result != null) {
+      searchController.clear();
+      final request = result as SearchFilterRequest;
+      await viewModel.searchByFilter(request);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final viewmodel = context.watch<SearchViewModel>();
+    final viewModel = context.watch<SearchViewModel>();
 
     return Column(
       children: [
@@ -41,21 +67,21 @@ class _SearchAppBarComponentState extends State<SearchAppBarComponent> {
           child: Row(
             children: [
               IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
+                padding: EdgeInsets.symmetric(horizontal: 24.w),
                 icon: Icon(
                   Icons.chevron_left,
                   color: AppColors.mainText,
                   size: 24.sp,
                 ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
               ),
-              SizedBox(width: 10.w),
               Expanded(
                 child: CustomTextField(
                   controller: searchController,
                   autofocus: true,
-                  readOnly: viewmodel.busy(SearchLoadingState.init),
+                  readOnly: viewModel.busy(SearchLoadingState.init),
                   prefixIcon: const TextFieldIcon(icon: AppIcons.search),
                   suffixIcon: searchController.text.isEmpty
                       ? null
@@ -72,22 +98,18 @@ class _SearchAppBarComponentState extends State<SearchAppBarComponent> {
                     borderSide: BorderSide.none,
                   ),
                   fillColor: AppColors.form,
-                  onChanged: (query) => viewmodel.execute(query),
+                  onChanged: (query) => viewModel.search(query),
                 ),
               ),
-              SizedBox(width: 10.w),
               IconButton(
-                padding: EdgeInsets.only(right: 24.w),
-                icon: SvgPicture.asset(AppIcons.filter),
-                onPressed: () {
-                  FocusScope.of(context).requestFocus(FocusNode());
-
-                  showModalBottomSheet<void>(
-                    context: context,
-                    isScrollControlled: true,
-                    builder: (context) => const SearchFilterSheet(),
-                  );
-                },
+                padding: EdgeInsets.symmetric(horizontal: 24.w),
+                icon: SvgPicture.asset(
+                  AppIcons.filter,
+                  height: 24.h,
+                  width: 24.h,
+                ),
+                onPressed:
+                    viewModel.busy(SearchLoadingState.init) ? () {} : onTapFilterIcon,
               ),
             ],
           ),

@@ -1,5 +1,6 @@
 import 'package:chefio_recipe_app/modules/home/screens/home_viewmodel.dart';
 import 'package:chefio_recipe_app/shared/styles/styles.dart';
+import 'package:chefio_recipe_app/shared/widgets/others/category_item.dart';
 import 'package:chefio_recipe_app/shared/widgets/others/custom_shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -46,7 +47,7 @@ class HomeCategoriesComponent extends StatelessWidget {
               padding: AppPadding.symetricHorizontalOnly,
               itemBuilder: (context, index) {
                 final category = categories[index];
-                return CategoryItem(
+                return CategoryItemView(
                   label: category.name,
                   selected: category.id == selectedCategory.id,
                   onTap: () => viewmodel.selectCategory(category),
@@ -56,43 +57,6 @@ class HomeCategoriesComponent extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class CategoryItem extends StatelessWidget {
-  const CategoryItem({
-    Key? key,
-    required this.label,
-    required this.selected,
-    required this.onTap,
-  }) : super(key: key);
-
-  final String label;
-  final bool selected;
-  final Function() onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 24.w),
-        decoration: BoxDecoration(
-          color: selected ? AppColors.primary : AppColors.form,
-          borderRadius: BorderRadius.circular(32.r),
-        ),
-        alignment: Alignment.center,
-        child: Text(
-          label,
-          textAlign: TextAlign.center,
-          style: AppText.bold700(context).copyWith(
-            color: selected ? Colors.white : AppColors.secondaryText,
-            fontSize: 15.sp,
-            letterSpacing: 0.10,
-          ),
-        ),
       ),
     );
   }

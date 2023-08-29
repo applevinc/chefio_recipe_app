@@ -1,6 +1,9 @@
+import 'package:chefio_recipe_app/modules/home/models/search_filter_request.dart';
 import 'package:chefio_recipe_app/modules/home/models/search_history.dart';
 import 'package:chefio_recipe_app/modules/home/models/search_suggestion.dart';
 import 'package:chefio_recipe_app/modules/home/services/i_search_service.dart';
+import 'package:chefio_recipe_app/modules/shared/category/models/category.dart';
+import 'package:chefio_recipe_app/modules/shared/category/services/i_category_service.dart';
 import 'package:chefio_recipe_app/modules/shared/recipe/models/recipe.dart';
 import 'package:chefio_recipe_app/shared/models/failure.dart';
 import 'package:chefio_recipe_app/shared/viewmodels/base_viewmodel.dart';
@@ -11,9 +14,13 @@ enum SearchErrorState { init, search }
 
 class SearchViewModel extends BaseViewModel {
   final ISearchService _searchService;
+  final ICategoryService _categoryService;
 
-  SearchViewModel({required ISearchService searchService})
-      : _searchService = searchService;
+  SearchViewModel({
+    required ISearchService searchService,
+    required ICategoryService categoryService,
+  })  : _categoryService = categoryService,
+        _searchService = searchService;
 
   List<Recipe> _recipes = [];
   List<Recipe> get recipes => _recipes;
@@ -24,6 +31,11 @@ class SearchViewModel extends BaseViewModel {
   List<SearchSuggestion> _searchSuggestion = [];
   List<SearchSuggestion> get searchSuggestions => _searchSuggestion;
 
+  final List<Category> _categories = [
+    Category(id: 'all', name: 'All'),
+  ];
+  List<Category> get categories => _categories;
+
   Future<void> init() async {
     clearErrors();
 
@@ -32,6 +44,7 @@ class SearchViewModel extends BaseViewModel {
       await Future.wait([
         _getSearchHistory(),
         _getSearchSuggestion(),
+        _getCategories(),
       ]);
     } on Failure catch (e) {
       setErrorForObject(SearchErrorState.init, e);
@@ -48,12 +61,33 @@ class SearchViewModel extends BaseViewModel {
     _searchSuggestion = await _searchService.getSearchSuggestion();
   }
 
-  Future<void> execute(String query) async {
+  Future<void> _getCategories() async {
+    final List<Category> results = await _categoryService.getAll();
+
+    for (var element in results) {
+      _categories.add(element);
+    }
+  }
+
+  Future<void> search(String query) async {
     clearErrors();
 
     try {
       setBusyForObject(SearchLoadingState.search, true);
       _recipes = await _searchService.search(query);
+    } on Failure catch (e) {
+      setErrorForObject(SearchErrorState.search, e);
+    } finally {
+      setBusyForObject(SearchLoadingState.search, false);
+    }
+  }
+
+  Future<void> searchByFilter(SearchFilterRequest request) async {
+    clearErrors();
+
+    try {
+      setBusyForObject(SearchLoadingState.search, true);
+      _recipes = await _searchService.searchByFilter(request);
     } on Failure catch (e) {
       setErrorForObject(SearchErrorState.search, e);
     } finally {
