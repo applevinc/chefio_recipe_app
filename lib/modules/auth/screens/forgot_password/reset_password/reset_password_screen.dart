@@ -45,15 +45,15 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
             .read<ResetPasswordViewModel>()
             .execute(password: passwordController.text.trim());
 
-        if (mounted) {
-          AppNavigator.to(
-            context,
-            ChangeNotifierProvider(
-              create: (context) => SignInViewModel(authService: locator<IAuthService>()),
-              child: const SignInScreen(),
-            ),
-          );
-        }
+        if (!mounted) return;
+
+        AppNavigator.pushAndRemoveUntil(
+          context,
+          ChangeNotifierProvider(
+            create: (context) => SignInViewModel(authService: locator<IAuthService>()),
+            child: const SignInScreen(),
+          ),
+        );
       } on Failure catch (e) {
         Messenger.error(context: context, message: e.message);
       }

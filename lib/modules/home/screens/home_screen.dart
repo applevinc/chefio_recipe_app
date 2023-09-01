@@ -4,8 +4,9 @@ import 'package:chefio_recipe_app/modules/home/screens/home_viewmodel.dart';
 import 'package:chefio_recipe_app/modules/home/screens/search/search_screen.dart';
 import 'package:chefio_recipe_app/modules/home/screens/search/search_viewmodel.dart';
 import 'package:chefio_recipe_app/modules/home/services/i_search_service.dart';
+import 'package:chefio_recipe_app/modules/recipe/screens/recipes_grid/recipes_grid.dart';
 import 'package:chefio_recipe_app/modules/shared/category/services/i_category_service.dart';
-import 'package:chefio_recipe_app/modules/shared/recipe/views/recipes_grid.dart';
+
 import 'package:chefio_recipe_app/shared/assets/assets.dart';
 import 'package:chefio_recipe_app/shared/styles/styles.dart';
 import 'package:chefio_recipe_app/shared/utils/navigator.dart';

@@ -44,9 +44,9 @@ class _ConfirmSignUpScreenState extends State<ConfirmSignUpScreen> {
       try {
         await context.read<ConfirmSignUpViewModel>().execute(pin: controller.text);
 
-        if (mounted) {
-          AppNavigator.to(context, const SignInScreen());
-        }
+        if (!mounted) return;
+
+        AppNavigator.pushAndRemoveUntil(context, const SignInScreen());
       } on Failure catch (e) {
         Messenger.error(context: context, message: e.message);
       }

@@ -1,5 +1,5 @@
-import 'package:chefio_recipe_app/modules/shared/recipe/models/recipe.dart';
-import 'package:chefio_recipe_app/modules/shared/recipe/services/i_recipe_service.dart';
+import 'package:chefio_recipe_app/modules/recipe/models/recipe.dart';
+import 'package:chefio_recipe_app/modules/recipe/services/i_recipe_service.dart';
 import 'package:chefio_recipe_app/shared/models/failure.dart';
 import 'package:chefio_recipe_app/shared/models/user.dart';
 import 'package:chefio_recipe_app/shared/viewmodels/base_viewmodel.dart';

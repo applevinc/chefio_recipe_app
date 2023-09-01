@@ -1,13 +1,17 @@
 import 'package:chefio_recipe_app/config/app_session.dart';
+import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/modules/home/screens/home_screen.dart';
 import 'package:chefio_recipe_app/modules/profile/screens/profile_viewmodel.dart';
+import 'package:chefio_recipe_app/modules/recipe/screens/upload_recipe/upload_recipe_screen.dart';
+import 'package:chefio_recipe_app/modules/recipe/screens/upload_recipe/upload_recipe_viewmodel.dart';
 import 'package:chefio_recipe_app/shared/assets/icons.dart';
+import 'package:chefio_recipe_app/shared/image/service/i_file_service.dart';
 import 'package:chefio_recipe_app/shared/styles/colors.dart';
 import 'package:chefio_recipe_app/modules/notification/notification.dart';
 import 'package:chefio_recipe_app/modules/profile/screens/profile_screen.dart';
 import 'package:chefio_recipe_app/modules/scan/scan.dart';
-import 'package:chefio_recipe_app/modules/upload/screens/upload.dart';
 import 'package:chefio_recipe_app/shared/styles/text.dart';
+import 'package:chefio_recipe_app/shared/utils/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -34,7 +38,7 @@ class _DashBoardViewState extends State<DashBoardView> {
     if (user != null) {
       _pages = [
         const HomeScreen(),
-        const UploadScreen(),
+        const UploadRecipeScreen(),
         null,
         const NotificationsScreen(),
         ChangeNotifierProvider(
@@ -45,7 +49,7 @@ class _DashBoardViewState extends State<DashBoardView> {
     } else {
       _pages = [
         const HomeScreen(),
-        const UploadScreen(),
+        const UploadRecipeScreen(),
         null,
         const NotificationsScreen(),
         const SizedBox.shrink(),
@@ -54,6 +58,19 @@ class _DashBoardViewState extends State<DashBoardView> {
   }
 
   void _onItemTapped(int index) {
+    if (index == 1) {
+      AppNavigator.to(
+        context,
+        ChangeNotifierProvider(
+          create: (_) => UploadRecipeViewModel(
+            fileService: locator<IFileService>(),
+          ),
+          child: const UploadRecipeScreen(),
+        ),
+      );
+      return;
+    }
+
     setState(() {
       _selectedIndex = index;
     });
