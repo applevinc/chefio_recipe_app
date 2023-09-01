@@ -2,7 +2,7 @@ import 'package:chefio_recipe_app/modules/home/screens/search/components/search_
 import 'package:chefio_recipe_app/modules/home/screens/search/components/search_history_view.dart';
 import 'package:chefio_recipe_app/modules/home/screens/search/components/search_suggestions_view.dart';
 import 'package:chefio_recipe_app/modules/home/screens/search/search_viewmodel.dart';
-import 'package:chefio_recipe_app/modules/shared/recipe/views/recipes_grid.dart';
+import 'package:chefio_recipe_app/modules/recipe/screens/recipes_grid/recipes_grid.dart';
 import 'package:chefio_recipe_app/shared/widgets/others/custom_shimmer.dart';
 import 'package:chefio_recipe_app/shared/widgets/others/error_view.dart';
 import 'package:flutter/material.dart';

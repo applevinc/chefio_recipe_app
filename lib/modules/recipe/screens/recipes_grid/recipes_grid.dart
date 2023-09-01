@@ -1,6 +1,6 @@
-import 'package:chefio_recipe_app/modules/shared/recipe/models/recipe.dart';
-import 'package:chefio_recipe_app/modules/shared/recipe/views/recipe-grid-item/recipe_grid_item.dart';
-import 'package:chefio_recipe_app/modules/shared/recipe/views/recipe-grid-item/recipe_grid_item_viewmodel.dart';
+import 'package:chefio_recipe_app/modules/recipe/models/recipe.dart';
+import 'package:chefio_recipe_app/modules/recipe/screens/recipes_grid/recipe-grid-item/recipe_grid_item.dart';
+import 'package:chefio_recipe_app/modules/recipe/screens/recipes_grid/recipe-grid-item/recipe_grid_item_viewmodel.dart';
 import 'package:chefio_recipe_app/shared/widgets/others/custom_shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

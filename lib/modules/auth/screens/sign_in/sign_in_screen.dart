@@ -48,18 +48,16 @@ class _SignInScreenState extends State<SignInScreen> {
 
   void signIn() async {
     if (_formKey.currentState!.validate()) {
-      final viewModel = context.read<SignInViewModel>();
-
       try {
-        await viewModel.execute(
-          email: emailController.text.trim(),
-          password: passwordController.text.trim(),
-        );
+        await context.read<SignInViewModel>().execute(
+              email: emailController.text.trim(),
+              password: passwordController.text.trim(),
+            );
 
-        if (mounted) {
-          Messenger.success(context: context, message: 'Login successful');
-          AppNavigator.to(context, const DashBoardView());
-        }
+        if (!mounted) return;
+
+        Messenger.success(context: context, message: 'Login successful');
+        AppNavigator.pushAndRemoveUntil(context, const DashBoardView());
       } on Failure catch (e) {
         Messenger.error(context: context, message: e.message);
       }

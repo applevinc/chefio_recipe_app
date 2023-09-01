@@ -1,31 +1,30 @@
+
+import 'package:chefio_recipe_app/modules/recipe/screens/upload_recipe/upload_recipe_viewmodel.dart';
 import 'package:chefio_recipe_app/shared/assets/icons.dart';
 import 'package:chefio_recipe_app/shared/assets/images.dart';
 import 'package:chefio_recipe_app/shared/styles/colors.dart';
 import 'package:chefio_recipe_app/shared/widgets/buttons/custom_button.dart';
 import 'package:chefio_recipe_app/shared/widgets/others/grey_divider.dart';
 import 'package:chefio_recipe_app/modules/shared/dashboard/dashboard_view.dart';
-import 'package:chefio_recipe_app/modules/upload/screens/upload.dart';
-import 'package:chefio_recipe_app/modules/upload/widgets/add_ingredient_button.dart';
+import 'package:chefio_recipe_app/modules/recipe/screens/widgets/add_ingredient_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
-class StepTwoView extends StatelessWidget {
-  const StepTwoView({Key? key, required this.pageController}) : super(key: key);
-
-  final PageController pageController;
+class UploadRecipeStepTwoView extends StatelessWidget {
+  const UploadRecipeStepTwoView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
       child: Column(
-        children: [
-          const _Ingredients(),
-          const GreyDivider(),
-          const _Steps(),
-          _Actions(pageController: pageController),
+        children: const [
+          _Ingredients(),
+          GreyDivider(),
+          _Steps(),
+          _Actions(),
         ],
       ),
     );
@@ -200,13 +199,12 @@ class _Steps extends StatelessWidget {
 }
 
 class _Actions extends StatelessWidget {
-  const _Actions({Key? key, required this.pageController}) : super(key: key);
-
-  final PageController pageController;
+  const _Actions({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var pageNotifier = context.watch<UploadPageViewController>();
+    final viewModel = context.watch<UploadRecipeViewModel>();
+    final pageController = viewModel.pageController;
 
     return Padding(
       padding: EdgeInsets.only(right: 24.w, left: 24.w, bottom: 24.h),
@@ -219,7 +217,7 @@ class _Actions extends StatelessWidget {
               labelColor: AppColors.mainText,
               onPressed: () {
                 pageController.jumpToPage(0);
-                pageNotifier.setPageNo(0);
+                viewModel.setPageNo(0);
               },
             ),
           ),

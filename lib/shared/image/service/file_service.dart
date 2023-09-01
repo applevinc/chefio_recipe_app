@@ -1,12 +1,12 @@
 import 'dart:io';
 
-import 'package:chefio_recipe_app/shared/image/service/service.dart';
+import 'package:chefio_recipe_app/shared/image/service/i_file_service.dart';
 import 'package:chefio_recipe_app/shared/models/failure.dart';
 import 'package:image_picker/image_picker.dart';
 
 const _errorMessage = 'An error occuried';
 
-class ImageServiceImpl implements ImageService {
+class FileService implements IFileService {
   final ImagePicker _imagePicker = ImagePicker();
 
   @override

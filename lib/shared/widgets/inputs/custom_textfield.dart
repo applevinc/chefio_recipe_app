@@ -95,7 +95,10 @@ class CustomTextField extends StatelessWidget {
       readOnly: readOnly,
       inputFormatters: inputFormatters,
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.symmetric(vertical: 16.h),
+        contentPadding: EdgeInsets.symmetric(
+          vertical: 16.h,
+          horizontal: 24.w,
+        ),
         isDense: true,
         counterText: "",
         filled: true,
@@ -124,14 +127,33 @@ class CustomTextField extends StatelessWidget {
           fontSize: 15.sp,
           color: AppColors.secondaryText,
         ),
-        errorBorder: defaultBorder.copyWith(
-          borderSide: const BorderSide(color: AppColors.secondary, width: 2),
-        ),
+        errorBorder: border == null
+            ? defaultBorder.copyWith(
+                borderSide: const BorderSide(
+                  color: AppColors.secondary,
+                  width: 2,
+                ),
+              )
+            : border!.copyWith(
+                borderSide: const BorderSide(
+                  color: AppColors.secondary,
+                  width: 2,
+                ),
+              ),
         enabledBorder: border ?? defaultBorder,
-        focusedBorder: border ??
-            defaultBorder.copyWith(
-              borderSide: const BorderSide(color: AppColors.primary, width: 2),
-            ),
+        focusedBorder: border == null
+            ? defaultBorder.copyWith(
+                borderSide: const BorderSide(
+                  color: AppColors.primary,
+                  width: 2,
+                ),
+              )
+            : border!.copyWith(
+                borderSide: const BorderSide(
+                  color: AppColors.primary,
+                  width: 2,
+                ),
+              ),
         disabledBorder: defaultBorder,
         border: defaultBorder,
         focusedErrorBorder: defaultBorder,
@@ -139,16 +161,15 @@ class CustomTextField extends StatelessWidget {
     );
 
     if (title != null) {
-      final titlestyle = AppText.bold700(context).copyWith(
-        fontSize: 17.sp,
-      );
-
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             title!,
-            style: titlestyle,
+            style: AppText.bold700(context).copyWith(
+              fontSize: 17.sp,
+              color: const Color(0xFF3D5480),
+            ),
           ),
           SizedBox(height: 8.h),
           field,
