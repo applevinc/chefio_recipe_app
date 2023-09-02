@@ -154,9 +154,9 @@ class CustomTextField extends StatelessWidget {
                   width: 2,
                 ),
               ),
-        disabledBorder: defaultBorder,
-        border: defaultBorder,
-        focusedErrorBorder: defaultBorder,
+        disabledBorder: border ?? defaultBorder,
+        border: border ?? defaultBorder,
+        focusedErrorBorder: border ?? defaultBorder,
       ),
     );
 
