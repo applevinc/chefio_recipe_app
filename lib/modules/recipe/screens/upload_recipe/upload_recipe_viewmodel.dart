@@ -1,11 +1,11 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:chefio_recipe_app/modules/shared/cooking_duration/cooking_duration_viewmodel.dart';
+import 'package:chefio_recipe_app/modules/shared/cooking_time/cooking_time_viewmodel.dart';
 import 'package:chefio_recipe_app/shared/image/service/i_file_service.dart';
 import 'package:flutter/material.dart';
 
-class UploadRecipeViewModel extends CookingDurationViewModel {
+class UploadRecipeViewModel extends CookingTimeViewModel {
   final IFileService fileService;
 
   UploadRecipeViewModel({required this.fileService});
@@ -18,7 +18,18 @@ class UploadRecipeViewModel extends CookingDurationViewModel {
   File? _coverPhoto;
   File? get coverPhoto => _coverPhoto;
 
-  setPageNo(int page) {
+  String _foodName = '';
+  String _foodDescription = '';
+
+  void setFoodInfo({
+    required String foodName,
+    required String foodDescription,
+  }) {
+    _foodName = foodName;
+    _foodDescription = foodDescription;
+  }
+
+  void setPageNo(int page) {
     _pageNo = page;
     notifyListeners();
   }

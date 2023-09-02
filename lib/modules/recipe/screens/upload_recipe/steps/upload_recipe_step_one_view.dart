@@ -1,5 +1,5 @@
 import 'package:chefio_recipe_app/modules/recipe/screens/upload_recipe/upload_recipe_viewmodel.dart';
-import 'package:chefio_recipe_app/modules/shared/cooking_duration/cooking_duration_view.dart';
+import 'package:chefio_recipe_app/modules/shared/cooking_time/cooking_time_view.dart';
 import 'package:chefio_recipe_app/shared/assets/icons.dart';
 import 'package:chefio_recipe_app/shared/styles/colors.dart';
 import 'package:chefio_recipe_app/shared/styles/text.dart';
@@ -47,6 +47,10 @@ class _UploadRecipeStepOneViewState extends State<UploadRecipeStepOneView> {
         return;
       }
 
+      viewModel.setFoodInfo(
+        foodName: foodNameController.text,
+        foodDescription: foodDescriptionController.text,
+      );
       viewModel.pageController.jumpToPage(1);
       viewModel.setPageNo(1);
     }
@@ -93,7 +97,7 @@ class _UploadRecipeStepOneViewState extends State<UploadRecipeStepOneView> {
               },
             ),
             SizedBox(height: 24.h),
-            const CookingDurationView<UploadRecipeViewModel>(),
+            const CookingTimeView<UploadRecipeViewModel>(),
             SizedBox(height: 60.h),
             AppButton(
               label: 'NEXT',

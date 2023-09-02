@@ -85,7 +85,7 @@ class RecipeGridItem extends StatelessWidget {
         ),
         SizedBox(height: 8.h),
         Text(
-          'Food • >${recipe.duration} mins',
+          'Food • >${recipe.minCookingTimeInMinutes} mins',
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: AppText.bold500(context).copyWith(

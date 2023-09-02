@@ -5,7 +5,7 @@ class Recipe {
   final User user;
   final String title;
   final String description;
-  final int duration;
+  final int minCookingTimeInMinutes;
   final String coverPhotoUrl;
   final int likeCount;
   final List<String> ingredients;
@@ -16,7 +16,7 @@ class Recipe {
     required this.user,
     required this.title,
     required this.description,
-    required this.duration,
+    required this.minCookingTimeInMinutes,
     required this.coverPhotoUrl,
     required this.likeCount,
     required this.ingredients,

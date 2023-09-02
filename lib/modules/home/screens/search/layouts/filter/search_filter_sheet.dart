@@ -1,7 +1,7 @@
 import 'package:chefio_recipe_app/modules/home/screens/search/layouts/filter/components/search_filter_categories_view.dart';
 import 'package:chefio_recipe_app/modules/home/screens/search/layouts/filter/search_filter_viewmodel.dart';
 import 'package:chefio_recipe_app/modules/home/screens/search/widgets/circular_button.dart';
-import 'package:chefio_recipe_app/modules/shared/cooking_duration/cooking_duration_view.dart';
+import 'package:chefio_recipe_app/modules/shared/cooking_time/cooking_time_view.dart';
 import 'package:chefio_recipe_app/shared/styles/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -32,7 +32,7 @@ class SearchFilterSheet extends StatelessWidget {
           SizedBox(height: 33.h),
           Padding(
             padding: AppPadding.symetricHorizontalOnly,
-            child: const CookingDurationView<SearchFilterViewModel>(),
+            child: const CookingTimeView<SearchFilterViewModel>(),
           ),
           SizedBox(height: 52.h),
           Padding(
