@@ -51,7 +51,11 @@ class _UploadRecipeStepOneViewState extends State<UploadRecipeStepOneView> {
         foodName: foodNameController.text,
         foodDescription: foodDescriptionController.text,
       );
-      viewModel.pageController.jumpToPage(1);
+      viewModel.pageController.animateToPage(
+        1,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeInOut,
+      );
       viewModel.setPageNo(1);
     }
   }

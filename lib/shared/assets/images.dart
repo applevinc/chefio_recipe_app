@@ -12,5 +12,6 @@ class AppImages {
   static const String capturedFood = 'assets/images/captured_food.png';
   static const String avatar1 = 'assets/images/avatar_1.png';
   static const String avatar2 = 'assets/images/avatar_2.png';
+  static const String dragIcon = 'assets/images/drag-icon.png';
   static const String notificationPostCover = 'assets/images/notification_post_cover.png';
 }
