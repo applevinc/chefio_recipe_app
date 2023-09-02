@@ -24,6 +24,7 @@ class _UploadRecipeStepTwoViewState extends State<UploadRecipeStepTwoView> {
     if (_formKey.currentState!.validate()) {
       showDialog(
         context: context,
+        barrierDismissible: false,
         builder: (BuildContext context) {
           return const UploadRecipeSuccessDialog();
         },

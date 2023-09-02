@@ -13,8 +13,6 @@ class UploadRecipeSuccessDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       contentPadding: EdgeInsets.only(
-        left: 43.w,
-        right: 43.w,
         top: 48.h,
       ),
       actionsPadding: EdgeInsets.only(
@@ -29,19 +27,28 @@ class UploadRecipeSuccessDialog extends StatelessWidget {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Image.asset(AppImages.uploadSuccess),
+          Image.asset(
+            AppImages.uploadSuccess,
+            width: 160.h,
+            height: 160.h,
+          ),
           SizedBox(height: 32.h),
           Text(
             'Upload Success',
-            style: Theme.of(context).textTheme.titleLarge,
+            style: AppText.bold700(context).copyWith(
+              fontSize: 22.sp,
+            ),
           ),
           SizedBox(height: 8.h),
-          Text(
-            'Your recipe has been uploaded, you can see it on your profile',
-            style: Theme.of(context)
-                .textTheme
-                .bodyLarge!
-                .copyWith(color: AppColors.mainText),
+          SizedBox(
+            width: 240.w,
+            child: Text(
+              'Your recipe has been uploaded, you can see it on your profile',
+              textAlign: TextAlign.center,
+              style: AppText.bold500(context).copyWith(
+                fontSize: 15.sp,
+              ),
+            ),
           ),
         ],
       ),
