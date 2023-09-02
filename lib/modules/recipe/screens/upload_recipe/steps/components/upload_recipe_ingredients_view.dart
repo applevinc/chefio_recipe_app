@@ -1,5 +1,6 @@
-import 'package:chefio_recipe_app/modules/recipe/models/ingredient.dart';
+import 'package:chefio_recipe_app/modules/recipe/models/upload_recipe.dart';
 import 'package:chefio_recipe_app/modules/recipe/screens/upload_recipe/upload_recipe_viewmodel.dart';
+import 'package:chefio_recipe_app/modules/recipe/screens/widgets/upload_recipe_add_button.dart';
 import 'package:chefio_recipe_app/shared/assets/assets.dart';
 import 'package:chefio_recipe_app/shared/styles/styles.dart';
 import 'package:chefio_recipe_app/shared/widgets/widgets.dart';
@@ -54,7 +55,10 @@ class UploadRecipeIngredientsView extends StatelessWidget {
               );
             },
           ),
-          const _AddIngredientButton(),
+          UploadRecipeAddButton(
+            label: 'Ingredient',
+            onTap: viewModel.addIngredient,
+          ),
         ],
       ),
     );
@@ -68,7 +72,7 @@ class _IngredientItemView extends StatefulWidget {
     required this.index,
   }) : super(key: key);
 
-  final Ingredient ingredient;
+  final UploadRecipeIngredient ingredient;
   final int index;
 
   @override
@@ -106,20 +110,22 @@ class _IngredientItemViewState extends State<_IngredientItemView> {
 
     return Slidable(
       key: ValueKey(widget.index),
-      endActionPane: ActionPane(
-        motion: const BehindMotion(),
-        extentRatio: 0.15,
-        children: [
-          CustomSlidableAction(
-            padding: EdgeInsets.only(bottom: 5.h),
-            child: const Icon(
-              Icons.delete_outline_outlined,
-              color: Colors.red,
+      endActionPane: widget.index == 0
+          ? null
+          : ActionPane(
+              motion: const BehindMotion(),
+              extentRatio: 0.15,
+              children: [
+                CustomSlidableAction(
+                  padding: EdgeInsets.only(bottom: 5.h),
+                  child: const Icon(
+                    Icons.delete_outline_outlined,
+                    color: Colors.red,
+                  ),
+                  onPressed: (context) => viewModel.removeIngredient(widget.index),
+                ),
+              ],
             ),
-            onPressed: (context) => viewModel.removeIngredient(widget.index),
-          ),
-        ],
-      ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -149,48 +155,6 @@ class _IngredientItemViewState extends State<_IngredientItemView> {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _AddIngredientButton extends StatelessWidget {
-  const _AddIngredientButton();
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(top: 32.h),
-      child: InkWell(
-        onTap: context.read<UploadRecipeViewModel>().addIngredients,
-        borderRadius: BorderRadius.circular(32.r),
-        child: Container(
-          width: double.infinity,
-          padding: EdgeInsets.symmetric(vertical: 19.h),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(32.r),
-            color: Colors.white,
-            border: Border.all(color: AppColors.outline, width: 0.5.h),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.add,
-                color: AppColors.headlineText,
-                size: 24.sp,
-              ),
-              SizedBox(width: 5.w),
-              Text(
-                'Ingredient',
-                style: AppText.bold500(context).copyWith(
-                  color: AppColors.headlineText,
-                  fontSize: 15.sp,
-                ),
-              ),
-            ],
-          ),
-        ),
       ),
     );
   }

@@ -27,8 +27,9 @@ class _UploadRecipeStepOneViewState extends State<UploadRecipeStepOneView> {
   @override
   void initState() {
     super.initState();
-    foodNameController = TextEditingController();
-    foodDescriptionController = TextEditingController();
+    final viewModel = context.read<UploadRecipeViewModel>();
+    foodNameController = TextEditingController(text: viewModel.foodName);
+    foodDescriptionController = TextEditingController(text: viewModel.foodDescription);
   }
 
   @override
