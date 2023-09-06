@@ -50,7 +50,7 @@ class CustomCacheNetworkImage extends StatelessWidget {
           color: Colors.grey.withOpacity(.8),
         ),
         child: Transform.scale(
-          scale: 1.0,
+          scale: 0.4,
           child: const CircularProgressIndicator.adaptive(),
         ),
       ),
