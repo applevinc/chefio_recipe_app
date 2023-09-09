@@ -9,7 +9,7 @@ import 'package:chefio_recipe_app/shared/image/service/i_file_service.dart';
 import 'package:chefio_recipe_app/shared/styles/colors.dart';
 import 'package:chefio_recipe_app/modules/notification/notification.dart';
 import 'package:chefio_recipe_app/modules/profile/screens/profile_screen.dart';
-import 'package:chefio_recipe_app/modules/scan/scan.dart';
+import 'package:chefio_recipe_app/modules/shared/dashboard/scan_food/scan_food_sheet.dart';
 import 'package:chefio_recipe_app/shared/styles/text.dart';
 import 'package:chefio_recipe_app/shared/utils/navigator.dart';
 import 'package:flutter/material.dart';
@@ -146,7 +146,7 @@ class _DashBoardViewState extends State<DashBoardView> {
                     showModalBottomSheet(
                       context: context,
                       builder: (BuildContext context) {
-                        return const ScanScreen();
+                        return const ScanSheet();
                       },
                     );
                   },
