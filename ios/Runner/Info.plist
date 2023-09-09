@@ -32,6 +32,10 @@
 		<string>Main</string>
 		<key>NSPhotoLibraryUsageDescription</key>
 		<string>We need to access your photo library so that the app can upload your photo and use as user profile</string>
+		<key>NSCameraUsageDescription</key>
+		<string>your usage description here</string>
+		<key>NSMicrophoneUsageDescription</key>
+		<string>your usage description here</string>
 		<key>UISupportedInterfaceOrientations</key>
 		<array>
 			<string>UIInterfaceOrientationPortrait</string>

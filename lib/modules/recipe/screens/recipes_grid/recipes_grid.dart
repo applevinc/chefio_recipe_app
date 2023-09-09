@@ -76,6 +76,7 @@ class RecipesGridShimmer extends StatelessWidget {
     final child = CustomShimmer(
       child: GridView.builder(
         primary: false,
+        shrinkWrap: true,
         physics: const BouncingScrollPhysics(),
         padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -85,9 +86,33 @@ class RecipesGridShimmer extends StatelessWidget {
           childAspectRatio: 151.w / 264.h,
         ),
         itemCount: 10,
-        itemBuilder: (context, index) => ShimmerContainer(
-          borderRadius: BorderRadius.circular(16.r),
-        ),
+        itemBuilder: (context, index) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  ShimmerContainer(
+                    height: 31.h,
+                    width: 31.h,
+                    borderRadius: BorderRadius.circular(11.r),
+                  ),
+                  SizedBox(width: 8.w),
+                  TextShimmer(width: 78.w),
+                ],
+              ),
+              SizedBox(height: 16.h),
+              ShimmerContainer(
+                height: 151.h,
+                borderRadius: BorderRadius.circular(16.r),
+              ),
+              SizedBox(height: 16.h),
+              TextShimmer(width: 74.w),
+              SizedBox(height: 8.h),
+              TextShimmer(width: 90.w),
+            ],
+          );
+        },
       ),
     );
 
