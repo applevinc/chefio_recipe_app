@@ -5,4 +5,5 @@ abstract class IRecipeService {
   Future<List<Recipe>> getRecipes({required Category category});
   Future<List<Recipe>> getRecipesByUser({required String userId});
   Future<List<Recipe>> getLikedRecipesByUser({required String userId});
+  Future<List<Recipe>> getRecipesByScan();
 }

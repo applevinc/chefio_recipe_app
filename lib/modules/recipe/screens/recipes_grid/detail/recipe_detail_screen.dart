@@ -18,7 +18,21 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 class RecipeDetailScreen extends StatelessWidget {
-  const RecipeDetailScreen({Key? key}) : super(key: key);
+  const RecipeDetailScreen(this.recipe, {super.key});
+
+  final Recipe recipe;
+
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+       create: (_) => RecipeDetailViewModel(recipe),
+      child: const _RecipeDetailScreen(),
+    );
+  }
+}
+
+class _RecipeDetailScreen extends StatelessWidget {
+  const _RecipeDetailScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -78,11 +92,7 @@ class RecipeDetailScreen extends StatelessWidget {
             builder: (context, scrollController) => _Sheet(
               scrollController: scrollController,
             ),
-          )
-              .animate(
-                delay: Duration.zero,
-              )
-              .slide(
+          ).animate(delay: Duration.zero).slide(
                 begin: const Offset(0, 1),
                 end: const Offset(0, 0),
                 duration: const Duration(milliseconds: 600),

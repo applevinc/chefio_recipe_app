@@ -47,6 +47,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print('HomeScreen');
+
     return Scaffold(
       body: SafeArea(
         bottom: false,
@@ -91,12 +93,15 @@ class _HomeScreenState extends State<HomeScreen> {
             Consumer<HomeViewModel>(
               builder: (context, viewmodel, _) {
                 if (viewmodel.hasError) {
-                  return ErrorView(error: viewmodel.modelError, refetch: init);
+                  return ErrorView(
+                    error: viewmodel.modelError,
+                    refetch: init,
+                  );
                 }
 
                 return RecipesGrid(
                   recipes: viewmodel.recipes,
-                  isBusy: viewmodel.anyObjectsBusy,
+                  isBusy: viewmodel.busy(HomeLoadingState.init),
                   onRefresh: viewmodel.refreshRecipes,
                 );
               },
