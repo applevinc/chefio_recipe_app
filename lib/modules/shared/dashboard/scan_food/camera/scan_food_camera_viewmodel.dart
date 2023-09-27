@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:chefio_recipe_app/shared/models/failure.dart';
 import 'package:chefio_recipe_app/shared/viewmodels/base_viewmodel.dart';
+import 'package:flutter/widgets.dart';
 
 enum ScanFoodCameraLoadingState { init, takePicture }
 
@@ -13,6 +14,14 @@ class ScanFoodCameraViewModel extends BaseViewModel {
   late String scanOption;
 
   ScanFoodCameraViewModel({required this.scanOption});
+
+  double cameraAspectRate(BuildContext context) {
+    if (cameraController == null) return 0.0;
+
+    final mediaSize = MediaQuery.of(context).size;
+    final scale = 1 / (cameraController!.value.aspectRatio * mediaSize.aspectRatio);
+    return scale;
+  }
 
   Future<void> init() async {
     try {

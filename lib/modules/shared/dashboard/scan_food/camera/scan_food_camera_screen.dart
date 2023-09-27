@@ -46,14 +46,21 @@ class _ScanCameraScreenState extends State<_ScanCameraScreen> {
 
   void takePicture() async {
     try {
-      final image = await context.read<ScanFoodCameraViewModel>().takePicture();
+      final viewModel = context.read<ScanFoodCameraViewModel>();
+      final image = await viewModel.takePicture();
 
       if (!mounted) return;
 
       if (image == null) return;
 
       Navigator.pop(context);
-      AppNavigator.to(context, ScanFoodResultsScreen(image: image));
+      AppNavigator.to(
+        context,
+        ScanFoodResultsScreen(
+          image: image,
+          type: viewModel.scanOption,
+        ),
+      );
     } catch (e) {
       Messenger.error(context: context, message: 'Failed to take picture');
     }
@@ -93,7 +100,11 @@ class _ScanCameraScreenState extends State<_ScanCameraScreen> {
           return Scaffold(
             appBar: AppBar(),
             extendBodyBehindAppBar: true,
-            body: CameraPreview(cameraController),
+            extendBody: true,
+            body: Transform.scale(
+              scale: viewModel.cameraAspectRate(context),
+              child: CameraPreview(cameraController),
+            ),
             floatingActionButton: FloatingActionButton(
               onPressed: takePicture,
               child: const Icon(Icons.camera_alt),

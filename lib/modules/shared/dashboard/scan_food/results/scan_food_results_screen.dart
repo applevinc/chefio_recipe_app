@@ -1,76 +1,91 @@
 import 'dart:io';
 
+import 'package:chefio_recipe_app/config/locator/locator.dart';
+import 'package:chefio_recipe_app/modules/recipe/screens/recipes_grid/recipes_grid.dart';
+import 'package:chefio_recipe_app/modules/recipe/services/i_recipe_service.dart';
+import 'package:chefio_recipe_app/modules/shared/dashboard/scan_food/results/components/scan_food_results_appbar.view.dart';
+import 'package:chefio_recipe_app/modules/shared/dashboard/scan_food/results/components/shimmer.view.dart';
 import 'package:chefio_recipe_app/modules/shared/dashboard/scan_food/results/scan_food_results_viewmodel.dart';
-import 'package:chefio_recipe_app/shared/assets/assets.dart';
-import 'package:chefio_recipe_app/shared/styles/styles.dart';
+import 'package:chefio_recipe_app/shared/widgets/others/error_view.dart';
 import 'package:chefio_recipe_app/shared/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 class ScanFoodResultsScreen extends StatelessWidget {
-  const ScanFoodResultsScreen({super.key, required this.image});
+  const ScanFoodResultsScreen({super.key, this.image, required this.type});
 
-  final File image;
+  final File? image;
+  final String type;
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => ScanFoodResultsViewModel(image: image),
+      create: (_) => ScanFoodResultsViewModel(
+        type: type,
+        image: image,
+        recipeService: locator<IRecipeService>(),
+      ),
       child: const _ScanFoodResultsScreen(),
     );
   }
 }
 
-class _ScanFoodResultsScreen extends StatelessWidget {
+class _ScanFoodResultsScreen extends StatefulWidget {
   const _ScanFoodResultsScreen({Key? key}) : super(key: key);
 
   @override
+  State<_ScanFoodResultsScreen> createState() => _ScanFoodResultsScreenState();
+}
+
+class _ScanFoodResultsScreenState extends State<_ScanFoodResultsScreen> {
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      init();
+    });
+  }
+
+  void init() async {
+    await context.read<ScanFoodResultsViewModel>().getRecipes();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print('_ScanFoodResultsScreen');
+
     return Scaffold(
-      body: CustomScrollView(
-        physics: const BouncingScrollPhysics(),
-        slivers: [
-          SliverAppBar(
-            centerTitle: true,
-            expandedHeight: 368.h,
-            pinned: true,
-            backgroundColor: Colors.white,
-            elevation: 0.0,
-            title: const Text('Food'),
-            systemOverlayStyle: const SystemUiOverlayStyle(
-              statusBarColor: Colors.white,
-              statusBarIconBrightness: Brightness.dark,
-              statusBarBrightness: Brightness.light,
-            ),
-            flexibleSpace: FlexibleSpaceBar(
-              background: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Image.asset(AppImages.capturedFood),
-                  SizedBox(height: 32.h),
-                  Text(
-                    'Pancakes',
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleLarge!
-                        .copyWith(color: AppColors.headlineText),
-                  ),
-                  SizedBox(height: 24.h),
-                ],
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Column(
-              children: const [
-                GreyDivider(),
-                //RecipesGrid(),
+      body: Consumer<ScanFoodResultsViewModel>(
+        builder: (context, viewModel, _) {
+          if (viewModel.isBusy) {
+            return const ScanFoodResultsShimmerView();
+          }
+
+          if (viewModel.hasError) {
+            return ErrorView(
+              error: viewModel.modelError,
+              refetch: init,
+            );
+          }
+
+          return NestedScrollView(
+            headerSliverBuilder: (context, innerBoxIsScrolled) {
+              return [
+                const ScanFoodResultsAppBarView(),
+              ];
+            },
+            body: Column(
+              children: [
+                const GreyDivider(),
+                RecipesGrid(
+                  recipes: viewModel.recipes,
+                  isBusy: viewModel.anyObjectsBusy,
+                ),
               ],
             ),
-          )
-        ],
+          );
+        },
       ),
     );
   }

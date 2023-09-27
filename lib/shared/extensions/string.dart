@@ -80,7 +80,10 @@ extension TitleCase on String {
     }).replaceAll(RegExp(r'(_|-)+'), ' ');
   }
 
-  String toCapitalize() {
-    return "${this[0].toUpperCase()}${substring(1).toLowerCase()}";
+  String get capitalize {
+    if (isEmpty) return this; // Handle empty string
+
+    // Capitalize the first letter of the first word and keep the rest of the sentence as is
+    return this[0].toUpperCase() + substring(1);
   }
 }

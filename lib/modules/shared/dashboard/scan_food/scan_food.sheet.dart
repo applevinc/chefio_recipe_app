@@ -1,4 +1,4 @@
-import 'package:chefio_recipe_app/modules/shared/dashboard/scan_food/camera/scan_food_camera_screen.dart';
+import 'package:chefio_recipe_app/modules/shared/dashboard/scan_food/results/scan_food_results_screen.dart';
 import 'package:chefio_recipe_app/shared/assets/images.dart';
 import 'package:chefio_recipe_app/shared/styles/colors.dart';
 import 'package:chefio_recipe_app/shared/styles/text.dart';
@@ -59,10 +59,11 @@ class ScanSheet extends StatelessWidget {
                 image: AppImages.food,
                 title: 'Food',
                 onTap: () {
-                  AppNavigator.to(
-                    context,
-                    const ScanCameraScreen(scanOption: 'Food'),
-                  );
+                  //  AppNavigator.to(
+                  //    context,
+                  //    const ScanCameraScreen(scanOption: 'Food'),
+                  //  );
+                  AppNavigator.to(context, const ScanFoodResultsScreen(type: 'Food'));
                 },
               ),
               SizedBox(width: 16.w),
@@ -70,10 +71,11 @@ class ScanSheet extends StatelessWidget {
                 image: AppImages.ingredients,
                 title: 'Ingredient',
                 onTap: () {
-                  AppNavigator.to(
-                    context,
-                    const ScanCameraScreen(scanOption: 'Ingredient'),
-                  );
+                  //  AppNavigator.to(
+                  //    context,
+                  //    const ScanCameraScreen(scanOption: 'Ingredient'),
+                  //  );
+                  AppNavigator.to(context, const ScanFoodResultsScreen(type: 'Ingredient'));
                 },
               ),
             ],

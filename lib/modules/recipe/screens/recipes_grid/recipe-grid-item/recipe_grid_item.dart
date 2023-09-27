@@ -1,6 +1,6 @@
 import 'dart:ui';
+import 'package:chefio_recipe_app/modules/recipe/models/recipe.dart';
 import 'package:chefio_recipe_app/modules/recipe/screens/recipes_grid/detail/recipe_detail_screen.dart';
-import 'package:chefio_recipe_app/modules/recipe/screens/recipes_grid/detail/recipe_detail_viewmodel.dart';
 import 'package:chefio_recipe_app/modules/recipe/screens/recipes_grid/recipe-grid-item/recipe_grid_item_viewmodel.dart';
 import 'package:chefio_recipe_app/shared/extensions/string.dart';
 import 'package:chefio_recipe_app/shared/styles/styles.dart';
@@ -11,13 +11,27 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 class RecipeGridItem extends StatelessWidget {
-  const RecipeGridItem({
+  const RecipeGridItem(this.recipe, {super.key});
+
+  final Recipe recipe;
+
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (_) => RecipeGridItemViewModel(recipe),
+      child: const _RecipeGridItem(),
+    );
+  }
+}
+
+class _RecipeGridItem extends StatelessWidget {
+  const _RecipeGridItem({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final recipe = context.watch<RecipeGridItemViewModel>().recipe;
+    final recipe = context.read<RecipeGridItemViewModel>().recipe;
     final user = recipe.user;
 
     return Column(
@@ -49,13 +63,7 @@ class RecipeGridItem extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                AppNavigator.to(
-                  context,
-                  ChangeNotifierProvider(
-                    create: (_) => RecipeDetailViewModel(recipe),
-                    child: const RecipeDetailScreen(),
-                  ),
-                );
+                AppNavigator.to(context, RecipeDetailScreen(recipe));
               },
               child: Hero(
                 tag: recipe.id,
