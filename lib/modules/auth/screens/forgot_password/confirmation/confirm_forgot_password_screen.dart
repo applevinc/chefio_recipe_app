@@ -82,6 +82,9 @@ class _ConfirmForgotPasswordScreenState extends State<_ConfirmForgotPasswordScre
   void resendOtp() async {
     try {
       await context.read<ConfirmForgotPasswordViewModel>().resendOtp();
+
+      if (!mounted) return;
+
       Messenger.success(context: context, message: 'Token has been sent to your email');
     } on Failure catch (e) {
       Messenger.error(context: context, message: e.message);

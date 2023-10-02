@@ -83,6 +83,7 @@ class AppButtonWithIcon extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         backgroundColor: const Color(0xffff5842),
       ),
+      onPressed: onPressed,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -101,7 +102,6 @@ class AppButtonWithIcon extends StatelessWidget {
           ),
         ],
       ),
-      onPressed: onPressed,
     );
   }
 }

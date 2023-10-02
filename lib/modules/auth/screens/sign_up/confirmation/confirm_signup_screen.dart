@@ -73,6 +73,9 @@ class _ConfirmSignUpScreenState extends State<_ConfirmSignUpScreen> {
   void resendOtp() async {
     try {
       await context.read<ConfirmSignUpViewModel>().resendOtp();
+
+      if (!mounted) return;
+
       Messenger.success(context: context, message: 'Token has been sent to your email');
     } on Failure catch (e) {
       Messenger.error(context: context, message: e.message);

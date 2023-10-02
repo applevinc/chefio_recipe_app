@@ -10,8 +10,9 @@ class SignUpViewModel extends PasswordValidatorHelper {
   Future<void> execute({required String email, required String password}) async {
     if (containsNumber == false) throw Failure('Your password does not contain a number');
 
-    if (containsSixCharacters == false)
+    if (containsSixCharacters == false) {
       throw Failure('Your password is not strong enough');
+    }
 
     try {
       setBusy(true);
