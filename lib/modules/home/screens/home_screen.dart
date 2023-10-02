@@ -1,9 +1,12 @@
+import 'package:chefio_recipe_app/common/services/category/i_category_service.dart';
+import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/modules/home/screens/components/home_categories_component.dart';
 import 'package:chefio_recipe_app/modules/home/screens/home_viewmodel.dart';
 import 'package:chefio_recipe_app/modules/home/screens/search/search_screen.dart';
 import 'package:chefio_recipe_app/modules/recipe/screens/recipes_grid/recipes_grid.dart';
 
 import 'package:chefio_recipe_app/assets/assets.dart';
+import 'package:chefio_recipe_app/modules/recipe/services/i_recipe_service.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
 import 'package:chefio_recipe_app/utils/navigator.dart';
 
@@ -13,14 +16,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (_) => HomeViewModel(
+        categoryService: locator<ICategoryService>(),
+        recipeService: locator<IRecipeService>(),
+      ),
+      child: const _HomeScreen(),
+    );
+  }
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreen extends StatefulWidget {
+  const _HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<_HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<_HomeScreen> {
   late TextEditingController searchController;
 
   @override

@@ -12,13 +12,6 @@ class ProvidersWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-            create: (_) => SignInViewModel(authService: locator<IAuthService>())),
-        ChangeNotifierProvider(create: (_) => locator<HomeViewModel>()),
-      ],
-      child: child,
-    );
+    return child;
   }
 }
