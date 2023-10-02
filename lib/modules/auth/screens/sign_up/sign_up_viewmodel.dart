@@ -1,6 +1,6 @@
 import 'package:chefio_recipe_app/modules/auth/screens/password_validator/password_validator_helper.dart';
 import 'package:chefio_recipe_app/modules/auth/services/interfaces/i_auth_service.dart';
-import 'package:chefio_recipe_app/shared/models/failure.dart';
+import 'package:chefio_recipe_app/common/models/failure.dart';
 
 class SignUpViewModel extends PasswordValidatorHelper {
   final IAuthService _authService;

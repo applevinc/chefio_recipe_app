@@ -1,4 +1,4 @@
-import 'package:chefio_recipe_app/shared/viewmodels/base_viewmodel.dart';
+import 'package:chefio_recipe_app/utils/base_viewmodel.dart';
 
 class PasswordValidatorHelper extends BaseViewModel {
   bool _containsSixCharacters = false;

@@ -3,9 +3,8 @@ import 'package:chefio_recipe_app/modules/home/models/search_history.dart';
 import 'package:chefio_recipe_app/modules/home/models/search_suggestion.dart';
 import 'package:chefio_recipe_app/modules/home/services/i_search_service.dart';
 import 'package:chefio_recipe_app/modules/recipe/models/recipe.dart';
-import 'package:chefio_recipe_app/shared/models/user.dart';
-import 'package:chefio_recipe_app/shared/utils/constants.dart';
-import 'package:chefio_recipe_app/shared/utils/utils.dart';
+import 'package:chefio_recipe_app/common/models/user.dart';
+import 'package:chefio_recipe_app/utils/utils.dart';
 
 class FakeSearchService implements ISearchService {
   @override

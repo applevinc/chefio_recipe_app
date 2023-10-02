@@ -1,14 +1,13 @@
 import 'dart:io';
 
+import 'package:chefio_recipe_app/common/services/file_service.dart';
+import 'package:chefio_recipe_app/common/views/cooking_time/cooking_time_viewmodel.dart';
+import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/modules/recipe/models/upload_recipe.dart';
-import 'package:chefio_recipe_app/modules/shared/cooking_time/cooking_time_viewmodel.dart';
-import 'package:chefio_recipe_app/shared/image/service/i_file_service.dart';
 import 'package:flutter/material.dart';
 
 class UploadRecipeViewModel extends CookingTimeViewModel {
-  final IFileService fileService;
-
-  UploadRecipeViewModel({required this.fileService});
+  final fileService = locator<FileService>();
 
   final pageController = PageController();
 

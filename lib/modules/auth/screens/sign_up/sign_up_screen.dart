@@ -1,30 +1,43 @@
 import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/modules/auth/screens/sign_up/confirmation/confirm_signup_screen.dart';
-import 'package:chefio_recipe_app/modules/auth/screens/sign_up/confirmation/confirm_signup_viewmodel.dart';
 import 'package:chefio_recipe_app/modules/auth/screens/sign_up/sign_up_viewmodel.dart';
 import 'package:chefio_recipe_app/modules/auth/services/interfaces/i_auth_service.dart';
-import 'package:chefio_recipe_app/shared/assets/icons.dart';
-import 'package:chefio_recipe_app/shared/models/failure.dart';
-import 'package:chefio_recipe_app/shared/styles/colors.dart';
-import 'package:chefio_recipe_app/shared/styles/text.dart';
-import 'package:chefio_recipe_app/shared/utils/messenger.dart';
-import 'package:chefio_recipe_app/shared/utils/navigator.dart';
-import 'package:chefio_recipe_app/shared/widgets/buttons/custom_button.dart';
+import 'package:chefio_recipe_app/assets/icons.dart';
+import 'package:chefio_recipe_app/common/models/failure.dart';
+import 'package:chefio_recipe_app/styles/colors.dart';
+import 'package:chefio_recipe_app/styles/text.dart';
+
+import 'package:chefio_recipe_app/common/widgets/buttons/custom_button.dart';
 import 'package:chefio_recipe_app/modules/auth/screens/password_validator/password_strength_component.dart';
-import 'package:chefio_recipe_app/shared/widgets/inputs/custom_textfield.dart';
-import 'package:chefio_recipe_app/shared/widgets/inputs/password_textfield.dart';
+import 'package:chefio_recipe_app/common/widgets/inputs/custom_textfield.dart';
+import 'package:chefio_recipe_app/common/widgets/inputs/password_textfield.dart';
+import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({Key? key}) : super(key: key);
+class SignUpScreen extends StatelessWidget {
+  const SignUpScreen({super.key});
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (context) => SignUpViewModel(
+        authService: locator<IAuthService>(),
+      ),
+      child: const _SignUpScreen(),
+    );
+  }
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _SignUpScreen extends StatefulWidget {
+  const _SignUpScreen({Key? key}) : super(key: key);
+
+  @override
+  State<_SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<_SignUpScreen> {
   final _formKey = GlobalKey<FormState>();
   late final TextEditingController emailController;
   late final TextEditingController passwordController;
@@ -54,11 +67,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         if (mounted) {
           AppNavigator.to(
             context,
-            ChangeNotifierProvider(
-              create: (context) =>
-                  ConfirmSignUpViewModel(authService: locator<IAuthService>()),
-              child: ConfirmSignUpScreen(email: emailController.text.trim()),
-            ),
+            ConfirmSignUpScreen(email: emailController.text.trim()),
           );
         }
       } on Failure catch (e) {

@@ -1,8 +1,8 @@
 import 'package:chefio_recipe_app/modules/auth/widgets/auth_view.dart';
-import 'package:chefio_recipe_app/shared/styles/colors.dart';
-import 'package:chefio_recipe_app/shared/styles/text.dart';
-import 'package:chefio_recipe_app/shared/widgets/buttons/custom_button.dart';
-import 'package:chefio_recipe_app/shared/widgets/inputs/otp_textfield.dart';
+import 'package:chefio_recipe_app/styles/colors.dart';
+import 'package:chefio_recipe_app/styles/text.dart';
+import 'package:chefio_recipe_app/common/widgets/buttons/custom_button.dart';
+import 'package:chefio_recipe_app/common/widgets/inputs/otp_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

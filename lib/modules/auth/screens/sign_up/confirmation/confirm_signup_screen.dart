@@ -1,22 +1,39 @@
+import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/modules/auth/screens/sign_in/sign_in_screen.dart';
 import 'package:chefio_recipe_app/modules/auth/screens/sign_up/confirmation/confirm_signup_viewmodel.dart';
+import 'package:chefio_recipe_app/modules/auth/services/interfaces/i_auth_service.dart';
 import 'package:chefio_recipe_app/modules/auth/widgets/otp_screen.dart';
-import 'package:chefio_recipe_app/shared/models/failure.dart';
-import 'package:chefio_recipe_app/shared/utils/messenger.dart';
-import 'package:chefio_recipe_app/shared/utils/navigator.dart';
+import 'package:chefio_recipe_app/common/models/failure.dart';
+import 'package:chefio_recipe_app/utils/utils.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class ConfirmSignUpScreen extends StatefulWidget {
-  const ConfirmSignUpScreen({Key? key, required this.email}) : super(key: key);
+class ConfirmSignUpScreen extends StatelessWidget {
+  const ConfirmSignUpScreen({super.key, required this.email});
 
   final String email;
 
   @override
-  State<ConfirmSignUpScreen> createState() => _ConfirmSignUpScreenState();
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (context) => ConfirmSignUpViewModel(
+        authService: locator<IAuthService>(),
+        email: email,
+      ),
+      child: const _ConfirmSignUpScreen(),
+    );
+  }
 }
 
-class _ConfirmSignUpScreenState extends State<ConfirmSignUpScreen> {
+class _ConfirmSignUpScreen extends StatefulWidget {
+  const _ConfirmSignUpScreen({Key? key}) : super(key: key);
+
+  @override
+  State<_ConfirmSignUpScreen> createState() => _ConfirmSignUpScreenState();
+}
+
+class _ConfirmSignUpScreenState extends State<_ConfirmSignUpScreen> {
   final _formKey = GlobalKey<FormState>();
   late final TextEditingController controller;
 
@@ -55,7 +72,7 @@ class _ConfirmSignUpScreenState extends State<ConfirmSignUpScreen> {
 
   void resendOtp() async {
     try {
-      await context.read<ConfirmSignUpViewModel>().resendOtp(email: widget.email);
+      await context.read<ConfirmSignUpViewModel>().resendOtp();
       Messenger.success(context: context, message: 'Token has been sent to your email');
     } on Failure catch (e) {
       Messenger.error(context: context, message: e.message);

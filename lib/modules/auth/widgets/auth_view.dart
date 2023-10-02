@@ -1,6 +1,6 @@
-import 'package:chefio_recipe_app/shared/styles/colors.dart';
-import 'package:chefio_recipe_app/shared/styles/text.dart';
-import 'package:chefio_recipe_app/shared/widgets/inputs/close_keyboard_wrapper.dart';
+import 'package:chefio_recipe_app/styles/colors.dart';
+import 'package:chefio_recipe_app/styles/text.dart';
+import 'package:chefio_recipe_app/common/widgets/inputs/close_keyboard_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

@@ -1,4 +1,4 @@
-import 'package:chefio_recipe_app/shared/styles/styles.dart';
+import 'package:chefio_recipe_app/styles/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

@@ -1,33 +1,42 @@
+import 'package:chefio_recipe_app/common/views/dashboard/dashboard_view.dart';
 import 'package:chefio_recipe_app/config/locator/locator.dart';
-import 'package:chefio_recipe_app/modules/auth/screens/forgot_password/forget_password_viewmodel.dart';
 import 'package:chefio_recipe_app/modules/auth/screens/sign_in/sign_in_viewmodel.dart';
 import 'package:chefio_recipe_app/modules/auth/screens/forgot_password/forgot_password_screen.dart';
 import 'package:chefio_recipe_app/modules/auth/screens/sign_up/sign_up_screen.dart';
-import 'package:chefio_recipe_app/modules/auth/screens/sign_up/sign_up_viewmodel.dart';
 import 'package:chefio_recipe_app/modules/auth/services/interfaces/i_auth_service.dart';
 import 'package:chefio_recipe_app/modules/auth/widgets/auth_view.dart';
-import 'package:chefio_recipe_app/shared/assets/icons.dart';
-import 'package:chefio_recipe_app/shared/models/failure.dart';
-import 'package:chefio_recipe_app/shared/styles/colors.dart';
-import 'package:chefio_recipe_app/shared/styles/text.dart';
-import 'package:chefio_recipe_app/shared/utils/messenger.dart';
-import 'package:chefio_recipe_app/shared/utils/navigator.dart';
-import 'package:chefio_recipe_app/shared/widgets/buttons/custom_button.dart';
-import 'package:chefio_recipe_app/shared/widgets/inputs/custom_textfield.dart';
-import 'package:chefio_recipe_app/modules/shared/dashboard/dashboard_view.dart';
-import 'package:chefio_recipe_app/shared/widgets/inputs/password_textfield.dart';
+import 'package:chefio_recipe_app/assets/icons.dart';
+import 'package:chefio_recipe_app/common/models/failure.dart';
+import 'package:chefio_recipe_app/styles/colors.dart';
+import 'package:chefio_recipe_app/styles/text.dart';
+import 'package:chefio_recipe_app/common/widgets/buttons/custom_button.dart';
+import 'package:chefio_recipe_app/common/widgets/inputs/custom_textfield.dart';
+import 'package:chefio_recipe_app/common/widgets/inputs/password_textfield.dart';
+import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-class SignInScreen extends StatefulWidget {
-  const SignInScreen({Key? key}) : super(key: key);
+class SignInScreen extends StatelessWidget {
+  const SignInScreen({super.key});
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (context) => SignInViewModel(authService: locator<IAuthService>()),
+      child: const _SignInScreen(),
+    );
+  }
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _SignInScreen extends StatefulWidget {
+  const _SignInScreen({Key? key}) : super(key: key);
+
+  @override
+  State<_SignInScreen> createState() => _SignInScreenState();
+}
+
+class _SignInScreenState extends State<_SignInScreen> {
   final _formKey = GlobalKey<FormState>();
   late final TextEditingController emailController;
   late final TextEditingController passwordController;
@@ -106,14 +115,7 @@ class _SignInScreenState extends State<SignInScreen> {
               SizedBox(height: 24.h),
               GestureDetector(
                 onTap: () {
-                  AppNavigator.to(
-                    context,
-                    ChangeNotifierProvider(
-                      create: (context) =>
-                          ForgotPasswordViewModel(authService: locator<IAuthService>()),
-                      child: const ForgotPasswordScreen(),
-                    ),
-                  );
+                  AppNavigator.to(context, const ForgotPasswordScreen());
                 },
                 child: Align(
                   alignment: Alignment.centerRight,
@@ -150,14 +152,7 @@ class _SignInScreenState extends State<SignInScreen> {
               SizedBox(height: 24.h),
               GestureDetector(
                 onTap: () {
-                  AppNavigator.to(
-                    context,
-                    ChangeNotifierProvider(
-                      create: (context) =>
-                          SignUpViewModel(authService: locator<IAuthService>()),
-                      child: const SignUpScreen(),
-                    ),
-                  );
+                  AppNavigator.to(context, const SignUpScreen());
                 },
                 child: Align(
                   alignment: Alignment.center,

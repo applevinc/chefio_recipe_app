@@ -1,14 +1,29 @@
+import 'package:chefio_recipe_app/common/models/category.dart';
+import 'package:chefio_recipe_app/common/views/cooking_time/cooking_time_view.dart';
 import 'package:chefio_recipe_app/modules/home/screens/search/layouts/filter/components/search_filter_categories_view.dart';
 import 'package:chefio_recipe_app/modules/home/screens/search/layouts/filter/search_filter_viewmodel.dart';
 import 'package:chefio_recipe_app/modules/home/screens/search/widgets/circular_button.dart';
-import 'package:chefio_recipe_app/modules/shared/cooking_time/cooking_time_view.dart';
-import 'package:chefio_recipe_app/shared/styles/styles.dart';
+import 'package:chefio_recipe_app/styles/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 class SearchFilterSheet extends StatelessWidget {
-  const SearchFilterSheet({Key? key}) : super(key: key);
+  const SearchFilterSheet({super.key, required this.categories});
+
+  final List<Category> categories;
+
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (_) => SearchFilterViewModel(categories: categories),
+      child: const _SearchFilterSheet(),
+    );
+  }
+}
+
+class _SearchFilterSheet extends StatelessWidget {
+  const _SearchFilterSheet({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

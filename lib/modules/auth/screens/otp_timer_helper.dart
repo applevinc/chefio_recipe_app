@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:chefio_recipe_app/shared/viewmodels/base_viewmodel.dart';
+import 'package:chefio_recipe_app/utils/base_viewmodel.dart';
 
 const OTP_EXPIRATION_SECONDS = 90;
 

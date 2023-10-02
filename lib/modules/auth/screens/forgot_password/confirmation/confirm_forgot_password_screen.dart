@@ -4,22 +4,36 @@ import 'package:chefio_recipe_app/modules/auth/screens/forgot_password/reset_pas
 import 'package:chefio_recipe_app/modules/auth/screens/forgot_password/reset_password/reset_password_viewmodel.dart';
 import 'package:chefio_recipe_app/modules/auth/services/interfaces/i_auth_service.dart';
 import 'package:chefio_recipe_app/modules/auth/widgets/otp_screen.dart';
-import 'package:chefio_recipe_app/shared/models/failure.dart';
-import 'package:chefio_recipe_app/shared/utils/messenger.dart';
-import 'package:chefio_recipe_app/shared/utils/navigator.dart';
+import 'package:chefio_recipe_app/common/models/failure.dart';
+import 'package:chefio_recipe_app/utils/utils.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class ConfirmForgotPasswordScreen extends StatefulWidget {
-  const ConfirmForgotPasswordScreen({Key? key, required this.email}) : super(key: key);
+class ConfirmForgotPasswordScreen extends StatelessWidget {
+  const ConfirmForgotPasswordScreen({super.key, required this.email});
 
   final String email;
 
   @override
-  State<ConfirmForgotPasswordScreen> createState() => _ConfirmForgotPasswordScreenState();
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (context) => ConfirmForgotPasswordViewModel(
+          authService: locator<IAuthService>(), email: email),
+      child: const _ConfirmForgotPasswordScreen(),
+    );
+  }
 }
 
-class _ConfirmForgotPasswordScreenState extends State<ConfirmForgotPasswordScreen> {
+class _ConfirmForgotPasswordScreen extends StatefulWidget {
+  const _ConfirmForgotPasswordScreen({Key? key}) : super(key: key);
+
+  @override
+  State<_ConfirmForgotPasswordScreen> createState() =>
+      _ConfirmForgotPasswordScreenState();
+}
+
+class _ConfirmForgotPasswordScreenState extends State<_ConfirmForgotPasswordScreen> {
   final _formKey = GlobalKey<FormState>();
   late final TextEditingController controller;
 
@@ -67,7 +81,7 @@ class _ConfirmForgotPasswordScreenState extends State<ConfirmForgotPasswordScree
 
   void resendOtp() async {
     try {
-      await context.read<ConfirmForgotPasswordViewModel>().resendOtp(email: widget.email);
+      await context.read<ConfirmForgotPasswordViewModel>().resendOtp();
       Messenger.success(context: context, message: 'Token has been sent to your email');
     } on Failure catch (e) {
       Messenger.error(context: context, message: e.message);

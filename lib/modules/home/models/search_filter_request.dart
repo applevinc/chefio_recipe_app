@@ -1,4 +1,4 @@
-import 'package:chefio_recipe_app/modules/shared/category/models/category.dart';
+import 'package:chefio_recipe_app/common/models/category.dart';
 
 class SearchFilterRequest {
   final Category category;

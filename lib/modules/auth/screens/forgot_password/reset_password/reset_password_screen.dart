@@ -1,16 +1,13 @@
-import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/modules/auth/screens/forgot_password/reset_password/reset_password_viewmodel.dart';
-import 'package:chefio_recipe_app/modules/auth/screens/sign_in/sign_in_viewmodel.dart';
-import 'package:chefio_recipe_app/modules/auth/services/interfaces/i_auth_service.dart';
 import 'package:chefio_recipe_app/modules/auth/widgets/auth_view.dart';
-import 'package:chefio_recipe_app/shared/models/failure.dart';
-import 'package:chefio_recipe_app/shared/styles/colors.dart';
-import 'package:chefio_recipe_app/shared/utils/messenger.dart';
-import 'package:chefio_recipe_app/shared/utils/navigator.dart';
-import 'package:chefio_recipe_app/shared/widgets/buttons/custom_button.dart';
+import 'package:chefio_recipe_app/common/models/failure.dart';
+import 'package:chefio_recipe_app/styles/colors.dart';
+
+import 'package:chefio_recipe_app/common/widgets/buttons/custom_button.dart';
 import 'package:chefio_recipe_app/modules/auth/screens/sign_in/sign_in_screen.dart';
 import 'package:chefio_recipe_app/modules/auth/screens/password_validator/password_strength_component.dart';
-import 'package:chefio_recipe_app/shared/widgets/inputs/password_textfield.dart';
+import 'package:chefio_recipe_app/common/widgets/inputs/password_textfield.dart';
+import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -47,13 +44,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
 
         if (!mounted) return;
 
-        AppNavigator.pushAndRemoveUntil(
-          context,
-          ChangeNotifierProvider(
-            create: (context) => SignInViewModel(authService: locator<IAuthService>()),
-            child: const SignInScreen(),
-          ),
-        );
+        AppNavigator.pushAndRemoveUntil(context, const SignInScreen());
       } on Failure catch (e) {
         Messenger.error(context: context, message: e.message);
       }

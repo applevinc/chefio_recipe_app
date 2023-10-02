@@ -1,9 +1,9 @@
-import 'package:chefio_recipe_app/modules/shared/category/models/category.dart';
-import 'package:chefio_recipe_app/modules/shared/category/services/i_category_service.dart';
+import 'package:chefio_recipe_app/common/models/category.dart';
+import 'package:chefio_recipe_app/common/services/category/i_category_service.dart';
 import 'package:chefio_recipe_app/modules/recipe/models/recipe.dart';
 import 'package:chefio_recipe_app/modules/recipe/services/i_recipe_service.dart';
-import 'package:chefio_recipe_app/shared/models/failure.dart';
-import 'package:chefio_recipe_app/shared/viewmodels/base_viewmodel.dart';
+import 'package:chefio_recipe_app/common/models/failure.dart';
+import 'package:chefio_recipe_app/utils/base_viewmodel.dart';
 
 enum HomeLoadingState { init, recipes }
 
