@@ -2,7 +2,7 @@ import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/modules/profile/screens/profile_viewmodel.dart';
 import 'package:chefio_recipe_app/modules/profile/screens/tabs/profile_recipes_tab_view.dart';
 import 'package:chefio_recipe_app/modules/profile/screens/tabs/profile_recipes_viewmodel.dart';
-import 'package:chefio_recipe_app/modules/recipe/services/i_recipe_service.dart';
+import 'package:chefio_recipe_app/common/services/recipe/i_recipe_service.dart';
 import 'package:chefio_recipe_app/common/models/user.dart';
 import 'package:chefio_recipe_app/styles/text.dart';
 import 'package:chefio_recipe_app/common/widgets/others/custom_cached_network_image.dart';

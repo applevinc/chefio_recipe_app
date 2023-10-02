@@ -4,7 +4,7 @@ import 'package:chefio_recipe_app/modules/home/models/search_history.dart';
 import 'package:chefio_recipe_app/modules/home/models/search_suggestion.dart';
 import 'package:chefio_recipe_app/modules/home/services/i_search_service.dart';
 import 'package:chefio_recipe_app/common/models/category.dart';
-import 'package:chefio_recipe_app/modules/recipe/models/recipe.dart';
+import 'package:chefio_recipe_app/common/models/recipe.dart';
 import 'package:chefio_recipe_app/common/models/failure.dart';
 import 'package:chefio_recipe_app/utils/base_viewmodel.dart';
 

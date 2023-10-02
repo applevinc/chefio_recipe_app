@@ -1,8 +1,8 @@
 import 'package:chefio_recipe_app/common/views/dashboard/scan_food/scan_food.sheet.dart';
+import 'package:chefio_recipe_app/common/views/recipe/upload_recipe/upload_recipe_screen.dart';
 import 'package:chefio_recipe_app/config/app_session.dart';
 import 'package:chefio_recipe_app/modules/home/screens/home_screen.dart';
 import 'package:chefio_recipe_app/modules/profile/screens/profile_viewmodel.dart';
-import 'package:chefio_recipe_app/modules/recipe/screens/upload_recipe/upload_recipe_screen.dart';
 import 'package:chefio_recipe_app/assets/icons.dart';
 import 'package:chefio_recipe_app/styles/colors.dart';
 import 'package:chefio_recipe_app/modules/notification/notification.dart';

@@ -1,9 +1,9 @@
+import 'package:chefio_recipe_app/common/views/recipe/recipes_grid/detail/components/recipe_detail_ingredients_view.dart';
+import 'package:chefio_recipe_app/common/views/recipe/recipes_grid/detail/components/recipe_detail_steps_view.dart';
+import 'package:chefio_recipe_app/common/views/recipe/recipes_grid/detail/recipe_detail_viewmodel.dart';
 import 'package:chefio_recipe_app/modules/profile/screens/profile_screen.dart';
 import 'package:chefio_recipe_app/modules/profile/screens/profile_viewmodel.dart';
-import 'package:chefio_recipe_app/modules/recipe/models/recipe.dart';
-import 'package:chefio_recipe_app/modules/recipe/screens/recipes_grid/detail/components/recipe_detail_ingredients_view.dart';
-import 'package:chefio_recipe_app/modules/recipe/screens/recipes_grid/detail/components/recipe_detail_steps_view.dart';
-import 'package:chefio_recipe_app/modules/recipe/screens/recipes_grid/detail/recipe_detail_viewmodel.dart';
+import 'package:chefio_recipe_app/common/models/recipe.dart';
 import 'package:chefio_recipe_app/assets/assets.dart';
 import 'package:chefio_recipe_app/styles/colors.dart';
 import 'package:chefio_recipe_app/styles/text.dart';

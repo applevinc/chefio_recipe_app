@@ -1,12 +1,12 @@
 import 'package:chefio_recipe_app/common/services/category/i_category_service.dart';
+import 'package:chefio_recipe_app/common/views/recipe/recipes_grid/recipes_grid.dart';
 import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/modules/home/screens/components/home_categories_component.dart';
 import 'package:chefio_recipe_app/modules/home/screens/home_viewmodel.dart';
 import 'package:chefio_recipe_app/modules/home/screens/search/search_screen.dart';
-import 'package:chefio_recipe_app/modules/recipe/screens/recipes_grid/recipes_grid.dart';
 
 import 'package:chefio_recipe_app/assets/assets.dart';
-import 'package:chefio_recipe_app/modules/recipe/services/i_recipe_service.dart';
+import 'package:chefio_recipe_app/common/services/recipe/i_recipe_service.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
 import 'package:chefio_recipe_app/utils/navigator.dart';
 

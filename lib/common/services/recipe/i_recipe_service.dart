@@ -1,5 +1,5 @@
 import 'package:chefio_recipe_app/common/models/category.dart';
-import 'package:chefio_recipe_app/modules/recipe/models/recipe.dart';
+import 'package:chefio_recipe_app/common/models/recipe.dart';
 
 abstract class IRecipeService {
   Future<List<Recipe>> getRecipes({required Category category});

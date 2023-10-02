@@ -1,5 +1,5 @@
+import 'package:chefio_recipe_app/common/views/recipe/recipes_grid/recipes_grid.dart';
 import 'package:chefio_recipe_app/modules/profile/screens/tabs/profile_recipes_viewmodel.dart';
-import 'package:chefio_recipe_app/modules/recipe/screens/recipes_grid/recipes_grid.dart';
 import 'package:chefio_recipe_app/common/widgets/others/error_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
