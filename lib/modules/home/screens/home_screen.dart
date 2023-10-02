@@ -1,17 +1,14 @@
-import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/modules/home/screens/components/home_categories_component.dart';
 import 'package:chefio_recipe_app/modules/home/screens/home_viewmodel.dart';
 import 'package:chefio_recipe_app/modules/home/screens/search/search_screen.dart';
-import 'package:chefio_recipe_app/modules/home/screens/search/search_viewmodel.dart';
-import 'package:chefio_recipe_app/modules/home/services/i_search_service.dart';
 import 'package:chefio_recipe_app/modules/recipe/screens/recipes_grid/recipes_grid.dart';
-import 'package:chefio_recipe_app/modules/shared/category/services/i_category_service.dart';
 
-import 'package:chefio_recipe_app/shared/assets/assets.dart';
-import 'package:chefio_recipe_app/shared/styles/styles.dart';
-import 'package:chefio_recipe_app/shared/utils/navigator.dart';
-import 'package:chefio_recipe_app/shared/widgets/inputs/custom_textfield.dart';
-import 'package:chefio_recipe_app/shared/widgets/others/error_view.dart';
+import 'package:chefio_recipe_app/assets/assets.dart';
+import 'package:chefio_recipe_app/styles/styles.dart';
+import 'package:chefio_recipe_app/utils/navigator.dart';
+
+import 'package:chefio_recipe_app/common/widgets/inputs/custom_textfield.dart';
+import 'package:chefio_recipe_app/common/widgets/others/error_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -61,28 +58,25 @@ class _HomeScreenState extends State<HomeScreen> {
                 left: AppPadding.horizontal,
                 right: AppPadding.horizontal,
               ),
-              child: CustomTextField(
-                controller: searchController,
-                prefixIcon: const TextFieldIcon(icon: AppIcons.search),
-                hintText: 'Search',
-                readOnly: true,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(32.r),
-                  borderSide: BorderSide.none,
-                ),
-                fillColor: AppColors.form,
-                onTap: () {
-                  AppNavigator.to(
-                    context,
-                    ChangeNotifierProvider(
-                      create: (_) => SearchViewModel(
-                        searchService: locator<ISearchService>(),
-                        categoryService: locator<ICategoryService>(),
-                      ),
-                      child: const SearchScreen(),
+              child: Hero(
+                tag: 'search',
+                child: Material(
+                  type: MaterialType.transparency,
+                  child: CustomTextField(
+                    controller: searchController,
+                    prefixIcon: const TextFieldIcon(icon: AppIcons.search),
+                    hintText: 'Search',
+                    readOnly: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(32.r),
+                      borderSide: BorderSide.none,
                     ),
-                  );
-                },
+                    fillColor: AppColors.form,
+                    onTap: () {
+                      AppNavigator.to(context, const SearchScreen());
+                    },
+                  ),
+                ),
               ),
             ),
             const HomeCategoriesComponent(),

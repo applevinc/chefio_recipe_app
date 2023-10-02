@@ -1,9 +1,8 @@
-import 'package:chefio_recipe_app/modules/shared/category/models/category.dart';
+import 'package:chefio_recipe_app/common/models/category.dart';
 import 'package:chefio_recipe_app/modules/recipe/models/recipe.dart';
 import 'package:chefio_recipe_app/modules/recipe/services/i_recipe_service.dart';
-import 'package:chefio_recipe_app/shared/models/user.dart';
-import 'package:chefio_recipe_app/shared/utils/constants.dart';
-import 'package:chefio_recipe_app/shared/utils/utils.dart';
+import 'package:chefio_recipe_app/common/models/user.dart';
+import 'package:chefio_recipe_app/utils/utils.dart';
 
 class FakeRecipeService implements IRecipeService {
   @override

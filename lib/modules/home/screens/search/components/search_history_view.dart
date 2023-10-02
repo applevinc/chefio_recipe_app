@@ -1,8 +1,8 @@
 import 'package:chefio_recipe_app/modules/home/models/search_history.dart';
 import 'package:chefio_recipe_app/modules/home/screens/search/search_viewmodel.dart';
-import 'package:chefio_recipe_app/shared/extensions/string.dart';
-import 'package:chefio_recipe_app/shared/styles/styles.dart';
-import 'package:chefio_recipe_app/shared/widgets/others/grey_divider.dart';
+import 'package:chefio_recipe_app/styles/styles.dart';
+import 'package:chefio_recipe_app/common/widgets/others/grey_divider.dart';
+import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';

@@ -1,10 +1,9 @@
 import 'package:chefio_recipe_app/modules/home/models/search_filter_request.dart';
 import 'package:chefio_recipe_app/modules/home/screens/search/layouts/filter/search_filter_sheet.dart';
-import 'package:chefio_recipe_app/modules/home/screens/search/layouts/filter/search_filter_viewmodel.dart';
 import 'package:chefio_recipe_app/modules/home/screens/search/search_viewmodel.dart';
-import 'package:chefio_recipe_app/shared/assets/icons.dart';
-import 'package:chefio_recipe_app/shared/styles/styles.dart';
-import 'package:chefio_recipe_app/shared/widgets/widgets.dart';
+import 'package:chefio_recipe_app/assets/icons.dart';
+import 'package:chefio_recipe_app/styles/styles.dart';
+import 'package:chefio_recipe_app/common/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -43,10 +42,7 @@ class _SearchAppBarComponentState extends State<SearchAppBarComponent> {
     final result = await showModalBottomSheet(
       context: context,
       useRootNavigator: true,
-      builder: (context) => ChangeNotifierProvider(
-        create: (_) => SearchFilterViewModel(categories: catergories),
-        child: const SearchFilterSheet(),
-      ),
+      builder: (context) => SearchFilterSheet(categories: catergories),
     );
 
     if (result != null) {
@@ -78,27 +74,33 @@ class _SearchAppBarComponentState extends State<SearchAppBarComponent> {
                 },
               ),
               Expanded(
-                child: CustomTextField(
-                  controller: searchController,
-                  autofocus: true,
-                  readOnly: viewModel.busy(SearchLoadingState.init),
-                  prefixIcon: const TextFieldIcon(icon: AppIcons.search),
-                  suffixIcon: searchController.text.isEmpty
-                      ? null
-                      : TextFieldIcon(
-                          icon: AppIcons.closeCircle,
-                          onTap: () {
-                            searchController.clear();
-                            setState(() {});
-                          },
-                        ),
-                  hintText: 'Search',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(32.r),
-                    borderSide: BorderSide.none,
+                child: Hero(
+                  tag: 'search',
+                  child: Material(
+                    type: MaterialType.transparency,
+                    child: CustomTextField(
+                      controller: searchController,
+                      autofocus: true,
+                      readOnly: viewModel.busy(SearchLoadingState.init),
+                      prefixIcon: const TextFieldIcon(icon: AppIcons.search),
+                      suffixIcon: searchController.text.isEmpty
+                          ? null
+                          : TextFieldIcon(
+                              icon: AppIcons.closeCircle,
+                              onTap: () {
+                                searchController.clear();
+                                setState(() {});
+                              },
+                            ),
+                      hintText: 'Search',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(32.r),
+                        borderSide: BorderSide.none,
+                      ),
+                      fillColor: AppColors.form,
+                      onChanged: (query) => viewModel.search(query),
+                    ),
                   ),
-                  fillColor: AppColors.form,
-                  onChanged: (query) => viewModel.search(query),
                 ),
               ),
               IconButton(

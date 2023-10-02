@@ -1,5 +1,5 @@
 import 'package:chefio_recipe_app/modules/auth/services/interfaces/i_auth_service.dart';
-import 'package:chefio_recipe_app/shared/viewmodels/base_viewmodel.dart';
+import 'package:chefio_recipe_app/utils/base_viewmodel.dart';
 
 class SignInViewModel extends BaseViewModel {
   SignInViewModel({required IAuthService authService}) : _authService = authService;

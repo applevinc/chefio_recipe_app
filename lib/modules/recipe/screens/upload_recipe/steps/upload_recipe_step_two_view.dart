@@ -2,10 +2,10 @@ import 'package:chefio_recipe_app/modules/recipe/screens/upload_recipe/layouts/u
 import 'package:chefio_recipe_app/modules/recipe/screens/upload_recipe/steps/components/upload_recipe_ingredients_view.dart';
 import 'package:chefio_recipe_app/modules/recipe/screens/upload_recipe/steps/components/upload_recipe_steps_view.dart';
 import 'package:chefio_recipe_app/modules/recipe/screens/upload_recipe/upload_recipe_viewmodel.dart';
-import 'package:chefio_recipe_app/shared/styles/styles.dart';
-import 'package:chefio_recipe_app/shared/widgets/buttons/custom_button.dart';
-import 'package:chefio_recipe_app/shared/widgets/inputs/close_keyboard_wrapper.dart';
-import 'package:chefio_recipe_app/shared/widgets/others/grey_divider.dart';
+import 'package:chefio_recipe_app/styles/styles.dart';
+import 'package:chefio_recipe_app/common/widgets/buttons/custom_button.dart';
+import 'package:chefio_recipe_app/common/widgets/inputs/close_keyboard_wrapper.dart';
+import 'package:chefio_recipe_app/common/widgets/others/grey_divider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';

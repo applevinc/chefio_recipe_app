@@ -4,13 +4,13 @@ import 'package:chefio_recipe_app/modules/recipe/models/recipe.dart';
 import 'package:chefio_recipe_app/modules/recipe/screens/recipes_grid/detail/components/recipe_detail_ingredients_view.dart';
 import 'package:chefio_recipe_app/modules/recipe/screens/recipes_grid/detail/components/recipe_detail_steps_view.dart';
 import 'package:chefio_recipe_app/modules/recipe/screens/recipes_grid/detail/recipe_detail_viewmodel.dart';
-import 'package:chefio_recipe_app/shared/assets/assets.dart';
-import 'package:chefio_recipe_app/shared/extensions/string.dart';
-import 'package:chefio_recipe_app/shared/styles/colors.dart';
-import 'package:chefio_recipe_app/shared/styles/text.dart';
-import 'package:chefio_recipe_app/shared/utils/navigator.dart';
-import 'package:chefio_recipe_app/shared/widgets/others/custom_cached_network_image.dart';
-import 'package:chefio_recipe_app/shared/widgets/widgets.dart';
+import 'package:chefio_recipe_app/assets/assets.dart';
+import 'package:chefio_recipe_app/styles/colors.dart';
+import 'package:chefio_recipe_app/styles/text.dart';
+
+import 'package:chefio_recipe_app/common/widgets/others/custom_cached_network_image.dart';
+import 'package:chefio_recipe_app/common/widgets/widgets.dart';
+import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -25,7 +25,7 @@ class RecipeDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-       create: (_) => RecipeDetailViewModel(recipe),
+      create: (_) => RecipeDetailViewModel(recipe),
       child: const _RecipeDetailScreen(),
     );
   }

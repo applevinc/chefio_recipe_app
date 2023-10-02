@@ -1,14 +1,26 @@
 import 'package:chefio_recipe_app/modules/recipe/screens/upload_recipe/steps/upload_recipe_step_one_view.dart';
 import 'package:chefio_recipe_app/modules/recipe/screens/upload_recipe/steps/upload_recipe_step_two_view.dart';
 import 'package:chefio_recipe_app/modules/recipe/screens/upload_recipe/upload_recipe_viewmodel.dart';
-import 'package:chefio_recipe_app/shared/styles/colors.dart';
-import 'package:chefio_recipe_app/shared/styles/text.dart';
+import 'package:chefio_recipe_app/styles/colors.dart';
+import 'package:chefio_recipe_app/styles/text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 class UploadRecipeScreen extends StatelessWidget {
-  const UploadRecipeScreen({Key? key}) : super(key: key);
+  const UploadRecipeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (_) => UploadRecipeViewModel(),
+      child: const _UploadRecipeScreen(),
+    );
+  }
+}
+
+class _UploadRecipeScreen extends StatelessWidget {
+  const _UploadRecipeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
