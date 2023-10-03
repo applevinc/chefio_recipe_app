@@ -1,8 +1,8 @@
 // A screen that allows users to take a picture using a given camera.
 
 import 'package:camera/camera.dart';
-import 'package:chefio_recipe_app/common/views/dashboard/scan_food/camera/scan_food_camera_viewmodel.dart';
-import 'package:chefio_recipe_app/common/views/dashboard/scan_food/results/scan_food_results_screen.dart';
+import 'package:chefio_recipe_app/modules/scan_food/camera/scan_food_camera_viewmodel.dart';
+import 'package:chefio_recipe_app/modules/scan_food/results/scan_food_results_screen.dart';
 
 import 'package:chefio_recipe_app/common/widgets/others/error_view.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';

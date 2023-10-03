@@ -15,7 +15,6 @@ class ChefioApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(375, 812),
       minTextAdapt: true,
-      scaleByHeight: true,
       builder: (context, child) => MaterialApp(
         title: locator<AppConfig>().appName,
         debugShowCheckedModeBanner: false,

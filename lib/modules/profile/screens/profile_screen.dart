@@ -1,8 +1,6 @@
-import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/modules/profile/screens/profile_viewmodel.dart';
 import 'package:chefio_recipe_app/modules/profile/screens/tabs/profile_recipes_tab_view.dart';
 import 'package:chefio_recipe_app/modules/profile/screens/tabs/profile_recipes_viewmodel.dart';
-import 'package:chefio_recipe_app/common/services/recipe/i_recipe_service.dart';
 import 'package:chefio_recipe_app/common/models/user.dart';
 import 'package:chefio_recipe_app/styles/text.dart';
 import 'package:chefio_recipe_app/common/widgets/others/custom_cached_network_image.dart';
@@ -15,7 +13,21 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+  const ProfileScreen({super.key, required this.user});
+
+  final User user;
+
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (_) => ProfileViewModel(user),
+      child: const _ProfileScreen(),
+    );
+  }
+}
+
+class _ProfileScreen extends StatelessWidget {
+  const _ProfileScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -103,20 +115,8 @@ class ProfileScreen extends StatelessWidget {
             },
             body: TabBarView(
               children: [
-                ChangeNotifierProvider(
-                  create: (_) => UserRecipesViewModel(
-                    user: user,
-                    recipeService: locator<IRecipeService>(),
-                  ),
-                  child: const ProfileRecipesTabView<UserRecipesViewModel>(),
-                ),
-                ChangeNotifierProvider(
-                  create: (_) => UserLikedRecipesViewModel(
-                    user: user,
-                    recipeService: locator<IRecipeService>(),
-                  ),
-                  child: const ProfileRecipesTabView<UserLikedRecipesViewModel>(),
-                ),
+                ProfileRecipesTabView<UserRecipesViewModel>(user: user),
+                ProfileRecipesTabView<UserLikedRecipesViewModel>(user: user),
               ],
             ),
           ),

@@ -20,7 +20,7 @@ class FakeAuthService implements IAuthService {
     required String password,
   }) async {
     await fakeNetworkDelay();
-    AppSession.user = User(
+    AppSession.authUser = User(
       id: Utils.getGuid(),
       firstName: faker.person.firstName(),
       lastName: faker.person.firstName(),

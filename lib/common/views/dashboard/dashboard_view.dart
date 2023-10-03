@@ -1,8 +1,7 @@
-import 'package:chefio_recipe_app/common/views/dashboard/scan_food/scan_food.sheet.dart';
+import 'package:chefio_recipe_app/modules/scan_food/scan_food.sheet.dart';
 import 'package:chefio_recipe_app/common/views/recipe/upload_recipe/upload_recipe_screen.dart';
 import 'package:chefio_recipe_app/config/app_session.dart';
-import 'package:chefio_recipe_app/modules/home/screens/home_screen.dart';
-import 'package:chefio_recipe_app/modules/profile/screens/profile_viewmodel.dart';
+import 'package:chefio_recipe_app/modules/home/screens/home.screen.dart';
 import 'package:chefio_recipe_app/assets/icons.dart';
 import 'package:chefio_recipe_app/styles/colors.dart';
 import 'package:chefio_recipe_app/modules/notification/notification.dart';
@@ -12,7 +11,6 @@ import 'package:chefio_recipe_app/utils/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
 
 class DashBoardView extends StatefulWidget {
   const DashBoardView({Key? key}) : super(key: key);
@@ -24,34 +22,23 @@ class DashBoardView extends StatefulWidget {
 class _DashBoardViewState extends State<DashBoardView> {
   int _selectedIndex = 0;
 
-  late List<Widget?> _pages;
+  List<Widget?> _pages = [];
 
   @override
   void initState() {
     super.initState();
 
-    final user = AppSession.user;
+    final authUser = AppSession.authUser;
 
-    if (user != null) {
-      _pages = [
-        const HomeScreen(),
-        const UploadRecipeScreen(),
-        null,
-        const NotificationsScreen(),
-        ChangeNotifierProvider(
-          create: (_) => ProfileViewModel(user),
-          child: const ProfileScreen(),
-        ),
-      ];
-    } else {
-      _pages = [
-        const HomeScreen(),
-        const UploadRecipeScreen(),
-        null,
-        const NotificationsScreen(),
-        const SizedBox.shrink(),
-      ];
-    }
+    if (authUser == null) return;
+
+    _pages = [
+      const HomeScreen(),
+      const UploadRecipeScreen(),
+      null,
+      const NotificationsScreen(),
+      ProfileScreen(user: authUser),
+    ];
   }
 
   void _onItemTapped(int index) {
@@ -145,6 +132,7 @@ class _DashBoardViewState extends State<DashBoardView> {
                   'Scan',
                   style: AppText.bold500(context).copyWith(
                     fontSize: 12.sp,
+                    color: AppColors.secondaryText,
                   ),
                 ),
                 SizedBox(height: 12.h),

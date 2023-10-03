@@ -33,7 +33,7 @@ class HomeViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void init() async {
+  Future<void> init() async {
     try {
       setBusyForObject(HomeLoadingState.init, true);
       await Future.wait([
@@ -56,7 +56,7 @@ class HomeViewModel extends BaseViewModel {
   }
 
   Future<void> _initRecipes() async {
-    await _getRecipes(selectedCategory);
+    getRecipesForCategory(selectedCategory);
   }
 
   void getRecipesForCategory(Category category) async {

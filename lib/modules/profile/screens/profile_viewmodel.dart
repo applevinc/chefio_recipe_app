@@ -8,7 +8,7 @@ class ProfileViewModel extends BaseViewModel {
   ProfileViewModel(this.user);
 
   bool? get isAuthUserProfile {
-    final User? authUser = AppSession.user;
+    final User? authUser = AppSession.authUser;
 
     if (authUser == null) return null;
 

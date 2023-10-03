@@ -44,13 +44,10 @@ class RecipesGrid extends StatelessWidget {
       },
     );
 
-    Widget child;
+    late Widget child;
 
     if (canRefetch && onRefresh != null) {
-      child = RefreshIndicator(
-        onRefresh: onRefresh!,
-        child: grid,
-      );
+      child = RefreshIndicator(onRefresh: onRefresh!, child: grid);
     } else {
       child = grid;
     }

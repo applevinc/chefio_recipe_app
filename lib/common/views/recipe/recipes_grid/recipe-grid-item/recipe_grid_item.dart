@@ -25,9 +25,7 @@ class RecipeGridItem extends StatelessWidget {
 }
 
 class _RecipeGridItem extends StatelessWidget {
-  const _RecipeGridItem({
-    Key? key,
-  }) : super(key: key);
+  const _RecipeGridItem({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -107,9 +105,7 @@ class _RecipeGridItem extends StatelessWidget {
 }
 
 class _FavouriteButton extends StatelessWidget {
-  const _FavouriteButton({
-    Key? key,
-  }) : super(key: key);
+  const _FavouriteButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

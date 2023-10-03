@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:chefio_recipe_app/common/views/dashboard/scan_food/results/components/scan_food_results_appbar.view.dart';
-import 'package:chefio_recipe_app/common/views/dashboard/scan_food/results/components/shimmer.view.dart';
-import 'package:chefio_recipe_app/common/views/dashboard/scan_food/results/scan_food_results_viewmodel.dart';
+import 'package:chefio_recipe_app/modules/scan_food/results/components/scan_food_results_appbar.view.dart';
+import 'package:chefio_recipe_app/modules/scan_food/results/components/shimmer.view.dart';
+import 'package:chefio_recipe_app/modules/scan_food/results/scan_food_results_viewmodel.dart';
 import 'package:chefio_recipe_app/common/views/recipe/recipes_grid/recipes_grid.dart';
 import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/common/services/recipe/i_recipe_service.dart';
@@ -53,8 +53,6 @@ class _ScanFoodResultsScreenState extends State<_ScanFoodResultsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print('_ScanFoodResultsScreen');
-
     return Scaffold(
       body: Consumer<ScanFoodResultsViewModel>(
         builder: (context, viewModel, _) {

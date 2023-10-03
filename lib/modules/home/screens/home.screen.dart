@@ -2,7 +2,7 @@ import 'package:chefio_recipe_app/common/services/category/i_category_service.da
 import 'package:chefio_recipe_app/common/views/recipe/recipes_grid/recipes_grid.dart';
 import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/modules/home/screens/components/home_categories_component.dart';
-import 'package:chefio_recipe_app/modules/home/screens/home_viewmodel.dart';
+import 'package:chefio_recipe_app/modules/home/screens/home.viewmodel.dart';
 import 'package:chefio_recipe_app/modules/home/screens/search/search_screen.dart';
 
 import 'package:chefio_recipe_app/assets/assets.dart';
@@ -39,12 +39,13 @@ class _HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<_HomeScreen> {
-  late TextEditingController searchController;
+  late final TextEditingController searchController;
 
   @override
   void initState() {
     super.initState();
     searchController = TextEditingController();
+
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       init();
     });
@@ -62,8 +63,6 @@ class _HomeScreenState extends State<_HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print('HomeScreen');
-
     return Scaffold(
       body: SafeArea(
         bottom: false,
@@ -113,7 +112,7 @@ class _HomeScreenState extends State<_HomeScreen> {
 
                 return RecipesGrid(
                   recipes: viewmodel.recipes,
-                  isBusy: viewmodel.busy(HomeLoadingState.init),
+                  isBusy: viewmodel.busy(HomeLoadingState.recipes),
                   onRefresh: viewmodel.refreshRecipes,
                 );
               },

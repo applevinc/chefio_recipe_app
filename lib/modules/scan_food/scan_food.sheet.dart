@@ -1,5 +1,5 @@
 import 'package:chefio_recipe_app/assets/images.dart';
-import 'package:chefio_recipe_app/common/views/dashboard/scan_food/results/scan_food_results_screen.dart';
+import 'package:chefio_recipe_app/modules/scan_food/results/scan_food_results_screen.dart';
 import 'package:chefio_recipe_app/styles/colors.dart';
 import 'package:chefio_recipe_app/styles/text.dart';
 import 'package:chefio_recipe_app/utils/navigator.dart';
