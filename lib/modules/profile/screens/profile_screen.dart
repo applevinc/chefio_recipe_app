@@ -1,3 +1,5 @@
+import 'package:chefio_recipe_app/common/services/recipe/i_recipe_service.dart';
+import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/modules/profile/screens/profile_viewmodel.dart';
 import 'package:chefio_recipe_app/modules/profile/screens/tabs/profile_recipes_tab_view.dart';
 import 'package:chefio_recipe_app/modules/profile/screens/tabs/profile_recipes_viewmodel.dart';
@@ -113,11 +115,27 @@ class _ProfileScreen extends StatelessWidget {
                 ),
               ];
             },
-            body: TabBarView(
-              children: [
-                ProfileRecipesTabView<UserRecipesViewModel>(user: user),
-                ProfileRecipesTabView<UserLikedRecipesViewModel>(user: user),
+            body: MultiProvider(
+              providers: [
+                ChangeNotifierProvider(
+                  create: (_) => UserRecipesViewModel(
+                    user: user,
+                    recipeService: locator<IRecipeService>(),
+                  ),
+                ),
+                ChangeNotifierProvider(
+                  create: (_) => UserLikedRecipesViewModel(
+                    user: user,
+                    recipeService: locator<IRecipeService>(),
+                  ),
+                ),
               ],
+              child: const TabBarView(
+                children: [
+                  ProfileRecipesTabView<UserRecipesViewModel>(),
+                  ProfileRecipesTabView<UserLikedRecipesViewModel>(),
+                ],
+              ),
             ),
           ),
         ),

@@ -1,38 +1,18 @@
-import 'package:chefio_recipe_app/common/models/user.dart';
-import 'package:chefio_recipe_app/common/services/recipe/i_recipe_service.dart';
 import 'package:chefio_recipe_app/common/views/recipe/recipes_grid/recipes_grid.dart';
-import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/modules/profile/screens/tabs/profile_recipes_viewmodel.dart';
 import 'package:chefio_recipe_app/common/widgets/others/error_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class ProfileRecipesTabView<T extends ProfileRecipesViewModel> extends StatelessWidget {
-  const ProfileRecipesTabView({super.key, required this.user});
-
-  final User user;
+class ProfileRecipesTabView<T extends ProfileRecipesViewModel> extends StatefulWidget {
+  const ProfileRecipesTabView({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => UserRecipesViewModel(
-        user: user,
-        recipeService: locator<IRecipeService>(),
-      ),
-      child: _ProfileRecipesTabView<T>(),
-    );
-  }
-}
-
-class _ProfileRecipesTabView<T extends ProfileRecipesViewModel> extends StatefulWidget {
-  const _ProfileRecipesTabView({super.key});
-
-  @override
-  State<_ProfileRecipesTabView> createState() => _ProfileRecipesTabViewState<T>();
+  State<ProfileRecipesTabView> createState() => _ProfileRecipesTabViewState<T>();
 }
 
 class _ProfileRecipesTabViewState<T extends ProfileRecipesViewModel>
-    extends State<_ProfileRecipesTabView> {
+    extends State<ProfileRecipesTabView> {
   @override
   void initState() {
     super.initState();
