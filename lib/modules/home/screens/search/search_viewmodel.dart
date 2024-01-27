@@ -6,13 +6,13 @@ import 'package:chefio_recipe_app/modules/home/services/i_search_service.dart';
 import 'package:chefio_recipe_app/common/models/category.dart';
 import 'package:chefio_recipe_app/common/models/recipe.dart';
 import 'package:chefio_recipe_app/common/models/failure.dart';
-import 'package:chefio_recipe_app/utils/base_viewmodel.dart';
+import 'package:chefio_recipe_app/utils/base.controller.dart';
 
 enum SearchLoadingState { init, search }
 
 enum SearchErrorState { init, search }
 
-class SearchViewModel extends BaseViewModel {
+class SearchViewModel extends BaseController {
   final ISearchService _searchService;
   final ICategoryService _categoryService;
 

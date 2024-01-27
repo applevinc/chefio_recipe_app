@@ -23,7 +23,9 @@ class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => SignInViewModel(authService: locator<IAuthService>()),
+      create: (context) => SignInViewModel(
+        authService: locator<IAuthService>(),
+      ),
       child: const _SignInScreen(),
     );
   }

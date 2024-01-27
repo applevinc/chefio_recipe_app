@@ -1,12 +1,12 @@
 import 'package:chefio_recipe_app/common/models/failure.dart';
 import 'package:flutter/cupertino.dart';
 
-class BaseViewModel extends ChangeNotifier {
+class BaseController extends ChangeNotifier {
   final Map<int, bool> _busyStates = <int, bool>{};
 
   bool _isBusy = false;
   bool get isBusy => _isBusy;
-  
+
   setBusy(bool value) {
     _isBusy = value;
     notifyListeners();

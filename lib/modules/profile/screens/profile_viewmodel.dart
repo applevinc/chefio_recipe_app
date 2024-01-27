@@ -1,8 +1,8 @@
 import 'package:chefio_recipe_app/config/app_session.dart';
 import 'package:chefio_recipe_app/common/models/user.dart';
-import 'package:chefio_recipe_app/utils/base_viewmodel.dart';
+import 'package:chefio_recipe_app/utils/base.controller.dart';
 
-class ProfileViewModel extends BaseViewModel {
+class ProfileViewModel extends BaseController {
   late final User user;
 
   ProfileViewModel(this.user);

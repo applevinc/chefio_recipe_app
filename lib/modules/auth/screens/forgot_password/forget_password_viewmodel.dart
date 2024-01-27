@@ -1,7 +1,7 @@
 import 'package:chefio_recipe_app/modules/auth/services/interfaces/i_auth_service.dart';
-import 'package:chefio_recipe_app/utils/base_viewmodel.dart';
+import 'package:chefio_recipe_app/utils/base.controller.dart';
 
-class ForgotPasswordViewModel extends BaseViewModel {
+class ForgotPasswordViewModel extends BaseController {
   final IAuthService _authService;
 
   ForgotPasswordViewModel({required IAuthService authService})

@@ -1,6 +1,6 @@
-import 'package:chefio_recipe_app/utils/base_viewmodel.dart';
+import 'package:chefio_recipe_app/utils/base.controller.dart';
 
-class PasswordValidatorHelper extends BaseViewModel {
+class PasswordValidatorHelper extends BaseController {
   bool _containsSixCharacters = false;
   bool get containsSixCharacters => _containsSixCharacters;
 

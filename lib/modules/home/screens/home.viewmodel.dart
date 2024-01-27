@@ -3,11 +3,11 @@ import 'package:chefio_recipe_app/common/services/category/i_category_service.da
 import 'package:chefio_recipe_app/common/models/recipe.dart';
 import 'package:chefio_recipe_app/common/services/recipe/i_recipe_service.dart';
 import 'package:chefio_recipe_app/common/models/failure.dart';
-import 'package:chefio_recipe_app/utils/base_viewmodel.dart';
+import 'package:chefio_recipe_app/utils/base.controller.dart';
 
 enum HomeLoadingState { init, recipes }
 
-class HomeViewModel extends BaseViewModel {
+class HomeViewModel extends BaseController {
   final ICategoryService _categoryService;
   final IRecipeService _recipeService;
 

@@ -2,9 +2,9 @@ import 'package:chefio_recipe_app/common/models/recipe.dart';
 import 'package:chefio_recipe_app/common/services/recipe/i_recipe_service.dart';
 import 'package:chefio_recipe_app/common/models/failure.dart';
 import 'package:chefio_recipe_app/common/models/user.dart';
-import 'package:chefio_recipe_app/utils/base_viewmodel.dart';
+import 'package:chefio_recipe_app/utils/base.controller.dart';
 
-abstract class ProfileRecipesViewModel extends BaseViewModel {
+abstract class ProfileRecipesViewModel extends BaseController {
   List<Recipe> _recipes = [];
   List<Recipe> get recipes => _recipes;
 

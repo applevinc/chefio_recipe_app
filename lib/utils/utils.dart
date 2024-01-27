@@ -1,4 +1,4 @@
-export 'base_viewmodel.dart';
+export 'base.controller.dart';
 export 'constants.dart';
 export 'datetime.dart';
 export 'datetime_helper_functions.dart';

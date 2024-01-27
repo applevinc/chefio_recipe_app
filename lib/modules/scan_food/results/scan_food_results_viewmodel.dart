@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:chefio_recipe_app/common/models/recipe.dart';
 import 'package:chefio_recipe_app/common/services/recipe/i_recipe_service.dart';
 import 'package:chefio_recipe_app/common/models/failure.dart';
-import 'package:chefio_recipe_app/utils/base_viewmodel.dart';
+import 'package:chefio_recipe_app/utils/base.controller.dart';
 
-class ScanFoodResultsViewModel extends BaseViewModel {
+class ScanFoodResultsViewModel extends BaseController {
   final IRecipeService _recipeService;
   late File? image;
   late String type;

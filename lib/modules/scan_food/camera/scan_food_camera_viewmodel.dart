@@ -2,12 +2,12 @@ import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:chefio_recipe_app/common/models/failure.dart';
-import 'package:chefio_recipe_app/utils/base_viewmodel.dart';
+import 'package:chefio_recipe_app/utils/base.controller.dart';
 import 'package:flutter/widgets.dart';
 
 enum ScanFoodCameraLoadingState { init, takePicture }
 
-class ScanFoodCameraViewModel extends BaseViewModel {
+class ScanFoodCameraViewModel extends BaseController {
   CameraController? _cameraController;
   CameraController? get cameraController => _cameraController;
 
