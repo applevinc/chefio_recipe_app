@@ -1,6 +1,6 @@
 import 'package:chefio_recipe_app/common/views/dashboard/dashboard_view.dart';
 import 'package:chefio_recipe_app/config/locator/locator.dart';
-import 'package:chefio_recipe_app/modules/auth/screens/sign_in/sign_in_viewmodel.dart';
+import 'package:chefio_recipe_app/modules/auth/screens/sign_in/sign_in.controller.dart';
 import 'package:chefio_recipe_app/modules/auth/screens/forgot_password/forgot_password_screen.dart';
 import 'package:chefio_recipe_app/modules/auth/screens/sign_up/sign_up_screen.dart';
 import 'package:chefio_recipe_app/modules/auth/services/interfaces/i_auth_service.dart';
@@ -23,7 +23,7 @@ class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => SignInViewModel(
+      create: (context) => SignInController(
         authService: locator<IAuthService>(),
       ),
       child: const _SignInScreen(),
@@ -40,35 +40,18 @@ class _SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<_SignInScreen> {
   final _formKey = GlobalKey<FormState>();
-  late final TextEditingController emailController;
-  late final TextEditingController passwordController;
-
-  @override
-  void initState() {
-    super.initState();
-    emailController = TextEditingController();
-    passwordController = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
-    super.dispose();
-  }
 
   void signIn() async {
     if (_formKey.currentState!.validate()) {
       try {
-        await context.read<SignInViewModel>().execute(
-              email: emailController.text.trim(),
-              password: passwordController.text.trim(),
-            );
+        await context.read<SignInController>().execute();
 
-        if (!mounted) return;
+        if (!mounted) {
+          return;
+        }
 
-        Messenger.success(context: context, message: 'Login successful');
         AppNavigator.pushAndRemoveUntil(context, const DashBoardView());
+        Messenger.success(context: context, message: 'Login successful');
       } on Failure catch (e) {
         Messenger.error(context: context, message: e.message);
       }
@@ -77,7 +60,7 @@ class _SignInScreenState extends State<_SignInScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<SignInViewModel>();
+    final controller = context.watch<SignInController>();
 
     return WillPopScope(
       onWillPop: () {
@@ -94,7 +77,7 @@ class _SignInScreenState extends State<_SignInScreen> {
               CustomTextField(
                 hintText: 'Email or phone number',
                 prefixIcon: const TextFieldIcon(icon: AppIcons.email),
-                controller: emailController,
+                controller: controller.usernameController,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your email or phone number';
@@ -105,7 +88,7 @@ class _SignInScreenState extends State<_SignInScreen> {
               ),
               SizedBox(height: 16.h),
               PasswordTextField(
-                controller: passwordController,
+                controller: controller.passwordController,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your password';
@@ -132,7 +115,7 @@ class _SignInScreenState extends State<_SignInScreen> {
               SizedBox(height: 72.h),
               AppButton(
                 label: 'Login',
-                isBusy: viewModel.isBusy,
+                isBusy: controller.isBusy,
                 onPressed: signIn,
               ),
               SizedBox(height: 24.h),

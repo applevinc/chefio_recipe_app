@@ -4,7 +4,7 @@ import 'package:chefio_recipe_app/styles/text.dart';
 import 'package:chefio_recipe_app/utils/navigator.dart';
 
 import 'package:chefio_recipe_app/common/widgets/buttons/custom_button.dart';
-import 'package:chefio_recipe_app/modules/auth/screens/sign_in/sign_in_screen.dart';
+import 'package:chefio_recipe_app/modules/auth/screens/sign_in/sign_in.screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

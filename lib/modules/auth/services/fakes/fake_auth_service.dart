@@ -16,7 +16,7 @@ class FakeAuthService implements IAuthService {
 
   @override
   Future<void> signIn({
-    required String email,
+    required String username,
     required String password,
   }) async {
     await fakeNetworkDelay();

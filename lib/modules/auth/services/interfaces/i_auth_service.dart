@@ -1,6 +1,6 @@
 abstract class IAuthService {
   Future<void> signIn({
-    required String email,
+    required String username,
     required String password,
   });
 

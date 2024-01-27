@@ -4,7 +4,7 @@ import 'package:chefio_recipe_app/common/models/failure.dart';
 import 'package:chefio_recipe_app/styles/colors.dart';
 
 import 'package:chefio_recipe_app/common/widgets/buttons/custom_button.dart';
-import 'package:chefio_recipe_app/modules/auth/screens/sign_in/sign_in_screen.dart';
+import 'package:chefio_recipe_app/modules/auth/screens/sign_in/sign_in.screen.dart';
 import 'package:chefio_recipe_app/modules/auth/screens/password_validator/password_strength_component.dart';
 import 'package:chefio_recipe_app/common/widgets/inputs/password_textfield.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';

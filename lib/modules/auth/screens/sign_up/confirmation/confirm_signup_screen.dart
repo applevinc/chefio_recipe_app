@@ -1,5 +1,5 @@
 import 'package:chefio_recipe_app/config/locator/locator.dart';
-import 'package:chefio_recipe_app/modules/auth/screens/sign_in/sign_in_screen.dart';
+import 'package:chefio_recipe_app/modules/auth/screens/sign_in/sign_in.screen.dart';
 import 'package:chefio_recipe_app/modules/auth/screens/sign_up/confirmation/confirm_signup_viewmodel.dart';
 import 'package:chefio_recipe_app/modules/auth/services/interfaces/i_auth_service.dart';
 import 'package:chefio_recipe_app/modules/auth/widgets/otp_screen.dart';
