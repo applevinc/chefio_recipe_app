@@ -1,6 +1,7 @@
 import 'package:chefio_recipe_app/config/locator/locator.dart';
+import 'package:chefio_recipe_app/modules/auth/domain/usecases/i_forgot_password.repository.dart';
 import 'package:chefio_recipe_app/modules/auth/view/forgot_password/confirmation/confirm_forgot_password.screen.dart';
-import 'package:chefio_recipe_app/modules/auth/view/forgot_password/forget_password_viewmodel.dart';
+import 'package:chefio_recipe_app/modules/auth/view/forgot_password/forget_password.controller.dart';
 import 'package:chefio_recipe_app/modules/auth/data/interfaces/i_auth_service.dart';
 import 'package:chefio_recipe_app/modules/auth/widgets/auth_view.dart';
 import 'package:chefio_recipe_app/assets/icons.dart';
@@ -19,8 +20,8 @@ class ForgotPasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => ForgotPasswordViewModel(
-        authService: locator<IAuthService>(),
+      create: (context) => ForgotPasswordController(
+        forgotPasswordRepository: locator<IForgotPasswordRepository>(),
       ),
       child: const _ForgotPasswordScreen(),
     );
@@ -36,33 +37,21 @@ class _ForgotPasswordScreen extends StatefulWidget {
 
 class _ForgotPasswordScreenState extends State<_ForgotPasswordScreen> {
   final _formKey = GlobalKey<FormState>();
-  late final TextEditingController emailController;
-
-  @override
-  void initState() {
-    super.initState();
-    emailController = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    emailController.dispose();
-    super.dispose();
-  }
 
   void submit() async {
     if (_formKey.currentState!.validate()) {
       try {
-        await context
-            .read<ForgotPasswordViewModel>()
-            .execute(email: emailController.text.trim());
+        final controller = context.read<ForgotPasswordController>();
+        await controller.execute();
 
-        if (mounted) {
-          AppNavigator.to(
-            context,
-            ConfirmForgotPasswordScreen(email: emailController.text.trim()),
-          );
+        if (!mounted) {
+          return;
         }
+
+        AppNavigator.to(
+          context,
+          ConfirmForgotPasswordScreen(email: controller.emailController.text.trim()),
+        );
       } on Failure catch (e) {
         Messenger.error(context: context, message: e.message);
       }
@@ -71,7 +60,7 @@ class _ForgotPasswordScreenState extends State<_ForgotPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<ForgotPasswordViewModel>();
+    final controller = context.watch<ForgotPasswordController>();
 
     return AuthView(
       title: 'Password recovery',
@@ -83,7 +72,7 @@ class _ForgotPasswordScreenState extends State<_ForgotPasswordScreen> {
             CustomTextField(
               hintText: 'Email or phone number',
               prefixIcon: const TextFieldIcon(icon: AppIcons.email),
-              controller: emailController,
+              controller: controller.emailController,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Please enter your email';
@@ -94,7 +83,7 @@ class _ForgotPasswordScreenState extends State<_ForgotPasswordScreen> {
             SizedBox(height: 24.h),
             AppButton(
               label: 'Submit',
-              isBusy: viewModel.isBusy,
+              isBusy: controller.isBusy,
               onPressed: submit,
             ),
           ],
