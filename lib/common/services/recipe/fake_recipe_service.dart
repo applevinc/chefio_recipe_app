@@ -3,7 +3,6 @@ import 'package:chefio_recipe_app/common/models/recipe.dart';
 import 'package:chefio_recipe_app/common/services/recipe/i_recipe_service.dart';
 import 'package:chefio_recipe_app/common/models/user.dart';
 import 'package:chefio_recipe_app/utils/functions.dart';
-import 'package:chefio_recipe_app/utils/utils.dart';
 
 class FakeRecipeService implements IRecipeService {
   @override

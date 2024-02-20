@@ -4,7 +4,6 @@ import 'package:chefio_recipe_app/modules/auth/domain/usecases/i_sign_in.reposit
 import 'package:chefio_recipe_app/modules/auth/view/sign_in/sign_in.controller.dart';
 import 'package:chefio_recipe_app/modules/auth/view/forgot_password/forgot_password.screen.dart';
 import 'package:chefio_recipe_app/modules/auth/view/sign_up/sign_up.screen.dart';
-import 'package:chefio_recipe_app/modules/auth/data/interfaces/i_auth_service.dart';
 import 'package:chefio_recipe_app/modules/auth/widgets/auth_view.dart';
 import 'package:chefio_recipe_app/assets/icons.dart';
 import 'package:chefio_recipe_app/common/models/failure.dart';
@@ -70,7 +69,6 @@ class _SignInScreenState extends State<_SignInScreen> {
         subtitle: 'Please enter your account here',
         body: Form(
           key: _formKey,
-          autovalidateMode: AutovalidateMode.onUserInteraction,
           child: Column(
             children: [
               CustomTextField(

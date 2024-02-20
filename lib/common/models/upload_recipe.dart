@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:chefio_recipe_app/utils/functions.dart';
-import 'package:chefio_recipe_app/utils/utils.dart';
 
 class UploadRecipeIngredient {
   final String id;

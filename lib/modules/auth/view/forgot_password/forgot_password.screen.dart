@@ -2,7 +2,6 @@ import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/modules/auth/domain/usecases/i_forgot_password.repository.dart';
 import 'package:chefio_recipe_app/modules/auth/view/forgot_password/confirmation/confirm_forgot_password.screen.dart';
 import 'package:chefio_recipe_app/modules/auth/view/forgot_password/forget_password.controller.dart';
-import 'package:chefio_recipe_app/modules/auth/data/interfaces/i_auth_service.dart';
 import 'package:chefio_recipe_app/modules/auth/widgets/auth_view.dart';
 import 'package:chefio_recipe_app/assets/icons.dart';
 import 'package:chefio_recipe_app/common/models/failure.dart';
@@ -10,6 +9,7 @@ import 'package:chefio_recipe_app/common/widgets/buttons/custom_button.dart';
 import 'package:chefio_recipe_app/common/widgets/inputs/custom_textfield.dart';
 import 'package:chefio_recipe_app/utils/messenger.dart';
 import 'package:chefio_recipe_app/utils/navigator.dart';
+import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -70,15 +70,10 @@ class _ForgotPasswordScreenState extends State<_ForgotPasswordScreen> {
         child: Column(
           children: [
             CustomTextField(
-              hintText: 'Email or phone number',
+              hintText: 'Email',
               prefixIcon: const TextFieldIcon(icon: AppIcons.email),
               controller: controller.emailController,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your email';
-                }
-                return null;
-              },
+              validator: Validator.validateEmail,
             ),
             SizedBox(height: 24.h),
             AppButton(

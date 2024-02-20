@@ -1,6 +1,6 @@
 import 'package:chefio_recipe_app/config/locator/locator.dart';
+import 'package:chefio_recipe_app/modules/auth/domain/usecases/i_forgot_password.repository.dart';
 import 'package:chefio_recipe_app/modules/auth/view/forgot_password/reset_password/reset_password.controller.dart';
-import 'package:chefio_recipe_app/modules/auth/data/interfaces/i_auth_service.dart';
 import 'package:chefio_recipe_app/modules/auth/widgets/auth_view.dart';
 import 'package:chefio_recipe_app/common/models/failure.dart';
 
@@ -21,7 +21,7 @@ class ResetPasswordScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => ResetPasswordController(
-        authService: locator<IAuthService>(),
+        forgotPasswordRepository: locator<IForgotPasswordRepository>(),
       ),
       child: const _ResetPasswordScreen(),
     );
@@ -48,6 +48,7 @@ class _ResetPasswordScreenState extends State<_ResetPasswordScreen> {
         }
 
         AppNavigator.pushAndRemoveUntil(context, const SignInScreen());
+        Messenger.success(context: context, message: 'Reset password successful');
       } on Failure catch (e) {
         Messenger.error(context: context, message: e.message);
       }
@@ -77,16 +78,6 @@ class _ResetPasswordScreenState extends State<_ResetPasswordScreen> {
               },
             ),
             SizedBox(height: 24.h),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Your Password must contain:',
-                style: AppText.bold500(context).copyWith(
-                  fontSize: 17.sp,
-                ),
-              ),
-            ),
-            SizedBox(height: 16.h),
             const PasswordStrengthComponent<ResetPasswordController>(),
             SizedBox(height: 24.h),
             AppButton(

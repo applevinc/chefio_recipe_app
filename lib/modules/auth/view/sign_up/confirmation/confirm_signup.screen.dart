@@ -2,7 +2,6 @@ import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/modules/auth/domain/usecases/i_sign_up.repository.dart';
 import 'package:chefio_recipe_app/modules/auth/view/sign_in/sign_in.screen.dart';
 import 'package:chefio_recipe_app/modules/auth/view/sign_up/confirmation/confirm_signup.controller.dart';
-import 'package:chefio_recipe_app/modules/auth/data/interfaces/i_auth_service.dart';
 import 'package:chefio_recipe_app/modules/auth/view/otp/otp.screen.dart';
 
 import 'package:flutter/material.dart';

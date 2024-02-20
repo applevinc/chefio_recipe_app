@@ -1,7 +1,6 @@
 import 'package:chefio_recipe_app/modules/auth/domain/entities/confirm_sign_up.request.dart';
 import 'package:chefio_recipe_app/modules/auth/domain/usecases/i_sign_up.repository.dart';
 import 'package:chefio_recipe_app/modules/auth/view/otp/otp.controller.dart';
-import 'package:chefio_recipe_app/modules/auth/data/interfaces/i_auth_service.dart';
 
 class ConfirmSignUpController extends OtpController {
   ConfirmSignUpController({

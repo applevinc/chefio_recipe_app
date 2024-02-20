@@ -5,7 +5,6 @@ import 'package:chefio_recipe_app/modules/home/services/i_search_service.dart';
 import 'package:chefio_recipe_app/common/models/recipe.dart';
 import 'package:chefio_recipe_app/common/models/user.dart';
 import 'package:chefio_recipe_app/utils/functions.dart';
-import 'package:chefio_recipe_app/utils/utils.dart';
 
 class FakeSearchService implements ISearchService {
   @override

@@ -118,7 +118,6 @@ class CustomTextField extends StatelessWidget {
           minWidth: 25,
           minHeight: 25,
         ),
-        suffixStyle: Theme.of(context).textTheme.titleSmall,
         hintStyle: AppText.bold500(context).copyWith(
           fontSize: 15.sp,
           color: AppColors.secondaryText,

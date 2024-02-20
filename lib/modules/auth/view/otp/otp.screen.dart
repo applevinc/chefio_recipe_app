@@ -44,6 +44,7 @@ class _OTPScreenState<T extends OtpController> extends State<OTPScreen<T>> {
       }
 
       AppNavigator.pushAndRemoveUntil(context, widget.nextScreen);
+      Messenger.success(context: context, message: 'Otp verified');
     } on Failure catch (e) {
       Messenger.error(context: context, message: e.message);
     }

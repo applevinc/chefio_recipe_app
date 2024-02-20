@@ -1,21 +1,22 @@
 import 'dart:io';
 
 import 'package:chefio_recipe_app/common/models/failure.dart';
+import 'package:chefio_recipe_app/modules/auth/domain/entities/sign_up.request.dart';
+import 'package:chefio_recipe_app/modules/auth/domain/usecases/i_sign_up.repository.dart';
 import 'package:chefio_recipe_app/modules/auth/view/password_strength/password_strength.controller.dart';
-import 'package:chefio_recipe_app/modules/auth/data/interfaces/i_auth_service.dart';
 import 'package:chefio_recipe_app/utils/functions.dart';
 import 'package:flutter/material.dart';
 
 class SignUpController extends PasswordStrengthController {
-  SignUpController({required IAuthService authService}) {
-    _authService = authService;
+  SignUpController({required ISignUpRepository signUpRepository}) {
+    _signUpRepository = signUpRepository;
     firstNameController = TextEditingController();
     lastNameController = TextEditingController();
     emailController = TextEditingController();
     passwordController = TextEditingController();
   }
 
-  late final IAuthService _authService;
+  late final ISignUpRepository _signUpRepository;
 
   late final TextEditingController firstNameController;
 
@@ -45,12 +46,17 @@ class SignUpController extends PasswordStrengthController {
       throw Failure('Profile image is required');
     }
 
+    final request = SignUpRequest(
+      firstName: firstNameController.text.trim(),
+      lastName: lastNameController.text.trim(),
+      email: emailController.text.trim(),
+      password: passwordController.text.trim(),
+      image: image!,
+    );
+
     try {
       setBusy(true);
-      await _authService.signUp(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-      );
+      await _signUpRepository.signUp(request);
     } finally {
       setBusy(false);
     }
