@@ -1,6 +1,6 @@
 import 'package:chefio_recipe_app/modules/scan_food/results/scan_food_results_viewmodel.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
-import 'package:chefio_recipe_app/common/widgets/others/custom_cached_network_image.dart';
+import 'package:chefio_recipe_app/common/widgets/image/custom_cached_network_image.dart';
 import 'package:chefio_recipe_app/utils/constants.dart';
 import 'package:chefio_recipe_app/utils/functions.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +38,7 @@ class ScanFoodResultsAppBarView extends StatelessWidget {
                 Align(
                   alignment: Alignment.center,
                   child: CustomCacheNetworkImage(
-                    image: getOneMealPhoto(),
+                    imageUrl: getOneMealPhoto(),
                     width: 200.h,
                     height: 200.h,
                     shape: BoxShape.circle,

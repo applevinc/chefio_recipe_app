@@ -1,7 +1,7 @@
 import 'package:chefio_recipe_app/common/models/recipe.dart';
 import 'package:chefio_recipe_app/common/views/recipe/recipes_grid/detail/recipe_detail_viewmodel.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
-import 'package:chefio_recipe_app/common/widgets/others/custom_cached_network_image.dart';
+import 'package:chefio_recipe_app/common/widgets/image/custom_cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -78,7 +78,7 @@ class _CookingStepItem extends StatelessWidget {
               ),
               SizedBox(height: 16.h),
               CustomCacheNetworkImage(
-                image: cookingStep.photoUrl,
+                imageUrl: cookingStep.photoUrl,
                 width: 271.w,
                 height: 155.h,
                 borderRadius: BorderRadius.circular(12.r),

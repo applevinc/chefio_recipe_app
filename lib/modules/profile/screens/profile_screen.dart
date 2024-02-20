@@ -5,7 +5,7 @@ import 'package:chefio_recipe_app/modules/profile/screens/tabs/profile_recipes_t
 import 'package:chefio_recipe_app/modules/profile/screens/tabs/profile_recipes_viewmodel.dart';
 import 'package:chefio_recipe_app/common/models/user.dart';
 import 'package:chefio_recipe_app/styles/text.dart';
-import 'package:chefio_recipe_app/common/widgets/others/custom_cached_network_image.dart';
+import 'package:chefio_recipe_app/common/widgets/image/custom_cached_network_image.dart';
 import 'package:chefio_recipe_app/common/widgets/others/custom_tabbar.dart';
 import 'package:chefio_recipe_app/common/widgets/others/sliver_appbar_delegate.dart';
 import 'package:chefio_recipe_app/common/widgets/widgets.dart';
@@ -57,7 +57,7 @@ class _ProfileScreen extends StatelessWidget {
                         Align(
                           alignment: Alignment.center,
                           child: CustomCacheNetworkImage(
-                            image: user.photoUrl,
+                            imageUrl: user.photoUrl,
                             height: 100.h,
                             width: 100.h,
                             shape: BoxShape.circle,

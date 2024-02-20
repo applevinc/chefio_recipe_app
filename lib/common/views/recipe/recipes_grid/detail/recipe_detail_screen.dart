@@ -7,7 +7,7 @@ import 'package:chefio_recipe_app/assets/assets.dart';
 import 'package:chefio_recipe_app/styles/colors.dart';
 import 'package:chefio_recipe_app/styles/text.dart';
 
-import 'package:chefio_recipe_app/common/widgets/others/custom_cached_network_image.dart';
+import 'package:chefio_recipe_app/common/widgets/image/custom_cached_network_image.dart';
 import 'package:chefio_recipe_app/common/widgets/widgets.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +53,7 @@ class _RecipeDetailScreen extends StatelessWidget {
                     BlendMode.darken,
                   ),
                   child: CustomCacheNetworkImage(
-                    image: recipe.coverPhotoUrl,
+                    imageUrl: recipe.coverPhotoUrl,
                     height: 375.h,
                     width: 375.h,
                   ),
@@ -180,7 +180,7 @@ class _Sheet extends StatelessWidget {
                       child: Row(
                         children: [
                           CustomCacheNetworkImage(
-                            image: recipe.user.photoUrl,
+                            imageUrl: recipe.user.photoUrl,
                             height: 32.h,
                             width: 32.h,
                             shape: BoxShape.circle,

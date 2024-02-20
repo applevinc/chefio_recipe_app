@@ -4,7 +4,7 @@ import 'package:chefio_recipe_app/common/views/recipe/recipes_grid/detail/recipe
 import 'package:chefio_recipe_app/common/views/recipe/recipes_grid/recipe-grid-item/recipe_grid_item_viewmodel.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
 
-import 'package:chefio_recipe_app/common/widgets/others/custom_cached_network_image.dart';
+import 'package:chefio_recipe_app/common/widgets/image/custom_cached_network_image.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -38,7 +38,7 @@ class _RecipeGridItem extends StatelessWidget {
         Row(
           children: [
             CustomCacheNetworkImage(
-              image: user.photoUrl,
+              imageUrl: user.photoUrl,
               height: 30.h,
               width: 30.h,
               borderRadius: BorderRadius.circular(11.r),
@@ -66,7 +66,7 @@ class _RecipeGridItem extends StatelessWidget {
               child: Hero(
                 tag: recipe.id,
                 child: CustomCacheNetworkImage(
-                  image: recipe.coverPhotoUrl,
+                  imageUrl: recipe.coverPhotoUrl,
                   height: 151.h,
                   width: 151.h,
                   borderRadius: BorderRadius.circular(16.r),
