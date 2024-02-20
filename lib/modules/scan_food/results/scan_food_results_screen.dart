@@ -31,7 +31,7 @@ class ScanFoodResultsScreen extends StatelessWidget {
 }
 
 class _ScanFoodResultsScreen extends StatefulWidget {
-  const _ScanFoodResultsScreen({Key? key}) : super(key: key);
+  const _ScanFoodResultsScreen();
 
   @override
   State<_ScanFoodResultsScreen> createState() => _ScanFoodResultsScreenState();

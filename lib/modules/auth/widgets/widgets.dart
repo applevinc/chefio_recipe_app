@@ -1,2 +1,2 @@
 export 'auth_view.dart';
-export '../screens/password_validator/password_strength_component.dart';
+export '../screens/password_strength/password_strength.component.dart';

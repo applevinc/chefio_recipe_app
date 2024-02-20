@@ -6,14 +6,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RecipesGrid extends StatelessWidget {
   const RecipesGrid({
-    Key? key,
+    super.key,
     this.isBusy = false,
     required this.recipes,
     this.onRefresh,
     this.isExpanded = true,
     this.physics,
     this.canRefetch = true,
-  }) : super(key: key);
+  });
 
   final bool isBusy;
   final List<Recipe> recipes;
@@ -35,7 +35,7 @@ class RecipesGrid extends StatelessWidget {
         crossAxisCount: 2,
         crossAxisSpacing: 25.w,
         mainAxisSpacing: 32.h,
-        childAspectRatio: 151.w / 264.h,
+        childAspectRatio: 145.w / 260.h,
       ),
       itemCount: recipes.length,
       itemBuilder: (context, index) {

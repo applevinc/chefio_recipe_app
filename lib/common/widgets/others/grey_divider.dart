@@ -4,9 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class GreyDivider extends StatelessWidget {
   const GreyDivider({
-    Key? key,
+    super.key,
     this.height,
-  }) : super(key: key);
+  });
 
   final double? height;
 

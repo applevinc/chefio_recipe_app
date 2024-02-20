@@ -13,7 +13,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 class UploadRecipeStepsView extends StatelessWidget {
-  const UploadRecipeStepsView({Key? key}) : super(key: key);
+  const UploadRecipeStepsView({super.key});
 
   @override
   Widget build(BuildContext context) {

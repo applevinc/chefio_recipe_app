@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ProvidersWrapper extends StatelessWidget {
-  const ProvidersWrapper({Key? key, required this.child}) : super(key: key);
+  const ProvidersWrapper({super.key, required this.child});
 
   final Widget child;
 

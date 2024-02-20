@@ -23,7 +23,7 @@ class SearchFilterSheet extends StatelessWidget {
 }
 
 class _SearchFilterSheet extends StatelessWidget {
-  const _SearchFilterSheet({Key? key}) : super(key: key);
+  const _SearchFilterSheet();
 
   @override
   Widget build(BuildContext context) {

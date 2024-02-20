@@ -7,7 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class AppButton extends StatelessWidget {
   const AppButton({
-    Key? key,
+    super.key,
     required this.label,
     required this.onPressed,
     this.borderColor,
@@ -18,7 +18,7 @@ class AppButton extends StatelessWidget {
     this.loadingIndicatorColor = Colors.white,
     this.isBusy = false,
     this.disabled = false,
-  }) : super(key: key);
+  });
 
   final String label;
   final Function() onPressed;
@@ -69,10 +69,10 @@ class AppButton extends StatelessWidget {
 
 class AppButtonWithIcon extends StatelessWidget {
   const AppButtonWithIcon({
-    Key? key,
+    super.key,
     required this.label,
     required this.onPressed,
-  }) : super(key: key);
+  });
 
   final String label;
   final Function() onPressed;

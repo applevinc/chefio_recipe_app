@@ -43,7 +43,7 @@ class Messenger {
 
   static snackBar({required BuildContext context, required Widget child}) {
     showTopSnackBar(
-      context,
+      Overlay.of(context),
       child,
       padding: EdgeInsets.zero,
     );
@@ -56,25 +56,25 @@ class CustomMessenger extends StatelessWidget {
   final String message;
 
   const CustomMessenger.success({
-    Key? key,
+    super.key,
     required this.message,
     this.icon = Icons.check_circle,
     this.iconColor = Colors.green,
-  }) : super(key: key);
+  });
 
   const CustomMessenger.error({
-    Key? key,
+    super.key,
     required this.message,
     this.icon = Icons.error,
     this.iconColor = Colors.red,
-  }) : super(key: key);
+  });
 
   const CustomMessenger.info({
-    Key? key,
+    super.key,
     required this.message,
     this.icon = Icons.info,
     this.iconColor = Colors.black,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

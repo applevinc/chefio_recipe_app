@@ -1,27 +1,27 @@
 import 'package:chefio_recipe_app/assets/icons.dart';
+import 'package:chefio_recipe_app/modules/auth/screens/password_strength/password_strength.controller.dart';
 import 'package:chefio_recipe_app/styles/colors.dart';
 import 'package:chefio_recipe_app/styles/text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
-class PasswordStrengthComponent extends StatelessWidget {
-  const PasswordStrengthComponent({
-    Key? key,
-    required this.containsSixCharacters,
-    required this.containsNumber,
-  }) : super(key: key);
-
-  final bool containsSixCharacters;
-  final bool containsNumber;
+class PasswordStrengthComponent<T extends PasswordStrengthController>
+    extends StatelessWidget {
+  const PasswordStrengthComponent({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = context.watch<T>();
+
     return Column(
       children: [
-        _PasswordRuleItem(rule: 'Atleast 6 characters', validated: containsSixCharacters),
+        _PasswordRuleItem(
+            rule: 'Atleast 6 characters', validated: controller.containsSixCharacters),
         SizedBox(height: 16.h),
-        _PasswordRuleItem(rule: 'Contains a number', validated: containsNumber),
+        _PasswordRuleItem(
+            rule: 'Contains a number', validated: controller.containsNumber),
       ],
     );
   }
@@ -29,10 +29,9 @@ class PasswordStrengthComponent extends StatelessWidget {
 
 class _PasswordRuleItem extends StatelessWidget {
   const _PasswordRuleItem({
-    Key? key,
     required this.rule,
     required this.validated,
-  }) : super(key: key);
+  });
 
   final String rule;
   final bool validated;

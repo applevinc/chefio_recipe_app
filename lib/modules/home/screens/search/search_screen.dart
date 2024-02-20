@@ -77,9 +77,9 @@ class _SearchScreenState extends State<_SearchScreen> {
                 final recipes = viewmodel.recipes;
 
                 if (recipes.isEmpty) {
-                  return Column(
+                  return const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children: [
                       SearchHistoryView(),
                       SearchSuggestionView(),
                     ],

@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 class SearchSuggestionView extends StatelessWidget {
-  const SearchSuggestionView({Key? key}) : super(key: key);
+  const SearchSuggestionView({super.key});
 
   @override
   Widget build(BuildContext context) {

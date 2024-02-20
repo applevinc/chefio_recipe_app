@@ -10,7 +10,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 
 class UploadRecipeIngredientsView extends StatelessWidget {
-  const UploadRecipeIngredientsView({Key? key}) : super(key: key);
+  const UploadRecipeIngredientsView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -67,10 +67,9 @@ class UploadRecipeIngredientsView extends StatelessWidget {
 
 class _IngredientItemView extends StatefulWidget {
   const _IngredientItemView({
-    Key? key,
     required this.ingredient,
     required this.index,
-  }) : super(key: key);
+  });
 
   final UploadRecipeIngredient ingredient;
   final int index;

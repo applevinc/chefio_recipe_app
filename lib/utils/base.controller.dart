@@ -57,4 +57,11 @@ class BaseController extends ChangeNotifier {
     _errorStates[object.hashCode] = value;
     notifyListeners();
   }
+
+  bool _isBuildingFrame = true;
+  bool get isBuildingFrame => _isBuildingFrame;
+
+  void stopBuildingFrame() {
+    _isBuildingFrame = false;
+  }
 }

@@ -11,7 +11,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 class UploadRecipeStepTwoView extends StatefulWidget {
-  const UploadRecipeStepTwoView({Key? key}) : super(key: key);
+  const UploadRecipeStepTwoView({super.key});
 
   @override
   State<UploadRecipeStepTwoView> createState() => _UploadRecipeStepTwoViewState();
@@ -41,9 +41,9 @@ class _UploadRecipeStepTwoViewState extends State<UploadRecipeStepTwoView> {
         body: SingleChildScrollView(
           child: Form(
             key: _formKey,
-            child: Column(
+            child: const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 UploadRecipeIngredientsView(),
                 GreyDivider(),
                 UploadRecipeStepsView(),

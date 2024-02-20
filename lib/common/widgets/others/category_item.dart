@@ -4,11 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CategoryItemView extends StatelessWidget {
   const CategoryItemView({
-    Key? key,
+    super.key,
     required this.label,
     required this.selected,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   final String label;
   final bool selected;

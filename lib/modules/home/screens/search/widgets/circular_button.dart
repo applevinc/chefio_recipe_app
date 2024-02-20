@@ -4,12 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CirclularButton extends StatelessWidget {
   const CirclularButton({
-    Key? key,
+    super.key,
     required this.label,
     required this.bgColor,
     required this.textColor,
     required this.onPressed,
-  }) : super(key: key);
+  });
 
   final String label;
   final Color bgColor;

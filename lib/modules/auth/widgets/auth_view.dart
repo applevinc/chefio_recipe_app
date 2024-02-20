@@ -6,11 +6,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AuthView extends StatelessWidget {
   const AuthView({
-    Key? key,
+    super.key,
     required this.title,
     required this.subtitle,
     required this.body,
-  }) : super(key: key);
+  });
 
   final String title;
   final String subtitle;

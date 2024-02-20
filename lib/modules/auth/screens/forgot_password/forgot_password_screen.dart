@@ -1,5 +1,5 @@
 import 'package:chefio_recipe_app/config/locator/locator.dart';
-import 'package:chefio_recipe_app/modules/auth/screens/forgot_password/confirmation/confirm_forgot_password_screen.dart';
+import 'package:chefio_recipe_app/modules/auth/screens/forgot_password/confirmation/confirm_forgot_password.screen.dart';
 import 'package:chefio_recipe_app/modules/auth/screens/forgot_password/forget_password_viewmodel.dart';
 import 'package:chefio_recipe_app/modules/auth/services/interfaces/i_auth_service.dart';
 import 'package:chefio_recipe_app/modules/auth/widgets/auth_view.dart';
@@ -28,7 +28,7 @@ class ForgotPasswordScreen extends StatelessWidget {
 }
 
 class _ForgotPasswordScreen extends StatefulWidget {
-  const _ForgotPasswordScreen({Key? key}) : super(key: key);
+  const _ForgotPasswordScreen();
 
   @override
   State<_ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();

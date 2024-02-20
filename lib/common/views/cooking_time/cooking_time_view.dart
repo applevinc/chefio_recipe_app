@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 class CookingTimeView<T extends CookingTimeViewModel> extends StatelessWidget {
-  const CookingTimeView({Key? key}) : super(key: key);
+  const CookingTimeView({super.key});
 
   @override
   Widget build(BuildContext context) {

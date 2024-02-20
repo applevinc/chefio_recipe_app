@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ScanSheet extends StatelessWidget {
-  const ScanSheet({Key? key}) : super(key: key);
+  const ScanSheet({super.key});
 
   @override
   Widget build(BuildContext context) {

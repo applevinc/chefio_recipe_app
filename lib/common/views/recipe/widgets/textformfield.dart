@@ -3,11 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class UploadFormField extends StatelessWidget {
   const UploadFormField({
-    Key? key,
+    super.key,
     required this.label,
     required this.hintText,
     this.maxLines,
-  }) : super(key: key);
+  });
 
   final String label;
   final String hintText;

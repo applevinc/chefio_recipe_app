@@ -5,9 +5,9 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 
 class OTPField extends StatelessWidget {
   const OTPField({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final TextEditingController controller;
 

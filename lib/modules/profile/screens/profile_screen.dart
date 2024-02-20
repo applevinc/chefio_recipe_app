@@ -29,7 +29,7 @@ class ProfileScreen extends StatelessWidget {
 }
 
 class _ProfileScreen extends StatelessWidget {
-  const _ProfileScreen({Key? key}) : super(key: key);
+  const _ProfileScreen();
 
   @override
   Widget build(BuildContext context) {
@@ -99,8 +99,8 @@ class _ProfileScreen extends StatelessWidget {
                     minHeight: 70.h,
                     child: Container(
                       color: Colors.white,
-                      child: Column(
-                        children: const [
+                      child: const Column(
+                        children: [
                           GreyDivider(),
                           CustomTabBar(
                             tabs: [

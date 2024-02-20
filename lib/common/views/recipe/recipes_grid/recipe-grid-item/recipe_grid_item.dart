@@ -25,7 +25,7 @@ class RecipeGridItem extends StatelessWidget {
 }
 
 class _RecipeGridItem extends StatelessWidget {
-  const _RecipeGridItem({Key? key}) : super(key: key);
+  const _RecipeGridItem();
 
   @override
   Widget build(BuildContext context) {
@@ -39,8 +39,8 @@ class _RecipeGridItem extends StatelessWidget {
           children: [
             CustomCacheNetworkImage(
               image: user.photoUrl,
-              height: 31.h,
-              width: 31.h,
+              height: 30.h,
+              width: 30.h,
               borderRadius: BorderRadius.circular(11.r),
             ),
             SizedBox(width: 8.w),
@@ -105,7 +105,7 @@ class _RecipeGridItem extends StatelessWidget {
 }
 
 class _FavouriteButton extends StatelessWidget {
-  const _FavouriteButton({Key? key}) : super(key: key);
+  const _FavouriteButton();
 
   @override
   Widget build(BuildContext context) {

@@ -2,7 +2,7 @@ import 'package:chefio_recipe_app/common/views/dashboard/dashboard_view.dart';
 import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/modules/auth/screens/sign_in/sign_in.controller.dart';
 import 'package:chefio_recipe_app/modules/auth/screens/forgot_password/forgot_password_screen.dart';
-import 'package:chefio_recipe_app/modules/auth/screens/sign_up/sign_up_screen.dart';
+import 'package:chefio_recipe_app/modules/auth/screens/sign_up/sign_up.screen.dart';
 import 'package:chefio_recipe_app/modules/auth/services/interfaces/i_auth_service.dart';
 import 'package:chefio_recipe_app/modules/auth/widgets/auth_view.dart';
 import 'package:chefio_recipe_app/assets/icons.dart';
@@ -32,7 +32,7 @@ class SignInScreen extends StatelessWidget {
 }
 
 class _SignInScreen extends StatefulWidget {
-  const _SignInScreen({Key? key}) : super(key: key);
+  const _SignInScreen();
 
   @override
   State<_SignInScreen> createState() => _SignInScreenState();

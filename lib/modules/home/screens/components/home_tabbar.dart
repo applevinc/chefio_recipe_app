@@ -5,8 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeTabbar extends StatelessWidget implements PreferredSizeWidget {
   const HomeTabbar({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Size get preferredSize => Size.fromHeight(40.h);

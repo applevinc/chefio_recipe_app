@@ -20,7 +20,7 @@ class UploadRecipeScreen extends StatelessWidget {
 }
 
 class _UploadRecipeScreen extends StatelessWidget {
-  const _UploadRecipeScreen({Key? key}) : super(key: key);
+  const _UploadRecipeScreen();
 
   @override
   Widget build(BuildContext context) {

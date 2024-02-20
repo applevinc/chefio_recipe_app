@@ -24,7 +24,7 @@ class ScanCameraScreen extends StatelessWidget {
 }
 
 class _ScanCameraScreen extends StatefulWidget {
-  const _ScanCameraScreen({Key? key}) : super(key: key);
+  const _ScanCameraScreen();
 
   @override
   _ScanCameraScreenState createState() => _ScanCameraScreenState();

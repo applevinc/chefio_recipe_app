@@ -1,48 +1,51 @@
-import 'package:chefio_recipe_app/modules/auth/screens/forgot_password/reset_password/reset_password_viewmodel.dart';
+import 'package:chefio_recipe_app/config/locator/locator.dart';
+import 'package:chefio_recipe_app/modules/auth/screens/forgot_password/reset_password/reset_password.controller.dart';
+import 'package:chefio_recipe_app/modules/auth/services/interfaces/i_auth_service.dart';
 import 'package:chefio_recipe_app/modules/auth/widgets/auth_view.dart';
 import 'package:chefio_recipe_app/common/models/failure.dart';
-import 'package:chefio_recipe_app/styles/colors.dart';
 
 import 'package:chefio_recipe_app/common/widgets/buttons/custom_button.dart';
 import 'package:chefio_recipe_app/modules/auth/screens/sign_in/sign_in.screen.dart';
-import 'package:chefio_recipe_app/modules/auth/screens/password_validator/password_strength_component.dart';
+import 'package:chefio_recipe_app/modules/auth/screens/password_strength/password_strength.component.dart';
 import 'package:chefio_recipe_app/common/widgets/inputs/password_textfield.dart';
+import 'package:chefio_recipe_app/styles/styles.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-class ResetPasswordScreen extends StatefulWidget {
-  const ResetPasswordScreen({Key? key}) : super(key: key);
+class ResetPasswordScreen extends StatelessWidget {
+  const ResetPasswordScreen({super.key});
 
   @override
-  State<ResetPasswordScreen> createState() => _ResetPasswordScreenState();
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (_) => ResetPasswordController(
+        authService: locator<IAuthService>(),
+      ),
+      child: const _ResetPasswordScreen(),
+    );
+  }
 }
 
-class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
+class _ResetPasswordScreen extends StatefulWidget {
+  const _ResetPasswordScreen();
+
+  @override
+  State<_ResetPasswordScreen> createState() => _ResetPasswordScreenState();
+}
+
+class _ResetPasswordScreenState extends State<_ResetPasswordScreen> {
   final _formKey = GlobalKey<FormState>();
-  late final TextEditingController passwordController;
-
-  @override
-  void initState() {
-    super.initState();
-    passwordController = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    passwordController.dispose();
-    super.dispose();
-  }
 
   void submit() async {
     if (_formKey.currentState!.validate()) {
       try {
-        await context
-            .read<ResetPasswordViewModel>()
-            .execute(password: passwordController.text.trim());
+        await context.read<ResetPasswordController>().execute();
 
-        if (!mounted) return;
+        if (!mounted) {
+          return;
+        }
 
         AppNavigator.pushAndRemoveUntil(context, const SignInScreen());
       } on Failure catch (e) {
@@ -53,7 +56,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<ResetPasswordViewModel>();
+    final viewModel = context.watch<ResetPasswordController>();
 
     return AuthView(
       title: 'Reset your password',
@@ -63,7 +66,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
         child: Column(
           children: [
             PasswordTextField(
-              controller: passwordController,
+              controller: viewModel.textController,
               onChanged: (value) => viewModel.validate(value),
               validator: (value) {
                 if (value == null || value.isEmpty) {
@@ -78,17 +81,13 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
               alignment: Alignment.centerLeft,
               child: Text(
                 'Your Password must contain:',
-                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                      color: AppColors.mainText,
-                      fontSize: 17.sp,
-                    ),
+                style: AppText.bold500(context).copyWith(
+                  fontSize: 17.sp,
+                ),
               ),
             ),
             SizedBox(height: 16.h),
-            PasswordStrengthComponent(
-              containsNumber: viewModel.containsNumber,
-              containsSixCharacters: viewModel.containsSixCharacters,
-            ),
+            const PasswordStrengthComponent<ResetPasswordController>(),
             SizedBox(height: 24.h),
             AppButton(
               label: 'Done',

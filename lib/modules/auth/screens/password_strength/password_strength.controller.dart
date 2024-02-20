@@ -1,10 +1,12 @@
 import 'package:chefio_recipe_app/utils/base.controller.dart';
 
-class PasswordValidatorHelper extends BaseController {
+class PasswordStrengthController extends BaseController {
   bool _containsSixCharacters = false;
+
   bool get containsSixCharacters => _containsSixCharacters;
 
   bool _containsNumber = false;
+
   bool get containsNumber => _containsNumber;
 
   void validate(String value) {

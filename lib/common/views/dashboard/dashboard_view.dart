@@ -11,7 +11,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DashBoardView extends StatefulWidget {
-  const DashBoardView({Key? key, this.pageIndex = 0}) : super(key: key);
+  const DashBoardView({super.key, this.pageIndex = 0});
 
   final int pageIndex;
 

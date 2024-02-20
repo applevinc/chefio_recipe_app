@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class CustomCacheNetworkImage extends StatelessWidget {
   const CustomCacheNetworkImage({
-    Key? key,
+    super.key,
     required this.image,
     this.size,
     this.height,
@@ -12,7 +12,7 @@ class CustomCacheNetworkImage extends StatelessWidget {
     this.borderRadius,
     this.shape,
     this.fit,
-  }) : super(key: key);
+  });
 
   final String image;
   final double? size;

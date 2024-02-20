@@ -13,7 +13,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 class UploadRecipeStepOneView extends StatefulWidget {
-  const UploadRecipeStepOneView({Key? key}) : super(key: key);
+  const UploadRecipeStepOneView({super.key});
 
   @override
   State<UploadRecipeStepOneView> createState() => _UploadRecipeStepOneViewState();
@@ -116,7 +116,7 @@ class _UploadRecipeStepOneViewState extends State<UploadRecipeStepOneView> {
 }
 
 class _CoverPhotoView extends StatelessWidget {
-  const _CoverPhotoView({Key? key}) : super(key: key);
+  const _CoverPhotoView();
 
   @override
   Widget build(BuildContext context) {

@@ -7,7 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PasswordTextField extends StatefulWidget {
   const PasswordTextField({
-    Key? key,
+    super.key,
     required this.controller,
     this.hintText,
     this.title,
@@ -15,7 +15,7 @@ class PasswordTextField extends StatefulWidget {
     this.textInputAction,
     this.validator,
     this.onChanged,
-  }) : super(key: key);
+  });
 
   final TextEditingController controller;
   final String? hintText;
@@ -71,9 +71,8 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
 class _PasswordIcon extends StatelessWidget {
   const _PasswordIcon(
     this._showPassword, {
-    Key? key,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   final bool _showPassword;
   final Function() onTap;

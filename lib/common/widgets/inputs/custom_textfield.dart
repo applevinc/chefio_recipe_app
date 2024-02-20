@@ -36,7 +36,7 @@ class CustomTextField extends StatelessWidget {
   final bool autofocus;
 
   const CustomTextField({
-    Key? key,
+    super.key,
     this.title,
     this.lableText,
     this.hintText,
@@ -65,7 +65,7 @@ class CustomTextField extends StatelessWidget {
     this.border,
     this.contentPadding,
     this.autofocus = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -183,13 +183,13 @@ class CustomTextField extends StatelessWidget {
 
 class TextFieldIcon extends StatelessWidget {
   const TextFieldIcon({
-    Key? key,
+    super.key,
     required this.icon,
     this.onTap,
     this.color,
     this.padding,
     this.size,
-  }) : super(key: key);
+  });
 
   final String icon;
   final Color? color;
@@ -217,9 +217,9 @@ class TextFieldIcon extends StatelessWidget {
 class PasswordIcon extends StatelessWidget {
   const PasswordIcon(
     this._showPassword, {
-    Key? key,
+    super.key,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   final bool _showPassword;
   final Function() onTap;
@@ -241,7 +241,7 @@ class PasswordIcon extends StatelessWidget {
 }
 
 class TextFieldTitle extends StatelessWidget {
-  const TextFieldTitle(this.title, {Key? key}) : super(key: key);
+  const TextFieldTitle(this.title, {super.key});
 
   final String title;
 

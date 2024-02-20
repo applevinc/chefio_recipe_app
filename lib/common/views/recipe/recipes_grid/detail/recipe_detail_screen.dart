@@ -31,7 +31,7 @@ class RecipeDetailScreen extends StatelessWidget {
 }
 
 class _RecipeDetailScreen extends StatelessWidget {
-  const _RecipeDetailScreen({Key? key}) : super(key: key);
+  const _RecipeDetailScreen();
 
   @override
   Widget build(BuildContext context) {
