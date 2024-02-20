@@ -1,7 +1,9 @@
 import 'dart:io';
 
+import 'package:chefio_recipe_app/common/models/failure.dart';
 import 'package:chefio_recipe_app/modules/auth/screens/password_strength/password_strength.controller.dart';
 import 'package:chefio_recipe_app/modules/auth/services/interfaces/i_auth_service.dart';
+import 'package:chefio_recipe_app/utils/functions.dart';
 import 'package:flutter/material.dart';
 
 class SignUpController extends PasswordStrengthController {
@@ -27,7 +29,22 @@ class SignUpController extends PasswordStrengthController {
 
   File? get image => _image;
 
+  void pickImage() async {
+    final image = await pickImageFromGallery();
+
+    if (image == null) {
+      return;
+    }
+
+    _image = image;
+    notifyListeners();
+  }
+
   Future<void> execute() async {
+    if (image == null) {
+      throw Failure('Profile image is required');
+    }
+
     try {
       setBusy(true);
       await _authService.signUp(

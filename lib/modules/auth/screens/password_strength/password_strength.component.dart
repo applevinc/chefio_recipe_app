@@ -17,6 +17,16 @@ class PasswordStrengthComponent<T extends PasswordStrengthController>
 
     return Column(
       children: [
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            'Your Password must contain:',
+            style: AppText.bold500(context).copyWith(
+              fontSize: 17.sp,
+            ),
+          ),
+        ),
+        SizedBox(height: 16.h),
         _PasswordRuleItem(
             rule: 'Atleast 6 characters', validated: controller.containsSixCharacters),
         SizedBox(height: 16.h),
@@ -46,7 +56,8 @@ class _PasswordRuleItem extends StatelessWidget {
           rule,
           style: AppText.bold500(context).copyWith(
             fontSize: 15.sp,
-            color: AppColors.secondaryText,
+            color: validated ? AppColors.mainText : AppColors.secondaryText,
+            fontWeight: validated ? FontWeight.w600 : FontWeight.w500,
           ),
         ),
       ],

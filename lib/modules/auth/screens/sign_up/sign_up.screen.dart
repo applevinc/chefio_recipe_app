@@ -1,3 +1,5 @@
+import 'package:chefio_recipe_app/common/widgets/image/edit_image.view.dart';
+import 'package:chefio_recipe_app/common/widgets/inputs/close_keyboard_wrapper.dart';
 import 'package:chefio_recipe_app/common/widgets/others/loading_overlay_view.dart';
 import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/modules/auth/screens/sign_up/confirmation/confirm_signup.screen.dart';
@@ -14,6 +16,7 @@ import 'package:chefio_recipe_app/common/widgets/inputs/custom_textfield.dart';
 import 'package:chefio_recipe_app/common/widgets/inputs/password_textfield.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
@@ -67,84 +70,105 @@ class _SignUpScreenState extends State<_SignUpScreen> {
 
     return LoadingOverlayView(
       showOverLay: controller.isBusy,
-      child: Scaffold(
-        body: SafeArea(
-          child: Center(
-            child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              padding: EdgeInsets.symmetric(horizontal: 24.w),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Column(
-                      children: [
-                        Align(
-                          alignment: Alignment.center,
-                          child: Text(
-                            'Welcome!',
-                            style: AppText.bold700(context).copyWith(
-                              fontSize: 22.sp,
+      child: CloseKeyboardWrapper(
+        child: Scaffold(
+          body: SafeArea(
+            child: Center(
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                padding: EdgeInsets.symmetric(horizontal: 24.w),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Column(
+                        children: [
+                          Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              'Welcome!',
+                              style: AppText.bold700(context).copyWith(
+                                fontSize: 22.sp,
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(height: 8.h),
-                        Align(
-                          alignment: Alignment.center,
-                          child: Text(
-                            'Please enter your account here',
-                            style: AppText.bold500(context).copyWith(
-                              fontSize: 15.sp,
-                              color: AppColors.secondaryText,
+                          SizedBox(height: 8.h),
+                          Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              'Please enter your account here',
+                              style: AppText.bold500(context).copyWith(
+                                fontSize: 15.sp,
+                                color: AppColors.secondaryText,
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(height: 32.h),
-                        CustomTextField(
-                          hintText: 'Email or phone number',
-                          prefixIcon: const TextFieldIcon(icon: AppIcons.email),
-                          controller: controller.emailController,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter your email or phone number';
-                            }
+                          SizedBox(height: 32.h),
+                          EditImageComponent(
+                            imageFile: controller.image,
+                            onTap: controller.pickImage,
+                          ),
+                          SizedBox(height: 24.h),
+                          CustomTextField(
+                            hintText: 'First Name',
+                            controller: controller.firstNameController,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]')),
+                            ],
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter your first name';
+                              }
 
-                            return null;
-                          },
-                        ),
-                        SizedBox(height: 16.h),
-                        PasswordTextField(
-                          controller: controller.passwordController,
-                          onChanged: (value) => controller.validate(value),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter your password';
-                            }
-
-                            return null;
-                          },
-                        ),
-                        SizedBox(height: 24.h),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            'Your Password must contain:',
-                            style: AppText.bold500(context).copyWith(
-                              fontSize: 17.sp,
-                            ),
+                              return null;
+                            },
                           ),
-                        ),
-                        SizedBox(height: 16.h),
-                        const PasswordStrengthComponent<SignUpController>(),
-                      ],
-                    ),
-                    SizedBox(height: 24.h),
-                    AppButton(
-                      label: 'Sign Up',
-                      onPressed: submit,
-                    ),
-                  ],
+                          SizedBox(height: 16.h),
+                          CustomTextField(
+                            hintText: 'Last Name',
+                            controller: controller.lastNameController,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]')),
+                            ],
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter your last name';
+                              }
+
+                              return null;
+                            },
+                          ),
+                          SizedBox(height: 16.h),
+                          CustomTextField(
+                            hintText: 'Email',
+                            controller: controller.emailController,
+                            validator: Validator.validateEmail,
+                          ),
+                          SizedBox(height: 16.h),
+                          PasswordTextField(
+                            showPrefixIcon: false,
+                            controller: controller.passwordController,
+                            onChanged: (value) => controller.validate(value),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter your password';
+                              }
+
+                              return null;
+                            },
+                          ),
+                          SizedBox(height: 24.h),
+                          const PasswordStrengthComponent<SignUpController>(),
+                        ],
+                      ),
+                      SizedBox(height: 24.h),
+                      AppButton(
+                        label: 'Sign Up',
+                        onPressed: submit,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

@@ -15,6 +15,7 @@ class PasswordTextField extends StatefulWidget {
     this.textInputAction,
     this.validator,
     this.onChanged,
+    this.showPrefixIcon = true,
   });
 
   final TextEditingController controller;
@@ -24,6 +25,7 @@ class PasswordTextField extends StatefulWidget {
   final TextInputAction? textInputAction;
   final String? Function(String?)? validator;
   final Function(String)? onChanged;
+  final bool showPrefixIcon;
 
   @override
   State<PasswordTextField> createState() => _PasswordTextFieldState();
@@ -46,7 +48,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
       controller: widget.controller,
       textInputAction: widget.textInputAction,
       hintText: widget.hintText ?? 'Password',
-      prefixIcon: const TextFieldIcon(icon: AppIcons.lock),
+      prefixIcon: widget.showPrefixIcon ? const TextFieldIcon(icon: AppIcons.lock) : null,
       suffixIcon: _PasswordIcon(
         _hidePassword,
         onTap: _onToggleVisibility,

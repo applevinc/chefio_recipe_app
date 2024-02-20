@@ -1,11 +1,15 @@
 import 'package:all_validations_br/all_validations_br.dart';
 
 class Validator {
-  static bool isNotValidEmail(String? value) {
-    if (AllValidations.isEmail(value!)) {
-      return false;
+  static String? validateEmail(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter email address';
+    }
+
+    if (AllValidations.isEmail(value)) {
+      return null;
     } else {
-      return true;
+      return 'Invalid email address';
     }
   }
 

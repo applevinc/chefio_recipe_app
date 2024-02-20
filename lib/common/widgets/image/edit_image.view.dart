@@ -25,17 +25,10 @@ class EditImageComponent extends StatelessWidget {
       clipBehavior: Clip.none,
       children: [
         Builder(builder: (context) {
-          const decoration = BoxDecoration(
+          final decoration = BoxDecoration(
             shape: BoxShape.circle,
             color: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                color: Color(0x33000000),
-                blurRadius: 10,
-                offset: Offset(0, 6),
-                spreadRadius: 0,
-              ),
-            ],
+            border: Border.all(color: AppColors.primary),
           );
 
           if (imageFile != null) {
@@ -87,7 +80,7 @@ class EditImageComponent extends StatelessWidget {
               child: Icon(
                 Icons.edit,
                 color: Colors.white,
-                size: 18.sp,
+                size: 15.sp,
               ),
             ),
           ),
