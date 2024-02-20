@@ -1,19 +1,26 @@
+import 'package:chefio_recipe_app/modules/auth/domain/entities/confirm_sign_up.request.dart';
+import 'package:chefio_recipe_app/modules/auth/domain/usecases/i_sign_up.repository.dart';
 import 'package:chefio_recipe_app/modules/auth/view/otp/otp.controller.dart';
 import 'package:chefio_recipe_app/modules/auth/data/interfaces/i_auth_service.dart';
 
 class ConfirmSignUpController extends OtpController {
   ConfirmSignUpController({
-    required IAuthService authService,
+    required ISignUpRepository signUpRepository,
     required super.email,
-  }) : _authService = authService;
+  }) : _signUpRepository = signUpRepository;
 
-  final IAuthService _authService;
+  final ISignUpRepository _signUpRepository;
 
   @override
   Future<void> verify() async {
+    final request = ConfirmSignUpRequest(
+      otp: textController.text.trim(),
+      email: email,
+    );
+
     try {
       setBusyForObject(OtpLoadingState.verify, true);
-      await _authService.verifyOtp(int.parse(textController.text));
+      await _signUpRepository.confirmSignUp(request);
     } finally {
       setBusyForObject(OtpLoadingState.verify, false);
     }
@@ -23,7 +30,7 @@ class ConfirmSignUpController extends OtpController {
   Future<void> resendOtp() async {
     try {
       setBusyForObject(OtpLoadingState.resendOtp, true);
-      await _authService.verifyNewUser(email: email);
+      await _signUpRepository.resendOtp(email: email);
     } finally {
       setBusyForObject(OtpLoadingState.resendOtp, false);
     }
