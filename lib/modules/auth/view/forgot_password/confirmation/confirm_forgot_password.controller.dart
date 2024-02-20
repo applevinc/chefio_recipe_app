@@ -1,19 +1,26 @@
+import 'package:chefio_recipe_app/modules/auth/domain/entities/confirm_forgot_password.request.dart';
+import 'package:chefio_recipe_app/modules/auth/domain/usecases/i_forgot_password.repository.dart';
 import 'package:chefio_recipe_app/modules/auth/view/otp/otp.controller.dart';
 import 'package:chefio_recipe_app/modules/auth/data/interfaces/i_auth_service.dart';
 
-class ConfirmForgotPasswordViewModel extends OtpController {
-  ConfirmForgotPasswordViewModel({
-    required IAuthService authService,
+class ConfirmForgotPasswordController extends OtpController {
+  ConfirmForgotPasswordController({
+    required IForgotPasswordRepository forgotPasswordRepository,
     required super.email,
-  }) : _authService = authService;
+  }) : _forgotPasswordRepository = forgotPasswordRepository;
 
-  final IAuthService _authService;
+  final IForgotPasswordRepository _forgotPasswordRepository;
 
   @override
   Future<void> verify() async {
+    final request = ConfirmForgotPasswordRequest(
+      otp: textController.text.trim(),
+      email: email,
+    );
+
     try {
       setBusyForObject(OtpLoadingState.verify, true);
-      await _authService.verifyOtp(int.parse(textController.text));
+      await _forgotPasswordRepository.confirm(request);
     } finally {
       setBusyForObject(OtpLoadingState.verify, false);
     }
@@ -23,7 +30,7 @@ class ConfirmForgotPasswordViewModel extends OtpController {
   Future<void> resendOtp() async {
     try {
       setBusyForObject(OtpLoadingState.resendOtp, true);
-      await _authService.forgotPassword(email: email);
+      await _forgotPasswordRepository.sendOtp(email: email);
     } finally {
       setBusyForObject(OtpLoadingState.resendOtp, false);
     }
