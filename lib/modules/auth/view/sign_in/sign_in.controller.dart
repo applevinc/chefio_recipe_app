@@ -1,23 +1,26 @@
 import 'package:chefio_recipe_app/modules/auth/data/interfaces/i_auth_service.dart';
+import 'package:chefio_recipe_app/modules/auth/domain/usecases/i_sign_in.repository.dart';
 import 'package:chefio_recipe_app/utils/base.controller.dart';
 import 'package:flutter/material.dart';
 
 class SignInController extends BaseController {
-  SignInController({required IAuthService authService}) {
-    _authService = authService;
-    usernameController = TextEditingController();
+  SignInController({required ISignInRepository signInRepository}) {
+    _signInRepository = signInRepository;
+    emailController = TextEditingController();
     passwordController = TextEditingController();
   }
 
-  late final IAuthService _authService;
-  late final TextEditingController usernameController;
+  late final ISignInRepository _signInRepository;
+
+  late final TextEditingController emailController;
+
   late final TextEditingController passwordController;
 
   Future<void> execute() async {
     try {
       setBusy(true);
-      await _authService.signIn(
-        username: usernameController.text.trim(),
+      await _signInRepository.signIn(
+        email: emailController.text.trim(),
         password: passwordController.text.trim(),
       );
     } finally {
@@ -27,7 +30,7 @@ class SignInController extends BaseController {
 
   @override
   void dispose() {
-    usernameController.dispose();
+    emailController.dispose();
     passwordController.dispose();
     super.dispose();
   }

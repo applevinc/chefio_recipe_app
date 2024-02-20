@@ -1,5 +1,6 @@
 import 'package:chefio_recipe_app/common/views/dashboard/dashboard_view.dart';
 import 'package:chefio_recipe_app/config/locator/locator.dart';
+import 'package:chefio_recipe_app/modules/auth/domain/usecases/i_sign_in.repository.dart';
 import 'package:chefio_recipe_app/modules/auth/view/sign_in/sign_in.controller.dart';
 import 'package:chefio_recipe_app/modules/auth/view/forgot_password/forgot_password_screen.dart';
 import 'package:chefio_recipe_app/modules/auth/view/sign_up/sign_up.screen.dart';
@@ -24,7 +25,7 @@ class SignInScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => SignInController(
-        authService: locator<IAuthService>(),
+        signInRepository: locator<ISignInRepository>(),
       ),
       child: const _SignInScreen(),
     );
@@ -62,10 +63,8 @@ class _SignInScreenState extends State<_SignInScreen> {
   Widget build(BuildContext context) {
     final controller = context.watch<SignInController>();
 
-    return WillPopScope(
-      onWillPop: () {
-        return Future.value(false);
-      },
+    return PopScope(
+      canPop: false,
       child: AuthView(
         title: 'Welcome Back!',
         subtitle: 'Please enter your account here',
@@ -75,16 +74,10 @@ class _SignInScreenState extends State<_SignInScreen> {
           child: Column(
             children: [
               CustomTextField(
-                hintText: 'Email or phone number',
+                hintText: 'Email',
                 prefixIcon: const TextFieldIcon(icon: AppIcons.email),
-                controller: controller.usernameController,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your email or phone number';
-                  }
-
-                  return null;
-                },
+                controller: controller.emailController,
+                validator: Validator.validateEmail,
               ),
               SizedBox(height: 16.h),
               PasswordTextField(
