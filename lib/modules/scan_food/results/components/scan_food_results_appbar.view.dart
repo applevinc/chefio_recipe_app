@@ -2,6 +2,7 @@ import 'package:chefio_recipe_app/modules/scan_food/results/scan_food_results_vi
 import 'package:chefio_recipe_app/styles/styles.dart';
 import 'package:chefio_recipe_app/common/widgets/others/custom_cached_network_image.dart';
 import 'package:chefio_recipe_app/utils/constants.dart';
+import 'package:chefio_recipe_app/utils/functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';

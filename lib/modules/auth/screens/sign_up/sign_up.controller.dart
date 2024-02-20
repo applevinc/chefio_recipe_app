@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:chefio_recipe_app/modules/auth/screens/password_strength/password_strength.controller.dart';
 import 'package:chefio_recipe_app/modules/auth/services/interfaces/i_auth_service.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +22,10 @@ class SignUpController extends PasswordStrengthController {
   late final TextEditingController emailController;
 
   late final TextEditingController passwordController;
+
+  File? _image;
+
+  File? get image => _image;
 
   Future<void> execute() async {
     try {

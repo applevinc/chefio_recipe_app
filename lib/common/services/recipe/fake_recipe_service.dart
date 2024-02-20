@@ -2,6 +2,7 @@ import 'package:chefio_recipe_app/common/models/category.dart';
 import 'package:chefio_recipe_app/common/models/recipe.dart';
 import 'package:chefio_recipe_app/common/services/recipe/i_recipe_service.dart';
 import 'package:chefio_recipe_app/common/models/user.dart';
+import 'package:chefio_recipe_app/utils/functions.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';
 
 class FakeRecipeService implements IRecipeService {
@@ -20,9 +21,9 @@ class FakeRecipeService implements IRecipeService {
     final List<Recipe> items = List.generate(
       random.nextInt(10) + 25,
       (index) => Recipe(
-        id: Utils.getGuid(),
+        id: getGuid(),
         user: User(
-          id: Utils.getGuid(),
+          id: getGuid(),
           photoUrl: getOneProfilePhoto(),
           firstName: faker.person.firstName(),
           lastName: faker.person.firstName(),
@@ -57,9 +58,9 @@ class FakeRecipeService implements IRecipeService {
     final List<Recipe> items = List.generate(
       random.nextInt(200) + 25,
       (index) => Recipe(
-        id: Utils.getGuid(),
+        id: getGuid(),
         user: User(
-          id: Utils.getGuid(),
+          id: getGuid(),
           photoUrl: getOneProfilePhoto(),
           firstName: faker.person.firstName(),
           lastName: faker.person.firstName(),
@@ -94,9 +95,9 @@ class FakeRecipeService implements IRecipeService {
     final List<Recipe> items = List.generate(
       random.nextInt(200) + 25,
       (index) => Recipe(
-        id: Utils.getGuid(),
+        id: getGuid(),
         user: User(
-          id: Utils.getGuid(),
+          id: getGuid(),
           photoUrl: getOneProfilePhoto(),
           firstName: faker.person.firstName(),
           lastName: faker.person.firstName(),
@@ -131,9 +132,9 @@ class FakeRecipeService implements IRecipeService {
     final List<Recipe> items = List.generate(
       random.nextInt(200) + 25,
       (index) => Recipe(
-        id: Utils.getGuid(),
+        id: getGuid(),
         user: User(
-          id: Utils.getGuid(),
+          id: getGuid(),
           photoUrl: getOneProfilePhoto(),
           firstName: faker.person.firstName(),
           lastName: faker.person.firstName(),

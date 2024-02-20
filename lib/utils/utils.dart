@@ -1,12 +1,8 @@
 export 'base.controller.dart';
 export 'constants.dart';
 export 'datetime.dart';
-export 'datetime_helper_functions.dart';
-export 'helper_functions.dart';
 export 'messenger.dart';
 export 'navigator.dart';
 export 'number.dart';
 export 'string.dart';
-export 'text_helper_functions.dart';
-export 'utils_functions.dart';
 export 'validator.dart';

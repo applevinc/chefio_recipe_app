@@ -1,6 +1,7 @@
 import 'package:chefio_recipe_app/config/app_session.dart';
 import 'package:chefio_recipe_app/modules/auth/services/interfaces/i_auth_service.dart';
 import 'package:chefio_recipe_app/common/models/user.dart';
+import 'package:chefio_recipe_app/utils/functions.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';
 
 class FakeAuthService implements IAuthService {
@@ -21,7 +22,7 @@ class FakeAuthService implements IAuthService {
   }) async {
     await fakeNetworkDelay();
     AppSession.authUser = User(
-      id: Utils.getGuid(),
+      id: getGuid(),
       firstName: faker.person.firstName(),
       lastName: faker.person.firstName(),
       recipeCount: random.nextInt(50),

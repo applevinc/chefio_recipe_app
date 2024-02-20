@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:chefio_recipe_app/utils/functions.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';
 
 class UploadRecipeIngredient {
@@ -9,7 +10,7 @@ class UploadRecipeIngredient {
   UploadRecipeIngredient({required this.id, required this.name});
 
   factory UploadRecipeIngredient.create() {
-    return UploadRecipeIngredient(id: Utils.getGuid(), name: '');
+    return UploadRecipeIngredient(id: getGuid(), name: '');
   }
 }
 
@@ -26,7 +27,7 @@ class UploadRecipeCookingStep {
 
   factory UploadRecipeCookingStep.create() {
     return UploadRecipeCookingStep(
-      id: Utils.getGuid(),
+      id: getGuid(),
       description: '',
       photo: null,
     );
