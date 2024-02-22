@@ -8,6 +8,7 @@ import 'package:chefio_recipe_app/common/widgets/image/custom_cached_network_ima
 import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class RecipeGridItem extends StatelessWidget {
@@ -61,7 +62,7 @@ class _RecipeGridItem extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                AppNavigator.to(context, RecipeDetailScreen(recipe));
+                context.push(RecipeDetailScreen.route, extra: recipe);
               },
               child: Hero(
                 tag: recipe.id,

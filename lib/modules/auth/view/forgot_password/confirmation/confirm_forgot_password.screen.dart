@@ -10,6 +10,8 @@ import 'package:provider/provider.dart';
 class ConfirmForgotPasswordScreen extends StatelessWidget {
   const ConfirmForgotPasswordScreen({super.key, required this.email});
 
+  static String route = '/confirm_forgot_password';
+
   final String email;
 
   @override
@@ -29,8 +31,8 @@ class _ConfirmForgotPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const OTPScreen<ConfirmForgotPasswordController>(
-      nextScreen: ResetPasswordScreen(),
+    return OTPScreen<ConfirmForgotPasswordController>(
+      nextRoute: ResetPasswordScreen.route,
     );
   }
 }

@@ -7,6 +7,7 @@ import 'package:chefio_recipe_app/common/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class SearchAppBarComponent extends StatefulWidget {
@@ -41,7 +42,6 @@ class _SearchAppBarComponentState extends State<SearchAppBarComponent> {
 
     final result = await showModalBottomSheet(
       context: context,
-      useRootNavigator: true,
       builder: (context) => SearchFilterSheet(categories: catergories),
     );
 
@@ -70,7 +70,7 @@ class _SearchAppBarComponentState extends State<SearchAppBarComponent> {
                   size: 24.sp,
                 ),
                 onPressed: () {
-                  Navigator.pop(context);
+                  context.pop();
                 },
               ),
               Expanded(

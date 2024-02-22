@@ -17,6 +17,8 @@ import 'package:provider/provider.dart';
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key, required this.user});
 
+  static String route = '/profile';
+
   final User user;
 
   @override

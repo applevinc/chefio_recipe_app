@@ -8,14 +8,16 @@ import 'package:chefio_recipe_app/common/widgets/buttons/custom_button.dart';
 import 'package:chefio_recipe_app/modules/auth/view/sign_in/sign_in.screen.dart';
 import 'package:chefio_recipe_app/modules/auth/view/password_strength/password_strength.component.dart';
 import 'package:chefio_recipe_app/common/widgets/inputs/password_textfield.dart';
-import 'package:chefio_recipe_app/styles/styles.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class ResetPasswordScreen extends StatelessWidget {
   const ResetPasswordScreen({super.key});
+
+  static String route = '/reset_password';
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +49,7 @@ class _ResetPasswordScreenState extends State<_ResetPasswordScreen> {
           return;
         }
 
-        AppNavigator.pushAndRemoveUntil(context, const SignInScreen());
+        context.go(SignInScreen.route);
         Messenger.success(context: context, message: 'Reset password successful');
       } on Failure catch (e) {
         Messenger.error(context: context, message: e.message);

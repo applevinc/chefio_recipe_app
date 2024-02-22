@@ -7,15 +7,18 @@ import 'package:chefio_recipe_app/assets/icons.dart';
 import 'package:chefio_recipe_app/common/models/failure.dart';
 import 'package:chefio_recipe_app/common/widgets/buttons/custom_button.dart';
 import 'package:chefio_recipe_app/common/widgets/inputs/custom_textfield.dart';
-import 'package:chefio_recipe_app/utils/messenger.dart';
-import 'package:chefio_recipe_app/utils/navigator.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   const ForgotPasswordScreen({super.key});
+
+  static String routeName = 'forgot_password';
+
+  static String route = '/$routeName';
 
   @override
   Widget build(BuildContext context) {
@@ -48,10 +51,8 @@ class _ForgotPasswordScreenState extends State<_ForgotPasswordScreen> {
           return;
         }
 
-        AppNavigator.to(
-          context,
-          ConfirmForgotPasswordScreen(email: controller.emailController.text.trim()),
-        );
+        context.push(ConfirmForgotPasswordScreen.route,
+            extra: controller.emailController.text.trim());
       } on Failure catch (e) {
         Messenger.error(context: context, message: e.message);
       }

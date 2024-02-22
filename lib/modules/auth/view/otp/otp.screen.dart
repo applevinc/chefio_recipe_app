@@ -8,12 +8,13 @@ import 'package:chefio_recipe_app/common/widgets/inputs/otp_textfield.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class OTPScreen<T extends OtpController> extends StatefulWidget {
-  const OTPScreen({super.key, required this.nextScreen});
+  const OTPScreen({super.key, required this.nextRoute});
 
-  final Widget nextScreen;
+  final String nextRoute;
 
   @override
   State<OTPScreen<T>> createState() => _OTPScreenState<T>();
@@ -43,7 +44,7 @@ class _OTPScreenState<T extends OtpController> extends State<OTPScreen<T>> {
         return;
       }
 
-      AppNavigator.pushAndRemoveUntil(context, widget.nextScreen);
+      context.go(widget.nextRoute);
       Messenger.success(context: context, message: 'Otp verified');
     } on Failure catch (e) {
       Messenger.error(context: context, message: e.message);

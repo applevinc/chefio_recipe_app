@@ -10,6 +10,8 @@ import 'package:provider/provider.dart';
 class ConfirmSignUpScreen extends StatelessWidget {
   const ConfirmSignUpScreen({super.key, required this.email});
 
+  static String route = '/confirm_signup';
+
   final String email;
 
   @override
@@ -29,6 +31,6 @@ class _ConfirmSignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const OTPScreen<ConfirmSignUpController>(nextScreen: SignInScreen());
+    return OTPScreen<ConfirmSignUpController>(nextRoute: SignInScreen.route);
   }
 }

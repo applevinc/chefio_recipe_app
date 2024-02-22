@@ -2,11 +2,11 @@
 
 import 'package:camera/camera.dart';
 import 'package:chefio_recipe_app/modules/scan_food/camera/scan_food_camera_viewmodel.dart';
-import 'package:chefio_recipe_app/modules/scan_food/results/scan_food_results_screen.dart';
 
 import 'package:chefio_recipe_app/common/widgets/others/error_view.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class ScanCameraScreen extends StatelessWidget {
@@ -53,14 +53,14 @@ class _ScanCameraScreenState extends State<_ScanCameraScreen> {
 
       if (image == null) return;
 
-      Navigator.pop(context);
-      AppNavigator.to(
-        context,
-        ScanFoodResultsScreen(
-          image: image,
-          type: viewModel.scanOption,
-        ),
-      );
+      context.pop();
+      //  AppNavigator.to(
+      //    context,
+      //    ScanFoodResultsScreen(
+      //      image: image,
+      //      type: viewModel.scanOption,
+      //    ),
+      //  );
     } catch (e) {
       Messenger.error(context: context, message: 'Failed to take picture');
     }
