@@ -1,5 +1,6 @@
 import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/modules/auth/domain/usecases/i_forgot_password.repository.dart';
+import 'package:chefio_recipe_app/modules/auth/view/forgot_password/forgot_password.screen.dart';
 import 'package:chefio_recipe_app/modules/auth/view/forgot_password/reset_password/reset_password.controller.dart';
 import 'package:chefio_recipe_app/modules/auth/widgets/auth_view.dart';
 import 'package:chefio_recipe_app/common/models/failure.dart';
@@ -12,10 +13,13 @@ import 'package:chefio_recipe_app/styles/styles.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class ResetPasswordScreen extends StatelessWidget {
   const ResetPasswordScreen({super.key});
+
+  static String route = '/reset_password';
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +51,7 @@ class _ResetPasswordScreenState extends State<_ResetPasswordScreen> {
           return;
         }
 
-        AppNavigator.pushAndRemoveUntil(context, const SignInScreen());
+        context.go(SignInScreen.route);
         Messenger.success(context: context, message: 'Reset password successful');
       } on Failure catch (e) {
         Messenger.error(context: context, message: e.message);

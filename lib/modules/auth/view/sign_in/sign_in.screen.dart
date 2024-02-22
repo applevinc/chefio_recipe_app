@@ -15,10 +15,13 @@ import 'package:chefio_recipe_app/common/widgets/inputs/password_textfield.dart'
 import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
+
+  static String route = '/sign_in';
 
   @override
   Widget build(BuildContext context) {
@@ -128,7 +131,7 @@ class _SignInScreenState extends State<_SignInScreen> {
               SizedBox(height: 24.h),
               GestureDetector(
                 onTap: () {
-                  AppNavigator.to(context, const SignUpScreen());
+                  context.push(SignUpScreen.route);
                 },
                 child: Align(
                   alignment: Alignment.center,

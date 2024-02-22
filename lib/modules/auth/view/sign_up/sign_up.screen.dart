@@ -17,10 +17,15 @@ import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
+
+  static String routeName = 'sign_up';
+
+  static String route = '/$routeName';
 
   @override
   Widget build(BuildContext context) {
@@ -53,10 +58,8 @@ class _SignUpScreenState extends State<_SignUpScreen> {
           return;
         }
 
-        AppNavigator.to(
-          context,
-          ConfirmSignUpScreen(email: controller.emailController.text.trim()),
-        );
+        context.push(ConfirmSignUpScreen.route,
+            extra: controller.emailController.text.trim());
       } on Failure catch (e) {
         Messenger.error(context: context, message: e.message);
       }
