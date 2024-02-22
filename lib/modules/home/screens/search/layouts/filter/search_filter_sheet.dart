@@ -6,6 +6,7 @@ import 'package:chefio_recipe_app/modules/home/screens/search/widgets/circular_b
 import 'package:chefio_recipe_app/styles/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class SearchFilterSheet extends StatelessWidget {
@@ -28,7 +29,7 @@ class _SearchFilterSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 32.w, bottom: 37.h),
+      padding: EdgeInsets.only(top: 32.w),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,14 +43,14 @@ class _SearchFilterSheet extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 32.h),
+          SizedBox(height: 30.h),
           const SearchFilterCategoriesView(),
-          SizedBox(height: 33.h),
+          SizedBox(height: 30.h),
           Padding(
             padding: AppPadding.symetricHorizontalOnly,
             child: const CookingTimeView<SearchFilterViewModel>(),
           ),
-          SizedBox(height: 52.h),
+          SizedBox(height: 30.h),
           Padding(
             padding: AppPadding.symetricHorizontalOnly,
             child: Row(
@@ -59,7 +60,7 @@ class _SearchFilterSheet extends StatelessWidget {
                   bgColor: AppColors.form,
                   textColor: AppColors.mainText,
                   onPressed: () {
-                    Navigator.pop(context);
+                    context.pop();
                   },
                 ),
                 SizedBox(width: 15.w),
@@ -70,12 +71,13 @@ class _SearchFilterSheet extends StatelessWidget {
                   onPressed: () {
                     final viewModel = context.read<SearchFilterViewModel>();
                     final searchFilterRequest = viewModel.createSearchFilterRequest();
-                    Navigator.pop(context, searchFilterRequest);
+                    context.pop(searchFilterRequest);
                   },
                 ),
               ],
             ),
           ),
+          SizedBox(height: 30.h),
         ],
       ),
     );

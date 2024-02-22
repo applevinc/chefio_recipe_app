@@ -14,10 +14,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class RecipeDetailScreen extends StatelessWidget {
   const RecipeDetailScreen(this.recipe, {super.key});
+
+  static String route = '/recipe_detail';
 
   final Recipe recipe;
 
@@ -64,7 +67,7 @@ class _RecipeDetailScreen extends StatelessWidget {
                 left: 24.w,
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.pop(context);
+                    context.pop();
                   },
                   child: Container(
                     height: 56.h,
@@ -175,7 +178,7 @@ class _Sheet extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        AppNavigator.to(context, ProfileScreen(user: recipe.user));
+                        context.push(ProfileScreen.route, extra: recipe.user);
                       },
                       child: Row(
                         children: [

@@ -8,16 +8,18 @@ import 'package:chefio_recipe_app/modules/home/screens/search/search_screen.dart
 import 'package:chefio_recipe_app/assets/assets.dart';
 import 'package:chefio_recipe_app/common/services/recipe/i_recipe_service.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
-import 'package:chefio_recipe_app/utils/navigator.dart';
 
 import 'package:chefio_recipe_app/common/widgets/inputs/custom_textfield.dart';
 import 'package:chefio_recipe_app/common/widgets/others/error_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
+
+  static String route = '/home';
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +92,7 @@ class _HomeScreenState extends State<_HomeScreen> {
                     ),
                     fillColor: AppColors.form,
                     onTap: () {
-                      AppNavigator.to(context, const SearchScreen());
+                      context.push(SearchScreen.route);
                     },
                   ),
                 ),

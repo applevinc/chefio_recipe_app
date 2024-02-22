@@ -103,7 +103,7 @@ class _UploadRecipeStepOneViewState extends State<UploadRecipeStepOneView> {
             ),
             SizedBox(height: 24.h),
             const CookingTimeView<UploadRecipeViewModel>(),
-            SizedBox(height: 60.h),
+            SizedBox(height: 30.h),
             AppButton(
               label: 'NEXT',
               onPressed: moveToNext,

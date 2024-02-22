@@ -1,4 +1,4 @@
-import 'package:chefio_recipe_app/common/views/dashboard/dashboard_view.dart';
+import 'package:chefio_recipe_app/common/views/dashboard/dashboard.component.dart';
 import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/modules/auth/domain/usecases/i_sign_in.repository.dart';
 import 'package:chefio_recipe_app/modules/auth/view/sign_in/sign_in.controller.dart';
@@ -53,7 +53,7 @@ class _SignInScreenState extends State<_SignInScreen> {
           return;
         }
 
-        AppNavigator.pushAndRemoveUntil(context, const DashBoardView());
+        context.go(DashBoardComponent.route);
         Messenger.success(context: context, message: 'Login successful');
       } on Failure catch (e) {
         Messenger.error(context: context, message: e.message);
@@ -94,7 +94,7 @@ class _SignInScreenState extends State<_SignInScreen> {
               SizedBox(height: 24.h),
               GestureDetector(
                 onTap: () {
-                  AppNavigator.to(context, const ForgotPasswordScreen());
+                  context.push(ForgotPasswordScreen.route);
                 },
                 child: Align(
                   alignment: Alignment.centerRight,

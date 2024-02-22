@@ -1,11 +1,11 @@
 import 'package:chefio_recipe_app/assets/images.dart';
-import 'package:chefio_recipe_app/common/views/dashboard/dashboard_view.dart';
+import 'package:chefio_recipe_app/common/views/dashboard/dashboard.component.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
-import 'package:chefio_recipe_app/utils/navigator.dart';
 
 import 'package:chefio_recipe_app/common/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class UploadRecipeSuccessDialog extends StatelessWidget {
   const UploadRecipeSuccessDialog({super.key});
@@ -57,7 +57,7 @@ class UploadRecipeSuccessDialog extends StatelessWidget {
         AppButton(
           label: 'Back to Home',
           onPressed: () {
-            AppNavigator.pushAndRemoveUntil(context, const DashBoardView());
+            context.go(DashBoardComponent.route);
           },
         ),
       ],

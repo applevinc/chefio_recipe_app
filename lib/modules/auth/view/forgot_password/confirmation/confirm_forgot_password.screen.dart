@@ -1,7 +1,6 @@
 import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/modules/auth/domain/usecases/i_forgot_password.repository.dart';
 import 'package:chefio_recipe_app/modules/auth/view/forgot_password/confirmation/confirm_forgot_password.controller.dart';
-import 'package:chefio_recipe_app/modules/auth/view/forgot_password/forgot_password.screen.dart';
 import 'package:chefio_recipe_app/modules/auth/view/forgot_password/reset_password/reset_password.screen.dart';
 import 'package:chefio_recipe_app/modules/auth/view/otp/otp.screen.dart';
 

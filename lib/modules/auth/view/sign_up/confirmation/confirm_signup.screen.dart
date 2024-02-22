@@ -3,7 +3,6 @@ import 'package:chefio_recipe_app/modules/auth/domain/usecases/i_sign_up.reposit
 import 'package:chefio_recipe_app/modules/auth/view/sign_in/sign_in.screen.dart';
 import 'package:chefio_recipe_app/modules/auth/view/sign_up/confirmation/confirm_signup.controller.dart';
 import 'package:chefio_recipe_app/modules/auth/view/otp/otp.screen.dart';
-import 'package:chefio_recipe_app/modules/auth/view/sign_up/sign_up.screen.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

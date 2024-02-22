@@ -1,6 +1,5 @@
 import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/modules/auth/domain/usecases/i_forgot_password.repository.dart';
-import 'package:chefio_recipe_app/modules/auth/view/forgot_password/forgot_password.screen.dart';
 import 'package:chefio_recipe_app/modules/auth/view/forgot_password/reset_password/reset_password.controller.dart';
 import 'package:chefio_recipe_app/modules/auth/widgets/auth_view.dart';
 import 'package:chefio_recipe_app/common/models/failure.dart';
@@ -9,7 +8,6 @@ import 'package:chefio_recipe_app/common/widgets/buttons/custom_button.dart';
 import 'package:chefio_recipe_app/modules/auth/view/sign_in/sign_in.screen.dart';
 import 'package:chefio_recipe_app/modules/auth/view/password_strength/password_strength.component.dart';
 import 'package:chefio_recipe_app/common/widgets/inputs/password_textfield.dart';
-import 'package:chefio_recipe_app/styles/styles.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
