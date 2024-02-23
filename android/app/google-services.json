@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "780658103488",
+    "project_id": "chefio-87dbf",
+    "storage_bucket": "chefio-87dbf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:780658103488:android:d659f97be86f1a81588925",
+        "android_client_info": {
+          "package_name": "com.chefio.mobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVVR2OEfces3JE3Dd8UBMkcqkR9LC-Tyo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
