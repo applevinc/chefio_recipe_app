@@ -1,5 +1,5 @@
-import 'package:chefio_recipe_app/common/models/category.dart';
+import 'package:chefio_recipe_app/modules/recipe/domain/entities/category.dart';
 
 abstract class ICategoryService {
-  Future<List<Category>> getAll();
+  Future<List<RecipeCategory>> getAll();
 }

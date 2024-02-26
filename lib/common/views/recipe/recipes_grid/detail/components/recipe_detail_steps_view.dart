@@ -1,4 +1,4 @@
-import 'package:chefio_recipe_app/common/models/recipe.dart';
+import 'package:chefio_recipe_app/modules/recipe/domain/entities/recipe.dart';
 import 'package:chefio_recipe_app/common/views/recipe/recipes_grid/detail/recipe_detail_viewmodel.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
 import 'package:chefio_recipe_app/common/widgets/image/custom_cached_network_image.dart';

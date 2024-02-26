@@ -1,6 +1,6 @@
-import 'package:chefio_recipe_app/common/models/category.dart';
+import 'package:chefio_recipe_app/modules/recipe/domain/entities/category.dart';
 import 'package:chefio_recipe_app/common/services/category/i_category_service.dart';
-import 'package:chefio_recipe_app/common/models/recipe.dart';
+import 'package:chefio_recipe_app/modules/recipe/domain/entities/recipe.dart';
 import 'package:chefio_recipe_app/common/services/recipe/i_recipe_service.dart';
 import 'package:chefio_recipe_app/common/models/failure.dart';
 import 'package:chefio_recipe_app/utils/base.controller.dart';
@@ -16,18 +16,18 @@ class HomeViewModel extends BaseController {
       : _recipeService = recipeService,
         _categoryService = categoryService;
 
-  final List<Category> _categories = [
-    Category(id: 'all', name: 'All'),
+  final List<RecipeCategory> _categories = [
+    RecipeCategory(id: 'all', name: 'All'),
   ];
-  List<Category> get categories => _categories;
+  List<RecipeCategory> get categories => _categories;
 
-  Category _selectedCategory = Category(id: 'all', name: 'All');
-  Category get selectedCategory => _selectedCategory;
+  RecipeCategory _selectedCategory = RecipeCategory(id: 'all', name: 'All');
+  RecipeCategory get selectedCategory => _selectedCategory;
 
   List<Recipe> _recipes = [];
   List<Recipe> get recipes => _recipes;
 
-  void selectCategory(Category category) {
+  void selectCategory(RecipeCategory category) {
     _selectedCategory = category;
     getRecipesForCategory(category);
     notifyListeners();
@@ -48,7 +48,7 @@ class HomeViewModel extends BaseController {
   }
 
   Future<void> _getCategories() async {
-    final List<Category> results = await _categoryService.getAll();
+    final List<RecipeCategory> results = await _categoryService.getAll();
 
     for (var element in results) {
       _categories.add(element);
@@ -59,7 +59,7 @@ class HomeViewModel extends BaseController {
     getRecipesForCategory(selectedCategory);
   }
 
-  void getRecipesForCategory(Category category) async {
+  void getRecipesForCategory(RecipeCategory category) async {
     try {
       setBusyForObject(HomeLoadingState.recipes, true);
       await _getRecipes(category);
@@ -74,7 +74,7 @@ class HomeViewModel extends BaseController {
     getRecipesForCategory(selectedCategory);
   }
 
-  Future<void> _getRecipes(Category category) async {
+  Future<void> _getRecipes(RecipeCategory category) async {
     clearErrors();
     _recipes = await _recipeService.getRecipes(category: category);
   }

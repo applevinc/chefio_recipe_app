@@ -1,12 +1,12 @@
-import 'package:chefio_recipe_app/common/models/category.dart';
-import 'package:chefio_recipe_app/common/models/recipe.dart';
+import 'package:chefio_recipe_app/modules/recipe/domain/entities/category.dart';
+import 'package:chefio_recipe_app/modules/recipe/domain/entities/recipe.dart';
 import 'package:chefio_recipe_app/common/services/recipe/i_recipe_service.dart';
 import 'package:chefio_recipe_app/common/models/user.dart';
 import 'package:chefio_recipe_app/utils/functions.dart';
 
 class FakeRecipeService implements IRecipeService {
   @override
-  Future<List<Recipe>> getRecipes({required Category category}) async {
+  Future<List<Recipe>> getRecipes({required RecipeCategory category}) async {
     await fakeNetworkDelay();
     final List<CookingStep> steps = List.generate(
       2,

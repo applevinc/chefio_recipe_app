@@ -1,18 +1,19 @@
 import 'package:chefio_recipe_app/common/views/cooking_time/cooking_time_viewmodel.dart';
 import 'package:chefio_recipe_app/modules/home/models/search_filter_request.dart';
-import 'package:chefio_recipe_app/common/models/category.dart';
+import 'package:chefio_recipe_app/modules/recipe/domain/entities/category.dart';
 
 class SearchFilterViewModel extends CookingTimeViewModel {
-  final List<Category> _categories;
+  final List<RecipeCategory> _categories;
 
-  SearchFilterViewModel({required List<Category> categories}) : _categories = categories;
+  SearchFilterViewModel({required List<RecipeCategory> categories})
+      : _categories = categories;
 
-  List<Category> get categories => _categories;
+  List<RecipeCategory> get categories => _categories;
 
-  Category _selectedCategory = Category(id: 'all', name: 'All');
-  Category get selectedCategory => _selectedCategory;
+  RecipeCategory _selectedCategory = RecipeCategory(id: 'all', name: 'All');
+  RecipeCategory get selectedCategory => _selectedCategory;
 
-  void selectCategory(Category category) {
+  void selectCategory(RecipeCategory category) {
     _selectedCategory = category;
     notifyListeners();
   }

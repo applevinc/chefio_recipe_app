@@ -1,4 +1,4 @@
-import 'package:chefio_recipe_app/common/models/category.dart';
+import 'package:chefio_recipe_app/modules/recipe/domain/entities/category.dart';
 import 'package:chefio_recipe_app/common/views/cooking_time/cooking_time_view.dart';
 import 'package:chefio_recipe_app/modules/home/screens/search/layouts/filter/components/search_filter_categories_view.dart';
 import 'package:chefio_recipe_app/modules/home/screens/search/layouts/filter/search_filter_viewmodel.dart';
@@ -12,7 +12,7 @@ import 'package:provider/provider.dart';
 class SearchFilterSheet extends StatelessWidget {
   const SearchFilterSheet({super.key, required this.categories});
 
-  final List<Category> categories;
+  final List<RecipeCategory> categories;
 
   @override
   Widget build(BuildContext context) {
