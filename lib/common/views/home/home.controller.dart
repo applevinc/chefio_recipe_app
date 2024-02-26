@@ -6,27 +6,29 @@ import 'package:chefio_recipe_app/utils/base.controller.dart';
 
 enum HomeLoadingState { init, recipes }
 
-class HomeViewModel extends BaseController {
-  final IRecipeRepository _recipeService;
+class HomeController extends BaseController {
+  HomeController({required IRecipeRepository recipeRepository})
+      : _recipeRepository = recipeRepository;
 
-  HomeViewModel({required IRecipeRepository recipeService})
-      : _recipeService = recipeService;
+  final IRecipeRepository _recipeRepository;
 
   final List<RecipeCategory> _categories = [
     RecipeCategory(id: 'all', name: 'All'),
   ];
+
   List<RecipeCategory> get categories => _categories;
 
   RecipeCategory _selectedCategory = RecipeCategory(id: 'all', name: 'All');
+
   RecipeCategory get selectedCategory => _selectedCategory;
 
   List<Recipe> _recipes = [];
+
   List<Recipe> get recipes => _recipes;
 
   void selectCategory(RecipeCategory category) {
     _selectedCategory = category;
     getRecipesForCategory(category);
-    notifyListeners();
   }
 
   Future<void> init() async {
@@ -44,7 +46,7 @@ class HomeViewModel extends BaseController {
   }
 
   Future<void> _getCategories() async {
-    final List<RecipeCategory> results = await _recipeService.getAllCategories();
+    final List<RecipeCategory> results = await _recipeRepository.getAllCategories();
 
     for (var element in results) {
       _categories.add(element);
@@ -72,6 +74,6 @@ class HomeViewModel extends BaseController {
 
   Future<void> _getRecipes(RecipeCategory category) async {
     clearErrors();
-    _recipes = await _recipeService.getRecipes(category: category);
+    _recipes = await _recipeRepository.getRecipes(category: category);
   }
 }

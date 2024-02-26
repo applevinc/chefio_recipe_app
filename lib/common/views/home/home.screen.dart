@@ -1,8 +1,8 @@
 import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/recipes_grid.dart';
 import 'package:chefio_recipe_app/config/locator/locator.dart';
-import 'package:chefio_recipe_app/modules/home/screens/components/home_categories_component.dart';
-import 'package:chefio_recipe_app/modules/home/screens/home.viewmodel.dart';
-import 'package:chefio_recipe_app/modules/home/screens/search/search_screen.dart';
+import 'package:chefio_recipe_app/common/views/home/components/home_categories_component.dart';
+import 'package:chefio_recipe_app/common/views/home/home.controller.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/search/search_recipe.screen.dart';
 
 import 'package:chefio_recipe_app/assets/assets.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_repository.dart';
@@ -15,50 +15,27 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   static String route = '/home';
 
   @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => HomeViewModel(
-        recipeService: locator<IRecipeRepository>(),
-      ),
-      child: const _HomeScreen(),
-    );
-  }
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreen extends StatefulWidget {
-  const _HomeScreen();
-
-  @override
-  State<_HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<_HomeScreen> {
-  late final TextEditingController searchController;
-
+class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    searchController = TextEditingController();
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       init();
     });
   }
 
-  @override
-  void dispose() {
-    searchController.dispose();
-    super.dispose();
-  }
-
   void init() async {
-    context.read<HomeViewModel>().init();
+    context.read<HomeController>().init();
   }
 
   @override
@@ -80,7 +57,6 @@ class _HomeScreenState extends State<_HomeScreen> {
                 child: Material(
                   type: MaterialType.transparency,
                   child: CustomTextField(
-                    controller: searchController,
                     prefixIcon: const TextFieldIcon(icon: AppIcons.search),
                     hintText: 'Search',
                     readOnly: true,
@@ -90,7 +66,7 @@ class _HomeScreenState extends State<_HomeScreen> {
                     ),
                     fillColor: AppColors.form,
                     onTap: () {
-                      context.push(SearchScreen.route);
+                      context.push(SearchRecipeScreen.route);
                     },
                   ),
                 ),
@@ -101,19 +77,19 @@ class _HomeScreenState extends State<_HomeScreen> {
               height: 8.h,
               color: const Color(0xFFF4F5F7),
             ),
-            Consumer<HomeViewModel>(
-              builder: (context, viewmodel, _) {
-                if (viewmodel.hasError) {
+            Consumer<HomeController>(
+              builder: (context, controller, _) {
+                if (controller.hasError) {
                   return ErrorView(
-                    error: viewmodel.modelError,
+                    error: controller.modelError,
                     refetch: init,
                   );
                 }
 
                 return RecipesGrid(
-                  recipes: viewmodel.recipes,
-                  isBusy: viewmodel.busy(HomeLoadingState.recipes),
-                  onRefresh: viewmodel.refreshRecipes,
+                  recipes: controller.recipes,
+                  isBusy: controller.busy(HomeLoadingState.recipes),
+                  onRefresh: controller.refreshRecipes,
                 );
               },
             ),

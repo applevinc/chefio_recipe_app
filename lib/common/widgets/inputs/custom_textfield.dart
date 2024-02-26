@@ -13,7 +13,7 @@ class CustomTextField extends StatelessWidget {
   final TextInputType? textInputType;
   final bool obscure;
   final bool? isPasswordTextField;
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final int? inputLimit;
   final List<TextInputFormatter>? inputFormatters;
   final bool readOnly;
@@ -44,7 +44,7 @@ class CustomTextField extends StatelessWidget {
     this.textInputType,
     this.obscure = false,
     this.isPasswordTextField,
-    required this.controller,
+     this.controller,
     this.inputLimit,
     this.inputFormatters,
     this.readOnly = false,

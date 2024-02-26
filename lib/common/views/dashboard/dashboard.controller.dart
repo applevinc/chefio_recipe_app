@@ -1,6 +1,6 @@
 import 'package:chefio_recipe_app/modules/recipe/view/upload_recipe/upload_recipe_screen.dart';
 import 'package:chefio_recipe_app/config/app_session.dart';
-import 'package:chefio_recipe_app/modules/home/screens/home.screen.dart';
+import 'package:chefio_recipe_app/common/views/home/home.screen.dart';
 import 'package:chefio_recipe_app/modules/notification/notification.dart';
 import 'package:chefio_recipe_app/modules/profile/screens/profile_screen.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';

@@ -1,4 +1,4 @@
-import 'package:chefio_recipe_app/modules/home/screens/home.viewmodel.dart';
+import 'package:chefio_recipe_app/common/views/home/home.controller.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
 import 'package:chefio_recipe_app/common/widgets/others/category_item.dart';
 import 'package:chefio_recipe_app/common/widgets/others/custom_shimmer.dart';
@@ -11,7 +11,7 @@ class HomeCategoriesComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewmodel = context.watch<HomeViewModel>();
+    final viewmodel = context.watch<HomeController>();
     final selectedCategory = viewmodel.selectedCategory;
     final categories = viewmodel.categories;
 

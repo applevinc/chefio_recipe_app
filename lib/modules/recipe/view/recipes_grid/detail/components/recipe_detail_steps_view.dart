@@ -1,5 +1,5 @@
 import 'package:chefio_recipe_app/modules/recipe/domain/entities/recipe.dart';
-import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/detail/recipe_detail_viewmodel.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/detail/recipe_detail.controller.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
 import 'package:chefio_recipe_app/common/widgets/image/custom_cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +11,7 @@ class RecipeDetailStepsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<CookingStep> steps = context.read<RecipeDetailViewModel>().recipe.steps;
+    final List<CookingStep> steps = context.read<RecipeDetailController>().recipe.steps;
 
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 16.h),

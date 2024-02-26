@@ -1,12 +1,12 @@
-import 'package:chefio_recipe_app/modules/home/screens/search/layouts/filter/search_filter_viewmodel.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/search/sheets/filter/search_filter.controller.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
 import 'package:chefio_recipe_app/common/widgets/others/category_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-class SearchFilterCategoriesView extends StatelessWidget {
-  const SearchFilterCategoriesView({super.key});
+class SearchFilterCategoriesComponent extends StatelessWidget {
+  const SearchFilterCategoriesComponent({super.key});
 
   @override
   Widget build(BuildContext context) {

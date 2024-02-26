@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:chefio_recipe_app/modules/recipe/domain/entities/recipe.dart';
-import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/detail/recipe_detail_screen.dart';
-import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/recipe-grid-item/recipe_grid_item_viewmodel.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/detail/recipe_detail.screen.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/recipe-grid-item/recipe_grid_item.controller.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
 
 import 'package:chefio_recipe_app/common/widgets/image/custom_cached_network_image.dart';
@@ -19,7 +19,7 @@ class RecipeGridItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => RecipeGridItemViewModel(recipe),
+      create: (_) => RecipeGridItemController(recipe),
       child: const _RecipeGridItem(),
     );
   }
@@ -30,7 +30,7 @@ class _RecipeGridItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final recipe = context.read<RecipeGridItemViewModel>().recipe;
+    final recipe = context.read<RecipeGridItemController>().recipe;
     final user = recipe.user;
 
     return Column(
@@ -48,7 +48,7 @@ class _RecipeGridItem extends StatelessWidget {
             Expanded(
               child: Text(
                 user.fullName.toTitleCase,
-                maxLines: 2,
+                maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: AppText.bold500(context).copyWith(
                   fontSize: 12.sp,

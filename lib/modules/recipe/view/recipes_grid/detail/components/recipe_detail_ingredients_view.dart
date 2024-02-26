@@ -1,4 +1,4 @@
-import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/detail/recipe_detail_viewmodel.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/detail/recipe_detail.controller.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,7 +9,7 @@ class RecipeDetailIngredientsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ingredients = context.read<RecipeDetailViewModel>().recipe.ingredients;
+    final ingredients = context.read<RecipeDetailController>().recipe.ingredients;
 
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 16.h),

@@ -1,7 +1,7 @@
-import 'package:chefio_recipe_app/modules/home/models/search_filter_request.dart';
-import 'package:chefio_recipe_app/modules/home/models/search_history.dart';
-import 'package:chefio_recipe_app/modules/home/models/search_suggestion.dart';
-import 'package:chefio_recipe_app/modules/home/services/i_search_service.dart';
+import 'package:chefio_recipe_app/modules/recipe/domain/entities/search_filter_request.dart';
+import 'package:chefio_recipe_app/modules/recipe/domain/entities/search_history.dart';
+import 'package:chefio_recipe_app/modules/recipe/domain/entities/search_suggestion.dart';
+import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_search_recipe_repository.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/entities/recipe_category.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/entities/recipe.dart';
 import 'package:chefio_recipe_app/common/models/failure.dart';
@@ -12,28 +12,33 @@ enum SearchLoadingState { init, search }
 
 enum SearchErrorState { init, search }
 
-class SearchViewModel extends BaseController {
-  final ISearchService _searchService;
-  final IRecipeRepository _recipeRepository;
-
-  SearchViewModel({
-    required ISearchService searchService,
+class SearchRecipeController extends BaseController {
+  SearchRecipeController({
+    required ISearchRecipeRepository searchService,
     required IRecipeRepository recipeRepository,
   })  : _recipeRepository = recipeRepository,
         _searchService = searchService;
 
+  final ISearchRecipeRepository _searchService;
+
+  final IRecipeRepository _recipeRepository;
+
   List<Recipe> _recipes = [];
+
   List<Recipe> get recipes => _recipes;
 
   List<SearchHistory> _searchHistory = [];
+
   List<SearchHistory> get searchHistories => _searchHistory;
 
   List<SearchSuggestion> _searchSuggestion = [];
+
   List<SearchSuggestion> get searchSuggestions => _searchSuggestion;
 
   final List<RecipeCategory> _categories = [
     RecipeCategory(id: 'all', name: 'All'),
   ];
+
   List<RecipeCategory> get categories => _categories;
 
   Future<void> init() async {

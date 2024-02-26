@@ -1,6 +1,6 @@
-import 'package:chefio_recipe_app/modules/home/models/search_filter_request.dart';
-import 'package:chefio_recipe_app/modules/home/screens/search/layouts/filter/search_filter_sheet.dart';
-import 'package:chefio_recipe_app/modules/home/screens/search/search_viewmodel.dart';
+import 'package:chefio_recipe_app/modules/recipe/domain/entities/search_filter_request.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/search/sheets/filter/search_filter.sheet.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/search/search_recipe.controller.dart';
 import 'package:chefio_recipe_app/assets/icons.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
 import 'package:chefio_recipe_app/common/widgets/widgets.dart';
@@ -33,7 +33,7 @@ class _SearchAppBarComponentState extends State<SearchAppBarComponent> {
   }
 
   void onTapFilterIcon() async {
-    final viewModel = context.read<SearchViewModel>();
+    final viewModel = context.read<SearchRecipeController>();
     final catergories = viewModel.categories;
 
     if (catergories.isEmpty) {
@@ -54,7 +54,7 @@ class _SearchAppBarComponentState extends State<SearchAppBarComponent> {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<SearchViewModel>();
+    final viewModel = context.watch<SearchRecipeController>();
 
     return Column(
       children: [

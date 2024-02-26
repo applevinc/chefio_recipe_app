@@ -1,17 +1,20 @@
-import 'package:chefio_recipe_app/modules/home/models/search_suggestion.dart';
-import 'package:chefio_recipe_app/modules/home/screens/search/search_viewmodel.dart';
+import 'package:chefio_recipe_app/modules/recipe/domain/entities/search_suggestion.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/search/search_recipe.controller.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-class SearchSuggestionView extends StatelessWidget {
-  const SearchSuggestionView({super.key});
+class SearchSuggestionsComponent extends StatelessWidget {
+  const SearchSuggestionsComponent({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final List<SearchSuggestion> searchSuggestions =
-        context.read<SearchViewModel>().searchSuggestions;
+    final searchSuggestions = context.read<SearchRecipeController>().searchSuggestions;
+
+    if (searchSuggestions.isEmpty) {
+      return const SizedBox.shrink();
+    }
 
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 24.h, horizontal: 24.w),

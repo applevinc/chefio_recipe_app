@@ -1,10 +1,10 @@
 import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/recipes_grid.dart';
 import 'package:chefio_recipe_app/config/locator/locator.dart';
-import 'package:chefio_recipe_app/modules/home/screens/search/components/search_appbar_component.dart';
-import 'package:chefio_recipe_app/modules/home/screens/search/components/search_history_view.dart';
-import 'package:chefio_recipe_app/modules/home/screens/search/components/search_suggestions_view.dart';
-import 'package:chefio_recipe_app/modules/home/screens/search/search_viewmodel.dart';
-import 'package:chefio_recipe_app/modules/home/services/i_search_service.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/search/components/search_appbar.component.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/search/components/search_history.component.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/search/components/search_suggestions.component.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/search/search_recipe.controller.dart';
+import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_search_recipe_repository.dart';
 import 'package:chefio_recipe_app/common/widgets/others/custom_shimmer.dart';
 import 'package:chefio_recipe_app/common/widgets/others/error_view.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_repository.dart';
@@ -12,31 +12,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-class SearchScreen extends StatelessWidget {
-  const SearchScreen({super.key});
+class SearchRecipeScreen extends StatelessWidget {
+  const SearchRecipeScreen({super.key});
 
   static String route = '/search';
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => SearchViewModel(
-        searchService: locator<ISearchService>(),
+      create: (_) => SearchRecipeController(
+        searchService: locator<ISearchRecipeRepository>(),
         recipeRepository: locator<IRecipeRepository>(),
       ),
-      child: const _SearchScreen(),
+      child: const _SearchRecipeScreen(),
     );
   }
 }
 
-class _SearchScreen extends StatefulWidget {
-  const _SearchScreen();
+class _SearchRecipeScreen extends StatefulWidget {
+  const _SearchRecipeScreen();
 
   @override
-  State<_SearchScreen> createState() => _SearchScreenState();
+  State<_SearchRecipeScreen> createState() => _SearchRecipeScreenState();
 }
 
-class _SearchScreenState extends State<_SearchScreen> {
+class _SearchRecipeScreenState extends State<_SearchRecipeScreen> {
   @override
   void initState() {
     super.initState();
@@ -47,7 +47,7 @@ class _SearchScreenState extends State<_SearchScreen> {
   }
 
   void init() async {
-    await context.read<SearchViewModel>().init();
+    await context.read<SearchRecipeController>().init();
   }
 
   @override
@@ -59,38 +59,38 @@ class _SearchScreenState extends State<_SearchScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SearchAppBarComponent(),
-            Consumer<SearchViewModel>(
-              builder: (context, viewmodel, _) {
-                if (viewmodel.busy(SearchLoadingState.init)) {
+            Consumer<SearchRecipeController>(
+              builder: (context, controller, _) {
+                if (controller.busy(SearchLoadingState.init)) {
                   return const SearchShimmerView();
                 }
 
-                if (viewmodel.busy(SearchLoadingState.search)) {
+                if (controller.busy(SearchLoadingState.search)) {
                   return const RecipesGridShimmer(isExpanded: true);
                 }
 
-                if (viewmodel.hasErrorForKey(SearchErrorState.init)) {
+                if (controller.hasErrorForKey(SearchErrorState.init)) {
                   return ErrorView(
-                    error: viewmodel.error(SearchErrorState.init),
+                    error: controller.error(SearchErrorState.init),
                     refetch: init,
                   );
                 }
 
-                final recipes = viewmodel.recipes;
+                final recipes = controller.recipes;
 
                 if (recipes.isEmpty) {
                   return const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SearchHistoryView(),
-                      SearchSuggestionView(),
+                      SearchHistoryComponent(),
+                      SearchSuggestionsComponent(),
                     ],
                   );
                 }
 
                 return RecipesGrid(
-                  recipes: viewmodel.recipes,
-                  isBusy: viewmodel.busy(SearchLoadingState.search),
+                  recipes: controller.recipes,
+                  isBusy: controller.busy(SearchLoadingState.search),
                   canRefetch: false,
                 );
               },
