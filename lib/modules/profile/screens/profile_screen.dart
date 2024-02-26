@@ -1,9 +1,9 @@
-import 'package:chefio_recipe_app/common/services/recipe/i_recipe_service.dart';
 import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/modules/profile/screens/profile_viewmodel.dart';
 import 'package:chefio_recipe_app/modules/profile/screens/tabs/profile_recipes_tab_view.dart';
 import 'package:chefio_recipe_app/modules/profile/screens/tabs/profile_recipes_viewmodel.dart';
 import 'package:chefio_recipe_app/common/models/user.dart';
+import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_repository.dart';
 import 'package:chefio_recipe_app/styles/text.dart';
 import 'package:chefio_recipe_app/common/widgets/image/custom_cached_network_image.dart';
 import 'package:chefio_recipe_app/common/widgets/others/custom_tabbar.dart';
@@ -122,13 +122,13 @@ class _ProfileScreen extends StatelessWidget {
                 ChangeNotifierProvider(
                   create: (_) => UserRecipesViewModel(
                     user: user,
-                    recipeService: locator<IRecipeService>(),
+                    recipeRepository: locator<IRecipeRepository>(),
                   ),
                 ),
                 ChangeNotifierProvider(
                   create: (_) => UserLikedRecipesViewModel(
                     user: user,
-                    recipeService: locator<IRecipeService>(),
+                    recipeRepository: locator<IRecipeRepository>(),
                   ),
                 ),
               ],

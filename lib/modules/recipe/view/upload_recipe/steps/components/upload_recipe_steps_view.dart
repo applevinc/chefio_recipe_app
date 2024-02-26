@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:chefio_recipe_app/common/models/upload_recipe.dart';
 import 'package:chefio_recipe_app/assets/assets.dart';
-import 'package:chefio_recipe_app/common/views/recipe/upload_recipe/upload_recipe_viewmodel.dart';
-import 'package:chefio_recipe_app/common/views/recipe/widgets/upload_recipe_add_button.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/upload_recipe/upload_recipe_viewmodel.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/widgets/upload_recipe_add_button.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
 import 'package:chefio_recipe_app/common/widgets/widgets.dart';
 import 'package:flutter/material.dart';

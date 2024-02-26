@@ -2,7 +2,7 @@ import 'package:chefio_recipe_app/common/widgets/image/edit_image.view.dart';
 import 'package:chefio_recipe_app/common/widgets/inputs/close_keyboard_wrapper.dart';
 import 'package:chefio_recipe_app/common/widgets/others/loading_overlay_view.dart';
 import 'package:chefio_recipe_app/config/locator/locator.dart';
-import 'package:chefio_recipe_app/modules/auth/domain/usecases/i_sign_up.repository.dart';
+import 'package:chefio_recipe_app/modules/auth/domain/repositories/i_sign_up.repository.dart';
 import 'package:chefio_recipe_app/modules/auth/view/sign_up/confirmation/confirm_signup.screen.dart';
 import 'package:chefio_recipe_app/modules/auth/view/sign_up/sign_up.controller.dart';
 import 'package:chefio_recipe_app/common/models/failure.dart';

@@ -1,5 +1,5 @@
 import 'package:chefio_recipe_app/modules/recipe/domain/entities/recipe.dart';
-import 'package:chefio_recipe_app/common/views/recipe/recipes_grid/recipe-grid-item/recipe_grid_item.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/recipe-grid-item/recipe_grid_item.dart';
 import 'package:chefio_recipe_app/common/widgets/others/custom_shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

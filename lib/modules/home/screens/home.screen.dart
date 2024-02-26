@@ -1,12 +1,11 @@
-import 'package:chefio_recipe_app/common/services/category/i_category_service.dart';
-import 'package:chefio_recipe_app/common/views/recipe/recipes_grid/recipes_grid.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/recipes_grid.dart';
 import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/modules/home/screens/components/home_categories_component.dart';
 import 'package:chefio_recipe_app/modules/home/screens/home.viewmodel.dart';
 import 'package:chefio_recipe_app/modules/home/screens/search/search_screen.dart';
 
 import 'package:chefio_recipe_app/assets/assets.dart';
-import 'package:chefio_recipe_app/common/services/recipe/i_recipe_service.dart';
+import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_repository.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
 
 import 'package:chefio_recipe_app/common/widgets/inputs/custom_textfield.dart';
@@ -25,8 +24,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => HomeViewModel(
-        categoryService: locator<ICategoryService>(),
-        recipeService: locator<IRecipeService>(),
+        recipeService: locator<IRecipeRepository>(),
       ),
       child: const _HomeScreen(),
     );

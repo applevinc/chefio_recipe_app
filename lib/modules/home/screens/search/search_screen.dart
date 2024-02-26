@@ -1,5 +1,4 @@
-import 'package:chefio_recipe_app/common/services/category/i_category_service.dart';
-import 'package:chefio_recipe_app/common/views/recipe/recipes_grid/recipes_grid.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/recipes_grid.dart';
 import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/modules/home/screens/search/components/search_appbar_component.dart';
 import 'package:chefio_recipe_app/modules/home/screens/search/components/search_history_view.dart';
@@ -8,6 +7,7 @@ import 'package:chefio_recipe_app/modules/home/screens/search/search_viewmodel.d
 import 'package:chefio_recipe_app/modules/home/services/i_search_service.dart';
 import 'package:chefio_recipe_app/common/widgets/others/custom_shimmer.dart';
 import 'package:chefio_recipe_app/common/widgets/others/error_view.dart';
+import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -22,7 +22,7 @@ class SearchScreen extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => SearchViewModel(
         searchService: locator<ISearchService>(),
-        categoryService: locator<ICategoryService>(),
+        recipeRepository: locator<IRecipeRepository>(),
       ),
       child: const _SearchScreen(),
     );

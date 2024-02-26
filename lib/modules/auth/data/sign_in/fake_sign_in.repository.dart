@@ -1,6 +1,6 @@
 import 'package:chefio_recipe_app/common/models/user.dart';
 import 'package:chefio_recipe_app/config/app_session.dart';
-import 'package:chefio_recipe_app/modules/auth/domain/usecases/i_sign_in.repository.dart';
+import 'package:chefio_recipe_app/modules/auth/domain/repositories/i_sign_in.repository.dart';
 import 'package:chefio_recipe_app/utils/functions.dart';
 
 class FakeSignInRepository implements ISignInRepository {

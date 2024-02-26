@@ -1,6 +1,6 @@
 import 'package:chefio_recipe_app/common/views/dashboard/dashboard.component.dart';
 import 'package:chefio_recipe_app/config/locator/locator.dart';
-import 'package:chefio_recipe_app/modules/auth/domain/usecases/i_sign_in.repository.dart';
+import 'package:chefio_recipe_app/modules/auth/domain/repositories/i_sign_in.repository.dart';
 import 'package:chefio_recipe_app/modules/auth/view/sign_in/sign_in.controller.dart';
 import 'package:chefio_recipe_app/modules/auth/view/forgot_password/forgot_password.screen.dart';
 import 'package:chefio_recipe_app/modules/auth/view/sign_up/sign_up.screen.dart';

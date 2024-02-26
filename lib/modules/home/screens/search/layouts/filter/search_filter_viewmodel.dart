@@ -1,6 +1,6 @@
 import 'package:chefio_recipe_app/common/views/cooking_time/cooking_time_viewmodel.dart';
 import 'package:chefio_recipe_app/modules/home/models/search_filter_request.dart';
-import 'package:chefio_recipe_app/modules/recipe/domain/entities/category.dart';
+import 'package:chefio_recipe_app/modules/recipe/domain/entities/recipe_category.dart';
 
 class SearchFilterViewModel extends CookingTimeViewModel {
   final List<RecipeCategory> _categories;

@@ -1,4 +1,4 @@
-import 'package:chefio_recipe_app/modules/auth/domain/usecases/i_sign_in.repository.dart';
+import 'package:chefio_recipe_app/modules/auth/domain/repositories/i_sign_in.repository.dart';
 import 'package:chefio_recipe_app/utils/base.controller.dart';
 import 'package:flutter/material.dart';
 

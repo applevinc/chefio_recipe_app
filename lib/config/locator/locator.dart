@@ -1,9 +1,9 @@
-import 'package:chefio_recipe_app/common/services/category/i_category_service.dart';
 import 'package:chefio_recipe_app/config/app_config.dart';
 
-import 'package:chefio_recipe_app/modules/home/screens/home.viewmodel.dart';
-import 'package:chefio_recipe_app/common/services/recipe/i_recipe_service.dart';
 import 'package:chefio_recipe_app/common/services/file_service.dart';
+import 'package:chefio_recipe_app/modules/recipe/data/data_sources/i_recipe_datasource.dart';
+import 'package:chefio_recipe_app/modules/recipe/data/repositories/recipe_repository.dart';
+import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_repository.dart';
 import 'package:get_it/get_it.dart';
 
 final GetIt _diContainer = GetIt.instance;
@@ -17,11 +17,9 @@ void initGlobalDI({required GetIt envLocator}) async {
 
   locator.registerLazySingleton(() => FileService());
 
-  // controllers
-  locator.registerLazySingleton(
-    () => HomeViewModel(
-      categoryService: locator<ICategoryService>(),
-      recipeService: locator<IRecipeService>(),
+  locator.registerLazySingleton<IRecipeRepository>(
+    () => RecipeRepository(
+      dataSource: locator<IRecipeDataSource>(),
     ),
   );
 }

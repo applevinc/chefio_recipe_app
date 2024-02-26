@@ -1,5 +1,5 @@
 import 'package:chefio_recipe_app/modules/auth/domain/entities/confirm_forgot_password.request.dart';
-import 'package:chefio_recipe_app/modules/auth/domain/usecases/i_forgot_password.repository.dart';
+import 'package:chefio_recipe_app/modules/auth/domain/repositories/i_forgot_password.repository.dart';
 import 'package:chefio_recipe_app/modules/auth/view/otp/otp.controller.dart';
 
 class ConfirmForgotPasswordController extends OtpController {

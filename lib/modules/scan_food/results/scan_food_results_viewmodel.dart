@@ -1,22 +1,22 @@
 import 'dart:io';
 
 import 'package:chefio_recipe_app/modules/recipe/domain/entities/recipe.dart';
-import 'package:chefio_recipe_app/common/services/recipe/i_recipe_service.dart';
 import 'package:chefio_recipe_app/common/models/failure.dart';
+import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_repository.dart';
 import 'package:chefio_recipe_app/utils/base.controller.dart';
 
 class ScanFoodResultsViewModel extends BaseController {
-  final IRecipeService _recipeService;
+  final IRecipeRepository _recipeRepository;
   late File? image;
   late String type;
 
   ScanFoodResultsViewModel({
     required this.type,
     required this.image,
-    required IRecipeService recipeService,
-  }) : _recipeService = recipeService;
+    required IRecipeRepository recipeRepository,
+  }) : _recipeRepository = recipeRepository;
 
-  List<Recipe> _recipes = [];
+  final List<Recipe> _recipes = [];
   List<Recipe> get recipes => _recipes;
 
   Future<void> getRecipes() async {
@@ -24,7 +24,6 @@ class ScanFoodResultsViewModel extends BaseController {
 
     try {
       setBusy(true);
-      _recipes = await _recipeService.getRecipesByScan();
     } on Failure catch (e) {
       setError(e);
     } finally {

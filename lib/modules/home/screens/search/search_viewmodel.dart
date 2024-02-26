@@ -1,11 +1,11 @@
-import 'package:chefio_recipe_app/common/services/category/i_category_service.dart';
 import 'package:chefio_recipe_app/modules/home/models/search_filter_request.dart';
 import 'package:chefio_recipe_app/modules/home/models/search_history.dart';
 import 'package:chefio_recipe_app/modules/home/models/search_suggestion.dart';
 import 'package:chefio_recipe_app/modules/home/services/i_search_service.dart';
-import 'package:chefio_recipe_app/modules/recipe/domain/entities/category.dart';
+import 'package:chefio_recipe_app/modules/recipe/domain/entities/recipe_category.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/entities/recipe.dart';
 import 'package:chefio_recipe_app/common/models/failure.dart';
+import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_repository.dart';
 import 'package:chefio_recipe_app/utils/base.controller.dart';
 
 enum SearchLoadingState { init, search }
@@ -14,12 +14,12 @@ enum SearchErrorState { init, search }
 
 class SearchViewModel extends BaseController {
   final ISearchService _searchService;
-  final ICategoryService _categoryService;
+  final IRecipeRepository _recipeRepository;
 
   SearchViewModel({
     required ISearchService searchService,
-    required ICategoryService categoryService,
-  })  : _categoryService = categoryService,
+    required IRecipeRepository recipeRepository,
+  })  : _recipeRepository = recipeRepository,
         _searchService = searchService;
 
   List<Recipe> _recipes = [];
@@ -62,7 +62,7 @@ class SearchViewModel extends BaseController {
   }
 
   Future<void> _getCategories() async {
-    final List<RecipeCategory> results = await _categoryService.getAll();
+    final List<RecipeCategory> results = await _recipeRepository.getAllCategories();
 
     for (var element in results) {
       _categories.add(element);

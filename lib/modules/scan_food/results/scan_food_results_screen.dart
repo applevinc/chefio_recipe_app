@@ -1,11 +1,11 @@
 import 'dart:io';
 
+import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_repository.dart';
 import 'package:chefio_recipe_app/modules/scan_food/results/components/scan_food_results_appbar.view.dart';
 import 'package:chefio_recipe_app/modules/scan_food/results/components/shimmer.view.dart';
 import 'package:chefio_recipe_app/modules/scan_food/results/scan_food_results_viewmodel.dart';
-import 'package:chefio_recipe_app/common/views/recipe/recipes_grid/recipes_grid.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/recipes_grid.dart';
 import 'package:chefio_recipe_app/config/locator/locator.dart';
-import 'package:chefio_recipe_app/common/services/recipe/i_recipe_service.dart';
 import 'package:chefio_recipe_app/common/widgets/others/error_view.dart';
 import 'package:chefio_recipe_app/common/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +23,7 @@ class ScanFoodResultsScreen extends StatelessWidget {
       create: (_) => ScanFoodResultsViewModel(
         type: type,
         image: image,
-        recipeService: locator<IRecipeService>(),
+        recipeRepository: locator<IRecipeRepository>(),
       ),
       child: const _ScanFoodResultsScreen(),
     );
