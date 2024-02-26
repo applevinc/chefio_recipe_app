@@ -14,7 +14,7 @@ dependencies:
   google_fonts: ^6.1.0
   flutter_screenutil: ^5.5.3+2
   flutter_svg: ^2.0.9
-  pin_code_fields: ^7.4.0
+  pin_code_fields: ^8.0.1
   provider: ^6.0.3
   dotted_border: ^2.0.0+2
   camera: ^0.10.5+4

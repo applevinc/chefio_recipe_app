@@ -30,28 +30,32 @@ final router = GoRouter(
     GoRoute(
       path: SignUpScreen.route,
       builder: (context, state) => const SignUpScreen(),
-    ),
-    GoRoute(
-      path: ConfirmSignUpScreen.route,
-      builder: (context, state) {
-        final email = state.extra as String;
-        return ConfirmSignUpScreen(email: email);
-      },
+      routes: [
+        GoRoute(
+          path: ConfirmSignUpScreen.routeName,
+          builder: (context, state) {
+            final email = state.extra as String;
+            return ConfirmSignUpScreen(email: email);
+          },
+        ),
+      ],
     ),
     GoRoute(
       path: ForgotPasswordScreen.route,
       builder: (context, state) => const ForgotPasswordScreen(),
-    ),
-    GoRoute(
-      path: ConfirmForgotPasswordScreen.route,
-      builder: (context, state) {
-        final email = state.extra as String;
-        return ConfirmForgotPasswordScreen(email: email);
-      },
-    ),
-    GoRoute(
-      path: ResetPasswordScreen.route,
-      builder: (context, state) => const ResetPasswordScreen(),
+      routes: [
+        GoRoute(
+          path: ConfirmForgotPasswordScreen.routeName,
+          builder: (context, state) {
+            final email = state.extra as String;
+            return ConfirmForgotPasswordScreen(email: email);
+          },
+        ),
+        GoRoute(
+          path: ResetPasswordScreen.routeName,
+          builder: (context, state) => const ResetPasswordScreen(),
+        ),
+      ],
     ),
     GoRoute(
       path: DashBoardComponent.route,

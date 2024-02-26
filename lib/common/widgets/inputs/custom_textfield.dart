@@ -155,7 +155,13 @@ class CustomTextField extends StatelessWidget {
               ),
         disabledBorder: border ?? defaultBorder,
         border: border ?? defaultBorder,
-        focusedErrorBorder: border ?? defaultBorder,
+        focusedErrorBorder: border ??
+            defaultBorder.copyWith(
+              borderSide: const BorderSide(
+                color: AppColors.secondary,
+                width: 2,
+              ),
+            ),
       ),
     );
 

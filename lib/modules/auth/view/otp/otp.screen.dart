@@ -1,4 +1,5 @@
 import 'package:chefio_recipe_app/common/models/failure.dart';
+import 'package:chefio_recipe_app/common/widgets/others/loading_overlay_view.dart';
 import 'package:chefio_recipe_app/modules/auth/view/otp/otp.controller.dart';
 import 'package:chefio_recipe_app/modules/auth/widgets/auth_view.dart';
 import 'package:chefio_recipe_app/styles/colors.dart';
@@ -69,35 +70,34 @@ class _OTPScreenState<T extends OtpController> extends State<OTPScreen<T>> {
   Widget build(BuildContext context) {
     final controller = context.watch<T>();
 
-    return AuthView(
-      title: 'Check your email',
-      subtitle: 'We\'ve sent the code to your email',
-      body: Form(
-        key: _formKey,
-        child: Column(
-          children: [
-            OTPField(controller: controller.textController),
-            SizedBox(height: 48.h),
-            _CodeExpiration<T>(),
-            SizedBox(height: 24.h),
-            AppButton(
-              label: 'Verify',
-              disabled: controller.anyObjectsBusy,
-              isBusy: controller.busy(OtpLoadingState.verify),
-              onPressed: verify,
-            ),
-            SizedBox(height: 16.h),
-            AppButton(
-              label: 'Send again',
-              labelColor: AppColors.secondaryText,
-              showBorder: true,
-              backgroundColor: Colors.transparent,
-              loadingIndicatorColor: AppColors.primary,
-              disabled: controller.anyObjectsBusy,
-              isBusy: controller.busy(OtpLoadingState.resendOtp),
-              onPressed: resendOtp,
-            ),
-          ],
+    return LoadingOverlayView(
+      showOverLay: controller.anyObjectsBusy,
+      child: AuthView(
+        title: 'Check your email',
+        subtitle: 'We\'ve sent the code to your email',
+        body: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              OTPField(controller: controller.textController),
+              SizedBox(height: 48.h),
+              _CodeExpiration<T>(),
+              SizedBox(height: 24.h),
+              AppButton(
+                label: 'Verify',
+                onPressed: verify,
+              ),
+              SizedBox(height: 16.h),
+              AppButton(
+                label: 'Send again',
+                labelColor: AppColors.secondaryText,
+                showBorder: true,
+                backgroundColor: Colors.transparent,
+                loadingIndicatorColor: AppColors.primary,
+                onPressed: resendOtp,
+              ),
+            ],
+          ),
         ),
       ),
     );
