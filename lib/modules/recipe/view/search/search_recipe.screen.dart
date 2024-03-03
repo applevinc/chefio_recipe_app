@@ -1,17 +1,12 @@
 import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/recipes_grid.component.dart';
-import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/recipes_grid.shimmer.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/search/components/search_appbar.component.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/search/components/search_history.component.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/search/components/search_suggestions.component.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/search/search_recipe.controller.dart';
-import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_search_recipe_repository.dart';
-import 'package:chefio_recipe_app/common/widgets/others/custom_shimmer.dart';
 import 'package:chefio_recipe_app/common/widgets/others/error_view.dart';
-import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_repository.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/search/search_recipe.shimmer.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 class SearchRecipeScreen extends StatefulWidget {
@@ -36,7 +31,8 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen> {
   void init() async {
     final controller = context.read<SearchRecipeController>();
 
-    if (controller.hasLoadedData) {
+    if (controller.hasLoadedSearchData) {
+      controller.onHasLoadedSearchData();
       return;
     }
 

@@ -1,4 +1,3 @@
-import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/recipes_grid.component.dart';
 import 'package:chefio_recipe_app/common/widgets/others/custom_shimmer.dart';
 import 'package:chefio_recipe_app/common/widgets/others/grey_divider.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/recipes_grid.shimmer.dart';

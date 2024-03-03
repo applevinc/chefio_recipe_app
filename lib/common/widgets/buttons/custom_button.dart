@@ -1,5 +1,6 @@
 import 'package:chefio_recipe_app/assets/icons.dart';
 import 'package:chefio_recipe_app/styles/colors.dart';
+import 'package:chefio_recipe_app/styles/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -52,15 +53,14 @@ class AppButton extends StatelessWidget {
           ? Transform.scale(
               scale: 0.7,
               child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(loadingIndicatorColor)),
+                valueColor: AlwaysStoppedAnimation<Color>(loadingIndicatorColor),
+              ),
             )
           : Text(
               label,
-              style: GoogleFonts.inter(
+              style: AppText.bold700(context).copyWith(
                 color: labelColor,
-                fontSize: 15.0.sp,
-                fontWeight: FontWeight.w700,
-                letterSpacing: 0.105.sp,
+                fontSize: 15.sp,
               ),
             ),
     );
@@ -93,11 +93,9 @@ class AppButtonWithIcon extends StatelessWidget {
           SizedBox(width: 5.w),
           Text(
             label,
-            style: GoogleFonts.inter(
+            style: AppText.bold700(context).copyWith(
               color: Colors.white,
-              fontSize: 15.0.sp,
-              fontWeight: FontWeight.w700,
-              letterSpacing: 0.105.sp,
+              fontSize: 15.sp,
             ),
           ),
         ],

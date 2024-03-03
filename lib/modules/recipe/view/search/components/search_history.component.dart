@@ -1,4 +1,3 @@
-import 'package:chefio_recipe_app/modules/recipe/domain/entities/search_history.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/search/search_recipe.controller.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
 import 'package:chefio_recipe_app/common/widgets/others/grey_divider.dart';
@@ -25,20 +24,40 @@ class SearchHistoryComponent extends StatelessWidget {
           itemCount: searchHistories.length,
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          itemBuilder: (context, index) => item(
-            context: context,
-            title: searchHistories[index].text,
-          ),
+          itemBuilder: (context, index) {
+            final searchHistory = searchHistories[index];
+            return SearchHistoryItemComponent(text: searchHistory);
+          },
           separatorBuilder: (context, index) => SizedBox(height: 4.h),
         ),
         const GreyDivider(),
       ],
     );
   }
+}
 
-  Widget item({required BuildContext context, required String title}) {
+class SearchHistoryItemComponent extends StatefulWidget {
+  const SearchHistoryItemComponent({super.key, required this.text});
+
+  final String text;
+
+  @override
+  State<SearchHistoryItemComponent> createState() => _SearchHistoryItemComponentState();
+}
+
+class _SearchHistoryItemComponentState extends State<SearchHistoryItemComponent> {
+  late final text = widget.text;
+
+  void search() async {
+    final controller = context.read<SearchRecipeController>();
+    controller.queryController.text = text;
+    await controller.search(text);
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: search,
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 10.h),
         child: Row(
@@ -52,7 +71,7 @@ class SearchHistoryComponent extends StatelessWidget {
                 ),
                 SizedBox(width: 17.w),
                 Text(
-                  title.toTitleCase,
+                  text.toTitleCase,
                   style: AppText.bold500(context).copyWith(
                     fontSize: 17.sp,
                   ),

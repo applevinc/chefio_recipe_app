@@ -1,4 +1,3 @@
-import 'package:chefio_recipe_app/modules/recipe/domain/entities/search_suggestion.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/search/search_recipe.controller.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
 import 'package:flutter/material.dart';
@@ -34,21 +33,42 @@ class SearchSuggestionsComponent extends StatelessWidget {
             runSpacing: 16.h,
             children: List.generate(
               searchSuggestions.length,
-              (index) => choice(
-                context: context,
-                label: searchSuggestions[index].text,
-              ),
+              (index) {
+                final searchSuggestion = searchSuggestions[index];
+                return SearchSuggestionItemComponent(text: searchSuggestion);
+              },
             ),
           ),
         ],
       ),
     );
   }
+}
 
-  Widget choice({required BuildContext context, required String label}) {
+class SearchSuggestionItemComponent extends StatefulWidget {
+  const SearchSuggestionItemComponent({super.key, required this.text});
+
+  final String text;
+
+  @override
+  State<SearchSuggestionItemComponent> createState() =>
+      _SearchSuggestionItemComponentState();
+}
+
+class _SearchSuggestionItemComponentState extends State<SearchSuggestionItemComponent> {
+  late final text = widget.text;
+
+  void search() async {
+    final controller = context.read<SearchRecipeController>();
+    controller.queryController.text = text;
+    await controller.search(text);
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return UnconstrainedBox(
       child: GestureDetector(
-        onTap: () {},
+        onTap: search,
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 24.w),
           decoration: BoxDecoration(
@@ -57,7 +77,7 @@ class SearchSuggestionsComponent extends StatelessWidget {
           ),
           alignment: Alignment.center,
           child: Text(
-            label,
+            text,
             style: AppText.bold500(context).copyWith(
               color: AppColors.headlineText,
               fontSize: 15.sp,

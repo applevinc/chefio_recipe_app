@@ -18,20 +18,6 @@ class SearchAppBarComponent extends StatefulWidget {
 }
 
 class _SearchAppBarComponentState extends State<SearchAppBarComponent> {
-  late TextEditingController searchController;
-
-  @override
-  void initState() {
-    super.initState();
-    searchController = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    searchController.dispose();
-    super.dispose();
-  }
-
   void onTapFilterIcon() async {
     final controller = context.read<SearchRecipeController>();
     final catergories = controller.categories;
@@ -45,16 +31,18 @@ class _SearchAppBarComponentState extends State<SearchAppBarComponent> {
       builder: (context) => SearchFilterSheet(categories: catergories),
     );
 
-    if (result != null) {
-      searchController.clear();
-      final request = result as SearchFilterRequest;
-      await controller.searchByFilter(request);
+    if (result == null) {
+      return;
     }
+
+    final request = result as SearchFilterRequest;
+    await controller.searchByFilter(request);
   }
 
   @override
   Widget build(BuildContext context) {
     final controller = context.watch<SearchRecipeController>();
+    final queryController = controller.queryController;
 
     return Column(
       children: [
@@ -79,16 +67,16 @@ class _SearchAppBarComponentState extends State<SearchAppBarComponent> {
                   child: Material(
                     type: MaterialType.transparency,
                     child: CustomTextField(
-                      controller: searchController,
+                      controller: queryController,
                       autofocus: true,
                       readOnly: controller.busy(SearchLoadingState.init),
                       prefixIcon: const TextFieldIcon(icon: AppIcons.search),
-                      suffixIcon: searchController.text.isEmpty
+                      suffixIcon: queryController.text.isEmpty
                           ? null
                           : TextFieldIcon(
                               icon: AppIcons.closeCircle,
                               onTap: () {
-                                searchController.clear();
+                                queryController.clear();
                                 setState(() {});
                               },
                             ),
@@ -103,16 +91,24 @@ class _SearchAppBarComponentState extends State<SearchAppBarComponent> {
                   ),
                 ),
               ),
-              IconButton(
-                padding: EdgeInsets.symmetric(horizontal: 24.w),
-                icon: SvgPicture.asset(
-                  AppIcons.filter,
-                  height: 24.h,
-                  width: 24.h,
+              if (controller.busy(SearchLoadingState.init))
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 24.w),
+                  child: SizedBox(
+                    width: 24.h,
+                    height: 24.h,
+                  ),
                 ),
-                onPressed:
-                    controller.busy(SearchLoadingState.init) ? () {} : onTapFilterIcon,
-              ),
+              if (!controller.busy(SearchLoadingState.init))
+                IconButton(
+                  padding: EdgeInsets.symmetric(horizontal: 24.w),
+                  icon: SvgPicture.asset(
+                    AppIcons.filter,
+                    height: 24.h,
+                    width: 24.h,
+                  ),
+                  onPressed: onTapFilterIcon,
+                ),
             ],
           ),
         ),

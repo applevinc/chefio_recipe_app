@@ -1,11 +1,9 @@
 import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/recipes_grid.component.dart';
-import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/common/views/home/components/home_categories_component.dart';
 import 'package:chefio_recipe_app/common/views/home/home.controller.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/search/search_recipe.screen.dart';
 
 import 'package:chefio_recipe_app/assets/assets.dart';
-import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_repository.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
 
 import 'package:chefio_recipe_app/common/widgets/inputs/custom_textfield.dart';

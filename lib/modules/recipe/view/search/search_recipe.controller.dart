@@ -1,12 +1,11 @@
 import 'package:chefio_recipe_app/modules/recipe/domain/entities/search_filter_request.dart';
-import 'package:chefio_recipe_app/modules/recipe/domain/entities/search_history.dart';
-import 'package:chefio_recipe_app/modules/recipe/domain/entities/search_suggestion.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_search_recipe_repository.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/entities/recipe_category.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/entities/recipe.dart';
 import 'package:chefio_recipe_app/common/models/failure.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_repository.dart';
 import 'package:chefio_recipe_app/utils/base.controller.dart';
+import 'package:flutter/material.dart';
 
 enum SearchLoadingState { init, search }
 
@@ -16,33 +15,44 @@ class SearchRecipeController extends BaseController {
   SearchRecipeController({
     required ISearchRecipeRepository searchService,
     required IRecipeRepository recipeRepository,
-  })  : _recipeRepository = recipeRepository,
-        _searchService = searchService;
+  }) {
+    _searchRecipeRepository = searchService;
+    _recipeRepository = recipeRepository;
+    queryController = TextEditingController();
+  }
 
-  final ISearchRecipeRepository _searchService;
+  late final ISearchRecipeRepository _searchRecipeRepository;
 
-  final IRecipeRepository _recipeRepository;
+  late final IRecipeRepository _recipeRepository;
+
+  late final TextEditingController queryController;
 
   List<Recipe> _recipes = [];
 
   List<Recipe> get recipes => _recipes;
 
-  List<SearchHistory> _searchHistory = [];
+  List<String> _searchHistory = [];
 
-  List<SearchHistory> get searchHistories => _searchHistory;
+  List<String> get searchHistories => _searchHistory;
 
-  List<SearchSuggestion> _searchSuggestion = [];
+  List<String> _searchSuggestion = [];
 
-  List<SearchSuggestion> get searchSuggestions => _searchSuggestion;
+  List<String> get searchSuggestions => _searchSuggestion;
 
   List<RecipeCategory> _categories = [];
 
   List<RecipeCategory> get categories => _categories;
 
-  bool get hasLoadedData {
+  bool get hasLoadedSearchData {
     return _searchHistory.isNotEmpty &&
         _searchSuggestion.isNotEmpty &&
         _categories.isNotEmpty;
+  }
+
+  void onHasLoadedSearchData() {
+    _recipes.clear();
+    queryController.clear();
+    notifyListeners();
   }
 
   Future<void> init() async {
@@ -64,11 +74,11 @@ class SearchRecipeController extends BaseController {
   }
 
   Future<void> _getSearchHistory() async {
-    _searchHistory = await _searchService.getSearchHistory();
+    _searchHistory = await _searchRecipeRepository.getSearchHistory();
   }
 
   Future<void> _getSearchSuggestion() async {
-    _searchSuggestion = await _searchService.getSearchSuggestion();
+    _searchSuggestion = await _searchRecipeRepository.getSearchSuggestion();
   }
 
   Future<void> _getCategories() async {
@@ -80,7 +90,7 @@ class SearchRecipeController extends BaseController {
 
     try {
       setBusyForObject(SearchLoadingState.search, true);
-      _recipes = await _searchService.search(query);
+      _recipes = await _searchRecipeRepository.search(query);
     } on Failure catch (e) {
       setErrorForObject(SearchErrorState.search, e);
     } finally {
@@ -90,14 +100,21 @@ class SearchRecipeController extends BaseController {
 
   Future<void> searchByFilter(SearchFilterRequest request) async {
     clearErrors();
+    queryController.clear();
 
     try {
       setBusyForObject(SearchLoadingState.search, true);
-      _recipes = await _searchService.searchByFilter(request);
+      _recipes = await _searchRecipeRepository.searchByFilter(request);
     } on Failure catch (e) {
       setErrorForObject(SearchErrorState.search, e);
     } finally {
       setBusyForObject(SearchLoadingState.search, false);
     }
+  }
+
+  @override
+  void dispose() {
+    queryController.dispose();
+    super.dispose();
   }
 }

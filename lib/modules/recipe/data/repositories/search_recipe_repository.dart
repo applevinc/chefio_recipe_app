@@ -2,8 +2,6 @@ import 'package:chefio_recipe_app/modules/recipe/data/data_sources/search/i_sear
 import 'package:chefio_recipe_app/modules/recipe/data/models/search_filter_request.model.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/entities/recipe.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/entities/search_filter_request.dart';
-import 'package:chefio_recipe_app/modules/recipe/domain/entities/search_history.dart';
-import 'package:chefio_recipe_app/modules/recipe/domain/entities/search_suggestion.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_search_recipe_repository.dart';
 
 class SearchRecipeRepository implements ISearchRecipeRepository {
@@ -13,12 +11,12 @@ class SearchRecipeRepository implements ISearchRecipeRepository {
   final ISearchRecipeDataSource _dataSource;
 
   @override
-  Future<List<SearchHistory>> getSearchHistory() async {
+  Future<List<String>> getSearchHistory() async {
     return await _dataSource.getSearchHistory();
   }
 
   @override
-  Future<List<SearchSuggestion>> getSearchSuggestion() async {
+  Future<List<String>> getSearchSuggestion() async {
     return await _dataSource.getSearchSuggestion();
   }
 

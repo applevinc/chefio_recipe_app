@@ -7,7 +7,6 @@ import 'package:chefio_recipe_app/modules/auth/domain/repositories/i_sign_in.rep
 import 'package:chefio_recipe_app/modules/auth/domain/repositories/i_sign_up.repository.dart';
 import 'package:chefio_recipe_app/modules/recipe/data/data_sources/search/fake_search_recipe_data_source.dart';
 import 'package:chefio_recipe_app/modules/recipe/data/data_sources/search/i_search_recipe_data_source.dart';
-import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_search_recipe_repository.dart';
 import 'package:chefio_recipe_app/modules/recipe/data/data_sources/fake_recipe_data_source.dart';
 import 'package:chefio_recipe_app/modules/recipe/data/data_sources/i_recipe_datasource.dart';
 import 'package:get_it/get_it.dart';
