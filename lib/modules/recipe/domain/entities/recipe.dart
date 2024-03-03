@@ -1,4 +1,5 @@
 import 'package:chefio_recipe_app/common/models/user.dart';
+import 'package:chefio_recipe_app/modules/recipe/domain/entities/recipe_category.dart';
 
 class Recipe {
   final String id;
@@ -10,6 +11,7 @@ class Recipe {
   final int likeCount;
   final List<String> ingredients;
   final List<CookingStep> steps;
+  final RecipeCategory? category;
 
   Recipe({
     required this.id,
@@ -21,6 +23,7 @@ class Recipe {
     required this.likeCount,
     required this.ingredients,
     required this.steps,
+    this.category,
   });
 }
 

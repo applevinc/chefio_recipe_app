@@ -24,10 +24,10 @@ class BaseController extends ChangeNotifier {
   final Map<int, Failure> _errorStates = <int, Failure>{};
   Failure? error(Object? object) => _errorStates[object.hashCode];
 
-  /// Returns the error existence status of the ViewModel
+  /// Returns the error existence status of the Controller
   bool get hasError => error(this) != null;
 
-  /// Returns the error status of the ViewModel
+  /// Returns the error status of the Controller
   Failure? get modelError => error(this);
 
   /// Clears all the errors
@@ -35,10 +35,10 @@ class BaseController extends ChangeNotifier {
     _errorStates.clear();
   }
 
-  /// Returns a boolean that indicates if the ViewModel has an error for the key
+  /// Returns a boolean that indicates if the Controller has an error for the key
   bool hasErrorForKey(Object key) => error(key) != null;
 
-  /// Sets the error for the ViewModel
+  /// Sets the error for the Controller
   void setError(Failure error) {
     setErrorForObject(this, error);
   }

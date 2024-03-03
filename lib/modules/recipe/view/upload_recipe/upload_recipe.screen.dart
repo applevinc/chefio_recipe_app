@@ -1,6 +1,6 @@
 import 'package:chefio_recipe_app/modules/recipe/view/upload_recipe/steps/upload_recipe_step_one_view.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/upload_recipe/steps/upload_recipe_step_two_view.dart';
-import 'package:chefio_recipe_app/modules/recipe/view/upload_recipe/upload_recipe_viewmodel.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/upload_recipe/upload_recipe.controller.dart';
 import 'package:chefio_recipe_app/styles/colors.dart';
 import 'package:chefio_recipe_app/styles/text.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +16,7 @@ class UploadRecipeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => UploadRecipeViewModel(),
+      create: (_) => UploadRecipeController(),
       child: const _UploadRecipeScreen(),
     );
   }
@@ -27,8 +27,8 @@ class _UploadRecipeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<UploadRecipeViewModel>();
-    final pageController = viewModel.pageController;
+    final controller = context.watch<UploadRecipeController>();
+    final pageController = controller.pageController;
 
     return PopScope(
       canPop: true,
@@ -57,7 +57,7 @@ class _UploadRecipeScreen extends StatelessWidget {
                 text: TextSpan(
                   text: '1',
                   style: AppText.bold700(context).copyWith(
-                    color: viewModel.pageNo == 0
+                    color: controller.pageNo == 0
                         ? AppColors.headlineText
                         : AppColors.secondaryText,
                     fontSize: 17.sp,
@@ -72,7 +72,7 @@ class _UploadRecipeScreen extends StatelessWidget {
                     TextSpan(
                       text: '2',
                       style: AppText.bold700(context).copyWith(
-                        color: viewModel.pageNo == 1
+                        color: controller.pageNo == 1
                             ? AppColors.headlineText
                             : AppColors.secondaryText,
                         fontSize: 17.sp,

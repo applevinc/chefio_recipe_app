@@ -1,5 +1,5 @@
 import 'package:chefio_recipe_app/modules/recipe/domain/entities/recipe_category.dart';
-import 'package:chefio_recipe_app/common/views/cooking_time/cooking_time_view.dart';
+import 'package:chefio_recipe_app/common/views/cooking_time/cooking_time.component.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/search/sheets/filter/components/search_filter_categories.component.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/search/sheets/filter/search_filter.controller.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/search/widgets/circular_button.dart';
@@ -17,7 +17,7 @@ class SearchFilterSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => SearchFilterViewModel(categories: categories),
+      create: (_) => SearchFilterController(categories: categories),
       child: const _SearchFilterSheet(),
     );
   }
@@ -29,7 +29,7 @@ class _SearchFilterSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 32.w),
+      padding: EdgeInsets.only(top: 32.h),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,7 +48,7 @@ class _SearchFilterSheet extends StatelessWidget {
           SizedBox(height: 30.h),
           Padding(
             padding: AppPadding.symetricHorizontalOnly,
-            child: const CookingTimeView<SearchFilterViewModel>(),
+            child: const CookingTimeView<SearchFilterController>(),
           ),
           SizedBox(height: 30.h),
           Padding(
@@ -69,8 +69,8 @@ class _SearchFilterSheet extends StatelessWidget {
                   bgColor: AppColors.primary,
                   textColor: Colors.white,
                   onPressed: () {
-                    final viewModel = context.read<SearchFilterViewModel>();
-                    final searchFilterRequest = viewModel.createSearchFilterRequest();
+                    final controller = context.read<SearchFilterController>();
+                    final searchFilterRequest = controller.createSearchFilterRequest();
                     context.pop(searchFilterRequest);
                   },
                 ),

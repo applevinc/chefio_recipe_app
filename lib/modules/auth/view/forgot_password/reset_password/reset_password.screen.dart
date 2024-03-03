@@ -62,7 +62,7 @@ class _ResetPasswordScreenState extends State<_ResetPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<ResetPasswordController>();
+    final controller = context.watch<ResetPasswordController>();
 
     return AuthView(
       title: 'Reset your password',
@@ -72,8 +72,8 @@ class _ResetPasswordScreenState extends State<_ResetPasswordScreen> {
         child: Column(
           children: [
             PasswordTextField(
-              controller: viewModel.textController,
-              onChanged: (value) => viewModel.validate(value),
+              controller: controller.textController,
+              onChanged: (value) => controller.validate(value),
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Please enter your password';
@@ -87,7 +87,7 @@ class _ResetPasswordScreenState extends State<_ResetPasswordScreen> {
             SizedBox(height: 24.h),
             AppButton(
               label: 'Done',
-              isBusy: viewModel.isBusy,
+              isBusy: controller.isBusy,
               onPressed: submit,
             ),
           ],

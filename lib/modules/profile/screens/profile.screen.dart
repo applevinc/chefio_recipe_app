@@ -1,7 +1,7 @@
 import 'package:chefio_recipe_app/config/locator/locator.dart';
-import 'package:chefio_recipe_app/modules/profile/screens/profile_viewmodel.dart';
+import 'package:chefio_recipe_app/modules/profile/screens/profile.controller.dart';
 import 'package:chefio_recipe_app/modules/profile/screens/tabs/profile_recipes_tab_view.dart';
-import 'package:chefio_recipe_app/modules/profile/screens/tabs/profile_recipes_viewmodel.dart';
+import 'package:chefio_recipe_app/modules/profile/screens/tabs/profile_recipes.controller.dart';
 import 'package:chefio_recipe_app/common/models/user.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_repository.dart';
 import 'package:chefio_recipe_app/styles/text.dart';
@@ -35,9 +35,9 @@ class _ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewmodel = context.watch<ProfileViewModel>();
-    final User user = viewmodel.user;
-    final bool? isAuthUserProfile = viewmodel.isAuthUserProfile;
+    final controller = context.watch<ProfileViewModel>();
+    final User user = controller.user;
+    final bool? isAuthUserProfile = controller.isAuthUserProfile;
 
     if (isAuthUserProfile == null) {
       return const SizedBox.shrink();

@@ -4,7 +4,7 @@ import 'package:chefio_recipe_app/common/models/user.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_repository.dart';
 import 'package:chefio_recipe_app/utils/base.controller.dart';
 
-abstract class ProfileRecipesViewModel extends BaseController {
+abstract class ProfileRecipesController extends BaseController {
   List<Recipe> _recipes = [];
   List<Recipe> get recipes => _recipes;
 
@@ -15,7 +15,7 @@ abstract class ProfileRecipesViewModel extends BaseController {
   Future<void> getRecipes();
 }
 
-class UserLikedRecipesViewModel extends ProfileRecipesViewModel {
+class UserLikedRecipesViewModel extends ProfileRecipesController {
   final IRecipeRepository _recipeRepository;
   final User user;
 
@@ -39,7 +39,7 @@ class UserLikedRecipesViewModel extends ProfileRecipesViewModel {
   }
 }
 
-class UserRecipesViewModel extends ProfileRecipesViewModel {
+class UserRecipesViewModel extends ProfileRecipesController {
   final IRecipeRepository _recipeRepository;
   final User user;
 

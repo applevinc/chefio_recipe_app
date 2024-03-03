@@ -1,17 +1,17 @@
-import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/recipes_grid.dart';
-import 'package:chefio_recipe_app/modules/profile/screens/tabs/profile_recipes_viewmodel.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/recipes_grid.component.dart';
+import 'package:chefio_recipe_app/modules/profile/screens/tabs/profile_recipes.controller.dart';
 import 'package:chefio_recipe_app/common/widgets/others/error_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class ProfileRecipesTabView<T extends ProfileRecipesViewModel> extends StatefulWidget {
+class ProfileRecipesTabView<T extends ProfileRecipesController> extends StatefulWidget {
   const ProfileRecipesTabView({super.key});
 
   @override
   State<ProfileRecipesTabView> createState() => _ProfileRecipesTabViewState<T>();
 }
 
-class _ProfileRecipesTabViewState<T extends ProfileRecipesViewModel>
+class _ProfileRecipesTabViewState<T extends ProfileRecipesController>
     extends State<ProfileRecipesTabView> {
   @override
   void initState() {
@@ -28,16 +28,16 @@ class _ProfileRecipesTabViewState<T extends ProfileRecipesViewModel>
   @override
   Widget build(BuildContext context) {
     return Consumer<T>(
-      builder: (context, viewmodel, _) {
-        if (viewmodel.hasError) {
-          return ErrorView(error: viewmodel.modelError, refetch: init);
+      builder: (context, controller, _) {
+        if (controller.hasError) {
+          return ErrorView(error: controller.modelError, refetch: init);
         }
 
-        return RecipesGrid(
+        return RecipesGridComponent(
           isExpanded: false,
-          recipes: viewmodel.recipes,
-          isBusy: viewmodel.isBusy,
-          onRefresh: viewmodel.getRecipes,
+          recipes: controller.recipes,
+          isBusy: controller.isBusy,
+          onRefresh: controller.getRecipes,
         );
       },
     );

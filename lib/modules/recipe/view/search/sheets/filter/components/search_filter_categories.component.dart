@@ -10,7 +10,7 @@ class SearchFilterCategoriesComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewmodel = context.watch<SearchFilterViewModel>();
+    final controller = context.watch<SearchFilterController>();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,17 +30,17 @@ class SearchFilterCategoriesComponent extends StatelessWidget {
           child: ListView.separated(
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,
-            itemCount: viewmodel.categories.length,
+            itemCount: controller.categories.length,
             padding: AppPadding.symetricHorizontalOnly,
             itemBuilder: (context, index) {
-              final selectedCategory = viewmodel.selectedCategory;
-              final category = viewmodel.categories[index];
-              final selected = category.id == selectedCategory.id;
+              final selectedCategory = controller.selectedCategory;
+              final category = controller.categories[index];
+              final selected = category.id == selectedCategory?.id;
 
               return CategoryItemView(
                 label: category.name,
                 selected: selected,
-                onTap: () => viewmodel.selectCategory(category),
+                onTap: () => controller.selectCategory(category),
               );
             },
             separatorBuilder: (context, index) => SizedBox(width: 16.w),

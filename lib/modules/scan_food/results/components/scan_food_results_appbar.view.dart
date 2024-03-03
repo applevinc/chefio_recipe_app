@@ -1,4 +1,4 @@
-import 'package:chefio_recipe_app/modules/scan_food/results/scan_food_results_viewmodel.dart';
+import 'package:chefio_recipe_app/modules/scan_food/results/scan_food_results.controller.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
 import 'package:chefio_recipe_app/common/widgets/image/custom_cached_network_image.dart';
 import 'package:chefio_recipe_app/utils/functions.dart';
@@ -11,7 +11,7 @@ class ScanFoodResultsAppBarView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.read<ScanFoodResultsViewModel>();
+    final controller = context.read<ScanFoodResultsController>();
 
     return SliverAppBar(
       expandedHeight: 350.h,
@@ -20,7 +20,7 @@ class ScanFoodResultsAppBarView extends StatelessWidget {
       pinned: true,
       stretch: true,
       title: Text(
-        viewModel.type,
+        controller.type,
         style: AppText.bold700(context).copyWith(
           fontSize: 22.sp,
         ),
@@ -33,7 +33,7 @@ class ScanFoodResultsAppBarView extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              if (viewModel.image == null)
+              if (controller.image == null)
                 Align(
                   alignment: Alignment.center,
                   child: CustomCacheNetworkImage(
@@ -43,11 +43,11 @@ class ScanFoodResultsAppBarView extends StatelessWidget {
                     shape: BoxShape.circle,
                   ),
                 ),
-              if (viewModel.image != null)
+              if (controller.image != null)
                 ClipRRect(
                   borderRadius: BorderRadius.circular(100.r),
                   child: Image.file(
-                    viewModel.image!,
+                    controller.image!,
                     width: 200.h,
                     height: 200.h,
                     fit: BoxFit.cover,

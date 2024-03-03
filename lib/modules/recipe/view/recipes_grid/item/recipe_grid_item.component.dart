@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:chefio_recipe_app/modules/recipe/domain/entities/recipe.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/detail/recipe_detail.screen.dart';
-import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/recipe-grid-item/recipe_grid_item.controller.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/item/recipe_grid_item.controller.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
 
 import 'package:chefio_recipe_app/common/widgets/image/custom_cached_network_image.dart';
@@ -11,8 +11,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-class RecipeGridItem extends StatelessWidget {
-  const RecipeGridItem(this.recipe, {super.key});
+class RecipeGridItemComponent extends StatelessWidget {
+  const RecipeGridItemComponent(this.recipe, {super.key});
 
   final Recipe recipe;
 
@@ -30,7 +30,8 @@ class _RecipeGridItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final recipe = context.read<RecipeGridItemController>().recipe;
+    final controller = context.read<RecipeGridItemController>();
+    final recipe = controller.recipe;
     final user = recipe.user;
 
     return Column(
@@ -92,7 +93,7 @@ class _RecipeGridItem extends StatelessWidget {
         ),
         SizedBox(height: 8.h),
         Text(
-          'Food • >${recipe.minCookingTimeInMinutes} mins',
+          controller.subtitle,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: AppText.bold500(context).copyWith(

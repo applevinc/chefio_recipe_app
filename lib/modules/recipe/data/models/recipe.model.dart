@@ -11,5 +11,6 @@ class RecipeModel extends Recipe {
     required super.likeCount,
     required super.ingredients,
     required super.steps,
+    super.category,
   });
 }

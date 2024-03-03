@@ -1,7 +1,7 @@
 // A screen that allows users to take a picture using a given camera.
 
 import 'package:camera/camera.dart';
-import 'package:chefio_recipe_app/modules/scan_food/camera/scan_food_camera_viewmodel.dart';
+import 'package:chefio_recipe_app/modules/scan_food/camera/scan_food_camera.controller.dart';
 
 import 'package:chefio_recipe_app/common/widgets/others/error_view.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';
@@ -17,7 +17,7 @@ class ScanCameraScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => ScanFoodCameraViewModel(scanOption: scanOption),
+      create: (_) => ScanFoodCameraController(scanOption: scanOption),
       child: const _ScanCameraScreen(),
     );
   }
@@ -41,12 +41,12 @@ class _ScanCameraScreenState extends State<_ScanCameraScreen> {
   }
 
   void init() async {
-    await context.read<ScanFoodCameraViewModel>().init();
+    await context.read<ScanFoodCameraController>().init();
   }
 
   void takePicture() async {
     try {
-      final viewModel = context.read<ScanFoodCameraViewModel>();
+      final viewModel = context.read<ScanFoodCameraController>();
       final image = await viewModel.takePicture();
 
       if (!mounted) return;
@@ -68,7 +68,7 @@ class _ScanCameraScreenState extends State<_ScanCameraScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ScanFoodCameraViewModel>(
+    return Consumer<ScanFoodCameraController>(
       builder: (context, viewModel, _) {
         if (viewModel.isBusy) {
           return Scaffold(

@@ -7,13 +7,13 @@ import 'package:flutter/widgets.dart';
 
 enum ScanFoodCameraLoadingState { init, takePicture }
 
-class ScanFoodCameraViewModel extends BaseController {
+class ScanFoodCameraController extends BaseController {
   CameraController? _cameraController;
   CameraController? get cameraController => _cameraController;
 
   late String scanOption;
 
-  ScanFoodCameraViewModel({required this.scanOption});
+  ScanFoodCameraController({required this.scanOption});
 
   double cameraAspectRate(BuildContext context) {
     if (cameraController == null) return 0.0;

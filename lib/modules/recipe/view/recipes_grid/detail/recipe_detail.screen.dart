@@ -1,7 +1,7 @@
 import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/detail/components/recipe_detail_ingredients_view.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/detail/components/recipe_detail_steps_view.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/detail/recipe_detail.controller.dart';
-import 'package:chefio_recipe_app/modules/profile/screens/profile_screen.dart';
+import 'package:chefio_recipe_app/modules/profile/screens/profile.screen.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/entities/recipe.dart';
 import 'package:chefio_recipe_app/assets/assets.dart';
 import 'package:chefio_recipe_app/styles/colors.dart';
@@ -112,8 +112,8 @@ class _Sheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewmodel = context.read<RecipeDetailController>();
-    final Recipe recipe = viewmodel.recipe;
+    final controller = context.read<RecipeDetailController>();
+    final Recipe recipe = controller.recipe;
 
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 24.w),

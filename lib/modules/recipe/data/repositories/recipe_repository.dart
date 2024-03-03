@@ -10,7 +10,7 @@ class RecipeRepository implements IRecipeRepository {
   final IRecipeDataSource _dataSource;
 
   @override
-  Future<List<RecipeCategory>> getAllCategories() async {
+  Future<List<RecipeCategory>> getCategories() async {
     return await _dataSource.getAllCategories();
   }
 
@@ -20,8 +20,9 @@ class RecipeRepository implements IRecipeRepository {
   }
 
   @override
-  Future<List<Recipe>> getRecipes({required RecipeCategory category}) async {
-    final categoryModel = RecipeCategoryModel.fromEntity(category);
+  Future<List<Recipe>> getRecipes({required RecipeCategory? category}) async {
+    final categoryModel =
+        category == null ? null : RecipeCategoryModel.fromEntity(category);
     return await _dataSource.getRecipes(category: categoryModel);
   }
 

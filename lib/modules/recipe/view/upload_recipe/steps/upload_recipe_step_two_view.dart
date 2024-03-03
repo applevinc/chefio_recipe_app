@@ -1,7 +1,7 @@
 import 'package:chefio_recipe_app/modules/recipe/view/upload_recipe/layouts/upload_recipe_success_dialog.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/upload_recipe/steps/components/upload_recipe_ingredients_view.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/upload_recipe/steps/components/upload_recipe_steps_view.dart';
-import 'package:chefio_recipe_app/modules/recipe/view/upload_recipe/upload_recipe_viewmodel.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/upload_recipe/upload_recipe.controller.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
 import 'package:chefio_recipe_app/common/widgets/buttons/custom_button.dart';
 import 'package:chefio_recipe_app/common/widgets/inputs/close_keyboard_wrapper.dart';
@@ -34,7 +34,7 @@ class _UploadRecipeStepTwoViewState extends State<UploadRecipeStepTwoView> {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<UploadRecipeViewModel>();
+    final controller = context.watch<UploadRecipeController>();
 
     return CloseKeyboardWrapper(
       child: Scaffold(
@@ -69,15 +69,15 @@ class _UploadRecipeStepTwoViewState extends State<UploadRecipeStepTwoView> {
                   label: 'Back',
                   backgroundColor: AppColors.form,
                   labelColor: AppColors.mainText,
-                  onPressed: viewModel.isBusy
+                  onPressed: controller.isBusy
                       ? () {}
                       : () {
-                          viewModel.pageController.animateToPage(
+                          controller.pageController.animateToPage(
                             0,
                             duration: const Duration(milliseconds: 500),
                             curve: Curves.easeInOut,
                           );
-                          viewModel.setPageNo(0);
+                          controller.setPageNo(0);
                         },
                 ),
               ),
@@ -85,7 +85,7 @@ class _UploadRecipeStepTwoViewState extends State<UploadRecipeStepTwoView> {
               Expanded(
                 child: AppButton(
                   label: 'Submit',
-                  isBusy: viewModel.isBusy,
+                  isBusy: controller.isBusy,
                   onPressed: submit,
                 ),
               ),

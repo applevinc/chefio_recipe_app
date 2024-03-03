@@ -12,15 +12,13 @@ class HomeController extends BaseController {
 
   final IRecipeRepository _recipeRepository;
 
-  final List<RecipeCategory> _categories = [
-    RecipeCategory(id: 'all', name: 'All'),
-  ];
+  List<RecipeCategory> _categories = [];
 
   List<RecipeCategory> get categories => _categories;
 
-  RecipeCategory _selectedCategory = RecipeCategory(id: 'all', name: 'All');
+  RecipeCategory? _selectedCategory;
 
-  RecipeCategory get selectedCategory => _selectedCategory;
+  RecipeCategory? get selectedCategory => _selectedCategory;
 
   List<Recipe> _recipes = [];
 
@@ -28,7 +26,12 @@ class HomeController extends BaseController {
 
   void selectCategory(RecipeCategory category) {
     _selectedCategory = category;
-    getRecipesForCategory(category);
+
+    if (category.name == 'All') {
+      _getRecipesForCategory(category: null);
+    } else {
+      _getRecipesForCategory(category: category);
+    }
   }
 
   Future<void> init() async {
@@ -46,18 +49,18 @@ class HomeController extends BaseController {
   }
 
   Future<void> _getCategories() async {
-    final List<RecipeCategory> results = await _recipeRepository.getAllCategories();
+    _categories = await _recipeRepository.getCategories();
 
-    for (var element in results) {
-      _categories.add(element);
+    if (_categories.isNotEmpty) {
+      _selectedCategory = _categories.first;
     }
   }
 
   Future<void> _initRecipes() async {
-    getRecipesForCategory(selectedCategory);
+    _getRecipesForCategory(category: null);
   }
 
-  void getRecipesForCategory(RecipeCategory category) async {
+  void _getRecipesForCategory({required RecipeCategory? category}) async {
     try {
       setBusyForObject(HomeLoadingState.recipes, true);
       await _getRecipes(category);
@@ -69,10 +72,10 @@ class HomeController extends BaseController {
   }
 
   Future<void> refreshRecipes() async {
-    getRecipesForCategory(selectedCategory);
+    _getRecipesForCategory(category: selectedCategory);
   }
 
-  Future<void> _getRecipes(RecipeCategory category) async {
+  Future<void> _getRecipes(RecipeCategory? category) async {
     clearErrors();
     _recipes = await _recipeRepository.getRecipes(category: category);
   }

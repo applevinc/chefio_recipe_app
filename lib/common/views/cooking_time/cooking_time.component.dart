@@ -1,15 +1,15 @@
-import 'package:chefio_recipe_app/common/views/cooking_time/cooking_time_viewmodel.dart';
+import 'package:chefio_recipe_app/common/views/cooking_time/cooking_time.controller.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-class CookingTimeView<T extends CookingTimeViewModel> extends StatelessWidget {
+class CookingTimeView<T extends CookingTimeController> extends StatelessWidget {
   const CookingTimeView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<T>();
+    final controller = context.watch<T>();
     final titleStyle = AppText.bold700(context).copyWith(
       fontSize: 15.sp,
       color: AppColors.primary,
@@ -55,11 +55,11 @@ class CookingTimeView<T extends CookingTimeViewModel> extends StatelessWidget {
         ),
         SizedBox(height: 5.h),
         Slider(
-          value: viewModel.cookingTimeInMinutes,
+          value: controller.cookingTimeInMinutes,
           min: minCookingTimeInMinutes,
           max: maxCookingTimeInMinutes,
           divisions: 2,
-          onChanged: (value) => viewModel.setCookingTime(value),
+          onChanged: (value) => controller.setCookingTime(value),
         ),
       ],
     );

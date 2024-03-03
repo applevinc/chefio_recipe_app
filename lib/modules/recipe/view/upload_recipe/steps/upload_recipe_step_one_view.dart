@@ -1,6 +1,6 @@
-import 'package:chefio_recipe_app/common/views/cooking_time/cooking_time_view.dart';
+import 'package:chefio_recipe_app/common/views/cooking_time/cooking_time.component.dart';
 import 'package:chefio_recipe_app/assets/icons.dart';
-import 'package:chefio_recipe_app/modules/recipe/view/upload_recipe/upload_recipe_viewmodel.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/upload_recipe/upload_recipe.controller.dart';
 import 'package:chefio_recipe_app/styles/colors.dart';
 import 'package:chefio_recipe_app/styles/text.dart';
 import 'package:chefio_recipe_app/common/widgets/buttons/custom_button.dart';
@@ -27,9 +27,9 @@ class _UploadRecipeStepOneViewState extends State<UploadRecipeStepOneView> {
   @override
   void initState() {
     super.initState();
-    final viewModel = context.read<UploadRecipeViewModel>();
-    foodNameController = TextEditingController(text: viewModel.foodName);
-    foodDescriptionController = TextEditingController(text: viewModel.foodDescription);
+    final controller = context.read<UploadRecipeController>();
+    foodNameController = TextEditingController(text: controller.foodName);
+    foodDescriptionController = TextEditingController(text: controller.foodDescription);
   }
 
   @override
@@ -41,23 +41,23 @@ class _UploadRecipeStepOneViewState extends State<UploadRecipeStepOneView> {
 
   void moveToNext() {
     if (_formKey.currentState!.validate()) {
-      final viewModel = context.read<UploadRecipeViewModel>();
+      final controller = context.read<UploadRecipeController>();
 
-      if (viewModel.coverPhoto == null) {
+      if (controller.coverPhoto == null) {
         Messenger.error(context: context, message: 'Cover photo is required');
         return;
       }
 
-      viewModel.setFoodInfo(
+      controller.setFoodInfo(
         foodName: foodNameController.text,
         foodDescription: foodDescriptionController.text,
       );
-      viewModel.pageController.animateToPage(
+      controller.pageController.animateToPage(
         1,
         duration: const Duration(milliseconds: 500),
         curve: Curves.easeInOut,
       );
-      viewModel.setPageNo(1);
+      controller.setPageNo(1);
     }
   }
 
@@ -102,7 +102,7 @@ class _UploadRecipeStepOneViewState extends State<UploadRecipeStepOneView> {
               },
             ),
             SizedBox(height: 24.h),
-            const CookingTimeView<UploadRecipeViewModel>(),
+            const CookingTimeView<UploadRecipeController>(),
             SizedBox(height: 30.h),
             AppButton(
               label: 'NEXT',
@@ -120,14 +120,14 @@ class _CoverPhotoView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<UploadRecipeViewModel>();
-    final coverPhoto = viewModel.coverPhoto;
+    final controller = context.watch<UploadRecipeController>();
+    final coverPhoto = controller.coverPhoto;
 
     return Stack(
       clipBehavior: Clip.none,
       children: [
         GestureDetector(
-          onTap: coverPhoto == null ? viewModel.pickCoverPhoto : null,
+          onTap: coverPhoto == null ? controller.pickCoverPhoto : null,
           child: DottedBorder(
             borderType: BorderType.RRect,
             dashPattern: [8.w, 4.w],
@@ -157,7 +157,7 @@ class _CoverPhotoView extends StatelessWidget {
             top: -5.h,
             right: -4.w,
             child: GestureDetector(
-              onTap: viewModel.removeCoverPhoto,
+              onTap: controller.removeCoverPhoto,
               child: Container(
                 padding: EdgeInsets.all(5.sp),
                 decoration: const BoxDecoration(

@@ -1,4 +1,4 @@
-import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/recipes_grid.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/recipes_grid.component.dart';
 import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/common/views/home/components/home_categories_component.dart';
 import 'package:chefio_recipe_app/common/views/home/home.controller.dart';
@@ -35,7 +35,11 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void init() async {
-    context.read<HomeController>().init();
+    final controller = context.read<HomeController>();
+
+    if (controller.recipes.isEmpty) {
+      controller.init();
+    }
   }
 
   @override
@@ -86,7 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 }
 
-                return RecipesGrid(
+                return RecipesGridComponent(
                   recipes: controller.recipes,
                   isBusy: controller.busy(HomeLoadingState.recipes),
                   onRefresh: controller.refreshRecipes,

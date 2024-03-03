@@ -3,7 +3,7 @@ import 'package:chefio_recipe_app/common/models/user.dart';
 import 'package:chefio_recipe_app/common/views/dashboard/dashboard.component.dart';
 import 'package:chefio_recipe_app/common/views/onboarding/onboarding.screen.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/detail/recipe_detail.screen.dart';
-import 'package:chefio_recipe_app/modules/recipe/view/upload_recipe/upload_recipe_screen.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/upload_recipe/upload_recipe.screen.dart';
 import 'package:chefio_recipe_app/modules/auth/view/forgot_password/confirmation/confirm_forgot_password.screen.dart';
 import 'package:chefio_recipe_app/modules/auth/view/forgot_password/forgot_password.screen.dart';
 import 'package:chefio_recipe_app/modules/auth/view/forgot_password/reset_password/reset_password.screen.dart';
@@ -13,7 +13,7 @@ import 'package:chefio_recipe_app/modules/auth/view/sign_up/sign_up.screen.dart'
 import 'package:chefio_recipe_app/common/views/home/home.screen.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/search/search_recipe.screen.dart';
 import 'package:chefio_recipe_app/modules/notification/notification.dart';
-import 'package:chefio_recipe_app/modules/profile/screens/profile_screen.dart';
+import 'package:chefio_recipe_app/modules/profile/screens/profile.screen.dart';
 import 'package:go_router/go_router.dart';
 
 final router = GoRouter(

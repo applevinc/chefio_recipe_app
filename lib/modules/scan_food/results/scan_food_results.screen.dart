@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_repository.dart';
 import 'package:chefio_recipe_app/modules/scan_food/results/components/scan_food_results_appbar.view.dart';
 import 'package:chefio_recipe_app/modules/scan_food/results/components/shimmer.view.dart';
-import 'package:chefio_recipe_app/modules/scan_food/results/scan_food_results_viewmodel.dart';
-import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/recipes_grid.dart';
+import 'package:chefio_recipe_app/modules/scan_food/results/scan_food_results.controller.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/recipes_grid.component.dart';
 import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/common/widgets/others/error_view.dart';
 import 'package:chefio_recipe_app/common/widgets/widgets.dart';
@@ -20,7 +20,7 @@ class ScanFoodResultsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => ScanFoodResultsViewModel(
+      create: (_) => ScanFoodResultsController(
         type: type,
         image: image,
         recipeRepository: locator<IRecipeRepository>(),
@@ -48,13 +48,13 @@ class _ScanFoodResultsScreenState extends State<_ScanFoodResultsScreen> {
   }
 
   void init() async {
-    await context.read<ScanFoodResultsViewModel>().getRecipes();
+    await context.read<ScanFoodResultsController>().getRecipes();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Consumer<ScanFoodResultsViewModel>(
+      body: Consumer<ScanFoodResultsController>(
         builder: (context, viewModel, _) {
           if (viewModel.isBusy) {
             return const ScanFoodResultsShimmerView();
@@ -76,7 +76,7 @@ class _ScanFoodResultsScreenState extends State<_ScanFoodResultsScreen> {
             body: Column(
               children: [
                 const GreyDivider(),
-                RecipesGrid(
+                RecipesGridComponent(
                   recipes: viewModel.recipes,
                   isBusy: viewModel.anyObjectsBusy,
                 ),

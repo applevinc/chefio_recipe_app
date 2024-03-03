@@ -33,8 +33,8 @@ class _SearchAppBarComponentState extends State<SearchAppBarComponent> {
   }
 
   void onTapFilterIcon() async {
-    final viewModel = context.read<SearchRecipeController>();
-    final catergories = viewModel.categories;
+    final controller = context.read<SearchRecipeController>();
+    final catergories = controller.categories;
 
     if (catergories.isEmpty) {
       return;
@@ -48,13 +48,13 @@ class _SearchAppBarComponentState extends State<SearchAppBarComponent> {
     if (result != null) {
       searchController.clear();
       final request = result as SearchFilterRequest;
-      await viewModel.searchByFilter(request);
+      await controller.searchByFilter(request);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<SearchRecipeController>();
+    final controller = context.watch<SearchRecipeController>();
 
     return Column(
       children: [
@@ -81,7 +81,7 @@ class _SearchAppBarComponentState extends State<SearchAppBarComponent> {
                     child: CustomTextField(
                       controller: searchController,
                       autofocus: true,
-                      readOnly: viewModel.busy(SearchLoadingState.init),
+                      readOnly: controller.busy(SearchLoadingState.init),
                       prefixIcon: const TextFieldIcon(icon: AppIcons.search),
                       suffixIcon: searchController.text.isEmpty
                           ? null
@@ -98,7 +98,7 @@ class _SearchAppBarComponentState extends State<SearchAppBarComponent> {
                         borderSide: BorderSide.none,
                       ),
                       fillColor: AppColors.form,
-                      onChanged: (query) => viewModel.search(query),
+                      onChanged: (query) => controller.search(query),
                     ),
                   ),
                 ),
@@ -111,7 +111,7 @@ class _SearchAppBarComponentState extends State<SearchAppBarComponent> {
                   width: 24.h,
                 ),
                 onPressed:
-                    viewModel.busy(SearchLoadingState.init) ? () {} : onTapFilterIcon,
+                    controller.busy(SearchLoadingState.init) ? () {} : onTapFilterIcon,
               ),
             ],
           ),

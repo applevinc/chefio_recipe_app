@@ -44,7 +44,7 @@ class CustomTextField extends StatelessWidget {
     this.textInputType,
     this.obscure = false,
     this.isPasswordTextField,
-     this.controller,
+    this.controller,
     this.inputLimit,
     this.inputFormatters,
     this.readOnly = false,
@@ -78,7 +78,6 @@ class CustomTextField extends StatelessWidget {
 
     final field = TextFormField(
       autofocus: autofocus,
-      autovalidateMode: AutovalidateMode.onUserInteraction,
       style: AppText.bold400(context).copyWith(
         fontWeight: FontWeight.w500,
         fontSize: 15.sp,

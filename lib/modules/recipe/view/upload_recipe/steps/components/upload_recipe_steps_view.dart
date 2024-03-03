@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:chefio_recipe_app/common/models/upload_recipe.dart';
 import 'package:chefio_recipe_app/assets/assets.dart';
-import 'package:chefio_recipe_app/modules/recipe/view/upload_recipe/upload_recipe_viewmodel.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/upload_recipe/upload_recipe.controller.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/widgets/upload_recipe_add_button.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
 import 'package:chefio_recipe_app/common/widgets/widgets.dart';
@@ -17,8 +17,8 @@ class UploadRecipeStepsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<UploadRecipeViewModel>();
-    final cookingSteps = viewModel.cookingSteps;
+    final controller = context.watch<UploadRecipeController>();
+    final cookingSteps = controller.cookingSteps;
 
     return Padding(
       padding: EdgeInsets.only(
@@ -60,7 +60,7 @@ class UploadRecipeStepsView extends StatelessWidget {
           ),
           UploadRecipeAddButton(
             label: 'Step',
-            onTap: viewModel.addCookingStep,
+            onTap: controller.addCookingStep,
           ),
         ],
       ),
@@ -108,7 +108,7 @@ class _CookingStepItemViewState extends State<_CookingStepItemView> {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.read<UploadRecipeViewModel>();
+    final controller = context.read<UploadRecipeController>();
 
     return Slidable(
       key: ValueKey(widget.index),
@@ -124,7 +124,7 @@ class _CookingStepItemViewState extends State<_CookingStepItemView> {
                     Icons.delete_outline_outlined,
                     color: Colors.red,
                   ),
-                  onPressed: (context) => viewModel.removeCookingStep(widget.index),
+                  onPressed: (context) => controller.removeCookingStep(widget.index),
                 ),
               ],
             ),
@@ -169,7 +169,7 @@ class _CookingStepItemViewState extends State<_CookingStepItemView> {
                       color: Color(0xffd0dbea),
                     ),
                   ),
-                  onChanged: (value) => viewModel.updateCookingStepDescription(
+                  onChanged: (value) => controller.updateCookingStepDescription(
                     index: widget.index,
                     description: value,
                   ),
@@ -183,8 +183,8 @@ class _CookingStepItemViewState extends State<_CookingStepItemView> {
                 SizedBox(height: 8.h),
                 imageView(
                   photo: widget.cookingStep.photo,
-                  onTap: () => viewModel.addPhotoForCookingStep(widget.index),
-                  remove: () => viewModel.removePhotoForCookingStep(widget.index),
+                  onTap: () => controller.addPhotoForCookingStep(widget.index),
+                  remove: () => controller.removePhotoForCookingStep(widget.index),
                 ),
               ],
             ),

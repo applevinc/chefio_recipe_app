@@ -1,6 +1,6 @@
 import 'package:chefio_recipe_app/common/models/upload_recipe.dart';
 import 'package:chefio_recipe_app/assets/assets.dart';
-import 'package:chefio_recipe_app/modules/recipe/view/upload_recipe/upload_recipe_viewmodel.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/upload_recipe/upload_recipe.controller.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/widgets/upload_recipe_add_button.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
 import 'package:chefio_recipe_app/common/widgets/widgets.dart';
@@ -14,8 +14,8 @@ class UploadRecipeIngredientsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<UploadRecipeViewModel>();
-    final ingredients = viewModel.ingredients;
+    final controller = context.watch<UploadRecipeController>();
+    final ingredients = controller.ingredients;
 
     return Padding(
       padding: EdgeInsets.only(
@@ -57,7 +57,7 @@ class UploadRecipeIngredientsView extends StatelessWidget {
           ),
           UploadRecipeAddButton(
             label: 'Ingredient',
-            onTap: viewModel.addIngredient,
+            onTap: controller.addIngredient,
           ),
         ],
       ),
@@ -105,7 +105,7 @@ class _IngredientItemViewState extends State<_IngredientItemView> {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<UploadRecipeViewModel>();
+    final controller = context.watch<UploadRecipeController>();
 
     return Slidable(
       key: ValueKey(widget.index),
@@ -121,7 +121,7 @@ class _IngredientItemViewState extends State<_IngredientItemView> {
                     Icons.delete_outline_outlined,
                     color: Colors.red,
                   ),
-                  onPressed: (context) => viewModel.removeIngredient(widget.index),
+                  onPressed: (context) => controller.removeIngredient(widget.index),
                 ),
               ],
             ),
@@ -141,7 +141,7 @@ class _IngredientItemViewState extends State<_IngredientItemView> {
             child: CustomTextField(
               hintText: 'Enter ingredient',
               controller: ingredientController,
-              onChanged: (value) => viewModel.updateIngredient(
+              onChanged: (value) => controller.updateIngredient(
                 index: widget.index,
                 ingredientName: value,
               ),

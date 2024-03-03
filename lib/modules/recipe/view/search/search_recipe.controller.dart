@@ -35,11 +35,15 @@ class SearchRecipeController extends BaseController {
 
   List<SearchSuggestion> get searchSuggestions => _searchSuggestion;
 
-  final List<RecipeCategory> _categories = [
-    RecipeCategory(id: 'all', name: 'All'),
-  ];
+  List<RecipeCategory> _categories = [];
 
   List<RecipeCategory> get categories => _categories;
+
+  bool get hasLoadedData {
+    return _searchHistory.isNotEmpty &&
+        _searchSuggestion.isNotEmpty &&
+        _categories.isNotEmpty;
+  }
 
   Future<void> init() async {
     clearErrors();
@@ -54,6 +58,7 @@ class SearchRecipeController extends BaseController {
     } on Failure catch (e) {
       setErrorForObject(SearchErrorState.init, e);
     } finally {
+      stopBuildingFrame();
       setBusyForObject(SearchLoadingState.init, false);
     }
   }
@@ -67,11 +72,7 @@ class SearchRecipeController extends BaseController {
   }
 
   Future<void> _getCategories() async {
-    final List<RecipeCategory> results = await _recipeRepository.getAllCategories();
-
-    for (var element in results) {
-      _categories.add(element);
-    }
+    _categories = await _recipeRepository.getCategories();
   }
 
   Future<void> search(String query) async {

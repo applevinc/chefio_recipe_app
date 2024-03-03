@@ -12,6 +12,10 @@ class FakeRecipeDataSource implements IRecipeDataSource {
     return [
       RecipeCategoryModel(
         id: getGuid(),
+        name: 'All',
+      ),
+      RecipeCategoryModel(
+        id: getGuid(),
         name: 'Food',
       ),
       RecipeCategoryModel(
@@ -24,60 +28,80 @@ class FakeRecipeDataSource implements IRecipeDataSource {
   @override
   Future<List<RecipeModel>> getLikedRecipesByUser({required String userId}) async {
     await fakeNetworkDelay();
-    return _getRecipes();
+    return getFakeRecipesData();
   }
 
   @override
-  Future<List<RecipeModel>> getRecipes({required RecipeCategoryModel category}) async {
+  Future<List<RecipeModel>> getRecipes({required RecipeCategoryModel? category}) async {
     await fakeNetworkDelay();
-    return _getRecipes();
+    return getFakeRecipesData(category: category);
   }
 
   @override
   Future<List<RecipeModel>> getRecipesByUser({required String userId}) async {
     await fakeNetworkDelay();
-    return _getRecipes();
+    return getFakeRecipesData();
   }
 
   @override
   Future<List<RecipeModel>> search(String query) async {
     await fakeNetworkDelay();
-    return _getRecipes();
+    return getFakeRecipesData();
   }
+}
 
-  List<RecipeModel> _getRecipes() {
-    final List<CookingStep> steps = List.generate(
-      2,
-      (index) => CookingStep(
-        step: index + 1,
-        description: faker.lorem.sentence(),
-        photoUrl: getOneMealPhoto(),
-      ),
-    );
+RecipeCategoryModel _getOneCategory() {
+  final categories = [
+    RecipeCategoryModel(
+      id: getGuid(),
+      name: 'All',
+    ),
+    RecipeCategoryModel(
+      id: getGuid(),
+      name: 'Food',
+    ),
+    RecipeCategoryModel(
+      id: getGuid(),
+      name: 'Drink',
+    ),
+  ];
 
-    final List<RecipeModel> items = List.generate(
-      random.nextInt(200) + 25,
-      (index) => RecipeModel(
+  return categories[random.nextInt(categories.length)];
+}
+
+List<RecipeModel> getFakeRecipesData({RecipeCategoryModel? category}) {
+  final List<CookingStep> steps = List.generate(
+    2,
+    (index) => CookingStep(
+      step: index + 1,
+      description: faker.lorem.sentence(),
+      photoUrl: getOneMealPhoto(),
+    ),
+  );
+
+  final List<RecipeModel> items = List.generate(
+    random.nextInt(200) + 25,
+    (index) => RecipeModel(
+      id: getGuid(),
+      user: User(
         id: getGuid(),
-        user: User(
-          id: getGuid(),
-          photoUrl: getOneProfilePhoto(),
-          firstName: faker.person.firstName(),
-          lastName: faker.person.firstName(),
-          recipeCount: random.nextInt(50),
-          followingCount: random.nextInt(2000),
-          followersCount: random.nextInt(2000),
-        ),
-        coverPhotoUrl: getOneMealPhoto(),
-        description: faker.lorem.sentence(),
-        minCookingTimeInMinutes: random.nextInt(100) + 50,
-        ingredients: faker.lorem.words(5),
-        likeCount: random.nextInt(500) + 13,
-        steps: steps,
-        title: faker.lorem.word(),
+        photoUrl: getOneProfilePhoto(),
+        firstName: faker.person.firstName(),
+        lastName: faker.person.firstName(),
+        recipeCount: random.nextInt(50),
+        followingCount: random.nextInt(2000),
+        followersCount: random.nextInt(2000),
       ),
-    );
+      coverPhotoUrl: getOneMealPhoto(),
+      description: faker.lorem.sentence(),
+      minCookingTimeInMinutes: random.nextInt(100) + 50,
+      ingredients: faker.lorem.words(5),
+      likeCount: random.nextInt(500) + 13,
+      steps: steps,
+      title: faker.lorem.word(),
+      category: category ?? _getOneCategory(),
+    ),
+  );
 
-    return items;
-  }
+  return items;
 }

@@ -5,16 +5,16 @@ import 'package:chefio_recipe_app/common/models/failure.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_repository.dart';
 import 'package:chefio_recipe_app/utils/base.controller.dart';
 
-class ScanFoodResultsViewModel extends BaseController {
-  final IRecipeRepository _recipeRepository;
-  late File? image;
-  late String type;
-
-  ScanFoodResultsViewModel({
+class ScanFoodResultsController extends BaseController {
+  ScanFoodResultsController({
     required this.type,
     required this.image,
     required IRecipeRepository recipeRepository,
   }) : _recipeRepository = recipeRepository;
+
+  final IRecipeRepository _recipeRepository;
+  late File? image;
+  late String type;
 
   final List<Recipe> _recipes = [];
   List<Recipe> get recipes => _recipes;

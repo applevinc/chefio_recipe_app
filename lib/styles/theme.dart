@@ -8,7 +8,6 @@ class AppTheme {
     return ThemeData(
       primaryColor: AppColors.primary,
       scaffoldBackgroundColor: Colors.white,
-      textTheme: GoogleFonts.poppinsTextTheme(),
       buttonTheme: ButtonThemeData(
         buttonColor: AppColors.primary,
         shape: RoundedRectangleBorder(

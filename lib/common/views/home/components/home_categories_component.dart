@@ -11,15 +11,15 @@ class HomeCategoriesComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewmodel = context.watch<HomeController>();
-    final selectedCategory = viewmodel.selectedCategory;
-    final categories = viewmodel.categories;
+    final controller = context.watch<HomeController>();
+    final selectedCategory = controller.selectedCategory;
+    final categories = controller.categories;
 
-    if (viewmodel.busy(HomeLoadingState.init)) {
+    if (controller.busy(HomeLoadingState.init)) {
       return const CategoriesShimmer();
     }
 
-    if (viewmodel.hasError) {
+    if (controller.hasError) {
       return const SizedBox.shrink();
     }
 
@@ -49,8 +49,8 @@ class HomeCategoriesComponent extends StatelessWidget {
                 final category = categories[index];
                 return CategoryItemView(
                   label: category.name,
-                  selected: category.id == selectedCategory.id,
-                  onTap: () => viewmodel.selectCategory(category),
+                  selected: category.id == selectedCategory?.id,
+                  onTap: () => controller.selectCategory(category),
                 );
               },
               separatorBuilder: (context, index) => SizedBox(width: 16.w),
