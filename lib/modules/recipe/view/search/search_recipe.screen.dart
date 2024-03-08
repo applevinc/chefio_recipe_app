@@ -1,5 +1,5 @@
-import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/recipes_grid.component.dart';
-import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/recipes_grid.shimmer.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/grid/recipes_grid.component.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/grid/recipes_grid.shimmer.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/search/components/search_appbar.component.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/search/components/search_history.component.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/search/components/search_suggestions.component.dart';

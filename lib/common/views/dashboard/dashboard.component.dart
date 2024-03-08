@@ -1,5 +1,5 @@
 import 'package:chefio_recipe_app/common/views/dashboard/dashboard.controller.dart';
-import 'package:chefio_recipe_app/modules/recipe/view/upload_recipe/upload_recipe.screen.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/upload/upload_recipe.screen.dart';
 import 'package:chefio_recipe_app/assets/icons.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
 import 'package:flutter/material.dart';

@@ -1,6 +1,6 @@
-import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/detail/components/recipe_detail_ingredients_view.dart';
-import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/detail/components/recipe_detail_steps_view.dart';
-import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/detail/recipe_detail.controller.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/grid/detail/components/recipe_detail_ingredients_view.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/grid/detail/components/recipe_detail_steps_view.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/grid/detail/recipe_detail.controller.dart';
 import 'package:chefio_recipe_app/modules/profile/screens/profile.screen.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/entities/recipe.dart';
 import 'package:chefio_recipe_app/assets/assets.dart';

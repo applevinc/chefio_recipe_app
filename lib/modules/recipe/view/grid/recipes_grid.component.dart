@@ -1,6 +1,7 @@
 import 'package:chefio_recipe_app/modules/recipe/domain/entities/recipe.dart';
-import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/item/recipe_grid_item.component.dart';
-import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/recipes_grid.shimmer.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/grid/components/empty_recipes.component.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/grid/item/recipe_grid_item.component.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/grid/recipes_grid.shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -28,8 +29,11 @@ class RecipesGridComponent extends StatelessWidget {
       return RecipesGridShimmer(isExpanded: isExpanded);
     }
 
+    if (recipes.isEmpty) {
+      return const EmptyRecipesComponent();
+    }
+
     final grid = GridView.builder(
-      physics: physics ?? const BouncingScrollPhysics(),
       padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
@@ -47,7 +51,7 @@ class RecipesGridComponent extends StatelessWidget {
     late Widget child;
 
     if (canRefetch && onRefresh != null) {
-      child = RefreshIndicator(onRefresh: onRefresh!, child: grid);
+      child = RefreshIndicator.adaptive(onRefresh: onRefresh!, child: grid);
     } else {
       child = grid;
     }

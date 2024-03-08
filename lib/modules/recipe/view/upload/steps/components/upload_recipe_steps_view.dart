@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:chefio_recipe_app/common/models/upload_recipe.dart';
 import 'package:chefio_recipe_app/assets/assets.dart';
-import 'package:chefio_recipe_app/modules/recipe/view/upload_recipe/upload_recipe.controller.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/upload/upload_recipe.controller.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/widgets/upload_recipe_add_button.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
 import 'package:chefio_recipe_app/common/widgets/widgets.dart';

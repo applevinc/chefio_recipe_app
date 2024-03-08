@@ -1,6 +1,6 @@
 import 'package:chefio_recipe_app/common/views/cooking_time/cooking_time.component.dart';
 import 'package:chefio_recipe_app/assets/icons.dart';
-import 'package:chefio_recipe_app/modules/recipe/view/upload_recipe/upload_recipe.controller.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/upload/upload_recipe.controller.dart';
 import 'package:chefio_recipe_app/styles/colors.dart';
 import 'package:chefio_recipe_app/styles/text.dart';
 import 'package:chefio_recipe_app/common/widgets/buttons/custom_button.dart';
