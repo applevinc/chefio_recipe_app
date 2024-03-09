@@ -78,10 +78,7 @@ class CustomTextField extends StatelessWidget {
 
     final field = TextFormField(
       autofocus: autofocus,
-      style: AppText.bold400(context).copyWith(
-        fontWeight: FontWeight.w500,
-        fontSize: 15.sp,
-      ),
+      style: AppText.bold500(context),
       keyboardType: textInputType,
       obscureText: obscure,
       maxLength: inputLimit,
@@ -171,8 +168,7 @@ class CustomTextField extends StatelessWidget {
           Text(
             title!,
             style: AppText.bold700(context).copyWith(
-              fontSize: 17.sp,
-              color: const Color(0xFF3D5480),
+              color: AppColors.headlineText,
             ),
           ),
           SizedBox(height: 8.h),

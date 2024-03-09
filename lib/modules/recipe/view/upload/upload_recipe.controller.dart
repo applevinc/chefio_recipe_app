@@ -4,42 +4,47 @@ import 'package:chefio_recipe_app/common/models/upload_recipe.dart';
 import 'package:chefio_recipe_app/common/services/file_service.dart';
 import 'package:chefio_recipe_app/common/views/cooking_time/cooking_time.controller.dart';
 import 'package:chefio_recipe_app/config/locator/locator.dart';
+import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_repository.dart';
+import 'package:chefio_recipe_app/utils/functions.dart';
 import 'package:flutter/material.dart';
 
 class UploadRecipeController extends CookingTimeController {
+  UploadRecipeController({required IRecipeRepository recipeRepository}) {
+    recipeRepository = recipeRepository;
+    foodNameController = TextEditingController();
+    foodDescriptionController = TextEditingController();
+    pageController = PageController();
+  }
+
+  late final IRecipeRepository _recipeRepository;
+
+  late final TextEditingController foodNameController;
+
+  late final TextEditingController foodDescriptionController;
+
+  late final PageController pageController;
+
   final fileService = locator<FileService>();
 
-  final pageController = PageController();
-
   int _pageNo = 0;
+
   int get pageNo => _pageNo;
 
   File? _coverPhoto;
+
   File? get coverPhoto => _coverPhoto;
-
-  String _foodName = '';
-  String get foodName => _foodName;
-
-  String _foodDescription = '';
-  String get foodDescription => _foodDescription;
 
   final List<UploadRecipeIngredient> _ingredients = [
     UploadRecipeIngredient.create(),
   ];
+
   List<UploadRecipeIngredient> get ingredients => _ingredients;
 
   final List<UploadRecipeCookingStep> _cookingSteps = [
     UploadRecipeCookingStep.create(),
   ];
+  
   List<UploadRecipeCookingStep> get cookingSteps => _cookingSteps;
-
-  void setFoodInfo({
-    required String foodName,
-    required String foodDescription,
-  }) {
-    _foodName = foodName;
-    _foodDescription = foodDescription;
-  }
 
   void setPageNo(int page) {
     _pageNo = page;
@@ -101,9 +106,11 @@ class UploadRecipeController extends CookingTimeController {
   }
 
   void pickCoverPhoto() async {
-    final image = await fileService.pickImageFromGallery();
+    final image = await pickImageFromGallery();
 
-    if (image == null) return;
+    if (image == null) {
+      return;
+    }
 
     _coverPhoto = image;
     notifyListeners();
@@ -114,9 +121,13 @@ class UploadRecipeController extends CookingTimeController {
     notifyListeners();
   }
 
+  Future<void> execute() async {}
+
   @override
   void dispose() {
     pageController.dispose();
+    foodNameController.dispose();
+    foodDescriptionController.dispose();
     super.dispose();
   }
 }
