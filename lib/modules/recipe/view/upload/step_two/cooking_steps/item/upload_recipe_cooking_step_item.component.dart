@@ -3,9 +3,7 @@ import 'package:chefio_recipe_app/modules/recipe/domain/entities/requests/upload
 import 'package:chefio_recipe_app/modules/recipe/view/upload/step_two/cooking_steps/item/upload_recipe_cooking_step_item.controller.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/upload/upload_recipe.controller.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -36,7 +34,7 @@ class UploadRecipeCookingStepItemComponent extends StatelessWidget {
 }
 
 class _UploadRecipeCookingStepItemComponent extends StatefulWidget {
-  const _UploadRecipeCookingStepItemComponent({super.key});
+  const _UploadRecipeCookingStepItemComponent();
 
   @override
   State<_UploadRecipeCookingStepItemComponent> createState() =>
@@ -133,7 +131,7 @@ class __UploadRecipeCookingStepItemComponentState
 }
 
 class _ImageComponent extends StatefulWidget {
-  const _ImageComponent({super.key});
+  const _ImageComponent();
 
   @override
   State<_ImageComponent> createState() => _ImageComponentState();
