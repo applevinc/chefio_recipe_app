@@ -1,4 +1,4 @@
-import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/detail/recipe_detail.controller.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/grid/detail/recipe_detail.controller.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

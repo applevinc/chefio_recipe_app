@@ -1,7 +1,8 @@
 import 'dart:ui';
+import 'package:chefio_recipe_app/modules/profile/screens/profile.screen.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/entities/recipe.dart';
-import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/detail/recipe_detail.screen.dart';
-import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/item/recipe_grid_item.controller.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/grid/detail/recipe_detail.screen.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/grid/item/recipe_grid_item.controller.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
 
 import 'package:chefio_recipe_app/common/widgets/image/custom_cached_network_image.dart';
@@ -39,11 +40,16 @@ class _RecipeGridItem extends StatelessWidget {
       children: [
         Row(
           children: [
-            CustomCacheNetworkImage(
-              imageUrl: user.photoUrl,
-              height: 30.h,
-              width: 30.h,
-              borderRadius: BorderRadius.circular(11.r),
+            GestureDetector(
+              onTap: () {
+                context.push(ProfileScreen.route, extra: user);
+              },
+              child: CustomCacheNetworkImage(
+                imageUrl: user.photoUrl,
+                height: 30.h,
+                width: 30.h,
+                borderRadius: BorderRadius.circular(11.r),
+              ),
             ),
             SizedBox(width: 8.w),
             Expanded(

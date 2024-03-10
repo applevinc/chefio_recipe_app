@@ -10,7 +10,7 @@ class AppText {
     return GoogleFonts.poppins(
       fontSize: 14.sp,
       color: AppColors.mainText,
-      letterSpacing: 0.5.sp,
+      //letterSpacing: 0.5.sp,
     );
   }
 

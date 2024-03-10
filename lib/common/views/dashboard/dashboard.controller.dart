@@ -1,4 +1,4 @@
-import 'package:chefio_recipe_app/modules/recipe/view/upload_recipe/upload_recipe.screen.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/upload/upload_recipe.screen.dart';
 import 'package:chefio_recipe_app/config/app_session.dart';
 import 'package:chefio_recipe_app/common/views/home/home.screen.dart';
 import 'package:chefio_recipe_app/modules/notification/notification.dart';

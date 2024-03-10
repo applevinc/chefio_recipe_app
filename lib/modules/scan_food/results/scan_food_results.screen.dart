@@ -4,7 +4,7 @@ import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_re
 import 'package:chefio_recipe_app/modules/scan_food/results/components/scan_food_results_appbar.view.dart';
 import 'package:chefio_recipe_app/modules/scan_food/results/components/shimmer.view.dart';
 import 'package:chefio_recipe_app/modules/scan_food/results/scan_food_results.controller.dart';
-import 'package:chefio_recipe_app/modules/recipe/view/recipes_grid/recipes_grid.component.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/grid/recipes_grid.component.dart';
 import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/common/widgets/others/error_view.dart';
 import 'package:chefio_recipe_app/common/widgets/widgets.dart';

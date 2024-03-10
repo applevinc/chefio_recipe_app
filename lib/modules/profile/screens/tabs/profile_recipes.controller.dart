@@ -5,32 +5,35 @@ import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_re
 import 'package:chefio_recipe_app/utils/base.controller.dart';
 
 abstract class ProfileRecipesController extends BaseController {
-  List<Recipe> _recipes = [];
-  List<Recipe> get recipes => _recipes;
+  ProfileRecipesController({
+    required this.recipeRepository,
+    required this.user,
+  });
 
-  void updateRecipes(List<Recipe> values) {
-    _recipes = values;
-  }
+  final IRecipeRepository recipeRepository;
+
+  final User user;
+
+  List<Recipe> _recipes = [];
+
+  List<Recipe> get recipes => _recipes;
 
   Future<void> getRecipes();
 }
 
-class UserLikedRecipesViewModel extends ProfileRecipesController {
-  final IRecipeRepository _recipeRepository;
-  final User user;
-
-  UserLikedRecipesViewModel(
-      {required IRecipeRepository recipeRepository, required this.user})
-      : _recipeRepository = recipeRepository;
+class UserLikedRecipesController extends ProfileRecipesController {
+  UserLikedRecipesController({
+    required super.recipeRepository,
+    required super.user,
+  });
 
   @override
   Future<void> getRecipes() async {
     clearErrors();
+
     try {
       setBusy(true);
-      final List<Recipe> values =
-          await _recipeRepository.getLikedRecipesByUser(userId: user.id);
-      updateRecipes(values);
+      _recipes = await recipeRepository.getLikedRecipesByUser(userId: user.id);
     } on Failure catch (e) {
       setError(e);
     } finally {
@@ -39,21 +42,19 @@ class UserLikedRecipesViewModel extends ProfileRecipesController {
   }
 }
 
-class UserRecipesViewModel extends ProfileRecipesController {
-  final IRecipeRepository _recipeRepository;
-  final User user;
-
-  UserRecipesViewModel({required IRecipeRepository recipeRepository, required this.user})
-      : _recipeRepository = recipeRepository;
+class UserRecipesController extends ProfileRecipesController {
+  UserRecipesController({
+    required super.recipeRepository,
+    required super.user,
+  });
 
   @override
   Future<void> getRecipes() async {
     clearErrors();
+
     try {
       setBusy(true);
-      final List<Recipe> values =
-          await _recipeRepository.getRecipesByUser(userId: user.id);
-      updateRecipes(values);
+      _recipes = await recipeRepository.getRecipesByUser(userId: user.id);
     } on Failure catch (e) {
       setError(e);
     } finally {
