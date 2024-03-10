@@ -6,7 +6,7 @@ class UploadRecipeRequest {
   final String description;
   final Duration duration;
   final List<String> ingredients;
-  final List<CreateCookingStepRequest> cookingSteps;
+  final List<UploadCookingStepRequest> cookingSteps;
 
   UploadRecipeRequest({
     required this.coverPhoto,
@@ -18,14 +18,14 @@ class UploadRecipeRequest {
   });
 }
 
-class CreateCookingStepRequest {
-  final int step;
-  final String description;
-  final File? photo;
+class UploadCookingStepRequest {
+  int step;
+  String description;
+  File? photo;
 
-  CreateCookingStepRequest({
+  UploadCookingStepRequest({
     required this.step,
     required this.description,
-    required this.photo,
+    this.photo,
   });
 }

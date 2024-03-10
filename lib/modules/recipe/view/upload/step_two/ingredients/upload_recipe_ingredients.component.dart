@@ -16,7 +16,7 @@ class UploadRecipeIngredientsComponent extends StatelessWidget {
 
     return Padding(
       padding: EdgeInsets.only(
-        top: 47.h,
+        top: 24.h,
         left: AppPadding.horizontal,
         right: AppPadding.horizontal,
         bottom: 24.h,

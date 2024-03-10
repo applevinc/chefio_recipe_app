@@ -53,6 +53,7 @@ class _UploadRecipeStepOneViewState extends State<UploadRecipeStepOneView> {
               title: 'Food Name',
               hintText: 'Enter food name',
               controller: controller.foodNameController,
+              textCapitalization: TextCapitalization.sentences,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Please enter your food name';
@@ -66,7 +67,9 @@ class _UploadRecipeStepOneViewState extends State<UploadRecipeStepOneView> {
               title: 'Description',
               hintText: 'Tell a little about your food',
               controller: controller.foodDescriptionController,
+              textCapitalization: TextCapitalization.sentences,
               maxLines: 3,
+              contentPadding: EdgeInsets.all(16.sp),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8.r),
                 borderSide: const BorderSide(

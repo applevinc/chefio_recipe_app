@@ -19,7 +19,7 @@ class UploadRecipeCoverPhotoComponent extends StatelessWidget {
       clipBehavior: Clip.none,
       children: [
         GestureDetector(
-          onTap: coverPhoto == null ? controller.pickCoverPhoto : null,
+          onTap: coverPhoto == null ? controller.uploadCoverPhoto : null,
           child: DottedBorder(
             borderType: BorderType.RRect,
             dashPattern: [8.w, 4.w],
@@ -49,12 +49,12 @@ class UploadRecipeCoverPhotoComponent extends StatelessWidget {
             top: -5.h,
             right: -4.w,
             child: GestureDetector(
-              onTap: controller.removeCoverPhoto,
+              onTap: controller.deleteCoverPhoto,
               child: Container(
-                padding: EdgeInsets.all(5.sp),
+                padding: EdgeInsets.all(8.sp),
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Colors.black,
+                  color: Colors.red,
                   boxShadow: [
                     BoxShadow(
                       color: Color(0x07000000),

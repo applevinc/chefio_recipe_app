@@ -74,12 +74,13 @@ class CustomTextField extends StatelessWidget {
     final defaultBorder = OutlineInputBorder(
       borderRadius: BorderRadius.circular(32.r),
       borderSide: const BorderSide(
-        color: Color(0xffd0dbea),
+        color: AppColors.outline,
       ),
     );
 
     final field = TextFormField(
       autofocus: autofocus,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       style: AppText.bold500(context),
       keyboardType: textInputType,
       obscureText: obscure,
@@ -94,10 +95,11 @@ class CustomTextField extends StatelessWidget {
       inputFormatters: inputFormatters,
       textCapitalization: textCapitalization,
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.symmetric(
-          vertical: 16.h,
-          horizontal: 24.w,
-        ),
+        contentPadding: contentPadding ??
+            EdgeInsets.symmetric(
+              vertical: 16.h,
+              horizontal: 24.w,
+            ),
         isDense: true,
         counterText: "",
         filled: true,
