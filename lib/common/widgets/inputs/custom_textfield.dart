@@ -34,6 +34,7 @@ class CustomTextField extends StatelessWidget {
   final InputBorder? border;
   final EdgeInsetsGeometry? contentPadding;
   final bool autofocus;
+  final TextCapitalization textCapitalization;
 
   const CustomTextField({
     super.key,
@@ -65,6 +66,7 @@ class CustomTextField extends StatelessWidget {
     this.border,
     this.contentPadding,
     this.autofocus = false,
+    this.textCapitalization = TextCapitalization.none,
   });
 
   @override
@@ -90,6 +92,7 @@ class CustomTextField extends StatelessWidget {
       onChanged: onChanged,
       readOnly: readOnly,
       inputFormatters: inputFormatters,
+      textCapitalization: textCapitalization,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(
           vertical: 16.h,

@@ -1,4 +1,5 @@
 import 'package:chefio_recipe_app/common/widgets/inputs/close_keyboard_wrapper.dart';
+import 'package:chefio_recipe_app/common/widgets/others/loading_overlay_view.dart';
 import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_repository.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/upload/step_one/upload_recipe_step_one.view.dart';
@@ -39,60 +40,63 @@ class _UploadRecipeScreen extends StatelessWidget {
     );
 
     return PopScope(
-      canPop: true,
-      child: CloseKeyboardWrapper(
-        child: Scaffold(
-          appBar: AppBar(
-            leadingWidth: 110.w,
-            leading: TextButton(
-              onPressed: () {
-                context.pop();
-              },
-              child: Text(
-                'Cancel',
-                style: titleStyle.copyWith(
-                  color: AppColors.secondary,
-                ),
-              ),
-            ),
-            actions: [
-              Padding(
-                padding: EdgeInsets.only(top: 12.h, right: 24.w),
-                child: RichText(
-                  text: TextSpan(
-                    text: '1',
-                    style: titleStyle.copyWith(
-                      color: controller.pageNo == 0
-                          ? AppColors.headlineText
-                          : AppColors.secondaryText,
-                      fontSize: 17.sp,
-                    ),
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: '/',
-                        style: titleStyle,
-                      ),
-                      TextSpan(
-                        text: '2',
-                        style: titleStyle.copyWith(
-                          color: controller.pageNo == 1
-                              ? AppColors.headlineText
-                              : AppColors.secondaryText,
-                        ),
-                      ),
-                    ],
+      canPop: controller.isBusy == false && controller.pageNo == 0,
+      child: LoadingOverlayView(
+        showOverLay: controller.isBusy,
+        child: CloseKeyboardWrapper(
+          child: Scaffold(
+            appBar: AppBar(
+              leadingWidth: 110.w,
+              leading: TextButton(
+                onPressed: () {
+                  context.pop();
+                },
+                child: Text(
+                  'Cancel',
+                  style: titleStyle.copyWith(
+                    color: AppColors.secondary,
                   ),
                 ),
               ),
-            ],
-          ),
-          body: PageView(
-            controller: pageController,
-            physics: const NeverScrollableScrollPhysics(),
-            children: const <Widget>[
-              UploadRecipeStepOneView(),
-              UploadRecipeStepTwoView(),
-            ],
+              actions: [
+                Padding(
+                  padding: EdgeInsets.only(top: 12.h, right: 24.w),
+                  child: RichText(
+                    text: TextSpan(
+                      text: '1',
+                      style: titleStyle.copyWith(
+                        color: controller.pageNo == 0
+                            ? AppColors.headlineText
+                            : AppColors.secondaryText,
+                        fontSize: 17.sp,
+                      ),
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: '/',
+                          style: titleStyle,
+                        ),
+                        TextSpan(
+                          text: '2',
+                          style: titleStyle.copyWith(
+                            color: controller.pageNo == 1
+                                ? AppColors.headlineText
+                                : AppColors.secondaryText,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            body: PageView(
+              controller: pageController,
+              physics: const NeverScrollableScrollPhysics(),
+              children: const <Widget>[
+                UploadRecipeStepOneView(),
+                UploadRecipeStepTwoView(),
+              ],
+            ),
           ),
         ),
       ),

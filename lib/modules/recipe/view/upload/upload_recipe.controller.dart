@@ -1,9 +1,7 @@
 import 'dart:io';
 
 import 'package:chefio_recipe_app/common/models/upload_recipe.dart';
-import 'package:chefio_recipe_app/common/services/file_service.dart';
 import 'package:chefio_recipe_app/common/views/cooking_time/cooking_time.controller.dart';
-import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_repository.dart';
 import 'package:chefio_recipe_app/utils/functions.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +12,7 @@ class UploadRecipeController extends CookingTimeController {
     foodNameController = TextEditingController();
     foodDescriptionController = TextEditingController();
     pageController = PageController();
+    _ingredients = [''];
   }
 
   late final IRecipeRepository _recipeRepository;
@@ -24,8 +23,6 @@ class UploadRecipeController extends CookingTimeController {
 
   late final PageController pageController;
 
-  final fileService = locator<FileService>();
-
   int _pageNo = 0;
 
   int get pageNo => _pageNo;
@@ -34,16 +31,14 @@ class UploadRecipeController extends CookingTimeController {
 
   File? get coverPhoto => _coverPhoto;
 
-  final List<UploadRecipeIngredient> _ingredients = [
-    UploadRecipeIngredient.create(),
-  ];
+  late List<String> _ingredients;
 
-  List<UploadRecipeIngredient> get ingredients => _ingredients;
+  List<String> get ingredients => _ingredients;
 
   final List<UploadRecipeCookingStep> _cookingSteps = [
     UploadRecipeCookingStep.create(),
   ];
-  
+
   List<UploadRecipeCookingStep> get cookingSteps => _cookingSteps;
 
   void setPageNo(int page) {
@@ -52,23 +47,20 @@ class UploadRecipeController extends CookingTimeController {
   }
 
   void addIngredient() {
-    _ingredients.add(UploadRecipeIngredient.create());
+    _ingredients.add('');
     notifyListeners();
   }
 
-  void removeIngredient(int index) {
-    if (index == 0) return;
-
+  void deleteIngredient(int index) {
     _ingredients.removeAt(index);
     notifyListeners();
   }
 
   void updateIngredient({
     required int index,
-    required String ingredientName,
+    required String name,
   }) {
-    _ingredients[index].name = ingredientName;
-    notifyListeners();
+    _ingredients[index] = name;
   }
 
   void addCookingStep() {
@@ -92,7 +84,7 @@ class UploadRecipeController extends CookingTimeController {
   }
 
   void addPhotoForCookingStep(int index) async {
-    final image = await fileService.pickImageFromGallery();
+    final image = await pickImageFromGallery();
 
     if (image == null) return;
 

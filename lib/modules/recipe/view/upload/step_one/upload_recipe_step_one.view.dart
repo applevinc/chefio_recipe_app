@@ -1,16 +1,12 @@
 import 'package:chefio_recipe_app/common/views/cooking_time/cooking_time.component.dart';
-import 'package:chefio_recipe_app/assets/icons.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/upload/step_one/components/upload_recipe_cover_photo.component.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/upload/upload_recipe.controller.dart';
 import 'package:chefio_recipe_app/styles/colors.dart';
-import 'package:chefio_recipe_app/styles/text.dart';
 import 'package:chefio_recipe_app/common/widgets/buttons/custom_button.dart';
 import 'package:chefio_recipe_app/common/widgets/inputs/custom_textfield.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';
-import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 class UploadRecipeStepOneView extends StatefulWidget {
