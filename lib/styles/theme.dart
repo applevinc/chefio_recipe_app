@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class AppTheme {
   static ThemeData get theme {
     return ThemeData(
+      useMaterial3: true,
       primaryColor: AppColors.primary,
       scaffoldBackgroundColor: Colors.white,
       buttonTheme: ButtonThemeData(
@@ -16,6 +17,8 @@ class AppTheme {
       ),
       appBarTheme: const AppBarTheme(
         elevation: 0,
+        shadowColor: Colors.red,
+        scrolledUnderElevation: 4,
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
