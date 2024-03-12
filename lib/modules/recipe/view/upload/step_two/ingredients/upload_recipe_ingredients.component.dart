@@ -42,10 +42,10 @@ class UploadRecipeIngredientsComponent extends StatelessWidget {
             },
             onReorder: controller.onIngredientsReorder,
             children: [
-              for (final ingredient in ingredients)
+              for (var i = 0; i < ingredients.length; i++)
                 UploadRecipeIngredientItemComponent(
-                  ingredient,
-                  index: ingredients.indexOf(ingredient),
+                  ingredients[i],
+                  index: i,
                   key: UniqueKey(),
                 ),
             ],
