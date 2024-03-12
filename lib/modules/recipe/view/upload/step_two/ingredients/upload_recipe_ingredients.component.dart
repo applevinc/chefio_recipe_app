@@ -15,43 +15,40 @@ class UploadRecipeIngredientsComponent extends StatelessWidget {
     final ingredients = controller.ingredients;
 
     return Padding(
-      padding: EdgeInsets.only(
-        top: 24.h,
-        left: AppPadding.horizontal,
-        right: AppPadding.horizontal,
-        bottom: 24.h,
-      ),
+      padding: EdgeInsets.symmetric(vertical: 24.h),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Ingredients',
-            style: AppText.bold700(context).copyWith(
-              fontSize: 17.sp,
+          Padding(
+            padding: EdgeInsets.only(left: AppPadding.horizontal),
+            child: Text(
+              'Ingredients',
+              style: AppText.bold700(context).copyWith(
+                fontSize: 17.sp,
+              ),
             ),
           ),
-          Builder(
-            builder: (context) {
-              if (ingredients.isEmpty) {
-                return const SizedBox.shrink();
-              }
-
-              return ListView.separated(
-                physics: const NeverScrollableScrollPhysics(),
-                padding: EdgeInsets.only(top: 26.h),
-                shrinkWrap: true,
-                itemCount: ingredients.length,
-                itemBuilder: (context, index) {
-                  final ingredient = ingredients[index];
-                  return UploadRecipeIngredientItemComponent(
-                    ingredient,
-                    index: index,
-                    key: UniqueKey(),
-                  );
-                },
-                separatorBuilder: (context, index) => SizedBox(height: 24.h),
+          ReorderableListView(
+            physics: const NeverScrollableScrollPhysics(),
+            padding: EdgeInsets.only(top: 10.h),
+            shrinkWrap: true,
+            buildDefaultDragHandles: false,
+            proxyDecorator: (child, index, animation) {
+              return Material(
+                color: AppColors.primary.withOpacity(.1),
+                elevation: 0,
+                child: child,
               );
             },
+            onReorder: controller.onIngredientsReorder,
+            children: [
+              for (final ingredient in ingredients)
+                UploadRecipeIngredientItemComponent(
+                  ingredient,
+                  index: ingredients.indexOf(ingredient),
+                  key: UniqueKey(),
+                ),
+            ],
           ),
           UploadRecipeAddButton(
             label: 'Ingredient',

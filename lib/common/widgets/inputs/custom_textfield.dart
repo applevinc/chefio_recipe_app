@@ -80,7 +80,7 @@ class CustomTextField extends StatelessWidget {
 
     final field = TextFormField(
       autofocus: autofocus,
-      autovalidateMode: AutovalidateMode.onUserInteraction,
+      autovalidateMode: AutovalidateMode.disabled,
       style: AppText.bold500(context),
       keyboardType: textInputType,
       obscureText: obscure,

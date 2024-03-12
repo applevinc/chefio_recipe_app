@@ -67,64 +67,67 @@ class __UploadRecipeCookingStepItemComponentState
           ),
         ],
       ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Column(
-            children: [
-              Container(
-                padding: EdgeInsets.all(10.sp),
-                decoration: const BoxDecoration(
-                  color: AppColors.headlineText,
-                  shape: BoxShape.circle,
-                ),
-                child: Text(
-                  (controller.cookingStep.step).toString(),
-                  style: AppText.bold700(context).copyWith(
-                    color: Colors.white,
-                    fontSize: 12.sp,
-                  ),
-                ),
-              ),
-              SizedBox(height: 16.h),
-              Image.asset(
-                AppImages.dragIcon,
-                width: 24.h,
-                height: 24.h,
-              ),
-            ],
-          ),
-          SizedBox(width: 8.w),
-          Expanded(
-            child: Column(
+      child: Padding(
+        padding: AppPadding.symetricHorizontalOnly,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Column(
               children: [
-                CustomTextField(
-                  hintText: 'Tell a little about your food',
-                  controller: controller.textController,
-                  maxLines: 3,
-                  textCapitalization: TextCapitalization.sentences,
-                  contentPadding: EdgeInsets.all(16.sp),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.r),
-                    borderSide: const BorderSide(
-                      color: AppColors.outline,
+                Container(
+                  padding: EdgeInsets.all(10.sp),
+                  decoration: const BoxDecoration(
+                    color: AppColors.headlineText,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Text(
+                    (controller.cookingStep.step).toString(),
+                    style: AppText.bold700(context).copyWith(
+                      color: Colors.white,
+                      fontSize: 12.sp,
                     ),
                   ),
-                  onChanged: controller.updateDescription,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please tell us about your food';
-                    }
-
-                    return null;
-                  },
                 ),
-                SizedBox(height: 8.h),
-                const _ImageComponent(),
+                SizedBox(height: 16.h),
+                Image.asset(
+                  AppImages.dragIcon,
+                  width: 24.h,
+                  height: 24.h,
+                ),
               ],
             ),
-          ),
-        ],
+            SizedBox(width: 8.w),
+            Expanded(
+              child: Column(
+                children: [
+                  CustomTextField(
+                    hintText: 'Tell a little about your food',
+                    controller: controller.textController,
+                    maxLines: 3,
+                    textCapitalization: TextCapitalization.sentences,
+                    contentPadding: EdgeInsets.all(16.sp),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.r),
+                      borderSide: const BorderSide(
+                        color: AppColors.outline,
+                      ),
+                    ),
+                    onChanged: controller.updateDescription,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please tell us about your food';
+                      }
+
+                      return null;
+                    },
+                  ),
+                  SizedBox(height: 8.h),
+                  const _ImageComponent(),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

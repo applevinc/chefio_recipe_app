@@ -2,6 +2,7 @@ import 'package:chefio_recipe_app/assets/assets.dart';
 import 'package:chefio_recipe_app/common/widgets/inputs/custom_textfield.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/upload/step_two/ingredients/item/upload_recipe_ingredient_item.controller.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/upload/upload_recipe.controller.dart';
+import 'package:chefio_recipe_app/styles/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -55,45 +56,54 @@ class __UploadRecipeIngredientItemComponentState
   Widget build(BuildContext context) {
     final controller = context.read<UploadRecipeIngredientItemController>();
 
-    return Slidable(
-      key: ValueKey(controller.index),
-      startActionPane: ActionPane(
-        motion: const BehindMotion(),
-        extentRatio: 0.15,
-        children: [
-          IconButton(
-            onPressed: delete,
-            icon: const Icon(
-              Icons.delete,
-              color: Colors.red,
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 12.h),
+      child: Slidable(
+        key: ValueKey(controller.index),
+        startActionPane: ActionPane(
+          motion: const BehindMotion(),
+          extentRatio: 0.15,
+          children: [
+            IconButton(
+              onPressed: delete,
+              icon: const Icon(
+                Icons.delete,
+                color: Colors.red,
+              ),
             ),
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          Image.asset(
-            AppImages.dragIcon,
-            width: 24.h,
-            height: 24.h,
-          ),
-          SizedBox(width: 8.w),
-          Expanded(
-            child: CustomTextField(
-              hintText: 'Enter ingredient',
-              controller: controller.textController,
-              textCapitalization: TextCapitalization.sentences,
-              onChanged: update,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter the ingredient';
-                }
+          ],
+        ),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: AppPadding.horizontal),
+          child: Row(
+            children: [
+              ReorderableDragStartListener(
+                index: controller.index,
+                child: Image.asset(
+                  AppImages.dragIcon,
+                  width: 24.h,
+                  height: 24.h,
+                ),
+              ),
+              SizedBox(width: 8.w),
+              Expanded(
+                child: CustomTextField(
+                  hintText: 'Enter ingredient',
+                  controller: controller.textController,
+                  textCapitalization: TextCapitalization.sentences,
+                  onChanged: update,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter the ingredient';
+                    }
 
-                return null;
-              },
-            ),
+                    return null;
+                  },
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

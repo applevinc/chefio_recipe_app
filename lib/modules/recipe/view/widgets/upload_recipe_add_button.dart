@@ -15,7 +15,11 @@ class UploadRecipeAddButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 32.h),
+      padding: EdgeInsets.only(
+        top: 8.h,
+        left: AppPadding.horizontal,
+        right: AppPadding.horizontal,
+      ),
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(32.r),

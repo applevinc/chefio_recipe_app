@@ -1,4 +1,3 @@
-
 import 'package:chefio_recipe_app/modules/recipe/view/upload/step_two/cooking_steps/item/upload_recipe_cooking_step_item.component.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/upload/upload_recipe.controller.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/widgets/upload_recipe_add_button.dart';
@@ -18,17 +17,18 @@ class UploadRecipeCookingStepsComponent extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(
         top: 24.h,
-        left: AppPadding.horizontal,
-        right: AppPadding.horizontal,
         bottom: 40.h,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Steps',
-            style: AppText.bold700(context).copyWith(
-              fontSize: 17.sp,
+          Padding(
+            padding: EdgeInsets.only(left: AppPadding.horizontal),
+            child: Text(
+              'Steps',
+              style: AppText.bold700(context).copyWith(
+                fontSize: 17.sp,
+              ),
             ),
           ),
           Builder(
