@@ -31,28 +31,27 @@ class UploadRecipeCookingStepsComponent extends StatelessWidget {
               ),
             ),
           ),
-          Builder(
-            builder: (context) {
-              if (cookingSteps.isEmpty) {
-                return const SizedBox.shrink();
-              }
-
-              return ListView.separated(
-                physics: const NeverScrollableScrollPhysics(),
-                padding: EdgeInsets.only(top: 24.h),
-                shrinkWrap: true,
-                itemCount: cookingSteps.length,
-                itemBuilder: (context, index) {
-                  final cookingStep = cookingSteps[index];
-                  return UploadRecipeCookingStepItemComponent(
-                    cookingStep,
-                    index: index,
-                    key: UniqueKey(),
-                  );
-                },
-                separatorBuilder: (context, index) => SizedBox(height: 24.h),
+          ReorderableListView(
+            physics: const NeverScrollableScrollPhysics(),
+            padding: EdgeInsets.only(top: 10.h),
+            shrinkWrap: true,
+            buildDefaultDragHandles: false,
+            proxyDecorator: (child, index, animation) {
+              return Material(
+                color: AppColors.primary.withOpacity(.1),
+                elevation: 0,
+                child: child,
               );
             },
+            onReorder: controller.onCookingStepsReorder,
+            children: [
+              for (var i = 0; i < cookingSteps.length; i++)
+                UploadRecipeCookingStepItemComponent(
+                  cookingSteps[i],
+                  index: i,
+                  key: UniqueKey(),
+                ),
+            ],
           ),
           UploadRecipeAddButton(
             label: 'Step',

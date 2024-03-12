@@ -75,6 +75,19 @@ class UploadRecipeController extends CookingTimeController {
     notifyListeners();
   }
 
+  void onCookingStepsReorder(int oldIndex, int newIndex) {
+    // dragging from top to bottom
+    if (oldIndex < newIndex) {
+      // removing the item at oldIndex will shorten the list by 1.
+      newIndex -= 1;
+    }
+
+    final item = _cookingSteps.removeAt(oldIndex);
+    _cookingSteps.insert(newIndex, item);
+    _reOrderCookingSteps();
+    notifyListeners();
+  }
+
   void addCookingStep() {
     final nextStep = _cookingSteps.length + 1;
     _cookingSteps.add(UploadCookingStepRequest(step: nextStep, description: ''));
