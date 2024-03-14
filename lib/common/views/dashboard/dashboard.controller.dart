@@ -1,8 +1,8 @@
-import 'package:chefio_recipe_app/modules/recipe/view/upload/upload_recipe.screen.dart';
+import 'package:chefio_recipe_app/features/recipe/view/upload/upload_recipe.screen.dart';
 import 'package:chefio_recipe_app/config/app_session.dart';
 import 'package:chefio_recipe_app/common/views/home/home.screen.dart';
-import 'package:chefio_recipe_app/modules/notification/notification.dart';
-import 'package:chefio_recipe_app/modules/profile/screens/profile.screen.dart';
+import 'package:chefio_recipe_app/features/notification/notification.dart';
+import 'package:chefio_recipe_app/features/profile/screens/profile.screen.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 
