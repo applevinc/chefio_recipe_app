@@ -1,9 +1,9 @@
 import 'package:chefio_recipe_app/features/auth/domain/entities/sign_up.request.dart';
 import 'package:chefio_recipe_app/features/auth/domain/repositories/i_sign_up.repository.dart';
-import 'package:chefio_recipe_app/utils/utils.dart';
+import 'package:chefio_recipe_app/features/auth/view/password_strength/password_strength.controller.dart';
 import 'package:flutter/material.dart';
 
-class SignUpController extends ViewController {
+class SignUpController extends PasswordStrengthController {
   SignUpController({required ISignUpRepository signUpRepository}) {
     _signUpRepository = signUpRepository;
     emailController = TextEditingController();

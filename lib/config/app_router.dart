@@ -1,3 +1,4 @@
+import 'package:chefio_recipe_app/features/auth/view/sign_up/sign_up.screen.dart';
 import 'package:chefio_recipe_app/features/recipe/domain/entities/recipe.dart';
 import 'package:chefio_recipe_app/common/models/user.dart';
 import 'package:chefio_recipe_app/common/views/dashboard/dashboard.component.dart';
@@ -28,8 +29,8 @@ final router = GoRouter(
       builder: (context, state) => const SignInScreen(),
     ),
     GoRoute(
-      path: CreateProfileScreen.route,
-      builder: (context, state) => const CreateProfileScreen(),
+      path: SignUpScreen.route,
+      builder: (context, state) => const SignUpScreen(),
       routes: [
         GoRoute(
           path: ConfirmSignUpScreen.routeName,
@@ -37,6 +38,10 @@ final router = GoRouter(
             final email = state.extra as String;
             return ConfirmSignUpScreen(email: email);
           },
+        ),
+        GoRoute(
+          path: CreateProfileScreen.routeName,
+          builder: (context, state) => const CreateProfileScreen(),
         ),
       ],
     ),

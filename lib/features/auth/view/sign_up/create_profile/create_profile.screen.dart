@@ -3,16 +3,15 @@ import 'package:chefio_recipe_app/common/widgets/inputs/close_keyboard_wrapper.d
 import 'package:chefio_recipe_app/common/widgets/others/loading_overlay_view.dart';
 import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/features/auth/domain/repositories/i_sign_up.repository.dart';
-import 'package:chefio_recipe_app/features/auth/view/sign_up/confirmation/confirm_signup.screen.dart';
+import 'package:chefio_recipe_app/features/auth/view/sign_in/sign_in.screen.dart';
 import 'package:chefio_recipe_app/features/auth/view/sign_up/create_profile/create_profile.controller.dart';
 import 'package:chefio_recipe_app/common/models/failure.dart';
+import 'package:chefio_recipe_app/features/auth/view/sign_up/sign_up.screen.dart';
 import 'package:chefio_recipe_app/styles/colors.dart';
 import 'package:chefio_recipe_app/styles/text.dart';
 
 import 'package:chefio_recipe_app/common/widgets/buttons/custom_button.dart';
-import 'package:chefio_recipe_app/features/auth/view/password_strength/password_strength.component.dart';
 import 'package:chefio_recipe_app/common/widgets/inputs/custom_textfield.dart';
-import 'package:chefio_recipe_app/common/widgets/inputs/password_textfield.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -25,7 +24,7 @@ class CreateProfileScreen extends StatelessWidget {
 
   static String routeName = 'create_profile';
 
-  static String route = '/$routeName';
+  static String route = '${SignUpScreen.route}/$routeName';
 
   @override
   Widget build(BuildContext context) {
@@ -58,8 +57,8 @@ class _CreateProfileScreenState extends State<_CreateProfileScreen> {
           return;
         }
 
-        context.push(ConfirmSignUpScreen.route,
-            extra: controller.emailController.text.trim());
+        context.go(SignInScreen.route);
+        Messenger.success(context: context, message: 'Account created successful');
       } on Failure catch (e) {
         Messenger.error(context: context, message: e.message);
       }
@@ -115,6 +114,7 @@ class _CreateProfileScreenState extends State<_CreateProfileScreen> {
                           CustomTextField(
                             hintText: 'First Name',
                             controller: controller.firstNameController,
+                            textCapitalization: TextCapitalization.words,
                             inputFormatters: [
                               FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]')),
                             ],
@@ -130,6 +130,7 @@ class _CreateProfileScreenState extends State<_CreateProfileScreen> {
                           CustomTextField(
                             hintText: 'Last Name',
                             controller: controller.lastNameController,
+                            textCapitalization: TextCapitalization.words,
                             inputFormatters: [
                               FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]')),
                             ],
@@ -144,24 +145,10 @@ class _CreateProfileScreenState extends State<_CreateProfileScreen> {
                           SizedBox(height: 16.h),
                           CustomTextField(
                             hintText: 'Email',
+                            readOnly: true,
                             controller: controller.emailController,
                             validator: Validator.validateEmail,
                           ),
-                          SizedBox(height: 16.h),
-                          PasswordTextField(
-                            showPrefixIcon: false,
-                            controller: controller.passwordController,
-                            onChanged: (value) => controller.validate(value),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter your password';
-                              }
-
-                              return null;
-                            },
-                          ),
-                          SizedBox(height: 24.h),
-                          const PasswordStrengthComponent<CreateProfileController>(),
                         ],
                       ),
                       SizedBox(height: 24.h),

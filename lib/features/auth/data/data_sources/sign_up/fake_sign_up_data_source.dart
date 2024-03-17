@@ -1,3 +1,5 @@
+import 'package:chefio_recipe_app/common/models/user.dart';
+import 'package:chefio_recipe_app/config/app_session.dart';
 import 'package:chefio_recipe_app/features/auth/data/data_sources/sign_up/i_sign_up_data_source.dart';
 import 'package:chefio_recipe_app/features/auth/data/models/confirm_sign_up_request.model.dart';
 import 'package:chefio_recipe_app/features/auth/data/models/create_profile_request.model.dart';
@@ -23,5 +25,6 @@ class FakeSignUpDataSource implements ISignUpDataSource {
   @override
   Future<void> signUp(SignUpRequestModel request) async {
     await fakeNetworkDelay();
+    AppSession.authUser = User(id: getGuid(), email: request.email);
   }
 }

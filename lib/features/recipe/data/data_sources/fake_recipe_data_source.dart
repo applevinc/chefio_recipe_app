@@ -94,6 +94,7 @@ List<RecipeModel> getFakeRecipesData({RecipeCategoryModel? category}) {
         photoUrl: getOneProfilePhoto(),
         firstName: faker.person.firstName(),
         lastName: faker.person.firstName(),
+        email: faker.internet.email(),
         recipeCount: random.nextInt(50),
         followingCount: random.nextInt(2000),
         followersCount: random.nextInt(2000),

@@ -1,19 +1,19 @@
 import 'dart:io';
 
 import 'package:chefio_recipe_app/common/models/failure.dart';
+import 'package:chefio_recipe_app/config/app_session.dart';
 import 'package:chefio_recipe_app/features/auth/domain/entities/create_profile.request.dart';
 import 'package:chefio_recipe_app/features/auth/domain/repositories/i_sign_up.repository.dart';
-import 'package:chefio_recipe_app/features/auth/view/password_strength/password_strength.controller.dart';
 import 'package:chefio_recipe_app/utils/functions.dart';
+import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 
-class CreateProfileController extends PasswordStrengthController {
+class CreateProfileController extends ViewController {
   CreateProfileController({required ISignUpRepository signUpRepository}) {
     _signUpRepository = signUpRepository;
     firstNameController = TextEditingController();
     lastNameController = TextEditingController();
-    emailController = TextEditingController();
-    passwordController = TextEditingController();
+    emailController = TextEditingController(text: AppSession.authUser?.email);
   }
 
   late final ISignUpRepository _signUpRepository;
@@ -23,8 +23,6 @@ class CreateProfileController extends PasswordStrengthController {
   late final TextEditingController lastNameController;
 
   late final TextEditingController emailController;
-
-  late final TextEditingController passwordController;
 
   File? _image;
 
@@ -50,7 +48,6 @@ class CreateProfileController extends PasswordStrengthController {
       firstName: firstNameController.text.trim(),
       lastName: lastNameController.text.trim(),
       email: emailController.text.trim(),
-      password: passwordController.text.trim(),
       image: image!,
     );
 
@@ -64,8 +61,9 @@ class CreateProfileController extends PasswordStrengthController {
 
   @override
   void dispose() {
+    firstNameController.dispose();
+    lastNameController.dispose();
     emailController.dispose();
-    passwordController.dispose();
     super.dispose();
   }
 }

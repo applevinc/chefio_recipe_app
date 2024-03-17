@@ -11,6 +11,7 @@ class FakeSignInDataSource implements ISignInDataSource {
       id: getGuid(),
       firstName: faker.person.firstName(),
       lastName: faker.person.firstName(),
+      email: email,
       recipeCount: random.nextInt(50),
       followingCount: random.nextInt(2000),
       followersCount: random.nextInt(2000),

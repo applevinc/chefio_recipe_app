@@ -6,7 +6,6 @@ class CreateProfileRequestModel extends CreateProfileRequest {
     required super.firstName,
     required super.lastName,
     required super.email,
-    required super.password,
     required super.image,
   });
 
@@ -15,7 +14,6 @@ class CreateProfileRequestModel extends CreateProfileRequest {
       firstName: request.firstName,
       lastName: request.lastName,
       email: request.email,
-      password: request.password,
       image: request.image,
     );
   }
