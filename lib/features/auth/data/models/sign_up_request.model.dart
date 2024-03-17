@@ -5,4 +5,11 @@ class SignUpRequestModel extends SignUpRequest {
     required super.email,
     required super.password,
   });
+
+  static fromEntity(SignUpRequest request) {
+    return SignUpRequestModel(
+      email: request.email,
+      password: request.password,
+    );
+  }
 }

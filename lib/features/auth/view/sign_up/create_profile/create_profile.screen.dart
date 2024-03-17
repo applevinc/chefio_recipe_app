@@ -166,7 +166,7 @@ class _CreateProfileScreenState extends State<_CreateProfileScreen> {
                       ),
                       SizedBox(height: 24.h),
                       AppButton(
-                        label: 'Sign Up',
+                        label: 'Create Account',
                         onPressed: submit,
                       ),
                     ],

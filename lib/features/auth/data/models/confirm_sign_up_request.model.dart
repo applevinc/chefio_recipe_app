@@ -5,4 +5,11 @@ class ConfirmSignUpRequestModel extends ConfirmSignUpRequest {
     required super.otp,
     required super.email,
   });
+
+  static fromEntity(ConfirmSignUpRequest request) {
+    return ConfirmSignUpRequestModel(
+      otp: request.otp,
+      email: request.email,
+    );
+  }
 }

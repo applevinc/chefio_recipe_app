@@ -1,7 +1,6 @@
 import 'package:chefio_recipe_app/common/models/user.dart';
 import 'package:chefio_recipe_app/config/app_session.dart';
 import 'package:chefio_recipe_app/features/auth/data/data_sources/sign_in/i_sign_in_data_source.dart';
-import 'package:chefio_recipe_app/features/auth/domain/repositories/i_sign_in.repository.dart';
 import 'package:chefio_recipe_app/utils/functions.dart';
 
 class FakeSignInDataSource implements ISignInDataSource {

@@ -3,10 +3,8 @@ import 'package:chefio_recipe_app/features/auth/data/data_sources/forgot_passwor
 import 'package:chefio_recipe_app/features/auth/data/data_sources/forgot_password/i_forgot_password_data_source.dart';
 import 'package:chefio_recipe_app/features/auth/data/data_sources/sign_in/fake_sign_in_data_source.dart';
 import 'package:chefio_recipe_app/features/auth/data/data_sources/sign_in/i_sign_in_data_source.dart';
-import 'package:chefio_recipe_app/features/auth/data/data_sources/sign_up/fake_sign_up.repository.dart';
-import 'package:chefio_recipe_app/features/auth/domain/repositories/i_forgot_password.repository.dart';
-import 'package:chefio_recipe_app/features/auth/domain/repositories/i_sign_in.repository.dart';
-import 'package:chefio_recipe_app/features/auth/domain/repositories/i_sign_up.repository.dart';
+import 'package:chefio_recipe_app/features/auth/data/data_sources/sign_up/fake_sign_up_data_source.dart';
+import 'package:chefio_recipe_app/features/auth/data/data_sources/sign_up/i_sign_up_data_source.dart';
 import 'package:chefio_recipe_app/features/recipe/data/data_sources/search/fake_search_recipe_data_source.dart';
 import 'package:chefio_recipe_app/features/recipe/data/data_sources/search/i_search_recipe_data_source.dart';
 import 'package:chefio_recipe_app/features/recipe/data/data_sources/fake_recipe_data_source.dart';
@@ -23,7 +21,7 @@ void initContainers({required AppConfig appConfig}) async {
   devLocator
       .registerLazySingleton<ISearchRecipeDataSource>(() => FakeSearchRecipeDataSource());
   devLocator.registerLazySingleton<ISignInDataSource>(() => FakeSignInDataSource());
-  devLocator.registerLazySingleton<ISignUpRepository>(() => FakeSignUpRepository());
+  devLocator.registerLazySingleton<ISignUpDataSource>(() => FakeSignUpDataSource());
   devLocator.registerLazySingleton<IForgotPasswordDataSource>(
       () => FakeForgotPasswordDataSource());
 }
