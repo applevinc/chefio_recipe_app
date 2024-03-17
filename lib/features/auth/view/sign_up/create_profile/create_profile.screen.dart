@@ -4,7 +4,7 @@ import 'package:chefio_recipe_app/common/widgets/others/loading_overlay_view.dar
 import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/features/auth/domain/repositories/i_sign_up.repository.dart';
 import 'package:chefio_recipe_app/features/auth/view/sign_up/confirmation/confirm_signup.screen.dart';
-import 'package:chefio_recipe_app/features/auth/view/sign_up/sign_up.controller.dart';
+import 'package:chefio_recipe_app/features/auth/view/sign_up/create_profile/create_profile.controller.dart';
 import 'package:chefio_recipe_app/common/models/failure.dart';
 import 'package:chefio_recipe_app/styles/colors.dart';
 import 'package:chefio_recipe_app/styles/text.dart';
@@ -20,38 +20,38 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({super.key});
+class CreateProfileScreen extends StatelessWidget {
+  const CreateProfileScreen({super.key});
 
-  static String routeName = 'sign_up';
+  static String routeName = 'create_profile';
 
   static String route = '/$routeName';
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => SignUpController(
+      create: (context) => CreateProfileController(
         signUpRepository: locator<ISignUpRepository>(),
       ),
-      child: const _SignUpScreen(),
+      child: const _CreateProfileScreen(),
     );
   }
 }
 
-class _SignUpScreen extends StatefulWidget {
-  const _SignUpScreen();
+class _CreateProfileScreen extends StatefulWidget {
+  const _CreateProfileScreen();
 
   @override
-  State<_SignUpScreen> createState() => _SignUpScreenState();
+  State<_CreateProfileScreen> createState() => _CreateProfileScreenState();
 }
 
-class _SignUpScreenState extends State<_SignUpScreen> {
+class _CreateProfileScreenState extends State<_CreateProfileScreen> {
   final _formKey = GlobalKey<FormState>();
 
   void submit() async {
     if (_formKey.currentState!.validate()) {
       try {
-        final controller = context.read<SignUpController>();
+        final controller = context.read<CreateProfileController>();
         await controller.execute();
 
         if (!mounted) {
@@ -68,7 +68,7 @@ class _SignUpScreenState extends State<_SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final controller = context.watch<SignUpController>();
+    final controller = context.watch<CreateProfileController>();
 
     return LoadingOverlayView(
       showOverLay: controller.isBusy,
@@ -161,7 +161,7 @@ class _SignUpScreenState extends State<_SignUpScreen> {
                             },
                           ),
                           SizedBox(height: 24.h),
-                          const PasswordStrengthComponent<SignUpController>(),
+                          const PasswordStrengthComponent<CreateProfileController>(),
                         ],
                       ),
                       SizedBox(height: 24.h),

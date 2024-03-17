@@ -3,7 +3,7 @@ import 'package:chefio_recipe_app/features/auth/domain/repositories/i_sign_up.re
 import 'package:chefio_recipe_app/features/auth/view/sign_in/sign_in.screen.dart';
 import 'package:chefio_recipe_app/features/auth/view/sign_up/confirmation/confirm_signup.controller.dart';
 import 'package:chefio_recipe_app/features/auth/view/otp/otp.screen.dart';
-import 'package:chefio_recipe_app/features/auth/view/sign_up/sign_up.screen.dart';
+import 'package:chefio_recipe_app/features/auth/view/sign_up/create_profile/create_profile.screen.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -13,7 +13,7 @@ class ConfirmSignUpScreen extends StatelessWidget {
 
   static String routeName = 'confirm_signup';
 
-  static String route = '${SignUpScreen.route}/$routeName';
+  static String route = '${CreateProfileScreen.route}/$routeName';
 
   final String email;
 

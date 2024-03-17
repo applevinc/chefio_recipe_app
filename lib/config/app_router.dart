@@ -9,7 +9,7 @@ import 'package:chefio_recipe_app/features/auth/view/forgot_password/forgot_pass
 import 'package:chefio_recipe_app/features/auth/view/forgot_password/reset_password/reset_password.screen.dart';
 import 'package:chefio_recipe_app/features/auth/view/sign_in/sign_in.screen.dart';
 import 'package:chefio_recipe_app/features/auth/view/sign_up/confirmation/confirm_signup.screen.dart';
-import 'package:chefio_recipe_app/features/auth/view/sign_up/sign_up.screen.dart';
+import 'package:chefio_recipe_app/features/auth/view/sign_up/create_profile/create_profile.screen.dart';
 import 'package:chefio_recipe_app/common/views/home/home.screen.dart';
 import 'package:chefio_recipe_app/features/recipe/view/search/search_recipe.screen.dart';
 import 'package:chefio_recipe_app/features/notification/notification.dart';
@@ -28,8 +28,8 @@ final router = GoRouter(
       builder: (context, state) => const SignInScreen(),
     ),
     GoRoute(
-      path: SignUpScreen.route,
-      builder: (context, state) => const SignUpScreen(),
+      path: CreateProfileScreen.route,
+      builder: (context, state) => const CreateProfileScreen(),
       routes: [
         GoRoute(
           path: ConfirmSignUpScreen.routeName,
