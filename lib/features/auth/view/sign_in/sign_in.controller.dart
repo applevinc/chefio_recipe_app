@@ -1,8 +1,8 @@
 import 'package:chefio_recipe_app/features/auth/domain/repositories/i_sign_in.repository.dart';
-import 'package:chefio_recipe_app/utils/base.controller.dart';
+import 'package:chefio_recipe_app/utils/view.controller.dart';
 import 'package:flutter/material.dart';
 
-class SignInController extends BaseController {
+class SignInController extends ViewController {
   SignInController({required ISignInRepository signInRepository}) {
     _signInRepository = signInRepository;
     emailController = TextEditingController();

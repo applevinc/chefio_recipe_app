@@ -4,14 +4,14 @@ import 'package:chefio_recipe_app/features/recipe/domain/entities/recipe_categor
 import 'package:chefio_recipe_app/features/recipe/domain/entities/recipe.dart';
 import 'package:chefio_recipe_app/common/models/failure.dart';
 import 'package:chefio_recipe_app/features/recipe/domain/repositories/i_recipe_repository.dart';
-import 'package:chefio_recipe_app/utils/base.controller.dart';
+import 'package:chefio_recipe_app/utils/view.controller.dart';
 import 'package:flutter/material.dart';
 
 enum SearchLoadingState { init, search }
 
 enum SearchErrorState { init, search }
 
-class SearchRecipeController extends BaseController {
+class SearchRecipeController extends ViewController {
   SearchRecipeController({
     required ISearchRecipeRepository searchService,
     required IRecipeRepository recipeRepository,

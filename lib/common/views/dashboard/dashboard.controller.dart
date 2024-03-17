@@ -6,7 +6,7 @@ import 'package:chefio_recipe_app/features/profile/screens/profile.screen.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 
-class DashboardController extends BaseController {
+class DashboardController extends ViewController {
   DashboardController({required int pageIndex}) {
     _pageIndex = pageIndex;
 

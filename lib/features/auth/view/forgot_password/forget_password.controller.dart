@@ -1,8 +1,8 @@
 import 'package:chefio_recipe_app/features/auth/domain/repositories/i_forgot_password.repository.dart';
-import 'package:chefio_recipe_app/utils/base.controller.dart';
+import 'package:chefio_recipe_app/utils/view.controller.dart';
 import 'package:flutter/material.dart';
 
-class ForgotPasswordController extends BaseController {
+class ForgotPasswordController extends ViewController {
   ForgotPasswordController(
       {required IForgotPasswordRepository forgotPasswordRepository}) {
     _forgotPasswordRepository = forgotPasswordRepository;

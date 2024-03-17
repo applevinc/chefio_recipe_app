@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:chefio_recipe_app/features/recipe/domain/entities/recipe.dart';
 import 'package:chefio_recipe_app/common/models/failure.dart';
 import 'package:chefio_recipe_app/features/recipe/domain/repositories/i_recipe_repository.dart';
-import 'package:chefio_recipe_app/utils/base.controller.dart';
+import 'package:chefio_recipe_app/utils/view.controller.dart';
 
-class ScanFoodResultsController extends BaseController {
+class ScanFoodResultsController extends ViewController {
   ScanFoodResultsController({
     required this.type,
     required this.image,

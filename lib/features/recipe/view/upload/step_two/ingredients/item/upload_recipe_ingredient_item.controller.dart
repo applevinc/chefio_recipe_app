@@ -1,7 +1,7 @@
 import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 
-class UploadRecipeIngredientItemController extends BaseController {
+class UploadRecipeIngredientItemController extends ViewController {
   UploadRecipeIngredientItemController({required this.ingredient, required this.index}) {
     textController = TextEditingController(text: ingredient);
   }

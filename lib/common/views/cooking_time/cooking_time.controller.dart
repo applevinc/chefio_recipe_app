@@ -1,9 +1,9 @@
-import 'package:chefio_recipe_app/utils/base.controller.dart';
+import 'package:chefio_recipe_app/utils/view.controller.dart';
 
 const minCookingTimeInMinutes = 10.0;
 const maxCookingTimeInMinutes = 60.0;
 
-class CookingTimeController extends BaseController {
+class CookingTimeController extends ViewController {
   double _cookingTimeInMinutes = minCookingTimeInMinutes;
   double get cookingTimeInMinutes => _cookingTimeInMinutes;
 

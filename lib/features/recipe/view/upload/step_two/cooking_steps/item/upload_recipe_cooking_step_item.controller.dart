@@ -3,7 +3,7 @@ import 'package:chefio_recipe_app/utils/functions.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 
-class UploadRecipeCookingStepItemController extends BaseController {
+class UploadRecipeCookingStepItemController extends ViewController {
   UploadRecipeCookingStepItemController({
     required this.index,
     required this.cookingStep,

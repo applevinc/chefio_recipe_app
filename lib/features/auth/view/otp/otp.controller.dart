@@ -1,13 +1,13 @@
 import 'dart:async';
 
-import 'package:chefio_recipe_app/utils/base.controller.dart';
+import 'package:chefio_recipe_app/utils/view.controller.dart';
 import 'package:flutter/material.dart';
 
 const _OTP_EXPIRATION_SECONDS = 90;
 
 enum OtpLoadingState { verify, resendOtp }
 
-abstract class OtpController extends BaseController {
+abstract class OtpController extends ViewController {
   OtpController({required this.email}) {
     textController = TextEditingController();
   }

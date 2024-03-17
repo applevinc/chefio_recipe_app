@@ -1,6 +1,6 @@
-import 'package:chefio_recipe_app/utils/base.controller.dart';
+import 'package:chefio_recipe_app/utils/view.controller.dart';
 
-class PasswordStrengthController extends BaseController {
+class PasswordStrengthController extends ViewController {
   bool _containsSixCharacters = false;
 
   bool get containsSixCharacters => _containsSixCharacters;

@@ -1,4 +1,4 @@
-export 'base.controller.dart';
+export 'view.controller.dart';
 export 'constants.dart';
 export 'datetime.dart';
 export 'messenger.dart';
