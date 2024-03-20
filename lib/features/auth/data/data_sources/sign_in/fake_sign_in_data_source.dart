@@ -1,3 +1,4 @@
+import 'package:chefio_recipe_app/common/models/failure.dart';
 import 'package:chefio_recipe_app/common/models/user.dart';
 import 'package:chefio_recipe_app/config/app_session.dart';
 import 'package:chefio_recipe_app/features/auth/data/data_sources/sign_in/i_sign_in_data_source.dart';
@@ -7,7 +8,7 @@ class FakeSignInDataSource implements ISignInDataSource {
   @override
   Future<void> signIn({required String email, required String password}) async {
     await fakeNetworkDelay();
-    AppSession.authUser = User(
+    final user = User(
       id: getGuid(),
       firstName: faker.person.firstName(),
       lastName: faker.person.firstName(),
@@ -17,5 +18,10 @@ class FakeSignInDataSource implements ISignInDataSource {
       followersCount: random.nextInt(2000),
       photoUrl: getOneProfilePhoto(),
     );
+    AppSession.authUser = user;
+
+    if (!user.hasCompletedProfile) {
+      throw InCompleteProfileFailure();
+    }
   }
 }

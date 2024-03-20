@@ -42,6 +42,7 @@ class User {
     int? followingCount,
     int? followersCount,
     String? photoUrl,
+    bool? isEmailVerified,
   }) {
     return User(
       id: id ?? this.id,
@@ -52,6 +53,7 @@ class User {
       followingCount: followingCount ?? this.followingCount,
       followersCount: followersCount ?? this.followersCount,
       photoUrl: photoUrl ?? this.photoUrl,
+      isEmailVerified: isEmailVerified ?? this.isEmailVerified,
     );
   }
 }

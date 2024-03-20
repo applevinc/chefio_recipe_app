@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:chefio_recipe_app/common/models/failure.dart';
@@ -26,6 +27,8 @@ class SignUpDataSource implements ISignUpDataSource {
         _saveNewUserToFirestore(userCredential),
       ]);
     } catch (e) {
+      log(e.toString());
+
       if (e is FirebaseAuthException) {
         switch (e.code) {
           case 'weak-password':

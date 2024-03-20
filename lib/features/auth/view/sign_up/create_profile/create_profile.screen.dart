@@ -1,3 +1,4 @@
+import 'package:chefio_recipe_app/common/views/dashboard/dashboard.component.dart';
 import 'package:chefio_recipe_app/common/widgets/image/edit_image.view.dart';
 import 'package:chefio_recipe_app/common/widgets/inputs/close_keyboard_wrapper.dart';
 import 'package:chefio_recipe_app/common/widgets/others/loading_overlay_view.dart';
@@ -57,8 +58,8 @@ class _CreateProfileScreenState extends State<_CreateProfileScreen> {
           return;
         }
 
-        context.go(SignInScreen.route);
         Messenger.success(context: context, message: 'Account created successful');
+        context.go(DashBoardComponent.route);
       } on Failure catch (e) {
         Messenger.error(context: context, message: e.message);
       }

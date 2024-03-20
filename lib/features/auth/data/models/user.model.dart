@@ -13,6 +13,20 @@ class UserModel extends User {
     super.recipeCount,
   });
 
+  static UserModel fromMap(Map<String, dynamic> map) {
+    return UserModel(
+      id: map['id'],
+      email: map['email'],
+      firstName: map['firstName'],
+      lastName: map['lastName'],
+      recipeCount: map['recipeCount'],
+      followingCount: map['followingCount'],
+      followersCount: map['followersCount'],
+      photoUrl: map['photoUrl'],
+      isEmailVerified: map['isEmailVerified'],
+    );
+  }
+
   Map<String, dynamic> toMap() {
     return {
       'id': id,

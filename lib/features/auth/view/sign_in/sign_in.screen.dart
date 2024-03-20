@@ -3,6 +3,7 @@ import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/features/auth/domain/repositories/i_sign_in.repository.dart';
 import 'package:chefio_recipe_app/features/auth/view/sign_in/sign_in.controller.dart';
 import 'package:chefio_recipe_app/features/auth/view/forgot_password/forgot_password.screen.dart';
+import 'package:chefio_recipe_app/features/auth/view/sign_up/create_profile/create_profile.screen.dart';
 import 'package:chefio_recipe_app/features/auth/view/sign_up/sign_up.screen.dart';
 import 'package:chefio_recipe_app/features/auth/widgets/auth_view.dart';
 import 'package:chefio_recipe_app/assets/icons.dart';
@@ -55,6 +56,11 @@ class _SignInScreenState extends State<_SignInScreen> {
 
         context.go(DashBoardComponent.route);
       } on Failure catch (e) {
+        if (e is InCompleteProfileFailure) {
+          context.push(CreateProfileScreen.route);
+          return;
+        }
+
         Messenger.error(context: context, message: e.message);
       }
     }
