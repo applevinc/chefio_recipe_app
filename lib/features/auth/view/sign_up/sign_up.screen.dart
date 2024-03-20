@@ -8,6 +8,7 @@ import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/features/auth/domain/repositories/i_sign_up.repository.dart';
 import 'package:chefio_recipe_app/features/auth/view/password_strength/password_strength.component.dart';
 import 'package:chefio_recipe_app/features/auth/view/sign_up/confirmation/confirm_signup.screen.dart';
+import 'package:chefio_recipe_app/features/auth/view/sign_up/create_profile/create_profile.screen.dart';
 import 'package:chefio_recipe_app/features/auth/view/sign_up/sign_up.controller.dart';
 import 'package:chefio_recipe_app/features/auth/widgets/auth_view.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';
@@ -53,7 +54,9 @@ class __SignUpScreenState extends State<_SignUpScreen> {
         }
 
         final email = controller.emailController.text.trim();
-        context.push(ConfirmSignUpScreen.route, extra: email);
+        Messenger.success(
+            context: context, message: 'Verification link has been sent to $email');
+        context.push(CreateProfileScreen.route);
       } on Failure catch (e) {
         Messenger.error(context: context, message: e.message);
       }

@@ -1,4 +1,3 @@
-
 import 'package:chefio_recipe_app/features/auth/domain/entities/create_profile.request.dart';
 
 class CreateProfileRequestModel extends CreateProfileRequest {
@@ -16,5 +15,13 @@ class CreateProfileRequestModel extends CreateProfileRequest {
       email: request.email,
       image: request.image,
     );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'firstName': firstName,
+      'lastName': lastName,
+      'email': email,
+    };
   }
 }
