@@ -7,7 +7,6 @@ import 'package:chefio_recipe_app/common/widgets/others/loading_overlay_view.dar
 import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/features/auth/domain/repositories/i_sign_up.repository.dart';
 import 'package:chefio_recipe_app/features/auth/view/password_strength/password_strength.component.dart';
-import 'package:chefio_recipe_app/features/auth/view/sign_up/confirmation/confirm_signup.screen.dart';
 import 'package:chefio_recipe_app/features/auth/view/sign_up/create_profile/create_profile.screen.dart';
 import 'package:chefio_recipe_app/features/auth/view/sign_up/sign_up.controller.dart';
 import 'package:chefio_recipe_app/features/auth/widgets/auth_view.dart';

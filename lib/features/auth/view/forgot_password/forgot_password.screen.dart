@@ -1,7 +1,7 @@
 import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/features/auth/domain/repositories/i_forgot_password.repository.dart';
-import 'package:chefio_recipe_app/features/auth/view/forgot_password/confirmation/confirm_forgot_password.screen.dart';
 import 'package:chefio_recipe_app/features/auth/view/forgot_password/forget_password.controller.dart';
+import 'package:chefio_recipe_app/features/auth/view/sign_in/sign_in.screen.dart';
 import 'package:chefio_recipe_app/features/auth/widgets/auth_view.dart';
 import 'package:chefio_recipe_app/assets/icons.dart';
 import 'package:chefio_recipe_app/common/models/failure.dart';
@@ -17,7 +17,6 @@ class ForgotPasswordScreen extends StatelessWidget {
   const ForgotPasswordScreen({super.key});
 
   static String route = '/forgot_password';
-
 
   @override
   Widget build(BuildContext context) {
@@ -43,15 +42,15 @@ class _ForgotPasswordScreenState extends State<_ForgotPasswordScreen> {
   void submit() async {
     if (_formKey.currentState!.validate()) {
       try {
-        final controller = context.read<ForgotPasswordController>();
-        await controller.execute();
+        await context.read<ForgotPasswordController>().execute();
 
         if (!mounted) {
           return;
         }
 
-        context.push(ConfirmForgotPasswordScreen.route,
-            extra: controller.emailController.text.trim());
+        Messenger.success(
+            context: context, message: 'Check your email to reset password');
+        context.go(SignInScreen.route);
       } on Failure catch (e) {
         Messenger.error(context: context, message: e.message);
       }

@@ -118,22 +118,6 @@ class _SignInScreenState extends State<_SignInScreen> {
                 onPressed: signIn,
               ),
               SizedBox(height: 24.h),
-              Align(
-                alignment: Alignment.center,
-                child: Text(
-                  'Or continue with',
-                  style: AppText.bold500(context).copyWith(
-                    fontSize: 15.sp,
-                    color: AppColors.secondaryText,
-                  ),
-                ),
-              ),
-              SizedBox(height: 24.h),
-              AppButtonWithIcon(
-                label: 'Google',
-                onPressed: () {},
-              ),
-              SizedBox(height: 24.h),
               GestureDetector(
                 onTap: () {
                   context.push(SignUpScreen.route);

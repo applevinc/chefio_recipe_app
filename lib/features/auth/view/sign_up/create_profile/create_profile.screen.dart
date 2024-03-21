@@ -4,7 +4,6 @@ import 'package:chefio_recipe_app/common/widgets/inputs/close_keyboard_wrapper.d
 import 'package:chefio_recipe_app/common/widgets/others/loading_overlay_view.dart';
 import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/features/auth/domain/repositories/i_sign_up.repository.dart';
-import 'package:chefio_recipe_app/features/auth/view/sign_in/sign_in.screen.dart';
 import 'package:chefio_recipe_app/features/auth/view/sign_up/create_profile/create_profile.controller.dart';
 import 'package:chefio_recipe_app/common/models/failure.dart';
 import 'package:chefio_recipe_app/features/auth/view/sign_up/sign_up.screen.dart';

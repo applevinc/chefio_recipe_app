@@ -35,6 +35,8 @@ class SignUpDataSource implements ISignUpDataSource {
             throw Failure('The password provided is too weak.');
           case 'email-already-in-use':
             throw Failure('An account already exists for that email.');
+          case 'invalid-email':
+            throw Failure('The email address is badly formatted.');
           default:
             throw InternalFailure();
         }
