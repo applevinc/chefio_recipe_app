@@ -72,7 +72,7 @@ class SignInDataSource implements ISignInDataSource {
       throw EmailVerificationFailure();
     }
 
-    await usersCollection.doc(user.uid).update({'isEmailVerified': true});
+    await usersCollection.doc(user.uid).update({'is_email_verified': true});
 
     if (!authUser.hasCompletedProfile) {
       throw InCompleteProfileFailure();

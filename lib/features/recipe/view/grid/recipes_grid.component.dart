@@ -30,7 +30,11 @@ class RecipesGridComponent extends StatelessWidget {
     }
 
     if (recipes.isEmpty) {
-      return const EmptyRecipesComponent();
+      if (isExpanded) {
+        return const Expanded(child: EmptyRecipesComponent());
+      } else {
+        return const EmptyRecipesComponent();
+      }
     }
 
     final grid = GridView.builder(

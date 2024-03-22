@@ -17,13 +17,13 @@ class UserModel extends User {
     return UserModel(
       id: map['id'],
       email: map['email'],
-      firstName: map['firstName'],
-      lastName: map['lastName'],
-      recipeCount: map['recipeCount'],
-      followingCount: map['followingCount'],
-      followersCount: map['followersCount'],
-      photoUrl: map['photoUrl'],
-      isEmailVerified: map['isEmailVerified'],
+      firstName: map['firstname'],
+      lastName: map['lastname'],
+      recipeCount: map['recipe_count'],
+      followingCount: map['following_count'],
+      followersCount: map['followers_count'],
+      photoUrl: map['photo_url'],
+      isEmailVerified: map['is_email_verified'],
     );
   }
 
@@ -31,13 +31,13 @@ class UserModel extends User {
     return {
       'id': id,
       'email': email,
-      'firstName': firstName,
-      'lastName': lastName,
-      'recipeCount': recipeCount,
-      'followingCount': followingCount,
-      'followersCount': followersCount,
-      'photoUrl': photoUrl,
-      'isEmailVerified': isEmailVerified,
+      'firstname': firstName,
+      'lastname': lastName,
+      'recipe_count': recipeCount,
+      'following_count': followingCount,
+      'followers_count': followersCount,
+      'photo_url': photoUrl,
+      'is_email_verified': isEmailVerified,
     };
   }
 }

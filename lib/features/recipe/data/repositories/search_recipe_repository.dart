@@ -1,7 +1,7 @@
 import 'package:chefio_recipe_app/features/recipe/data/data_sources/search/i_search_recipe_data_source.dart';
 import 'package:chefio_recipe_app/features/recipe/data/models/search_filter_request.model.dart';
 import 'package:chefio_recipe_app/features/recipe/domain/entities/recipe.dart';
-import 'package:chefio_recipe_app/features/recipe/domain/entities/search_filter_request.dart';
+import 'package:chefio_recipe_app/features/recipe/domain/entities/requests/search_filter.request.dart';
 import 'package:chefio_recipe_app/features/recipe/domain/repositories/i_search_recipe_repository.dart';
 
 class SearchRecipeRepository implements ISearchRecipeRepository {

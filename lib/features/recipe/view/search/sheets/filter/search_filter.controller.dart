@@ -1,5 +1,5 @@
 import 'package:chefio_recipe_app/common/views/cooking_time/cooking_time.controller.dart';
-import 'package:chefio_recipe_app/features/recipe/domain/entities/search_filter_request.dart';
+import 'package:chefio_recipe_app/features/recipe/domain/entities/requests/search_filter.request.dart';
 import 'package:chefio_recipe_app/features/recipe/domain/entities/recipe_category.dart';
 
 class SearchFilterController extends CookingTimeController {

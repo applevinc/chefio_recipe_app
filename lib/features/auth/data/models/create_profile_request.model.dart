@@ -19,8 +19,8 @@ class CreateProfileRequestModel extends CreateProfileRequest {
 
   Map<String, dynamic> toMap() {
     return {
-      'firstName': firstName,
-      'lastName': lastName,
+      'firstname': firstName,
+      'lastname': lastName,
       'email': email,
     };
   }

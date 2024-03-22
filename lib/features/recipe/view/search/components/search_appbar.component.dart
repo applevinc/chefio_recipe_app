@@ -1,4 +1,4 @@
-import 'package:chefio_recipe_app/features/recipe/domain/entities/search_filter_request.dart';
+import 'package:chefio_recipe_app/features/recipe/domain/entities/requests/search_filter.request.dart';
 import 'package:chefio_recipe_app/features/recipe/view/search/sheets/filter/search_filter.sheet.dart';
 import 'package:chefio_recipe_app/features/recipe/view/search/search_recipe.controller.dart';
 import 'package:chefio_recipe_app/assets/icons.dart';

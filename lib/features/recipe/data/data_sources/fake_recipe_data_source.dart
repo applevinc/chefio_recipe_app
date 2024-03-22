@@ -3,6 +3,7 @@ import 'package:chefio_recipe_app/features/recipe/data/data_sources/i_recipe_dat
 import 'package:chefio_recipe_app/features/recipe/data/models/recipe_category.model.dart';
 import 'package:chefio_recipe_app/features/recipe/data/models/recipe.model.dart';
 import 'package:chefio_recipe_app/features/recipe/data/models/requests/upload_recipe_request.model.dart';
+import 'package:chefio_recipe_app/features/recipe/domain/entities/cooking_step.dart';
 import 'package:chefio_recipe_app/features/recipe/domain/entities/recipe.dart';
 import 'package:chefio_recipe_app/utils/functions.dart';
 
@@ -27,7 +28,7 @@ class FakeRecipeDataSource implements IRecipeDataSource {
   }
 
   @override
-  Future<List<RecipeModel>> getLikedRecipesByUser({required String userId}) async {
+  Future<List<RecipeModel>> getLikedRecipesByUser(User user) async {
     await fakeNetworkDelay();
     return getFakeRecipesData();
   }
@@ -39,13 +40,7 @@ class FakeRecipeDataSource implements IRecipeDataSource {
   }
 
   @override
-  Future<List<RecipeModel>> getRecipesByUser({required String userId}) async {
-    await fakeNetworkDelay();
-    return getFakeRecipesData();
-  }
-
-  @override
-  Future<List<RecipeModel>> search(String query) async {
+  Future<List<RecipeModel>> getRecipesByUser(User user) async {
     await fakeNetworkDelay();
     return getFakeRecipesData();
   }
@@ -104,7 +99,7 @@ List<RecipeModel> getFakeRecipesData({RecipeCategoryModel? category}) {
       minCookingTimeInMinutes: random.nextInt(100) + 50,
       ingredients: faker.lorem.words(5),
       likeCount: random.nextInt(500) + 13,
-      steps: steps,
+      cookingSteps: steps,
       title: faker.lorem.word(),
       category: category ?? _getOneCategory(),
     ),

@@ -33,7 +33,7 @@ class UserLikedRecipesController extends ProfileRecipesController {
 
     try {
       setBusy(true);
-      _recipes = await recipeRepository.getLikedRecipesByUser(userId: user.id);
+      _recipes = await recipeRepository.getLikedRecipesByUser(user);
     } on Failure catch (e) {
       setError(e);
     } finally {
@@ -54,7 +54,7 @@ class UserRecipesController extends ProfileRecipesController {
 
     try {
       setBusy(true);
-      _recipes = await recipeRepository.getRecipesByUser(userId: user.id);
+      _recipes = await recipeRepository.getRecipesByUser(user);
     } on Failure catch (e) {
       setError(e);
     } finally {

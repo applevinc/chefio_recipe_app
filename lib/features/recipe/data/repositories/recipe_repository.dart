@@ -1,3 +1,4 @@
+import 'package:chefio_recipe_app/common/models/user.dart';
 import 'package:chefio_recipe_app/features/recipe/data/data_sources/i_recipe_datasource.dart';
 import 'package:chefio_recipe_app/features/recipe/data/models/recipe_category.model.dart';
 import 'package:chefio_recipe_app/features/recipe/data/models/requests/upload_recipe_request.model.dart';
@@ -17,8 +18,8 @@ class RecipeRepository implements IRecipeRepository {
   }
 
   @override
-  Future<List<Recipe>> getLikedRecipesByUser({required String userId}) async {
-    return await _dataSource.getLikedRecipesByUser(userId: userId);
+  Future<List<Recipe>> getLikedRecipesByUser(User user) async {
+    return await _dataSource.getLikedRecipesByUser(user);
   }
 
   @override
@@ -29,13 +30,8 @@ class RecipeRepository implements IRecipeRepository {
   }
 
   @override
-  Future<List<Recipe>> getRecipesByUser({required String userId}) async {
-    return await _dataSource.getRecipesByUser(userId: userId);
-  }
-
-  @override
-  Future<List<Recipe>> search(String query) async {
-    return await _dataSource.search(query);
+  Future<List<Recipe>> getRecipesByUser(User user) async {
+    return await _dataSource.getRecipesByUser(user);
   }
 
   @override

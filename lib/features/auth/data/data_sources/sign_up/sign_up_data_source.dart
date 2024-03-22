@@ -71,8 +71,13 @@ class SignUpDataSource implements ISignUpDataSource {
   Future<void> createProfile(CreateProfileRequestModel request) async {
     final photoUrl = await _uploadProfileImage(request.image);
     final map = request.toMap();
-    map.addAll({'photoUrl': photoUrl});
+    map.addAll({'photo_url': photoUrl});
     await usersCollection.doc('${AppSession.authUser?.id}').update(map);
+    AppSession.authUser = AppSession.authUser?.copyWith(
+      photoUrl: photoUrl,
+      firstName: request.firstName,
+      lastName: request.lastName,
+    );
   }
 
   Future<String> _uploadProfileImage(File file) async {

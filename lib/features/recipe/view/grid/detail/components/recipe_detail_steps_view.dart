@@ -1,3 +1,4 @@
+import 'package:chefio_recipe_app/features/recipe/domain/entities/cooking_step.dart';
 import 'package:chefio_recipe_app/features/recipe/domain/entities/recipe.dart';
 import 'package:chefio_recipe_app/features/recipe/view/grid/detail/recipe_detail.controller.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
@@ -11,7 +12,7 @@ class RecipeDetailStepsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<CookingStep> steps = context.read<RecipeDetailController>().recipe.steps;
+    final cookingSteps = context.read<RecipeDetailController>().recipe.cookingSteps;
 
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 16.h),
@@ -28,10 +29,10 @@ class RecipeDetailStepsView extends StatelessWidget {
           SizedBox(height: 18.h),
           ListView.separated(
             shrinkWrap: true,
-            itemCount: steps.length,
+            itemCount: cookingSteps.length,
             padding: EdgeInsets.zero,
             physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) => _CookingStepItem(steps[index]),
+            itemBuilder: (context, index) => _CookingStepItem(cookingSteps[index]),
             separatorBuilder: (context, index) => SizedBox(height: 16.h),
           ),
         ],

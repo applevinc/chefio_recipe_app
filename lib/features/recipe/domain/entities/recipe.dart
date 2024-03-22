@@ -1,4 +1,5 @@
 import 'package:chefio_recipe_app/common/models/user.dart';
+import 'package:chefio_recipe_app/features/recipe/domain/entities/cooking_step.dart';
 import 'package:chefio_recipe_app/features/recipe/domain/entities/recipe_category.dart';
 
 class Recipe {
@@ -10,7 +11,7 @@ class Recipe {
   final String coverPhotoUrl;
   final int likeCount;
   final List<String> ingredients;
-  final List<CookingStep> steps;
+  final List<CookingStep> cookingSteps;
   final RecipeCategory? category;
 
   Recipe({
@@ -22,19 +23,7 @@ class Recipe {
     required this.coverPhotoUrl,
     required this.likeCount,
     required this.ingredients,
-    required this.steps,
+    required this.cookingSteps,
     this.category,
-  });
-}
-
-class CookingStep {
-  final int step;
-  final String description;
-  final String photoUrl;
-
-  CookingStep({
-    required this.step,
-    required this.description,
-    required this.photoUrl,
   });
 }

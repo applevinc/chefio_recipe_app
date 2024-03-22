@@ -1,6 +1,11 @@
+import 'package:chefio_recipe_app/config/app_session.dart';
+import 'package:chefio_recipe_app/features/recipe/data/models/requests/cooking_step_request.model.dart';
 import 'package:chefio_recipe_app/features/recipe/domain/entities/requests/upload_recipe.request.dart';
+import 'package:chefio_recipe_app/utils/functions.dart';
 
 class UploadRecipeRequestModel extends UploadRecipeRequest {
+  late final String recipeId;
+
   UploadRecipeRequestModel({
     required super.coverPhoto,
     required super.foodName,
@@ -8,7 +13,9 @@ class UploadRecipeRequestModel extends UploadRecipeRequest {
     required super.duration,
     required super.ingredients,
     required super.cookingSteps,
-  });
+  }) {
+    recipeId = getGuid();
+  }
 
   factory UploadRecipeRequestModel.fromEntity(UploadRecipeRequest request) {
     return UploadRecipeRequestModel(
@@ -19,5 +26,17 @@ class UploadRecipeRequestModel extends UploadRecipeRequest {
       ingredients: request.ingredients,
       cookingSteps: request.cookingSteps,
     );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': recipeId,
+      'user_id': AppSession.authUser?.id,
+      'title': foodName,
+      'description': description,
+      'ingredients': ingredients,
+      'duration_in_minutes': duration.inMinutes,
+      'like_count': 0,
+    };
   }
 }
