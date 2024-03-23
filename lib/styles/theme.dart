@@ -62,7 +62,7 @@ class AppTheme {
             900: Color(0xff7BED8D), //100%
           },
         ),
-      ).copyWith(secondary: AppColors.primary),
+      ),
     );
   }
 }

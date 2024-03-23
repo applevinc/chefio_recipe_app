@@ -1,5 +1,5 @@
-import 'package:chefio_recipe_app/features/recipe/view/grid/detail/components/recipe_detail_ingredients_view.dart';
-import 'package:chefio_recipe_app/features/recipe/view/grid/detail/components/recipe_detail_steps_view.dart';
+import 'package:chefio_recipe_app/features/recipe/view/grid/detail/components/recipe_detail_ingredients.component.dart';
+import 'package:chefio_recipe_app/features/recipe/view/grid/detail/components/recipe_detail_steps.component.dart';
 import 'package:chefio_recipe_app/features/recipe/view/grid/detail/recipe_detail.controller.dart';
 import 'package:chefio_recipe_app/features/profile/screens/profile.screen.dart';
 import 'package:chefio_recipe_app/features/recipe/domain/entities/recipe.dart';
@@ -91,9 +91,8 @@ class _RecipeDetailScreen extends StatelessWidget {
             minChildSize: 0.6,
             maxChildSize: 0.93,
             expand: false,
-            builder: (context, scrollController) => _Sheet(
-              scrollController: scrollController,
-            ),
+            builder: (context, scrollController) =>
+                _Sheet(scrollController: scrollController),
           ).animate(delay: Duration.zero).slide(
                 begin: const Offset(0, 1),
                 end: const Offset(0, 0),
@@ -152,26 +151,11 @@ class _Sheet extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 8.h),
-                Row(
-                  children: [
-                    Text(
-                      'Food',
-                      style: AppText.bold500(context).copyWith(
-                        color: const Color(0xFF9FA5C0),
-                        fontSize: 15.sp,
-                      ),
-                    ),
-                    SizedBox(width: 7.w),
-                    const Dot(),
-                    SizedBox(width: 7.w),
-                    Text(
-                      '60 mins',
-                      style: AppText.bold500(context).copyWith(
-                        color: const Color(0xFF9FA5C0),
-                        fontSize: 15.sp,
-                      ),
-                    ),
-                  ],
+                Text(
+                  controller.subtitle,
+                  style: AppText.bold500(context).copyWith(
+                    color: const Color(0xFF9FA5C0),
+                  ),
                 ),
                 SizedBox(height: 16.h),
                 Row(
@@ -192,7 +176,7 @@ class _Sheet extends StatelessWidget {
                           Text(
                             recipe.user.fullName.toTitleCase,
                             style: AppText.bold700(context).copyWith(
-                              fontSize: 15.sp,
+                              fontSize: 16.sp,
                             ),
                           ),
                         ],
@@ -234,7 +218,7 @@ class _Sheet extends StatelessWidget {
                   'Description',
                   style: AppText.bold700(context).copyWith(
                     color: const Color(0xFF3D5480),
-                    fontSize: 17.sp,
+                    fontSize: 16.sp,
                   ),
                 ),
                 SizedBox(height: 8.h),
@@ -242,14 +226,13 @@ class _Sheet extends StatelessWidget {
                   recipe.description,
                   style: AppText.bold500(context).copyWith(
                     color: AppColors.secondaryText,
-                    fontSize: 15.sp,
                   ),
                 ),
                 SizedBox(height: 16.h),
                 GreyDivider(height: 1.h),
-                const RecipeDetailIngredientsView(),
+                const RecipeDetailIngredientsComponent(),
                 GreyDivider(height: 1.h),
-                const RecipeDetailStepsView(),
+                const RecipeDetailCookingStepsComponent(),
                 SizedBox(height: 40.h),
               ],
             ),

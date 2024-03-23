@@ -55,7 +55,11 @@ class RecipesGridComponent extends StatelessWidget {
     late Widget child;
 
     if (canRefetch && onRefresh != null) {
-      child = RefreshIndicator.adaptive(onRefresh: onRefresh!, child: grid);
+      child = RefreshIndicator(
+        onRefresh: onRefresh!,
+        backgroundColor: Colors.white,
+        child: grid,
+      );
     } else {
       child = grid;
     }

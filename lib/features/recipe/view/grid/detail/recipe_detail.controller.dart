@@ -5,4 +5,15 @@ class RecipeDetailController extends ViewController {
   final Recipe recipe;
 
   RecipeDetailController(this.recipe);
+
+  String get subtitle {
+    final duration = '${recipe.minCookingTimeInMinutes} mins';
+    final category = recipe.category?.name;
+
+    if (category == null) {
+      return duration;
+    }
+
+    return '$category · $duration';
+  }
 }

@@ -72,7 +72,11 @@ class HomeController extends ViewController {
   }
 
   Future<void> refreshRecipes() async {
-    _getRecipesForCategory(category: selectedCategory);
+    try {
+      await _getRecipes(selectedCategory);
+    } finally {
+      notifyListeners();
+    }
   }
 
   Future<void> _getRecipes(RecipeCategory? category) async {

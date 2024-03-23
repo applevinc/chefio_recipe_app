@@ -1,11 +1,9 @@
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:chefio_recipe_app/common/models/failure.dart';
 import 'package:chefio_recipe_app/common/models/user.dart';
 import 'package:chefio_recipe_app/common/services/firebase_storage.dart';
 import 'package:chefio_recipe_app/common/services/firestore_collections.dart';
-import 'package:chefio_recipe_app/config/app_session.dart';
 import 'package:chefio_recipe_app/features/auth/data/models/user.model.dart';
 import 'package:chefio_recipe_app/features/recipe/data/data_sources/i_recipe_datasource.dart';
 import 'package:chefio_recipe_app/features/recipe/data/models/recipe.model.dart';

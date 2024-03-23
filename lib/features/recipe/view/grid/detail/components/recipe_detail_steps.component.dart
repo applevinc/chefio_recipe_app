@@ -1,5 +1,4 @@
 import 'package:chefio_recipe_app/features/recipe/domain/entities/cooking_step.dart';
-import 'package:chefio_recipe_app/features/recipe/domain/entities/recipe.dart';
 import 'package:chefio_recipe_app/features/recipe/view/grid/detail/recipe_detail.controller.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
 import 'package:chefio_recipe_app/common/widgets/image/custom_cached_network_image.dart';
@@ -7,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-class RecipeDetailStepsView extends StatelessWidget {
-  const RecipeDetailStepsView({super.key});
+class RecipeDetailCookingStepsComponent extends StatelessWidget {
+  const RecipeDetailCookingStepsComponent({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +21,7 @@ class RecipeDetailStepsView extends StatelessWidget {
           Text(
             'Steps',
             style: AppText.bold700(context).copyWith(
-              color: const Color(0xFF3D5480),
-              fontSize: 17.sp,
+              fontSize: 16.sp,
             ),
           ),
           SizedBox(height: 18.h),
@@ -72,18 +70,18 @@ class _CookingStepItem extends StatelessWidget {
             children: [
               Text(
                 cookingStep.description,
-                style: AppText.bold500(context).copyWith(
-                  color: const Color(0xFF3D5480),
-                  fontSize: 15.sp,
+                style: AppText.bold500(context),
+              ),
+              if (cookingStep.photoUrl != null)
+                Padding(
+                  padding: EdgeInsets.only(top: 16.h),
+                  child: CustomCacheNetworkImage(
+                    imageUrl: cookingStep.photoUrl,
+                    width: 271.w,
+                    height: 155.h,
+                    borderRadius: BorderRadius.circular(12.r),
+                  ),
                 ),
-              ),
-              SizedBox(height: 16.h),
-              CustomCacheNetworkImage(
-                imageUrl: cookingStep.photoUrl,
-                width: 271.w,
-                height: 155.h,
-                borderRadius: BorderRadius.circular(12.r),
-              ),
             ],
           ),
         ),

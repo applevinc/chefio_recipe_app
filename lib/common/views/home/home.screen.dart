@@ -37,6 +37,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
     if (controller.recipes.isEmpty) {
       controller.init();
+    } else {
+      controller.refreshRecipes();
     }
   }
 

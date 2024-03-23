@@ -1,6 +1,5 @@
 import 'package:chefio_recipe_app/common/widgets/inputs/custom_textfield.dart';
 import 'package:chefio_recipe_app/features/recipe/domain/entities/requests/cooking_step.request.dart';
-import 'package:chefio_recipe_app/features/recipe/domain/entities/requests/upload_recipe.request.dart';
 import 'package:chefio_recipe_app/features/recipe/view/upload/step_two/cooking_steps/item/upload_recipe_cooking_step_item.controller.dart';
 import 'package:chefio_recipe_app/features/recipe/view/upload/upload_recipe.controller.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';

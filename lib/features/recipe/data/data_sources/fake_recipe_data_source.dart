@@ -4,7 +4,6 @@ import 'package:chefio_recipe_app/features/recipe/data/models/recipe_category.mo
 import 'package:chefio_recipe_app/features/recipe/data/models/recipe.model.dart';
 import 'package:chefio_recipe_app/features/recipe/data/models/requests/upload_recipe_request.model.dart';
 import 'package:chefio_recipe_app/features/recipe/domain/entities/cooking_step.dart';
-import 'package:chefio_recipe_app/features/recipe/domain/entities/recipe.dart';
 import 'package:chefio_recipe_app/utils/functions.dart';
 
 class FakeRecipeDataSource implements IRecipeDataSource {

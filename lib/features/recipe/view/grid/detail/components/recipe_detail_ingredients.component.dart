@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-class RecipeDetailIngredientsView extends StatelessWidget {
-  const RecipeDetailIngredientsView({super.key});
+class RecipeDetailIngredientsComponent extends StatelessWidget {
+  const RecipeDetailIngredientsComponent({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +19,7 @@ class RecipeDetailIngredientsView extends StatelessWidget {
           Text(
             'Ingredients',
             style: AppText.bold700(context).copyWith(
-              color: const Color(0xFF3D5480),
-              fontSize: 17.sp,
+              fontSize: 16.sp,
             ),
           ),
           SizedBox(height: 16.h),
@@ -62,9 +61,7 @@ class _IngredientItem extends StatelessWidget {
         SizedBox(width: 8.w),
         Text(
           ingredient,
-          style: AppText.bold500(context).copyWith(
-            fontSize: 15.sp,
-          ),
+          style: AppText.bold500(context),
         ),
       ],
     );
