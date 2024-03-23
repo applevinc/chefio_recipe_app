@@ -12,6 +12,7 @@ import 'package:chefio_recipe_app/features/recipe/data/models/recipe.model.dart'
 import 'package:chefio_recipe_app/features/recipe/data/models/recipe_category.model.dart';
 import 'package:chefio_recipe_app/features/recipe/data/models/requests/cooking_step_request.model.dart';
 import 'package:chefio_recipe_app/features/recipe/data/models/requests/upload_recipe_request.model.dart';
+import 'package:chefio_recipe_app/features/recipe/domain/entities/requests/cooking_step.request.dart';
 
 class RecipeDataSource implements IRecipeDataSource {
   @override
@@ -105,7 +106,8 @@ class RecipeDataSource implements IRecipeDataSource {
     } catch (e, s) {
       log(e.toString());
       log(s.toString());
-      await _removeRecordsAfterUpload(request);
+
+      _removeRecordsAfterUpload(request);
 
       throw Failure('Failed to upload recipe');
     }
@@ -113,13 +115,34 @@ class RecipeDataSource implements IRecipeDataSource {
 
   Future<void> _uploadCoverPhoto(UploadRecipeRequestModel request) async {
     final file = request.coverPhoto;
-    await recipeCoverPhotosStorage.putFile(file);
-    final coverPhotoUrl = await recipeCoverPhotosStorage.getDownloadURL();
-    recipesCollection.doc(request.recipeId).update({'cover_photo': coverPhotoUrl});
+    final ref = recipeCoverPhotosStorage.child(request.recipeId);
+    await ref.putFile(file);
+    final coverPhotoUrl = await ref.getDownloadURL();
+    recipesCollection.doc(request.recipeId).update({'cover_photo_url': coverPhotoUrl});
   }
 
   Future<void> _uploadCookingSteps(UploadRecipeRequestModel request) async {
-    final cookingStepRequestModels = request.cookingSteps
+    final cookingStepRequestModels =
+        _convertCookingStepsToRequestModels(request.cookingSteps);
+
+    final List<CookingStepRequestModel> updatedCookingStepsModels = [];
+
+    for (final cookingStepRequestModel in cookingStepRequestModels) {
+      final updatedModel = await _updateCookingStepModel(
+        recipeId: request.recipeId,
+        cookingStepRequestModel: cookingStepRequestModel,
+      );
+      updatedCookingStepsModels.add(updatedModel);
+    }
+
+    await recipesCollection.doc(request.recipeId).update({
+      'cooking_steps': updatedCookingStepsModels.map((e) => e.toMap()).toList(),
+    });
+  }
+
+  List<CookingStepRequestModel> _convertCookingStepsToRequestModels(
+      List<CookingStepRequest> cookingSteps) {
+    return cookingSteps
         .map(
           (e) => CookingStepRequestModel(
             description: e.description,
@@ -128,31 +151,24 @@ class RecipeDataSource implements IRecipeDataSource {
           ),
         )
         .toList();
-
-    final List<CookingStepRequestModel> updatedCookingSteps = [];
-
-    for (final cookingStepRequestModel in cookingStepRequestModels) {
-      final updatedModel = await _uploadCookingStepPhoto(cookingStepRequestModel);
-      updatedCookingSteps.add(updatedModel);
-    }
-
-    await recipesCollection.doc(request.recipeId).update({
-      'cooking_steps': updatedCookingSteps.map((e) => e.toMap()).toList(),
-    });
   }
 
-  Future<CookingStepRequestModel> _uploadCookingStepPhoto(
-      CookingStepRequestModel cookingStepRequestModel) async {
+  Future<CookingStepRequestModel> _updateCookingStepModel({
+    required String recipeId,
+    required CookingStepRequestModel cookingStepRequestModel,
+  }) async {
     if (cookingStepRequestModel.photo == null) {
       return cookingStepRequestModel;
     }
 
-    await recipeCookingStepPhotosStorage.putFile(cookingStepRequestModel.photo!);
-    final photoUrl = await recipeCookingStepPhotosStorage.getDownloadURL();
+    final fileName = 'step-${cookingStepRequestModel.step}';
+    final ref = recipeCookingStepPhotosStorage.child(recipeId).child(fileName);
+    await ref.putFile(cookingStepRequestModel.photo!);
+    final photoUrl = await ref.getDownloadURL();
     return cookingStepRequestModel.copyWith(photoUrl: photoUrl);
   }
 
-  // if there was an error, delete the uploaded files
+  // if there was an error during upload, delete the uploaded files if any
   Future<void> _removeRecordsAfterUpload(UploadRecipeRequestModel request) async {
     try {
       await Future.wait([

@@ -69,9 +69,14 @@ class TextHelperFunctions {
   }
 }
 
+const _imageQuality = 30;
+
 Future<File?> pickImageFromCamera() async {
   try {
-    final image = await ImagePicker().pickImage(source: ImageSource.camera);
+    final image = await ImagePicker().pickImage(
+      source: ImageSource.camera,
+      imageQuality: _imageQuality,
+    );
 
     if (image == null) {
       return null;
@@ -87,7 +92,10 @@ Future<File?> pickImageFromCamera() async {
 
 Future<File?> pickImageFromGallery() async {
   try {
-    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    final image = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+      imageQuality: _imageQuality,
+    );
 
     if (image == null) {
       return null;

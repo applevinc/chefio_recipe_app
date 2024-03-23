@@ -30,7 +30,7 @@ class RecipeModel extends Recipe {
       title: data['title'],
       description: data['description'],
       minCookingTimeInMinutes: data['duration_in_minutes'],
-      coverPhotoUrl: data['cover_photo'],
+      coverPhotoUrl: data['cover_photo_url'],
       likeCount: data['like_count'],
       ingredients: List<String>.from(data['ingredients'].map((e) => e)),
       cookingSteps: List<CookingStepModel>.from(
