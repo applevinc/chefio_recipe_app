@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Chefio(dev)",
+            "name": "DEV",
             "request": "launch",
             "type": "dart",
             "program": "lib/main/main_dev.dart",
@@ -17,7 +17,7 @@
             ]
         },
         {
-            "name": "Chefio(qa)",
+            "name": "QA",
             "request": "launch",
             "type": "dart",
             "program": "lib/main/main_qa.dart",
@@ -29,7 +29,7 @@
             ]
         },
         {
-            "name": "Chefio",
+            "name": "PROD",
             "request": "launch",
             "type": "dart",
             "program": "lib/main/main_prod.dart",
