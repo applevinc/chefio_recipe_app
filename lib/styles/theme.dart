@@ -7,6 +7,7 @@ class AppTheme {
     return ThemeData(
       useMaterial3: true,
       primaryColor: AppColors.primary,
+      splashFactory: NoSplash.splashFactory,
       scaffoldBackgroundColor: Colors.white,
       buttonTheme: ButtonThemeData(
         buttonColor: AppColors.primary,

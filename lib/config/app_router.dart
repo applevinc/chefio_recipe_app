@@ -1,18 +1,18 @@
-import 'package:chefio_recipe_app/features/auth/view/sign_up/sign_up.screen.dart';
-import 'package:chefio_recipe_app/features/recipe/domain/entities/recipe.dart';
+import 'package:chefio_recipe_app/modules/auth/view/sign_up/sign_up.screen.dart';
+import 'package:chefio_recipe_app/modules/recipe/domain/entities/recipe.dart';
 import 'package:chefio_recipe_app/common/models/user.dart';
-import 'package:chefio_recipe_app/common/views/dashboard/dashboard.component.dart';
-import 'package:chefio_recipe_app/common/views/onboarding/onboarding.screen.dart';
-import 'package:chefio_recipe_app/features/recipe/view/grid/detail/recipe_detail.screen.dart';
-import 'package:chefio_recipe_app/features/recipe/view/upload/upload_recipe.screen.dart';
-import 'package:chefio_recipe_app/features/auth/view/forgot_password/forgot_password.screen.dart';
-import 'package:chefio_recipe_app/features/auth/view/sign_in/sign_in.screen.dart';
-import 'package:chefio_recipe_app/features/auth/view/sign_up/confirmation/confirm_signup.screen.dart';
-import 'package:chefio_recipe_app/features/auth/view/sign_up/create_profile/create_profile.screen.dart';
-import 'package:chefio_recipe_app/common/views/home/home.screen.dart';
-import 'package:chefio_recipe_app/features/recipe/view/search/search_recipe.screen.dart';
-import 'package:chefio_recipe_app/features/notification/notification.dart';
-import 'package:chefio_recipe_app/features/profile/screens/profile.screen.dart';
+import 'package:chefio_recipe_app/modules/dashboard/dashboard.component.dart';
+import 'package:chefio_recipe_app/modules/onboarding/onboarding.screen.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/grid/detail/recipe_detail.screen.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/upload/upload_recipe.screen.dart';
+import 'package:chefio_recipe_app/modules/auth/view/forgot_password/forgot_password.screen.dart';
+import 'package:chefio_recipe_app/modules/auth/view/sign_in/sign_in.screen.dart';
+import 'package:chefio_recipe_app/modules/auth/view/sign_up/confirmation/confirm_signup.screen.dart';
+import 'package:chefio_recipe_app/modules/auth/view/sign_up/create_profile/create_profile.screen.dart';
+import 'package:chefio_recipe_app/modules/home/home.screen.dart';
+import 'package:chefio_recipe_app/modules/recipe/view/search/search_recipe.screen.dart';
+import 'package:chefio_recipe_app/modules/notification/notification.dart';
+import 'package:chefio_recipe_app/modules/profile/screens/profile.screen.dart';
 import 'package:go_router/go_router.dart';
 
 final router = GoRouter(
