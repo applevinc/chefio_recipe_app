@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:chefio_recipe_app/common/models/failure.dart';
-import 'package:chefio_recipe_app/common/views/cooking_time/cooking_time.controller.dart';
+import 'package:chefio_recipe_app/core/models/failure.dart';
+import 'package:chefio_recipe_app/core/controllers/cooking_time.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/entities/requests/cooking_step.request.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/entities/requests/upload_recipe.request.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_repository.dart';

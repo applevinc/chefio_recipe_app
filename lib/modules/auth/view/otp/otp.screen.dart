@@ -1,11 +1,11 @@
-import 'package:chefio_recipe_app/common/models/failure.dart';
-import 'package:chefio_recipe_app/common/widgets/others/loading_overlay_view.dart';
+import 'package:chefio_recipe_app/core/models/failure.dart';
+import 'package:chefio_recipe_app/core/widgets/others/loading_overlay_view.dart';
 import 'package:chefio_recipe_app/modules/auth/view/otp/otp.controller.dart';
 import 'package:chefio_recipe_app/modules/auth/widgets/auth_view.dart';
 import 'package:chefio_recipe_app/styles/colors.dart';
 import 'package:chefio_recipe_app/styles/text.dart';
-import 'package:chefio_recipe_app/common/widgets/buttons/custom_button.dart';
-import 'package:chefio_recipe_app/common/widgets/inputs/otp_textfield.dart';
+import 'package:chefio_recipe_app/core/widgets/buttons/custom_button.dart';
+import 'package:chefio_recipe_app/core/widgets/inputs/otp_textfield.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

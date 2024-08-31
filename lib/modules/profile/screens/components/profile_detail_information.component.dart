@@ -1,6 +1,6 @@
-import 'package:chefio_recipe_app/common/widgets/buttons/custom_button.dart';
-import 'package:chefio_recipe_app/common/widgets/image/custom_cached_network_image.dart';
-import 'package:chefio_recipe_app/common/widgets/others/grey_divider.dart';
+import 'package:chefio_recipe_app/core/widgets/buttons/custom_button.dart';
+import 'package:chefio_recipe_app/core/widgets/image/custom_cached_network_image.dart';
+import 'package:chefio_recipe_app/core/widgets/others/grey_divider.dart';
 import 'package:chefio_recipe_app/modules/profile/screens/profile.controller.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';

@@ -6,8 +6,8 @@ import 'package:chefio_recipe_app/modules/scan_food/results/components/shimmer.v
 import 'package:chefio_recipe_app/modules/scan_food/results/scan_food_results.controller.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/grid/recipes_grid.component.dart';
 import 'package:chefio_recipe_app/config/locator/locator.dart';
-import 'package:chefio_recipe_app/common/widgets/others/error_view.dart';
-import 'package:chefio_recipe_app/common/widgets/widgets.dart';
+import 'package:chefio_recipe_app/core/widgets/others/error_view.dart';
+import 'package:chefio_recipe_app/core/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

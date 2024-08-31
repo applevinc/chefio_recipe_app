@@ -1,4 +1,4 @@
-import 'package:chefio_recipe_app/common/models/user.dart';
+import 'package:chefio_recipe_app/core/models/user.dart';
 import 'package:chefio_recipe_app/config/app_session.dart';
 import 'package:chefio_recipe_app/modules/auth/data/data_sources/sign_up/i_sign_up_data_source.dart';
 import 'package:chefio_recipe_app/modules/auth/data/models/confirm_sign_up_request.model.dart';

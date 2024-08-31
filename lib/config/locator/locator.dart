@@ -1,6 +1,6 @@
 import 'package:chefio_recipe_app/config/app_config.dart';
 
-import 'package:chefio_recipe_app/common/services/file_service.dart';
+import 'package:chefio_recipe_app/core/services/file_service.dart';
 import 'package:chefio_recipe_app/modules/auth/data/data_sources/forgot_password/i_forgot_password_data_source.dart';
 import 'package:chefio_recipe_app/modules/auth/data/data_sources/sign_in/i_sign_in_data_source.dart';
 import 'package:chefio_recipe_app/modules/auth/data/data_sources/sign_up/i_sign_up_data_source.dart';

@@ -1,17 +1,17 @@
 import 'package:chefio_recipe_app/modules/dashboard/dashboard.component.dart';
-import 'package:chefio_recipe_app/common/widgets/image/edit_image.view.dart';
-import 'package:chefio_recipe_app/common/widgets/inputs/close_keyboard_wrapper.dart';
-import 'package:chefio_recipe_app/common/widgets/others/loading_overlay_view.dart';
+import 'package:chefio_recipe_app/core/widgets/image/edit_image.view.dart';
+import 'package:chefio_recipe_app/core/widgets/inputs/close_keyboard_wrapper.dart';
+import 'package:chefio_recipe_app/core/widgets/others/loading_overlay_view.dart';
 import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/modules/auth/domain/repositories/i_sign_up.repository.dart';
 import 'package:chefio_recipe_app/modules/auth/view/sign_up/create_profile/create_profile.controller.dart';
-import 'package:chefio_recipe_app/common/models/failure.dart';
+import 'package:chefio_recipe_app/core/models/failure.dart';
 import 'package:chefio_recipe_app/modules/auth/view/sign_up/sign_up.screen.dart';
 import 'package:chefio_recipe_app/styles/colors.dart';
 import 'package:chefio_recipe_app/styles/text.dart';
 
-import 'package:chefio_recipe_app/common/widgets/buttons/custom_button.dart';
-import 'package:chefio_recipe_app/common/widgets/inputs/custom_textfield.dart';
+import 'package:chefio_recipe_app/core/widgets/buttons/custom_button.dart';
+import 'package:chefio_recipe_app/core/widgets/inputs/custom_textfield.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

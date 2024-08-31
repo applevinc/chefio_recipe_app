@@ -1,7 +1,7 @@
 import 'package:chefio_recipe_app/modules/recipe/view/grid/components/empty_recipes.component.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/grid/item/recipe_grid_item.component.dart';
 import 'package:chefio_recipe_app/modules/profile/screens/tabs/profile_recipes.controller.dart';
-import 'package:chefio_recipe_app/common/widgets/others/error_view.dart';
+import 'package:chefio_recipe_app/core/widgets/others/error_view.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/grid/recipes_grid.shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

@@ -3,7 +3,7 @@
 import 'package:camera/camera.dart';
 import 'package:chefio_recipe_app/modules/scan_food/camera/scan_food_camera.controller.dart';
 
-import 'package:chefio_recipe_app/common/widgets/others/error_view.dart';
+import 'package:chefio_recipe_app/core/widgets/others/error_view.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';

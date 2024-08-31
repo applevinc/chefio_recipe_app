@@ -1,6 +1,6 @@
 import 'package:chefio_recipe_app/modules/recipe/view/search/search_recipe.controller.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
-import 'package:chefio_recipe_app/common/widgets/others/grey_divider.dart';
+import 'package:chefio_recipe_app/core/widgets/others/grey_divider.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

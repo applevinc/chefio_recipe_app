@@ -2,7 +2,7 @@ import 'package:chefio_recipe_app/assets/images.dart';
 import 'package:chefio_recipe_app/styles/colors.dart';
 import 'package:chefio_recipe_app/styles/text.dart';
 
-import 'package:chefio_recipe_app/common/widgets/buttons/custom_button.dart';
+import 'package:chefio_recipe_app/core/widgets/buttons/custom_button.dart';
 import 'package:chefio_recipe_app/modules/auth/view/sign_in/sign_in.screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

@@ -5,7 +5,7 @@ import 'package:chefio_recipe_app/modules/recipe/view/grid/detail/recipe_detail.
 import 'package:chefio_recipe_app/modules/recipe/view/grid/item/recipe_grid_item.controller.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
 
-import 'package:chefio_recipe_app/common/widgets/image/custom_cached_network_image.dart';
+import 'package:chefio_recipe_app/core/widgets/image/custom_cached_network_image.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

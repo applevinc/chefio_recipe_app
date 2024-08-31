@@ -5,7 +5,7 @@ import 'package:chefio_recipe_app/modules/profile/screens/components/profile_tab
 import 'package:chefio_recipe_app/modules/profile/screens/profile.controller.dart';
 import 'package:chefio_recipe_app/modules/profile/screens/tabs/profile_recipes.component.dart';
 import 'package:chefio_recipe_app/modules/profile/screens/tabs/profile_recipes.controller.dart';
-import 'package:chefio_recipe_app/common/models/user.dart';
+import 'package:chefio_recipe_app/core/models/user.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

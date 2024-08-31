@@ -1,5 +1,5 @@
-import 'package:chefio_recipe_app/common/widgets/others/custom_shimmer.dart';
-import 'package:chefio_recipe_app/common/widgets/others/grey_divider.dart';
+import 'package:chefio_recipe_app/core/widgets/others/custom_shimmer.dart';
+import 'package:chefio_recipe_app/core/widgets/others/grey_divider.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/grid/recipes_grid.shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:chefio_recipe_app/common/widgets/image/custom_cached_network_image.dart';
+import 'package:chefio_recipe_app/core/widgets/image/custom_cached_network_image.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

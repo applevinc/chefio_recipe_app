@@ -1,4 +1,4 @@
-import 'package:chefio_recipe_app/common/views/cooking_time/cooking_time.controller.dart';
+import 'package:chefio_recipe_app/core/controllers/cooking_time.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/entities/requests/search_filter.request.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/entities/recipe_category.dart';
 

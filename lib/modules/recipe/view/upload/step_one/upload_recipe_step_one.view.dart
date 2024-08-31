@@ -1,9 +1,9 @@
-import 'package:chefio_recipe_app/common/views/cooking_time/cooking_time.component.dart';
+import 'package:chefio_recipe_app/core/views/cooking_time.view.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/upload/step_one/components/upload_recipe_cover_photo.component.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/upload/upload_recipe.controller.dart';
 import 'package:chefio_recipe_app/styles/colors.dart';
-import 'package:chefio_recipe_app/common/widgets/buttons/custom_button.dart';
-import 'package:chefio_recipe_app/common/widgets/inputs/custom_textfield.dart';
+import 'package:chefio_recipe_app/core/widgets/buttons/custom_button.dart';
+import 'package:chefio_recipe_app/core/widgets/inputs/custom_textfield.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

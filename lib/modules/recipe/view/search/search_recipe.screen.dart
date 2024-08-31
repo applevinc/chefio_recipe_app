@@ -4,7 +4,7 @@ import 'package:chefio_recipe_app/modules/recipe/view/search/components/search_a
 import 'package:chefio_recipe_app/modules/recipe/view/search/components/search_history.component.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/search/components/search_suggestions.component.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/search/search_recipe.controller.dart';
-import 'package:chefio_recipe_app/common/widgets/others/error_view.dart';
+import 'package:chefio_recipe_app/core/widgets/others/error_view.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/search/search_recipe.shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

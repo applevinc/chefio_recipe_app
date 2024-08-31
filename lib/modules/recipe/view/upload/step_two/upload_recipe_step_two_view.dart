@@ -1,11 +1,11 @@
-import 'package:chefio_recipe_app/common/models/failure.dart';
+import 'package:chefio_recipe_app/core/models/failure.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/upload/dialogs/upload_recipe_success_dialog.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/upload/step_two/ingredients/upload_recipe_ingredients.component.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/upload/step_two/cooking_steps/upload_recipe_steps.component.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/upload/upload_recipe.controller.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
-import 'package:chefio_recipe_app/common/widgets/buttons/custom_button.dart';
-import 'package:chefio_recipe_app/common/widgets/others/grey_divider.dart';
+import 'package:chefio_recipe_app/core/widgets/buttons/custom_button.dart';
+import 'package:chefio_recipe_app/core/widgets/others/grey_divider.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

@@ -1,4 +1,4 @@
-import 'package:chefio_recipe_app/common/widgets/inputs/custom_textfield.dart';
+import 'package:chefio_recipe_app/core/widgets/inputs/custom_textfield.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/entities/requests/cooking_step.request.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/upload/step_two/cooking_steps/item/upload_recipe_cooking_step_item.controller.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/upload/upload_recipe.controller.dart';

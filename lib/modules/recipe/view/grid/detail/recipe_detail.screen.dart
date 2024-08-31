@@ -7,8 +7,8 @@ import 'package:chefio_recipe_app/assets/assets.dart';
 import 'package:chefio_recipe_app/styles/colors.dart';
 import 'package:chefio_recipe_app/styles/text.dart';
 
-import 'package:chefio_recipe_app/common/widgets/image/custom_cached_network_image.dart';
-import 'package:chefio_recipe_app/common/widgets/widgets.dart';
+import 'package:chefio_recipe_app/core/widgets/image/custom_cached_network_image.dart';
+import 'package:chefio_recipe_app/core/widgets/widgets.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';

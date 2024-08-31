@@ -1,5 +1,5 @@
 import 'package:chefio_recipe_app/modules/recipe/domain/entities/recipe_category.dart';
-import 'package:chefio_recipe_app/common/views/cooking_time/cooking_time.component.dart';
+import 'package:chefio_recipe_app/core/views/cooking_time.view.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/search/sheets/filter/components/search_filter_categories.component.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/search/sheets/filter/search_filter.controller.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/search/widgets/circular_button.dart';

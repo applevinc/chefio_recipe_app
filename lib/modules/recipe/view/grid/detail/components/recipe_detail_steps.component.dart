@@ -1,7 +1,7 @@
 import 'package:chefio_recipe_app/modules/recipe/domain/entities/cooking_step.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/grid/detail/recipe_detail.controller.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
-import 'package:chefio_recipe_app/common/widgets/image/custom_cached_network_image.dart';
+import 'package:chefio_recipe_app/core/widgets/image/custom_cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';

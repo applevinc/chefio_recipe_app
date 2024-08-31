@@ -2,7 +2,7 @@ import 'package:chefio_recipe_app/assets/images.dart';
 import 'package:chefio_recipe_app/modules/dashboard/dashboard.component.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
 
-import 'package:chefio_recipe_app/common/widgets/widgets.dart';
+import 'package:chefio_recipe_app/core/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';

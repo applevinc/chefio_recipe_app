@@ -4,9 +4,9 @@ import 'package:chefio_recipe_app/modules/auth/view/forgot_password/forget_passw
 import 'package:chefio_recipe_app/modules/auth/view/sign_in/sign_in.screen.dart';
 import 'package:chefio_recipe_app/modules/auth/widgets/auth_view.dart';
 import 'package:chefio_recipe_app/assets/icons.dart';
-import 'package:chefio_recipe_app/common/models/failure.dart';
-import 'package:chefio_recipe_app/common/widgets/buttons/custom_button.dart';
-import 'package:chefio_recipe_app/common/widgets/inputs/custom_textfield.dart';
+import 'package:chefio_recipe_app/core/models/failure.dart';
+import 'package:chefio_recipe_app/core/widgets/buttons/custom_button.dart';
+import 'package:chefio_recipe_app/core/widgets/inputs/custom_textfield.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

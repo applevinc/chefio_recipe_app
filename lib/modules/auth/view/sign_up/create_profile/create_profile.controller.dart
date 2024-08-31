@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:chefio_recipe_app/common/models/failure.dart';
+import 'package:chefio_recipe_app/core/models/failure.dart';
 import 'package:chefio_recipe_app/config/app_session.dart';
 import 'package:chefio_recipe_app/modules/auth/domain/entities/create_profile.request.dart';
 import 'package:chefio_recipe_app/modules/auth/domain/repositories/i_sign_up.repository.dart';

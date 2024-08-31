@@ -7,12 +7,12 @@ import 'package:chefio_recipe_app/modules/auth/view/sign_up/create_profile/creat
 import 'package:chefio_recipe_app/modules/auth/view/sign_up/sign_up.screen.dart';
 import 'package:chefio_recipe_app/modules/auth/widgets/auth_view.dart';
 import 'package:chefio_recipe_app/assets/icons.dart';
-import 'package:chefio_recipe_app/common/models/failure.dart';
+import 'package:chefio_recipe_app/core/models/failure.dart';
 import 'package:chefio_recipe_app/styles/colors.dart';
 import 'package:chefio_recipe_app/styles/text.dart';
-import 'package:chefio_recipe_app/common/widgets/buttons/custom_button.dart';
-import 'package:chefio_recipe_app/common/widgets/inputs/custom_textfield.dart';
-import 'package:chefio_recipe_app/common/widgets/inputs/password_textfield.dart';
+import 'package:chefio_recipe_app/core/widgets/buttons/custom_button.dart';
+import 'package:chefio_recipe_app/core/widgets/inputs/custom_textfield.dart';
+import 'package:chefio_recipe_app/core/widgets/inputs/password_textfield.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

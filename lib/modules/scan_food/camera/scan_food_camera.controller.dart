@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:camera/camera.dart';
-import 'package:chefio_recipe_app/common/models/failure.dart';
+import 'package:chefio_recipe_app/core/models/failure.dart';
 import 'package:chefio_recipe_app/utils/view.controller.dart';
 import 'package:flutter/widgets.dart';
 

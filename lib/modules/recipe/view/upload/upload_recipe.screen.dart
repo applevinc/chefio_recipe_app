@@ -1,5 +1,5 @@
-import 'package:chefio_recipe_app/common/widgets/inputs/close_keyboard_wrapper.dart';
-import 'package:chefio_recipe_app/common/widgets/others/loading_overlay_view.dart';
+import 'package:chefio_recipe_app/core/widgets/inputs/close_keyboard_wrapper.dart';
+import 'package:chefio_recipe_app/core/widgets/others/loading_overlay_view.dart';
 import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_repository.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/upload/step_one/upload_recipe_step_one.view.dart';

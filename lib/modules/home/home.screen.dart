@@ -6,8 +6,8 @@ import 'package:chefio_recipe_app/modules/recipe/view/search/search_recipe.scree
 import 'package:chefio_recipe_app/assets/assets.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
 
-import 'package:chefio_recipe_app/common/widgets/inputs/custom_textfield.dart';
-import 'package:chefio_recipe_app/common/widgets/others/error_view.dart';
+import 'package:chefio_recipe_app/core/widgets/inputs/custom_textfield.dart';
+import 'package:chefio_recipe_app/core/widgets/others/error_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';

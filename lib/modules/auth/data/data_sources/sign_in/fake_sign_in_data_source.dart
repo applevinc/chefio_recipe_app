@@ -1,5 +1,5 @@
-import 'package:chefio_recipe_app/common/models/failure.dart';
-import 'package:chefio_recipe_app/common/models/user.dart';
+import 'package:chefio_recipe_app/core/models/failure.dart';
+import 'package:chefio_recipe_app/core/models/user.dart';
 import 'package:chefio_recipe_app/config/app_session.dart';
 import 'package:chefio_recipe_app/modules/auth/data/data_sources/sign_in/i_sign_in_data_source.dart';
 import 'package:chefio_recipe_app/utils/functions.dart';

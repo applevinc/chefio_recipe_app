@@ -1,4 +1,4 @@
-import 'package:chefio_recipe_app/common/models/failure.dart';
+import 'package:chefio_recipe_app/core/models/failure.dart';
 import 'package:chefio_recipe_app/styles/text.dart';
 import 'package:flutter/material.dart';
 

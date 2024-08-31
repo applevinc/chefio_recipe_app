@@ -1,9 +1,9 @@
 import 'package:chefio_recipe_app/assets/assets.dart';
-import 'package:chefio_recipe_app/common/models/failure.dart';
-import 'package:chefio_recipe_app/common/widgets/buttons/custom_button.dart';
-import 'package:chefio_recipe_app/common/widgets/inputs/custom_textfield.dart';
-import 'package:chefio_recipe_app/common/widgets/inputs/password_textfield.dart';
-import 'package:chefio_recipe_app/common/widgets/others/loading_overlay_view.dart';
+import 'package:chefio_recipe_app/core/models/failure.dart';
+import 'package:chefio_recipe_app/core/widgets/buttons/custom_button.dart';
+import 'package:chefio_recipe_app/core/widgets/inputs/custom_textfield.dart';
+import 'package:chefio_recipe_app/core/widgets/inputs/password_textfield.dart';
+import 'package:chefio_recipe_app/core/widgets/others/loading_overlay_view.dart';
 import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/modules/auth/domain/repositories/i_sign_up.repository.dart';
 import 'package:chefio_recipe_app/modules/auth/view/password_strength/password_strength.component.dart';
