@@ -1,3 +1,4 @@
+import 'package:chefio_recipe_app/core/widgets/others/sliver_appbar_delegate.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/grid/recipes_grid.component.dart';
 import 'package:chefio_recipe_app/modules/home/components/home_categories_component.dart';
 import 'package:chefio_recipe_app/modules/home/home.controller.dart';
@@ -46,58 +47,63 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        bottom: false,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(
-                top: 16.h,
-                left: AppPadding.horizontal,
-                right: AppPadding.horizontal,
-              ),
-              child: Hero(
-                tag: 'search',
-                child: Material(
-                  type: MaterialType.transparency,
-                  child: CustomTextField(
-                    prefixIcon: const TextFieldIcon(icon: AppIcons.search),
-                    hintText: 'Search',
-                    readOnly: true,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(32.r),
-                      borderSide: BorderSide.none,
+        child: NestedScrollView(
+          headerSliverBuilder: (context, innerBoxIsScrolled) {
+            return <Widget>[
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    top: 16.h,
+                    left: AppPadding.horizontal,
+                    right: AppPadding.horizontal,
+                  ),
+                  child: Hero(
+                    tag: 'search',
+                    child: Material(
+                      type: MaterialType.transparency,
+                      child: CustomTextField(
+                        prefixIcon: const TextFieldIcon(icon: AppIcons.search),
+                        hintText: 'Search',
+                        readOnly: true,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(32.r),
+                          borderSide: BorderSide.none,
+                        ),
+                        fillColor: AppColors.form,
+                        onTap: () {
+                          context.push(SearchRecipeScreen.route);
+                        },
+                      ),
                     ),
-                    fillColor: AppColors.form,
-                    onTap: () {
-                      context.push(SearchRecipeScreen.route);
-                    },
                   ),
                 ),
               ),
-            ),
-            const HomeCategoriesComponent(),
-            Container(
-              height: 8.h,
-              color: const Color(0xFFF4F5F7),
-            ),
-            Consumer<HomeController>(
-              builder: (context, controller, _) {
-                if (controller.hasError) {
-                  return ErrorView(
-                    error: controller.modelError,
-                    refetch: init,
-                  );
-                }
-
-                return RecipesGridComponent(
-                  recipes: controller.recipes,
-                  isBusy: controller.busy(HomeLoadingState.recipes),
-                  onRefresh: controller.refreshRecipes,
+              SliverPersistentHeader(
+                pinned: true,
+                delegate: SliverAppBarDelegate(
+                  maxHeight: 144.5.h,
+                  minHeight: 144.5.h,
+                  child: const HomeCategoriesComponent(),
+                ),
+              ),
+            ];
+          },
+          body: Consumer<HomeController>(
+            builder: (context, controller, _) {
+              if (controller.hasError) {
+                return ErrorView(
+                  error: controller.modelError,
+                  refetch: init,
                 );
-              },
-            ),
-          ],
+              }
+
+              return RecipesGridComponent(
+                recipes: controller.recipes,
+                isBusy: controller.busy(HomeLoadingState.recipes),
+                onRefresh: controller.refreshRecipes,
+              );
+            },
+          ),
         ),
       ),
     );

@@ -23,8 +23,9 @@ class HomeCategoriesComponent extends StatelessWidget {
       return const SizedBox.shrink();
     }
 
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 24.h),
+    return Container(
+      color: Colors.white,
+      padding: EdgeInsets.only(top: 24.h),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -55,6 +56,11 @@ class HomeCategoriesComponent extends StatelessWidget {
               },
               separatorBuilder: (context, index) => SizedBox(width: 16.w),
             ),
+          ),
+          SizedBox(height: 24.h),
+          Container(
+            height: 8.h,
+            color: const Color(0xFFF4F5F7),
           ),
         ],
       ),
