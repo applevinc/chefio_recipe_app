@@ -6,25 +6,20 @@ import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/modules/auth/domain/repositories/i_sign_up.repository.dart';
 import 'package:chefio_recipe_app/modules/auth/view/sign_up/create_profile/create_profile.controller.dart';
 import 'package:chefio_recipe_app/core/models/failure.dart';
-import 'package:chefio_recipe_app/modules/auth/view/sign_up/sign_up.screen.dart';
 import 'package:chefio_recipe_app/styles/colors.dart';
 import 'package:chefio_recipe_app/styles/text.dart';
 
 import 'package:chefio_recipe_app/core/widgets/buttons/custom_button.dart';
 import 'package:chefio_recipe_app/core/widgets/inputs/custom_textfield.dart';
+import 'package:chefio_recipe_app/utils/navigator.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class CreateProfileScreen extends StatelessWidget {
   const CreateProfileScreen({super.key});
-
-  static String routeName = 'create_profile';
-
-  static String route = '${SignUpScreen.route}/$routeName';
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +53,7 @@ class _CreateProfileScreenState extends State<_CreateProfileScreen> {
         }
 
         Messenger.success(context: context, message: 'Account created successful');
-        context.go(DashBoardComponent.route);
+        context.go(const DashBoardComponent());
       } on Failure catch (e) {
         Messenger.error(context: context, message: e.message);
       }

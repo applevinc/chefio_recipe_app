@@ -9,18 +9,16 @@ import 'package:chefio_recipe_app/styles/text.dart';
 
 import 'package:chefio_recipe_app/core/widgets/image/custom_cached_network_image.dart';
 import 'package:chefio_recipe_app/core/widgets/widgets.dart';
+import 'package:chefio_recipe_app/utils/navigator.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class RecipeDetailScreen extends StatelessWidget {
   const RecipeDetailScreen(this.recipe, {super.key});
-
-  static String route = '/recipe_detail';
 
   final Recipe recipe;
 
@@ -91,8 +89,7 @@ class _RecipeDetailScreen extends StatelessWidget {
             minChildSize: 0.6,
             maxChildSize: 0.93,
             expand: false,
-            builder: (context, scrollController) =>
-                _Sheet(scrollController: scrollController),
+            builder: (context, scrollController) => _Sheet(scrollController: scrollController),
           ).animate(delay: Duration.zero).slide(
                 begin: const Offset(0, 1),
                 end: const Offset(0, 0),
@@ -162,7 +159,7 @@ class _Sheet extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        context.push(ProfileScreen.route, extra: recipe.user);
+                        context.push(ProfileScreen(user: recipe.user));
                       },
                       child: Row(
                         children: [

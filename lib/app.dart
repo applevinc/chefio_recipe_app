@@ -1,6 +1,6 @@
 import 'package:chefio_recipe_app/config/app_config.dart';
 import 'package:chefio_recipe_app/config/locator/locator.dart';
-import 'package:chefio_recipe_app/config/app_router.dart';
+import 'package:chefio_recipe_app/modules/onboarding/onboarding.screen.dart';
 import 'package:chefio_recipe_app/styles/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,11 +15,11 @@ class App extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(375, 812),
       minTextAdapt: true,
-      builder: (context, child) => MaterialApp.router(
-        routerConfig: router,
+      builder: (context, child) => MaterialApp(
         title: locator<AppConfig>().appName,
         debugShowCheckedModeBanner: false,
         theme: AppTheme.theme,
+        home: const OnboardingScreen(),
       ),
     );
   }

@@ -3,17 +3,12 @@ import 'package:chefio_recipe_app/modules/auth/domain/repositories/i_sign_up.rep
 import 'package:chefio_recipe_app/modules/auth/view/sign_up/confirmation/confirm_signup.controller.dart';
 import 'package:chefio_recipe_app/modules/auth/view/otp/otp.screen.dart';
 import 'package:chefio_recipe_app/modules/auth/view/sign_up/create_profile/create_profile.screen.dart';
-import 'package:chefio_recipe_app/modules/auth/view/sign_up/sign_up.screen.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ConfirmSignUpScreen extends StatelessWidget {
   const ConfirmSignUpScreen({super.key, required this.email});
-
-  static String routeName = 'confirm_signup';
-
-  static String route = '${SignUpScreen.route}/$routeName';
 
   final String email;
 
@@ -34,6 +29,6 @@ class _ConfirmSignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OTPScreen<ConfirmSignUpController>(nextRoute: CreateProfileScreen.route);
+    return const OTPScreen<ConfirmSignUpController>(nextRoute: CreateProfileScreen());
   }
 }

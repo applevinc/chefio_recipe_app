@@ -12,8 +12,6 @@ import 'package:provider/provider.dart';
 class SearchRecipeScreen extends StatefulWidget {
   const SearchRecipeScreen({super.key});
 
-  static String route = '/search';
-
   @override
   State<SearchRecipeScreen> createState() => _SearchRecipeScreenState();
 }
@@ -50,8 +48,7 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen> {
             const SearchAppBarComponent(),
             Consumer<SearchRecipeController>(
               builder: (context, controller, _) {
-                if (controller.busy(SearchLoadingState.init) ||
-                    controller.isBuildingFrame) {
+                if (controller.busy(SearchLoadingState.init) || controller.isBuildingFrame) {
                   return const SearchRecipeShimmer();
                 }
 

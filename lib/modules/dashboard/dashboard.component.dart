@@ -2,16 +2,14 @@ import 'package:chefio_recipe_app/modules/dashboard/dashboard.controller.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/upload/upload_recipe.screen.dart';
 import 'package:chefio_recipe_app/assets/icons.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
+import 'package:chefio_recipe_app/utils/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class DashBoardComponent extends StatelessWidget {
   const DashBoardComponent({super.key, this.pageIndex = 0});
-
-  static String route = '/dashboard';
 
   final int pageIndex;
 
@@ -76,7 +74,7 @@ class _DashBoardComponent extends StatelessWidget {
           ],
           onTap: (index) {
             if (index == 1) {
-              context.push(UploadRecipeScreen.route);
+              context.push(const UploadRecipeScreen());
               return;
             }
 

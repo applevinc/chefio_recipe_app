@@ -10,16 +10,14 @@ import 'package:chefio_recipe_app/modules/auth/view/password_strength/password_s
 import 'package:chefio_recipe_app/modules/auth/view/sign_up/create_profile/create_profile.screen.dart';
 import 'package:chefio_recipe_app/modules/auth/view/sign_up/sign_up.controller.dart';
 import 'package:chefio_recipe_app/modules/auth/widgets/auth_view.dart';
+import 'package:chefio_recipe_app/utils/navigator.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
-
-  static const route = '/sign-up';
 
   @override
   Widget build(BuildContext context) {
@@ -53,9 +51,8 @@ class __SignUpScreenState extends State<_SignUpScreen> {
         }
 
         final email = controller.emailController.text.trim();
-        Messenger.success(
-            context: context, message: 'Verification link has been sent to $email');
-        context.push(CreateProfileScreen.route);
+        Messenger.success(context: context, message: 'Verification link has been sent to $email');
+        context.push(const CreateProfileScreen());
       } on Failure catch (e) {
         Messenger.error(context: context, message: e.message);
       }

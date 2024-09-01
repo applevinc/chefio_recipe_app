@@ -13,16 +13,14 @@ import 'package:chefio_recipe_app/styles/text.dart';
 import 'package:chefio_recipe_app/core/widgets/buttons/custom_button.dart';
 import 'package:chefio_recipe_app/core/widgets/inputs/custom_textfield.dart';
 import 'package:chefio_recipe_app/core/widgets/inputs/password_textfield.dart';
+import 'package:chefio_recipe_app/utils/navigator.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
-
-  static String route = '/sign_in';
 
   @override
   Widget build(BuildContext context) {
@@ -54,10 +52,10 @@ class _SignInScreenState extends State<_SignInScreen> {
           return;
         }
 
-        context.go(DashBoardComponent.route);
+        context.go(const DashBoardComponent());
       } on Failure catch (e) {
         if (e is InCompleteProfileFailure) {
-          context.push(CreateProfileScreen.route);
+          context.push(const CreateProfileScreen());
           return;
         }
 
@@ -99,7 +97,7 @@ class _SignInScreenState extends State<_SignInScreen> {
               SizedBox(height: 24.h),
               GestureDetector(
                 onTap: () {
-                  context.push(ForgotPasswordScreen.route);
+                  context.push(const ForgotPasswordScreen());
                 },
                 child: Align(
                   alignment: Alignment.centerRight,
@@ -120,7 +118,7 @@ class _SignInScreenState extends State<_SignInScreen> {
               SizedBox(height: 24.h),
               GestureDetector(
                 onTap: () {
-                  context.push(SignUpScreen.route);
+                  context.push(const SignUpScreen());
                 },
                 child: Align(
                   alignment: Alignment.center,

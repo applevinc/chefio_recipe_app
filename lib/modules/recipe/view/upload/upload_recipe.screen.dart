@@ -7,15 +7,13 @@ import 'package:chefio_recipe_app/modules/recipe/view/upload/step_two/upload_rec
 import 'package:chefio_recipe_app/modules/recipe/view/upload/upload_recipe.controller.dart';
 import 'package:chefio_recipe_app/styles/colors.dart';
 import 'package:chefio_recipe_app/styles/text.dart';
+import 'package:chefio_recipe_app/utils/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class UploadRecipeScreen extends StatelessWidget {
   const UploadRecipeScreen({super.key});
-
-  static String route = '/upload-recipe';
 
   @override
   Widget build(BuildContext context) {

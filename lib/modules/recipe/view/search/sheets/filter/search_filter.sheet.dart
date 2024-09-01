@@ -4,9 +4,9 @@ import 'package:chefio_recipe_app/modules/recipe/view/search/sheets/filter/compo
 import 'package:chefio_recipe_app/modules/recipe/view/search/sheets/filter/search_filter.controller.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/search/widgets/circular_button.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
+import 'package:chefio_recipe_app/utils/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class SearchFilterSheet extends StatelessWidget {
@@ -71,7 +71,7 @@ class _SearchFilterSheet extends StatelessWidget {
                   onPressed: () {
                     final controller = context.read<SearchFilterController>();
                     final searchFilterRequest = controller.createSearchFilterRequest();
-                    context.pop(searchFilterRequest);
+                    context.pop(result: searchFilterRequest);
                   },
                 ),
               ],

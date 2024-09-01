@@ -6,16 +6,16 @@ import 'package:chefio_recipe_app/styles/colors.dart';
 import 'package:chefio_recipe_app/styles/text.dart';
 import 'package:chefio_recipe_app/core/widgets/buttons/custom_button.dart';
 import 'package:chefio_recipe_app/core/widgets/inputs/otp_textfield.dart';
+import 'package:chefio_recipe_app/utils/navigator.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class OTPScreen<T extends OtpController> extends StatefulWidget {
   const OTPScreen({super.key, required this.nextRoute});
 
-  final String nextRoute;
+  final Widget nextRoute;
 
   @override
   State<OTPScreen<T>> createState() => _OTPScreenState<T>();

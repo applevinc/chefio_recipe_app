@@ -6,10 +6,10 @@ import 'package:chefio_recipe_app/modules/recipe/view/grid/item/recipe_grid_item
 import 'package:chefio_recipe_app/styles/styles.dart';
 
 import 'package:chefio_recipe_app/core/widgets/image/custom_cached_network_image.dart';
+import 'package:chefio_recipe_app/utils/navigator.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class RecipeGridItemComponent extends StatelessWidget {
@@ -42,7 +42,7 @@ class _RecipeGridItem extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                context.push(ProfileScreen.route, extra: user);
+                context.push(ProfileScreen(user: user));
               },
               child: CustomCacheNetworkImage(
                 imageUrl: user.photoUrl,
@@ -69,7 +69,7 @@ class _RecipeGridItem extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                context.push(RecipeDetailScreen.route, extra: recipe);
+                context.push(RecipeDetailScreen(recipe));
               },
               child: Hero(
                 tag: recipe.id,

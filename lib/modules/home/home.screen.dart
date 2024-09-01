@@ -9,15 +9,13 @@ import 'package:chefio_recipe_app/styles/styles.dart';
 
 import 'package:chefio_recipe_app/core/widgets/inputs/custom_textfield.dart';
 import 'package:chefio_recipe_app/core/widgets/others/error_view.dart';
+import 'package:chefio_recipe_app/utils/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
-
-  static String route = '/home';
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -71,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         fillColor: AppColors.form,
                         onTap: () {
-                          context.push(SearchRecipeScreen.route);
+                          context.push(const SearchRecipeScreen());
                         },
                       ),
                     ),
@@ -98,6 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
               }
 
               return RecipesGridComponent(
+                isExpanded: false,
                 recipes: controller.recipes,
                 isBusy: controller.busy(HomeLoadingState.recipes),
                 onRefresh: controller.refreshRecipes,

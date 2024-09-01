@@ -4,14 +4,12 @@ import 'package:chefio_recipe_app/styles/text.dart';
 
 import 'package:chefio_recipe_app/core/widgets/buttons/custom_button.dart';
 import 'package:chefio_recipe_app/modules/auth/view/sign_in/sign_in.screen.dart';
+import 'package:chefio_recipe_app/utils/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
-
-  static String route = '/';
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +54,7 @@ class OnboardingScreen extends StatelessWidget {
               child: AppButton(
                 label: 'Get Started',
                 onPressed: () {
-                  context.go(SignInScreen.route);
+                  context.go(const SignInScreen());
                 },
               ),
             ),
