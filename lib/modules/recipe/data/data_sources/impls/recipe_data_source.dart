@@ -100,17 +100,18 @@ class RecipeDataSource implements IRecipeDataSource {
   Future<void> updateLikeStatus(String recipeId, bool isLiked) async {
     try {
       final authUserReference = usersCollection.doc(AppSession.authUser?.id);
+      final recipeReference = recipesCollection.doc(recipeId);
 
       if (isLiked) {
-        // Add the recipeId to the liked_recipes list
         await authUserReference.update({
           'liked_recipes': FieldValue.arrayUnion([recipeId])
         });
+        await recipeReference.update({'like_count': FieldValue.increment(1)});
       } else {
-        // Remove the recipeId from the liked_recipes list
         await authUserReference.update({
           'liked_recipes': FieldValue.arrayRemove([recipeId])
         });
+        await recipeReference.update({'like_count': FieldValue.increment(-1)});
       }
     } catch (e) {
       log('Error updating like status: $e');
