@@ -12,17 +12,28 @@ mixin LikeRecipeMixin on ChangeNotifier {
 
   Future<void> likeRecipe(Recipe recipe) async {
     recipe.isLiked = !recipe.isLiked;
-    recipe.isLiked ? recipe.likeCount++ : recipe.likeCount--;
+    _updateLikeCount(recipe);
     notifyListeners();
 
     try {
       await _recipeRepository.updateLikeStatus(recipe.id, recipe.isLiked);
     } on Failure {
       recipe.isLiked = !recipe.isLiked;
-      recipe.isLiked ? recipe.likeCount++ : recipe.likeCount--;
+      _updateLikeCount(recipe);
       rethrow;
     } finally {
       notifyListeners();
+    }
+  }
+
+  void _updateLikeCount(Recipe recipe) {
+    if (recipe.isLiked) {
+      recipe.likeCount++;
+      return;
+    }
+
+    if (recipe.likeCount > 0) {
+      recipe.likeCount--;
     }
   }
 }
