@@ -13,6 +13,7 @@ class Recipe {
   final List<String> ingredients;
   final List<CookingStep> cookingSteps;
   final RecipeCategory? category;
+  final bool isLiked;
 
   Recipe({
     required this.id,
@@ -25,5 +26,6 @@ class Recipe {
     required this.ingredients,
     required this.cookingSteps,
     this.category,
+    this.isLiked = false,
   });
 }
