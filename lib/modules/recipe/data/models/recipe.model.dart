@@ -16,26 +16,29 @@ class RecipeModel extends Recipe {
     required super.ingredients,
     required super.cookingSteps,
     super.category,
+    super.isLiked = false,
   });
 
   factory RecipeModel.fromDataSource({
-    required Map<String, dynamic> data,
-    required User user,
-    required RecipeCategory? category,
-  }) {
-    return RecipeModel(
-      id: data['id'],
-      user: user,
-      title: data['title'],
-      description: data['description'],
-      minCookingTimeInMinutes: data['duration_in_minutes'],
-      coverPhotoUrl: data['cover_photo_url'],
-      likeCount: data['like_count'],
-      ingredients: List<String>.from(data['ingredients'].map((e) => e)),
-      cookingSteps: List<CookingStepModel>.from(
-        data['cooking_steps'].map((e) => CookingStepModel.fromMap(e)),
-      ),
-      category: category,
-    );
-  }
+      required Map<String, dynamic> data,
+      required User user,
+      required RecipeCategory? category,
+      required List<String> likedRecipes, // Add likedRecipes parameter
+    }) {
+      return RecipeModel(
+        id: data['id'],
+        user: user,
+        title: data['title'],
+        description: data['description'],
+        minCookingTimeInMinutes: data['duration_in_minutes'],
+        coverPhotoUrl: data['cover_photo_url'],
+        likeCount: data['like_count'],
+        ingredients: List<String>.from(data['ingredients'].map((e) => e)),
+        cookingSteps: List<CookingStepModel>.from(
+          data['cooking_steps'].map((e) => CookingStepModel.fromMap(e)),
+        ),
+        category: category,
+        isLiked: likedRecipes.contains(data['id']), // Check if recipe is liked
+      );
+    }
 }

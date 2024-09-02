@@ -95,6 +95,7 @@ List<RecipeModel> getFakeRecipesData({RecipeCategoryModel? category}) {
       cookingSteps: steps,
       title: faker.lorem.word(),
       category: category ?? _getOneCategory(),
+      isLiked: random.nextBool(),
     ),
   );
 
