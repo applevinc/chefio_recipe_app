@@ -2,4 +2,5 @@ import 'package:chefio_recipe_app/modules/recipe/domain/entities/requests/upload
 
 abstract class IRecipeRepository {
   Future<void> upload(UploadRecipeRequest request);
+  Future<void> updateLikeStatus(String recipeId, bool isLiked);
 }
