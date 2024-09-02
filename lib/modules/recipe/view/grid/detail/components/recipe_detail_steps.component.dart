@@ -47,7 +47,8 @@ class _CookingStepItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment:
+          cookingStep.photoUrl != null ? CrossAxisAlignment.start : CrossAxisAlignment.center,
       children: [
         Container(
           padding: EdgeInsets.symmetric(vertical: 4.5.h, horizontal: 9.w),

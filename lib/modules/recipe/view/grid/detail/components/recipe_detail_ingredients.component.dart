@@ -1,5 +1,6 @@
 import 'package:chefio_recipe_app/modules/recipe/view/grid/detail/recipe_detail.controller.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
+import 'package:chefio_recipe_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -60,7 +61,7 @@ class _IngredientItem extends StatelessWidget {
         ),
         SizedBox(width: 8.w),
         Text(
-          ingredient,
+          ingredient.capitalize,
           style: AppText.bold500(context),
         ),
       ],

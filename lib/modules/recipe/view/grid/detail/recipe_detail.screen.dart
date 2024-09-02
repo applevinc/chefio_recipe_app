@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:chefio_recipe_app/modules/recipe/view/grid/detail/components/recipe_detail_ingredients.component.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/grid/detail/components/recipe_detail_steps.component.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/grid/detail/recipe_detail.controller.dart';
@@ -68,16 +70,16 @@ class _RecipeDetailScreen extends StatelessWidget {
                     context.pop();
                   },
                   child: Container(
-                    height: 56.h,
-                    width: 56.h,
-                    decoration: BoxDecoration(
+                    height: 40.h,
+                    width: 40.h,
+                    decoration: const BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.white.withOpacity(0.20000000298023224),
-                    ),
-                    child: Icon(
-                      Icons.chevron_left,
                       color: Colors.white,
-                      size: 24.sp,
+                    ),
+                    alignment: Alignment.center,
+                    child: Icon(
+                      Platform.isAndroid ? Icons.arrow_back : Icons.arrow_back,
+                      size: 24.r,
                     ),
                   ),
                 ),
