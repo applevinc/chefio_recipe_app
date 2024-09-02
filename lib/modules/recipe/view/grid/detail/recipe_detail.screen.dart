@@ -226,13 +226,15 @@ class _SheetState extends State<_Sheet> {
                             ),
                           ),
                         ),
-                        SizedBox(width: 8.w),
-                        Text(
-                          recipe.likeCount.toString(),
-                          style: AppText.bold700(context).copyWith(
-                            fontSize: 15.sp,
+                        if (recipe.likeCount > 0) ...[
+                          SizedBox(width: 8.w),
+                          Text(
+                            recipe.likeCount.toString(),
+                            style: AppText.bold700(context).copyWith(
+                              fontSize: 15.sp,
+                            ),
                           ),
-                        ),
+                        ],
                       ],
                     ),
                   ],
