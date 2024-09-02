@@ -6,4 +6,5 @@ abstract class IRecipeListDataSource {
   Future<List<RecipeModel>> getRecipes({required RecipeCategoryModel? category});
   Future<List<RecipeModel>> getRecipesByUser(UserModel user);
   Future<List<RecipeModel>> getLikedRecipesByUser(UserModel user);
+  Future<List<RecipeCategoryModel>> getAllCategories();
 }
