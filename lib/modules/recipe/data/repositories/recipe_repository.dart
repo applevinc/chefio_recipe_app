@@ -13,10 +13,9 @@ class RecipeRepository implements IRecipeRepository {
     final requestModel = UploadRecipeRequestModel.fromEntity(request);
     return await _dataSource.upload(requestModel);
   }
-  
+
   @override
-  Future<void> updateLikeStatus(String recipeId, bool isLiked) {
-    // TODO: implement updateLikeStatus
-    throw UnimplementedError();
+  Future<void> updateLikeStatus(String recipeId, bool isLiked) async {
+    await _dataSource.updateLikeStatus(recipeId, isLiked);
   }
 }
