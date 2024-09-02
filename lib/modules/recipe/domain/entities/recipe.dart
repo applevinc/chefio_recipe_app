@@ -9,7 +9,7 @@ class Recipe {
   final String description;
   final int minCookingTimeInMinutes;
   final String coverPhotoUrl;
-  final int likeCount;
+  int likeCount;
   final List<String> ingredients;
   final List<CookingStep> cookingSteps;
   final RecipeCategory? category;
