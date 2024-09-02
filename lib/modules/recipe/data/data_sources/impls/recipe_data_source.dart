@@ -5,7 +5,7 @@ import 'package:chefio_recipe_app/core/models/user.dart';
 import 'package:chefio_recipe_app/core/services/firebase_storage.dart';
 import 'package:chefio_recipe_app/core/services/firestore_collections.dart';
 import 'package:chefio_recipe_app/modules/auth/data/models/user.model.dart';
-import 'package:chefio_recipe_app/modules/recipe/data/data_sources/i_recipe_datasource.dart';
+import 'package:chefio_recipe_app/modules/recipe/data/data_sources/interfaces/i_recipe_datasource.dart';
 import 'package:chefio_recipe_app/modules/recipe/data/models/recipe.model.dart';
 import 'package:chefio_recipe_app/modules/recipe/data/models/recipe_category.model.dart';
 import 'package:chefio_recipe_app/modules/recipe/data/models/requests/cooking_step_request.model.dart';

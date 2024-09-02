@@ -1,5 +1,5 @@
 import 'package:chefio_recipe_app/core/models/user.dart';
-import 'package:chefio_recipe_app/modules/recipe/data/data_sources/i_recipe_datasource.dart';
+import 'package:chefio_recipe_app/modules/recipe/data/data_sources/interfaces/i_recipe_datasource.dart';
 import 'package:chefio_recipe_app/modules/recipe/data/models/recipe_category.model.dart';
 import 'package:chefio_recipe_app/modules/recipe/data/models/recipe.model.dart';
 import 'package:chefio_recipe_app/modules/recipe/data/models/requests/upload_recipe_request.model.dart';

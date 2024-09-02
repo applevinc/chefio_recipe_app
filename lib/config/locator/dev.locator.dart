@@ -5,10 +5,10 @@ import 'package:chefio_recipe_app/modules/auth/data/data_sources/sign_in/fake_si
 import 'package:chefio_recipe_app/modules/auth/data/data_sources/sign_in/i_sign_in_data_source.dart';
 import 'package:chefio_recipe_app/modules/auth/data/data_sources/sign_up/fake_sign_up_data_source.dart';
 import 'package:chefio_recipe_app/modules/auth/data/data_sources/sign_up/i_sign_up_data_source.dart';
-import 'package:chefio_recipe_app/modules/recipe/data/data_sources/search/fake_search_recipe_data_source.dart';
-import 'package:chefio_recipe_app/modules/recipe/data/data_sources/search/i_search_recipe_data_source.dart';
-import 'package:chefio_recipe_app/modules/recipe/data/data_sources/fake_recipe_data_source.dart';
-import 'package:chefio_recipe_app/modules/recipe/data/data_sources/i_recipe_datasource.dart';
+import 'package:chefio_recipe_app/modules/recipe/data/data_sources/fakes/fake_search_recipe_data_source.dart';
+import 'package:chefio_recipe_app/modules/recipe/data/data_sources/interfaces/i_search_recipe_data_source.dart';
+import 'package:chefio_recipe_app/modules/recipe/data/data_sources/fakes/fake_recipe_data_source.dart';
+import 'package:chefio_recipe_app/modules/recipe/data/data_sources/interfaces/i_recipe_datasource.dart';
 import 'package:get_it/get_it.dart';
 
 final GetIt devLocator = GetIt.instance;
