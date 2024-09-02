@@ -6,4 +6,5 @@ abstract class IRecipeListRepository {
   Future<List<Recipe>> getRecipes({required RecipeCategory? category});
   Future<List<Recipe>> getRecipesByUser(User user);
   Future<List<Recipe>> getLikedRecipesByUser(User user);
+  Future<List<RecipeCategory>> getCategories();
 }
