@@ -1,5 +1,8 @@
 import 'dart:io';
 
+import 'package:chefio_recipe_app/config/locator/locator.dart';
+import 'package:chefio_recipe_app/core/models/failure.dart';
+import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_repository.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/grid/detail/components/recipe_detail_ingredients.component.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/grid/detail/components/recipe_detail_steps.component.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/grid/detail/recipe_detail.controller.dart';
@@ -27,7 +30,10 @@ class RecipeDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => RecipeDetailController(recipe),
+      create: (_) => RecipeDetailController(
+        recipe,
+        recipeRepository: locator<IRecipeRepository>(),
+      ),
       child: const _RecipeDetailScreen(),
     );
   }
@@ -103,14 +109,31 @@ class _RecipeDetailScreen extends StatelessWidget {
   }
 }
 
-class _Sheet extends StatelessWidget {
+class _Sheet extends StatefulWidget {
   const _Sheet({required this.scrollController});
 
   final ScrollController scrollController;
 
   @override
+  State<_Sheet> createState() => _SheetState();
+}
+
+class _SheetState extends State<_Sheet> {
+  void likeRecipe(Recipe recipe) async {
+    try {
+      await context.read<RecipeDetailController>().likeRecipe(recipe);
+
+      if (!mounted) {
+        return;
+      }
+    } on Failure catch (e) {
+      Messenger.error(context: context, message: e.message);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final controller = context.read<RecipeDetailController>();
+    final controller = context.watch<RecipeDetailController>();
     final Recipe recipe = controller.recipe;
 
     return Container(
@@ -139,7 +162,7 @@ class _Sheet extends StatelessWidget {
           ),
           Expanded(
             child: ListView(
-              controller: scrollController,
+              controller: widget.scrollController,
               padding: EdgeInsets.zero,
               children: [
                 Text(
@@ -184,19 +207,23 @@ class _Sheet extends StatelessWidget {
                     const Spacer(),
                     Row(
                       children: [
-                        Container(
-                          height: 32.h,
-                          width: 32.h,
-                          decoration: const BoxDecoration(
-                            color: AppColors.primary,
-                            shape: BoxShape.circle,
-                          ),
-                          padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 7.w),
-                          child: SvgPicture.asset(
-                            AppIcons.heart,
-                            height: 18.h,
-                            width: 18.h,
-                            fit: BoxFit.cover,
+                        GestureDetector(
+                          onTap: () => likeRecipe(recipe),
+                          child: Container(
+                            height: 32.h,
+                            width: 32.h,
+                            decoration: BoxDecoration(
+                              color: recipe.isLiked ? AppColors.outline : AppColors.primary,
+                              shape: BoxShape.circle,
+                            ),
+                            padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 7.w),
+                            child: SvgPicture.asset(
+                              AppIcons.heart,
+                              height: 18.h,
+                              width: 18.h,
+                              fit: BoxFit.cover,
+                              color: recipe.isLiked ? AppColors.secondary : Colors.white,
+                            ),
                           ),
                         ),
                         SizedBox(width: 8.w),

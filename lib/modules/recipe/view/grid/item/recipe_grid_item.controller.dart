@@ -1,8 +1,12 @@
+import 'package:chefio_recipe_app/core/mixins/like_recipe.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/entities/recipe.dart';
+import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_repository.dart';
 import 'package:chefio_recipe_app/utils/utils.dart';
 
-class RecipeGridItemController extends ViewController {
-  RecipeGridItemController(this.recipe);
+class RecipeGridItemController extends ViewController with LikeRecipeMixin {
+  RecipeGridItemController(this.recipe, {required IRecipeRepository recipeRepository}) {
+    setRecipeRepository(recipeRepository);
+  }
 
   final Recipe recipe;
 

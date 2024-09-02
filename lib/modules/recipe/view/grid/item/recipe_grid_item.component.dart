@@ -1,6 +1,9 @@
 import 'dart:ui';
+import 'package:chefio_recipe_app/config/locator/locator.dart';
+import 'package:chefio_recipe_app/core/models/failure.dart';
 import 'package:chefio_recipe_app/modules/profile/screens/profile.screen.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/entities/recipe.dart';
+import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_repository.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/grid/detail/recipe_detail.screen.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/grid/item/recipe_grid_item.controller.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
@@ -20,7 +23,10 @@ class RecipeGridItemComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => RecipeGridItemController(recipe),
+      create: (_) => RecipeGridItemController(
+        recipe,
+        recipeRepository: locator<IRecipeRepository>(),
+      ),
       child: const _RecipeGridItem(),
     );
   }
@@ -112,33 +118,59 @@ class _RecipeGridItem extends StatelessWidget {
   }
 }
 
-class _FavouriteButton extends StatelessWidget {
+class _FavouriteButton extends StatefulWidget {
   const _FavouriteButton();
 
   @override
+  State<_FavouriteButton> createState() => _FavouriteButtonState();
+}
+
+class _FavouriteButtonState extends State<_FavouriteButton> {
+  void likeRecipe(Recipe recipe) async {
+    try {
+      await context.read<RecipeGridItemController>().likeRecipe(recipe);
+
+      if (!mounted) {
+        return;
+      }
+    } on Failure catch (e) {
+      Messenger.error(context: context, message: e.message);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Positioned(
-      top: 16.h,
-      right: 16.w,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(8.r),
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 8.0, sigmaY: 8.0),
-          child: Container(
-            width: 32.w,
-            height: 32.h,
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.2),
+    return Consumer<RecipeGridItemController>(
+      builder: (_, controller, __) {
+        final recipe = controller.recipe;
+
+        return Positioned(
+          top: 16.h,
+          right: 16.w,
+          child: GestureDetector(
+            onTap: () => likeRecipe(recipe),
+            child: ClipRRect(
               borderRadius: BorderRadius.circular(8.r),
-            ),
-            child: Icon(
-              Icons.favorite_border_rounded,
-              size: 20.sp,
-              color: Colors.white,
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 8.0, sigmaY: 8.0),
+                child: Container(
+                  width: 32.w,
+                  height: 32.h,
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(8.r),
+                  ),
+                  child: Icon(
+                    recipe.isLiked ? Icons.favorite : Icons.favorite_border_rounded,
+                    size: 20.sp,
+                    color: recipe.isLiked ? AppColors.secondary : Colors.white,
+                  ),
+                ),
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
