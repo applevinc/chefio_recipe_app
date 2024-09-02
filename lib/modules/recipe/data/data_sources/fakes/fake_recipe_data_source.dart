@@ -7,4 +7,9 @@ class FakeRecipeDataSource implements IRecipeDataSource {
   Future<void> upload(UploadRecipeRequestModel request) async {
     await fakeNetworkDelay();
   }
+
+  @override
+  Future<void> updateLikeStatus(String recipeId, bool isLiked) async {
+    await fakeNetworkDelay();
+  }
 }

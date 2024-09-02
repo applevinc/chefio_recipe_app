@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:chefio_recipe_app/config/app_session.dart';
 import 'package:chefio_recipe_app/core/models/failure.dart';
 import 'package:chefio_recipe_app/core/services/firebase_storage.dart';
 import 'package:chefio_recipe_app/core/services/firestore_collections.dart';
@@ -7,6 +8,7 @@ import 'package:chefio_recipe_app/modules/recipe/data/data_sources/interfaces/i_
 import 'package:chefio_recipe_app/modules/recipe/data/models/requests/cooking_step_request.model.dart';
 import 'package:chefio_recipe_app/modules/recipe/data/models/requests/upload_recipe_request.model.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/entities/requests/cooking_step.request.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class RecipeDataSource implements IRecipeDataSource {
   @override
@@ -91,6 +93,28 @@ class RecipeDataSource implements IRecipeDataSource {
       ]);
     } catch (e) {
       log(e.toString());
+    }
+  }
+
+  @override
+  Future<void> updateLikeStatus(String recipeId, bool isLiked) async {
+    try {
+      final authUserReference = usersCollection.doc(AppSession.authUser?.id);
+
+      if (isLiked) {
+        // Add the recipeId to the liked_recipes list
+        await authUserReference.update({
+          'liked_recipes': FieldValue.arrayUnion([recipeId])
+        });
+      } else {
+        // Remove the recipeId from the liked_recipes list
+        await authUserReference.update({
+          'liked_recipes': FieldValue.arrayRemove([recipeId])
+        });
+      }
+    } catch (e) {
+      log('Error updating like status: $e');
+      throw Failure('Error updating like status');
     }
   }
 }
