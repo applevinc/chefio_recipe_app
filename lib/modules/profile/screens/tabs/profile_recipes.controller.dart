@@ -1,16 +1,16 @@
 import 'package:chefio_recipe_app/modules/recipe/domain/entities/recipe.dart';
 import 'package:chefio_recipe_app/core/models/failure.dart';
 import 'package:chefio_recipe_app/core/models/user.dart';
-import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_repository.dart';
+import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_list_repository.dart';
 import 'package:chefio_recipe_app/utils/view.controller.dart';
 
 abstract class ProfileRecipesController extends ViewController {
   ProfileRecipesController({
-    required this.recipeRepository,
+    required this.recipeListRepository,
     required this.user,
   });
 
-  final IRecipeRepository recipeRepository;
+  final IRecipeListRepository recipeListRepository;
 
   final User user;
 
@@ -23,7 +23,7 @@ abstract class ProfileRecipesController extends ViewController {
 
 class UserLikedRecipesController extends ProfileRecipesController {
   UserLikedRecipesController({
-    required super.recipeRepository,
+    required super.recipeListRepository,
     required super.user,
   });
 
@@ -33,7 +33,7 @@ class UserLikedRecipesController extends ProfileRecipesController {
 
     try {
       setBusy(true);
-      _recipes = await recipeRepository.getLikedRecipesByUser(user);
+      _recipes = await recipeListRepository.getLikedRecipesByUser(user);
     } on Failure catch (e) {
       setError(e);
     } finally {
@@ -44,7 +44,7 @@ class UserLikedRecipesController extends ProfileRecipesController {
 
 class UserRecipesController extends ProfileRecipesController {
   UserRecipesController({
-    required super.recipeRepository,
+    required super.recipeListRepository,
     required super.user,
   });
 
@@ -54,7 +54,7 @@ class UserRecipesController extends ProfileRecipesController {
 
     try {
       setBusy(true);
-      _recipes = await recipeRepository.getRecipesByUser(user);
+      _recipes = await recipeListRepository.getRecipesByUser(user);
     } on Failure catch (e) {
       setError(e);
     } finally {

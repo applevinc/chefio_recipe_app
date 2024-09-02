@@ -1,6 +1,6 @@
 import 'package:chefio_recipe_app/config/locator/locator.dart';
 import 'package:chefio_recipe_app/modules/home/home.controller.dart';
-import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_repository.dart';
+import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_list_repository.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_search_recipe_repository.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/search/search_recipe.controller.dart';
 import 'package:flutter/material.dart';
@@ -17,13 +17,13 @@ class ProvidersWrapper extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (_) => HomeController(
-            recipeRepository: locator<IRecipeRepository>(),
+            recipeListRepository: locator<IRecipeListRepository>(),
           ),
         ),
         ChangeNotifierProvider(
           create: (_) => SearchRecipeController(
             searchService: locator<ISearchRecipeRepository>(),
-            recipeRepository: locator<IRecipeRepository>(),
+            recipeListRepository: locator<IRecipeListRepository>(),
           ),
         ),
       ],

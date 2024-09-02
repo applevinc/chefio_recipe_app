@@ -6,7 +6,7 @@ import 'package:chefio_recipe_app/modules/profile/screens/profile.controller.dar
 import 'package:chefio_recipe_app/modules/profile/screens/tabs/profile_recipes.component.dart';
 import 'package:chefio_recipe_app/modules/profile/screens/tabs/profile_recipes.controller.dart';
 import 'package:chefio_recipe_app/core/models/user.dart';
-import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_repository.dart';
+import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_list_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -49,13 +49,13 @@ class _ProfileScreen extends StatelessWidget {
                 ChangeNotifierProvider(
                   create: (_) => UserRecipesController(
                     user: user,
-                    recipeRepository: locator<IRecipeRepository>(),
+                    recipeListRepository: locator<IRecipeListRepository>(),
                   ),
                 ),
                 ChangeNotifierProvider(
                   create: (_) => UserLikedRecipesController(
                     user: user,
-                    recipeRepository: locator<IRecipeRepository>(),
+                    recipeListRepository: locator<IRecipeListRepository>(),
                   ),
                 ),
               ],

@@ -1,9 +1,9 @@
 import 'package:chefio_recipe_app/modules/recipe/domain/entities/requests/search_filter.request.dart';
+import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_list_repository.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_search_recipe_repository.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/entities/recipe_category.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/entities/recipe.dart';
 import 'package:chefio_recipe_app/core/models/failure.dart';
-import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_repository.dart';
 import 'package:chefio_recipe_app/utils/view.controller.dart';
 import 'package:flutter/material.dart';
 
@@ -14,16 +14,16 @@ enum SearchErrorState { init, search }
 class SearchRecipeController extends ViewController {
   SearchRecipeController({
     required ISearchRecipeRepository searchService,
-    required IRecipeRepository recipeRepository,
+    required IRecipeListRepository recipeListRepository,
   }) {
     _searchRecipeRepository = searchService;
-    _recipeRepository = recipeRepository;
+    _recipeRepository = recipeListRepository;
     queryController = TextEditingController();
   }
 
   late final ISearchRecipeRepository _searchRecipeRepository;
 
-  late final IRecipeRepository _recipeRepository;
+  late final IRecipeListRepository _recipeRepository;
 
   late final TextEditingController queryController;
 
@@ -44,9 +44,7 @@ class SearchRecipeController extends ViewController {
   List<RecipeCategory> get categories => _categories;
 
   bool get hasLoadedSearchData {
-    return _searchHistory.isNotEmpty &&
-        _searchSuggestion.isNotEmpty &&
-        _categories.isNotEmpty;
+    return _searchHistory.isNotEmpty && _searchSuggestion.isNotEmpty && _categories.isNotEmpty;
   }
 
   void onHasLoadedSearchData() {

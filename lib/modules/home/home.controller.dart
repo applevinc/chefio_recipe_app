@@ -1,16 +1,16 @@
 import 'package:chefio_recipe_app/modules/recipe/domain/entities/recipe_category.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/entities/recipe.dart';
 import 'package:chefio_recipe_app/core/models/failure.dart';
-import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_repository.dart';
+import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_list_repository.dart';
 import 'package:chefio_recipe_app/utils/view.controller.dart';
 
 enum HomeLoadingState { init, recipes }
 
 class HomeController extends ViewController {
-  HomeController({required IRecipeRepository recipeRepository})
-      : _recipeRepository = recipeRepository;
+  HomeController({required IRecipeListRepository recipeListRepository})
+      : _recipeRepository = recipeListRepository;
 
-  final IRecipeRepository _recipeRepository;
+  final IRecipeListRepository _recipeRepository;
 
   List<RecipeCategory> _categories = [];
 
