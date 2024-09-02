@@ -11,9 +11,12 @@ import 'package:chefio_recipe_app/modules/auth/domain/repositories/i_forgot_pass
 import 'package:chefio_recipe_app/modules/auth/domain/repositories/i_sign_in.repository.dart';
 import 'package:chefio_recipe_app/modules/auth/domain/repositories/i_sign_up.repository.dart';
 import 'package:chefio_recipe_app/modules/recipe/data/data_sources/interfaces/i_recipe_datasource.dart';
+import 'package:chefio_recipe_app/modules/recipe/data/data_sources/interfaces/i_recipe_list_datasource.dart';
 import 'package:chefio_recipe_app/modules/recipe/data/data_sources/interfaces/i_search_recipe_data_source.dart';
+import 'package:chefio_recipe_app/modules/recipe/data/repositories/recipe_list_repository.dart';
 import 'package:chefio_recipe_app/modules/recipe/data/repositories/recipe_repository.dart';
 import 'package:chefio_recipe_app/modules/recipe/data/repositories/search_recipe_repository.dart';
+import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_list_repository.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_repository.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_search_recipe_repository.dart';
 import 'package:get_it/get_it.dart';
@@ -57,6 +60,12 @@ void initGlobalDI({required GetIt envLocator}) async {
   locator.registerLazySingleton<ISearchRecipeRepository>(
     () => SearchRecipeRepository(
       dataSource: locator<ISearchRecipeDataSource>(),
+    ),
+  );
+
+  locator.registerLazySingleton<IRecipeListRepository>(
+    () => RecipeListRepository(
+      dataSource: locator<IRecipeListDataSource>(),
     ),
   );
 }
