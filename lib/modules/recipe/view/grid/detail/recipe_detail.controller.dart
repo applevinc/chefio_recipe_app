@@ -4,11 +4,11 @@ import 'package:chefio_recipe_app/modules/recipe/domain/repositories/i_recipe_re
 import 'package:chefio_recipe_app/utils/view.controller.dart';
 
 class RecipeDetailController extends ViewController with LikeRecipeMixin {
-  final Recipe recipe;
-
   RecipeDetailController(this.recipe, {required IRecipeRepository recipeRepository}) {
     setRecipeRepository(recipeRepository);
   }
+
+  final Recipe recipe;
 
   String get subtitle {
     final duration = '${recipe.minCookingTimeInMinutes} mins';
@@ -19,5 +19,19 @@ class RecipeDetailController extends ViewController with LikeRecipeMixin {
     }
 
     return '$category · $duration';
+  }
+
+  String get likeCount {
+    final count = recipe.likeCount;
+
+    if (count == 0) {
+      return '';
+    }
+
+    if (count >= 1000) {
+      return '${(count / 1000).toStringAsFixed(1)}k';
+    }
+
+    return count.toString();
   }
 }

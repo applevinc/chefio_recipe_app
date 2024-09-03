@@ -133,140 +133,143 @@ class _SheetState extends State<_Sheet> {
 
   @override
   Widget build(BuildContext context) {
-    final controller = context.watch<RecipeDetailController>();
-    final Recipe recipe = controller.recipe;
+    return Consumer<RecipeDetailController>(
+      builder: (_, controller, __) {
+        final recipe = controller.recipe;
 
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 24.w),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(32.r),
-          topRight: Radius.circular(32.r),
-        ),
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            color: Colors.white.withOpacity(.200),
-            padding: EdgeInsets.only(top: 16.h, bottom: 23.h),
-            child: Container(
-              width: 40.w,
-              height: 5.h,
-              decoration: BoxDecoration(
-                color: const Color(0xFFD0DAE9),
-                borderRadius: BorderRadius.circular(100.r),
-              ),
+        return Container(
+          padding: EdgeInsets.symmetric(horizontal: 24.w),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(32.r),
+              topRight: Radius.circular(32.r),
             ),
           ),
-          Expanded(
-            child: ListView(
-              controller: widget.scrollController,
-              padding: EdgeInsets.zero,
-              children: [
-                Text(
-                  recipe.title.toTitleCase,
-                  style: AppText.bold700(context).copyWith(
-                    color: const Color(0xFF3D5480),
-                    fontSize: 17.sp,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                color: Colors.white.withOpacity(.200),
+                padding: EdgeInsets.only(top: 16.h, bottom: 23.h),
+                child: Container(
+                  width: 40.w,
+                  height: 5.h,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFD0DAE9),
+                    borderRadius: BorderRadius.circular(100.r),
                   ),
                 ),
-                SizedBox(height: 8.h),
-                Text(
-                  controller.subtitle,
-                  style: AppText.bold500(context).copyWith(
-                    color: const Color(0xFF9FA5C0),
-                  ),
-                ),
-                SizedBox(height: 16.h),
-                Row(
+              ),
+              Expanded(
+                child: ListView(
+                  controller: widget.scrollController,
+                  padding: EdgeInsets.zero,
                   children: [
-                    GestureDetector(
-                      onTap: () {
-                        context.push(ProfileScreen(user: recipe.user));
-                      },
-                      child: Row(
-                        children: [
-                          CustomCacheNetworkImage(
-                            imageUrl: recipe.user.photoUrl,
-                            height: 32.h,
-                            width: 32.h,
-                            shape: BoxShape.circle,
-                          ),
-                          SizedBox(width: 8.w),
-                          Text(
-                            recipe.user.fullName.toTitleCase,
-                            style: AppText.bold700(context).copyWith(
-                              fontSize: 16.sp,
-                            ),
-                          ),
-                        ],
+                    Text(
+                      recipe.title.toTitleCase,
+                      style: AppText.bold700(context).copyWith(
+                        color: const Color(0xFF3D5480),
+                        fontSize: 17.sp,
                       ),
                     ),
-                    const Spacer(),
+                    SizedBox(height: 8.h),
+                    Text(
+                      controller.subtitle,
+                      style: AppText.bold500(context).copyWith(
+                        color: const Color(0xFF9FA5C0),
+                      ),
+                    ),
+                    SizedBox(height: 16.h),
                     Row(
                       children: [
                         GestureDetector(
-                          onTap: () => likeRecipe(recipe),
-                          child: Container(
-                            height: 32.h,
-                            width: 32.h,
-                            decoration: BoxDecoration(
-                              color: recipe.isLiked ? AppColors.outline : AppColors.primary,
-                              shape: BoxShape.circle,
-                            ),
-                            padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 7.w),
-                            child: SvgPicture.asset(
-                              AppIcons.heart,
-                              height: 18.h,
-                              width: 18.h,
-                              fit: BoxFit.cover,
-                              color: recipe.isLiked ? AppColors.secondary : Colors.white,
-                            ),
+                          onTap: () {
+                            context.push(ProfileScreen(user: recipe.user));
+                          },
+                          child: Row(
+                            children: [
+                              CustomCacheNetworkImage(
+                                imageUrl: recipe.user.photoUrl,
+                                height: 32.h,
+                                width: 32.h,
+                                shape: BoxShape.circle,
+                              ),
+                              SizedBox(width: 8.w),
+                              Text(
+                                recipe.user.fullName.toTitleCase,
+                                style: AppText.bold700(context).copyWith(
+                                  fontSize: 16.sp,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                        if (recipe.likeCount > 0) ...[
-                          SizedBox(width: 8.w),
-                          Text(
-                            recipe.likeCount.toString(),
-                            style: AppText.bold700(context).copyWith(
-                              fontSize: 15.sp,
+                        const Spacer(),
+                        Row(
+                          children: [
+                            GestureDetector(
+                              onTap: () => likeRecipe(recipe),
+                              child: Container(
+                                height: 32.h,
+                                width: 32.h,
+                                decoration: BoxDecoration(
+                                  color: recipe.isLiked ? AppColors.outline : AppColors.primary,
+                                  shape: BoxShape.circle,
+                                ),
+                                padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 7.w),
+                                child: SvgPicture.asset(
+                                  AppIcons.heart,
+                                  height: 18.h,
+                                  width: 18.h,
+                                  fit: BoxFit.cover,
+                                  color: recipe.isLiked ? AppColors.secondary : Colors.white,
+                                ),
+                              ),
                             ),
-                          ),
-                        ],
+                            if (recipe.likeCount > 0) ...[
+                              SizedBox(width: 8.w),
+                              Text(
+                                controller.likeCount,
+                                style: AppText.bold700(context).copyWith(
+                                  fontSize: 15.sp,
+                                ),
+                              ),
+                            ],
+                          ],
+                        ),
                       ],
                     ),
+                    SizedBox(height: 16.h),
+                    GreyDivider(height: 1.h),
+                    SizedBox(height: 16.h),
+                    Text(
+                      'Description',
+                      style: AppText.bold700(context).copyWith(
+                        color: const Color(0xFF3D5480),
+                        fontSize: 16.sp,
+                      ),
+                    ),
+                    SizedBox(height: 8.h),
+                    Text(
+                      recipe.description,
+                      style: AppText.bold500(context).copyWith(
+                        color: AppColors.secondaryText,
+                      ),
+                    ),
+                    SizedBox(height: 16.h),
+                    GreyDivider(height: 1.h),
+                    const RecipeDetailIngredientsComponent(),
+                    GreyDivider(height: 1.h),
+                    const RecipeDetailCookingStepsComponent(),
+                    SizedBox(height: 40.h),
                   ],
                 ),
-                SizedBox(height: 16.h),
-                GreyDivider(height: 1.h),
-                SizedBox(height: 16.h),
-                Text(
-                  'Description',
-                  style: AppText.bold700(context).copyWith(
-                    color: const Color(0xFF3D5480),
-                    fontSize: 16.sp,
-                  ),
-                ),
-                SizedBox(height: 8.h),
-                Text(
-                  recipe.description,
-                  style: AppText.bold500(context).copyWith(
-                    color: AppColors.secondaryText,
-                  ),
-                ),
-                SizedBox(height: 16.h),
-                GreyDivider(height: 1.h),
-                const RecipeDetailIngredientsComponent(),
-                GreyDivider(height: 1.h),
-                const RecipeDetailCookingStepsComponent(),
-                SizedBox(height: 40.h),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
