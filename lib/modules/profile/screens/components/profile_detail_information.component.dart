@@ -1,3 +1,4 @@
+import 'package:chefio_recipe_app/core/models/failure.dart';
 import 'package:chefio_recipe_app/core/widgets/buttons/custom_button.dart';
 import 'package:chefio_recipe_app/core/widgets/image/custom_cached_network_image.dart';
 import 'package:chefio_recipe_app/core/widgets/others/grey_divider.dart';
@@ -16,13 +17,22 @@ class ProfileDetailInformationComponent extends StatefulWidget {
       _ProfileDetailInformationComponentState();
 }
 
-class _ProfileDetailInformationComponentState
-    extends State<ProfileDetailInformationComponent> {
-  void _handleFollow() {}
+class _ProfileDetailInformationComponentState extends State<ProfileDetailInformationComponent> {
+  void _handleFollow() async {
+    try {
+      await context.read<ProfileController>().updateFollowStatus();
+
+      if (!mounted) {
+        return;
+      }
+    } on Failure catch (e) {
+      Messenger.error(context: context, message: e.message);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    final controller = context.read<ProfileController>();
+    final controller = context.watch<ProfileController>();
     final user = controller.user;
     final bool? isAuthUserProfile = controller.isAuthUserProfile;
 
@@ -65,7 +75,12 @@ class _ProfileDetailInformationComponentState
               Padding(
                 padding: EdgeInsets.only(top: 32.h),
                 child: AppButton(
-                  label: 'Follow',
+                  label: user.isFollowing == true ? 'Unfollow' : 'Follow',
+                  showBorder: user.isFollowing == true ? true : false,
+                  borderColor: AppColors.primary,
+                  labelColor: user.isFollowing == true ? AppColors.primary : Colors.white,
+                  backgroundColor:
+                      user.isFollowing == true ? Colors.transparent : AppColors.primary,
                   onPressed: _handleFollow,
                 ),
               ),

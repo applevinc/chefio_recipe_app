@@ -1,4 +1,5 @@
 import 'package:chefio_recipe_app/config/locator/locator.dart';
+import 'package:chefio_recipe_app/modules/profile/domain/repositories/i_user_repository.dart';
 import 'package:chefio_recipe_app/modules/profile/screens/components/profile_appbar.component.dart';
 import 'package:chefio_recipe_app/modules/profile/screens/components/profile_detail_information.component.dart';
 import 'package:chefio_recipe_app/modules/profile/screens/components/profile_tabs.component.dart';
@@ -18,7 +19,10 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => ProfileController(user),
+      create: (_) => ProfileController(
+        user,
+        userRepository: locator<IUserRepository>(),
+      ),
       child: const _ProfileScreen(),
     );
   }

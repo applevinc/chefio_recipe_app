@@ -35,18 +35,6 @@ class User {
     return true;
   }
 
-  void followUser() {
-    isFollowing = true;
-    followingCount++;
-    followersCount++;
-  }
-
-  void unfollowUser() {
-    isFollowing = false;
-    if (followingCount > 0) followingCount--;
-    if (followersCount > 0) followersCount--;
-  }
-
   User copyWith({
     String? id,
     String? firstName,
