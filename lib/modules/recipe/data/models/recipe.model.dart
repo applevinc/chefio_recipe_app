@@ -23,7 +23,7 @@ class RecipeModel extends Recipe {
       required Map<String, dynamic> data,
       required User user,
       required RecipeCategory? category,
-      required List<String> likedRecipes, // Add likedRecipes parameter
+      required List<String> likedRecipes, 
     }) {
       return RecipeModel(
         id: data['id'],
@@ -38,7 +38,7 @@ class RecipeModel extends Recipe {
           data['cooking_steps'].map((e) => CookingStepModel.fromMap(e)),
         ),
         category: category,
-        isLiked: likedRecipes.contains(data['id']), // Check if recipe is liked
+        isLiked: likedRecipes.contains(data['id']),
       );
     }
 }

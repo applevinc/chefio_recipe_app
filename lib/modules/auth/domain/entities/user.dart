@@ -5,10 +5,10 @@ class User {
   final String? email;
   final bool isEmailVerified;
   final int recipeCount;
-  int followingCount; // Made non-final
-  int followersCount; // Made non-final
+  int followingCount;
+  int followersCount;
   final String? photoUrl;
-  bool isFollowing; // Made non-final
+  bool? isFollowing;
 
   User({
     required this.id,
@@ -20,7 +20,7 @@ class User {
     this.followingCount = 0,
     this.followersCount = 0,
     this.photoUrl,
-    this.isFollowing = false,
+    this.isFollowing,
   });
 
   String get fullName {

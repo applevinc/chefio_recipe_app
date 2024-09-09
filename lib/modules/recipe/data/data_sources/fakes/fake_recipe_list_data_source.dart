@@ -162,6 +162,7 @@ List<RecipeModel> getFakeRecipesData({RecipeCategoryModel? category}) {
         recipeCount: random.nextInt(50),
         followingCount: random.nextInt(2000),
         followersCount: random.nextInt(2000),
+        isFollowing: random.nextBool(),
       ),
       coverPhotoUrl: getOneMealPhoto(),
       description: descriptions[index],

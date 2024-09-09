@@ -11,9 +11,13 @@ class UserModel extends User {
     super.isEmailVerified,
     super.photoUrl,
     super.recipeCount,
+    super.isFollowing,
   });
 
-  static UserModel fromMap(Map<String, dynamic> map) {
+  static UserModel fromDataSource({
+    required Map<String, dynamic> map,
+    List<String>? followingUserIds,
+  }) {
     return UserModel(
       id: map['id'],
       email: map['email'],
@@ -24,6 +28,7 @@ class UserModel extends User {
       followersCount: map['followers_count'],
       photoUrl: map['photo_url'],
       isEmailVerified: map['is_email_verified'],
+      isFollowing: followingUserIds?.contains(map['id']),
     );
   }
 

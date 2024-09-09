@@ -23,6 +23,8 @@ abstract class FirebaseUtils {
       throw Failure('User not found');
     }
 
-    return UserModel.fromMap(data);
+    final followingUserIds = await getFollowingUserIds();
+    
+    return UserModel.fromDataSource(map: data, followingUserIds: followingUserIds);
   }
 }
