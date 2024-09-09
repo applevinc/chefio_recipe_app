@@ -5,6 +5,8 @@ import 'package:chefio_recipe_app/modules/auth/data/data_sources/sign_in/i_sign_
 import 'package:chefio_recipe_app/modules/auth/data/data_sources/sign_in/sign_in_data_source.dart';
 import 'package:chefio_recipe_app/modules/auth/data/data_sources/sign_up/i_sign_up_data_source.dart';
 import 'package:chefio_recipe_app/modules/auth/data/data_sources/sign_up/sign_up_data_source.dart';
+import 'package:chefio_recipe_app/modules/profile/data/data_sources/i_user_data_source.dart';
+import 'package:chefio_recipe_app/modules/profile/data/data_sources/user_data_source.dart';
 import 'package:chefio_recipe_app/modules/recipe/data/data_sources/impls/recipe_list_data_source.dart';
 import 'package:chefio_recipe_app/modules/recipe/data/data_sources/interfaces/i_recipe_datasource.dart';
 import 'package:chefio_recipe_app/modules/recipe/data/data_sources/impls/recipe_data_source.dart';
@@ -41,5 +43,9 @@ void initContainers({required AppConfig appConfig}) async {
 
   prodLocator.registerLazySingleton<IForgotPasswordDataSource>(
     () => ForgotPasswordDataSource(),
+  );
+
+  prodLocator.registerLazySingleton<IUserDataSource>(
+    () => UserDataSource(),
   );
 }
