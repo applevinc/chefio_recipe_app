@@ -1,4 +1,4 @@
-import 'package:chefio_recipe_app/core/models/user.dart';
+import 'package:chefio_recipe_app/modules/auth/domain/entities/user.dart';
 import 'package:chefio_recipe_app/modules/recipe/data/data_sources/interfaces/i_recipe_list_datasource.dart';
 import 'package:chefio_recipe_app/modules/recipe/data/models/recipe_category.model.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/entities/recipe_category.dart';

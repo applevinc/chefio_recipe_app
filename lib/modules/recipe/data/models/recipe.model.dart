@@ -1,5 +1,5 @@
 
-import 'package:chefio_recipe_app/core/models/user.dart';
+import 'package:chefio_recipe_app/modules/auth/domain/entities/user.dart';
 import 'package:chefio_recipe_app/modules/recipe/data/models/cooking_step.model.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/entities/recipe.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/entities/recipe_category.dart';
