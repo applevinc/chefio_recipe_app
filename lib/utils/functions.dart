@@ -1,5 +1,6 @@
+import 'dart:developer';
 import 'dart:io';
-import 'dart:math';
+import 'dart:math' as math;
 
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +36,7 @@ String getNumberFromFormattedAmount(String s) {
   return NumberFormat.currency().parse(s).toInt().toString();
 }
 
-final random = Random();
+final random = math.Random();
 final faker = Faker();
 
 Future<void> fakeNetworkDelay({int seconds = 2}) async {
@@ -131,4 +132,14 @@ final List<String> mealPhotos = [
 
 String getOneMealPhoto() {
   return mealPhotos[random.nextInt(mealPhotos.length)];
+}
+
+void logError(Object error, StackTrace stackTrace, {String? source}) {
+  log(
+    '''
+Error occurred: $error
+Stack trace: $stackTrace
+    ''',
+    name: source ?? 'Unknown source',
+  );
 }

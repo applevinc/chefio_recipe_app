@@ -1,4 +1,4 @@
-import 'package:chefio_recipe_app/core/models/user.dart';
+import 'package:chefio_recipe_app/modules/auth/domain/entities/user.dart';
 
 class AppSession {
   AppSession._();

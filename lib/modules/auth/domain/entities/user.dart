@@ -5,11 +5,12 @@ class User {
   final String? email;
   final bool isEmailVerified;
   final int recipeCount;
-  final int followingCount;
-  final int followersCount;
+  int followingCount;
+  int followersCount;
   final String? photoUrl;
+  bool? isFollowing;
 
-  const User({
+  User({
     required this.id,
     this.firstName,
     this.lastName,
@@ -19,6 +20,7 @@ class User {
     this.followingCount = 0,
     this.followersCount = 0,
     this.photoUrl,
+    this.isFollowing,
   });
 
   String get fullName {
@@ -38,22 +40,24 @@ class User {
     String? firstName,
     String? lastName,
     String? email,
+    bool? isEmailVerified,
     int? recipeCount,
     int? followingCount,
     int? followersCount,
     String? photoUrl,
-    bool? isEmailVerified,
+    bool? isFollowing,
   }) {
     return User(
       id: id ?? this.id,
       firstName: firstName ?? this.firstName,
       lastName: lastName ?? this.lastName,
       email: email ?? this.email,
+      isEmailVerified: isEmailVerified ?? this.isEmailVerified,
       recipeCount: recipeCount ?? this.recipeCount,
       followingCount: followingCount ?? this.followingCount,
       followersCount: followersCount ?? this.followersCount,
       photoUrl: photoUrl ?? this.photoUrl,
-      isEmailVerified: isEmailVerified ?? this.isEmailVerified,
+      isFollowing: isFollowing ?? this.isFollowing,
     );
   }
 }

@@ -1,4 +1,4 @@
-import 'package:chefio_recipe_app/core/models/user.dart';
+import 'package:chefio_recipe_app/modules/auth/domain/entities/user.dart';
 import 'package:chefio_recipe_app/modules/recipe/data/data_sources/interfaces/i_recipe_list_datasource.dart';
 import 'package:chefio_recipe_app/modules/recipe/data/models/recipe.model.dart';
 import 'package:chefio_recipe_app/modules/recipe/data/models/recipe_category.model.dart';
@@ -162,6 +162,7 @@ List<RecipeModel> getFakeRecipesData({RecipeCategoryModel? category}) {
         recipeCount: random.nextInt(50),
         followingCount: random.nextInt(2000),
         followersCount: random.nextInt(2000),
+        isFollowing: random.nextBool(),
       ),
       coverPhotoUrl: getOneMealPhoto(),
       description: descriptions[index],

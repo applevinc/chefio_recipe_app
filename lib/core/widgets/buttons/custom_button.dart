@@ -42,8 +42,8 @@ class AppButton extends StatelessWidget {
         backgroundColor: backgroundColor,
         disabledBackgroundColor: disabledBackgroundColor,
         side: showBorder == true
-            ? const BorderSide(
-                color: AppColors.outline,
+            ? BorderSide(
+                color: borderColor ?? AppColors.outline,
               )
             : null,
       ),

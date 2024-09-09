@@ -1,3 +1,4 @@
 {
-    "dart.flutterSdkPath": "/Users/appleyardvincent/Flutter/flutter-3.19"
+    "dart.flutterSdkPath": "/Users/appleyardvincent/Flutter/flutter-3.19",
+    "makefile.configureOnOpen": false
 }

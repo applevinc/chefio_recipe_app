@@ -10,6 +10,9 @@ import 'package:chefio_recipe_app/modules/auth/data/repositories/sign_up.reposit
 import 'package:chefio_recipe_app/modules/auth/domain/repositories/i_forgot_password.repository.dart';
 import 'package:chefio_recipe_app/modules/auth/domain/repositories/i_sign_in.repository.dart';
 import 'package:chefio_recipe_app/modules/auth/domain/repositories/i_sign_up.repository.dart';
+import 'package:chefio_recipe_app/modules/profile/data/data_sources/i_user_data_source.dart';
+import 'package:chefio_recipe_app/modules/profile/data/repositories/user_repository.dart';
+import 'package:chefio_recipe_app/modules/profile/domain/repositories/i_user_repository.dart';
 import 'package:chefio_recipe_app/modules/recipe/data/data_sources/interfaces/i_recipe_datasource.dart';
 import 'package:chefio_recipe_app/modules/recipe/data/data_sources/interfaces/i_recipe_list_datasource.dart';
 import 'package:chefio_recipe_app/modules/recipe/data/data_sources/interfaces/i_search_recipe_data_source.dart';
@@ -66,6 +69,12 @@ void initGlobalDI({required GetIt envLocator}) async {
   locator.registerLazySingleton<IRecipeListRepository>(
     () => RecipeListRepository(
       dataSource: locator<IRecipeListDataSource>(),
+    ),
+  );
+
+  locator.registerLazySingleton<IUserRepository>(
+    () => UserRepository(
+      dataSource: locator<IUserDataSource>(),
     ),
   );
 }
