@@ -1,6 +1,6 @@
 # Chefio
 
-A recipe app where users can create and view recipes, built using clean architecture.
+A recipe app where users can create and view recipes, built using clean architecture and integrated with Firebase.
 
 Built with ❤️ by [applevinc]
 
@@ -49,3 +49,8 @@ To run in `dev` mode:
 ```bash
 flutter run --flavor dev -t lib/main/main_dev.dart
 ```
+
+## TODO
+
+- [ ] Implement feature notifications
+- [ ] Scan food
