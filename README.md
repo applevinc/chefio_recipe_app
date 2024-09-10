@@ -6,15 +6,19 @@ Built with ❤️ by [applevinc]
 
 ## UI Shots
 
-<tr>
-    <td><img src="https://github.com/applevinc/chefio_recipe_app/blob/54945b80dc641d525aad46eb24e4ca04372036b0/screenshots/1.png" width="200" height="400"/></td>
-    <td><img src="https://github.com/applevinc/chefio_recipe_app/blob/54945b80dc641d525aad46eb24e4ca04372036b0/screenshots/2.png" width="200" height="400"/></td>
-    <td><img src="https://github.com/applevinc/chefio_recipe_app/blob/54945b80dc641d525aad46eb24e4ca04372036b0/screenshots/3.png" width="200" height="400"/></td>
-    <td><img src="https://github.com/applevinc/chefio_recipe_app/blob/54945b80dc641d525aad46eb24e4ca04372036b0/screenshots/4.png" width="200" height="400"/></td>
-    <td><img src="https://github.com/applevinc/chefio_recipe_app/blob/54945b80dc641d525aad46eb24e4ca04372036b0/screenshots/5.png" width="200" height="400"/></td>
-    <td><img src="https://github.com/applevinc/chefio_recipe_app/blob/54945b80dc641d525aad46eb24e4ca04372036b0/screenshots/6.png" width="200" height="400"/></td>
-    <td><img src="https://github.com/applevinc/chefio_recipe_app/blob/54945b80dc641d525aad46eb24e4ca04372036b0/screenshots/7.png" width="200" height="400"/></td>
-</tr>
+<table>
+  <tr>
+    <td><img src="https://github.com/applevinc/chefio_recipe_app/blob/54945b80dc641d525aad46eb24e4ca04372036b0/screenshots/1.png" width="200" height="400"></td>
+    <td><img src="https://github.com/applevinc/chefio_recipe_app/blob/54945b80dc641d525aad46eb24e4ca04372036b0/screenshots/2.png" width="200" height="400"></td>
+    <td><img src="https://github.com/applevinc/chefio_recipe_app/blob/54945b80dc641d525aad46eb24e4ca04372036b0/screenshots/3.png" width="200" height="400"></td>
+    <td><img src="https://github.com/applevinc/chefio_recipe_app/blob/54945b80dc641d525aad46eb24e4ca04372036b0/screenshots/4.png" width="200" height="400"></td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/applevinc/chefio_recipe_app/blob/54945b80dc641d525aad46eb24e4ca04372036b0/screenshots/5.png" width="200" height="400"></td>
+    <td><img src="https://github.com/applevinc/chefio_recipe_app/blob/54945b80dc641d525aad46eb24e4ca04372036b0/screenshots/6.png" width="200" height="400"></td>
+    <td><img src="https://github.com/applevinc/chefio_recipe_app/blob/54945b80dc641d525aad46eb24e4ca04372036b0/screenshots/7.png" width="200" height="400"></td>
+  </tr>
+</table>
 
 ## Design
 
