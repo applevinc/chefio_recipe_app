@@ -1,3 +1,5 @@
+
+import 'package:chefio_recipe_app/core/widgets/others/back_drop.dart';
 import 'package:chefio_recipe_app/modules/home/home.controller.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
 import 'package:chefio_recipe_app/core/widgets/others/category_item.dart';
@@ -23,46 +25,48 @@ class HomeCategoriesComponent extends StatelessWidget {
       return const SizedBox.shrink();
     }
 
-    return Container(
-      color: Colors.white,
-      padding: EdgeInsets.only(top: 24.h),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: AppPadding.symetricHorizontalOnly,
-            child: Text(
-              'Category',
-              style: AppText.bold700(context).copyWith(
-                fontSize: 17.sp,
+    return DashBackDrop(
+      child: Padding(
+        padding: EdgeInsets.only(top: 24.h),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: AppPadding.symetricHorizontalOnly,
+              child: Text(
+                'Category',
+                style: AppText.bold700(context).copyWith(
+                  fontSize: 17.sp,
+                ),
               ),
             ),
-          ),
-          SizedBox(height: 16.h),
-          SizedBox(
-            height: 48.h,
-            child: ListView.separated(
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              itemCount: categories.length,
-              padding: AppPadding.symetricHorizontalOnly,
-              itemBuilder: (context, index) {
-                final category = categories[index];
-                return CategoryItemView(
-                  label: category.name,
-                  selected: category.id == selectedCategory?.id,
-                  onTap: () => controller.selectCategory(category),
-                );
-              },
-              separatorBuilder: (context, index) => SizedBox(width: 16.w),
+            SizedBox(height: 16.h),
+            SizedBox(
+              height: 48.h,
+              child: ListView.separated(
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemCount: categories.length,
+                padding: AppPadding.symetricHorizontalOnly,
+                itemBuilder: (context, index) {
+                  final category = categories[index];
+                  return CategoryItemView(
+                    label: category.name,
+                    selected: category.id == selectedCategory?.id,
+                    onTap: () => controller.selectCategory(category),
+                  );
+                },
+                separatorBuilder: (context, index) => SizedBox(width: 16.w),
+              ),
             ),
-          ),
-          SizedBox(height: 24.h),
-          Container(
-            height: 8.h,
-            color: const Color(0xFFF4F5F7),
-          ),
-        ],
+            SizedBox(height: 24.h),
+            Container(
+              height: 8.h,
+              color: const Color(0xFFF4F5F7),
+            ),
+          ],
+        ),
       ),
     );
   }

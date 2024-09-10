@@ -1,9 +1,11 @@
+import 'package:chefio_recipe_app/core/widgets/others/back_drop.dart';
 import 'package:chefio_recipe_app/modules/dashboard/dashboard.controller.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/upload/upload_recipe.screen.dart';
 import 'package:chefio_recipe_app/assets/icons.dart';
 import 'package:chefio_recipe_app/styles/styles.dart';
 import 'package:chefio_recipe_app/utils/navigator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -30,56 +32,63 @@ class _DashBoardComponent extends StatelessWidget {
     final controller = context.watch<DashboardController>();
     final fontStyle = AppText.bold500(context).copyWith(fontSize: 12.sp);
 
-    return Scaffold(
-      body: controller.currentPage,
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(.1),
-              offset: const Offset(0, -1),
-              blurRadius: 10,
-            ),
-          ],
-        ),
-        child: BottomNavigationBar(
-          currentIndex: controller.pageIndex,
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: Colors.white,
-          selectedLabelStyle: fontStyle,
-          unselectedLabelStyle: fontStyle,
-          selectedItemColor: AppColors.primary,
-          unselectedItemColor: AppColors.secondaryText,
-          items: <BottomNavigationBarItem>[
-            bottomNavigationBarItem(
-              label: 'Home',
-              icon: DashboardIcons.home,
-              activeIcon: DashboardIcons.homeActive,
-            ),
-            bottomNavigationBarItem(
-              label: 'Upload',
-              icon: DashboardIcons.upload,
-              activeIcon: DashboardIcons.upload,
-            ),
-            bottomNavigationBarItem(
-              label: 'Notification',
-              icon: DashboardIcons.notification,
-              activeIcon: DashboardIcons.notificationActive,
-            ),
-            bottomNavigationBarItem(
-              label: 'Profile',
-              icon: DashboardIcons.profile,
-              activeIcon: DashboardIcons.profileActive,
-            ),
-          ],
-          onTap: (index) {
-            if (index == 1) {
-              context.push(const UploadRecipeScreen());
-              return;
-            }
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.dark,
+      ),
+      child: Scaffold(
+        body: Stack(
+          children: [
+            controller.currentPage,
+            Positioned(
+              left: 0,
+              right: 0,
+              bottom: 0,
+              child: DashBackDrop(
+                child: BottomNavigationBar(
+                  currentIndex: controller.pageIndex,
+                  type: BottomNavigationBarType.fixed,
+                  backgroundColor: Colors.transparent,
+                  selectedLabelStyle: fontStyle,
+                  unselectedLabelStyle: fontStyle,
+                  selectedItemColor: AppColors.primary,
+                  unselectedItemColor: AppColors.secondaryText,
+                  elevation: 0,
+                  items: <BottomNavigationBarItem>[
+                    bottomNavigationBarItem(
+                      label: 'Home',
+                      icon: DashboardIcons.home,
+                      activeIcon: DashboardIcons.homeActive,
+                    ),
+                    bottomNavigationBarItem(
+                      label: 'Upload',
+                      icon: DashboardIcons.upload,
+                      activeIcon: DashboardIcons.upload,
+                    ),
+                    bottomNavigationBarItem(
+                      label: 'Notification',
+                      icon: DashboardIcons.notification,
+                      activeIcon: DashboardIcons.notificationActive,
+                    ),
+                    bottomNavigationBarItem(
+                      label: 'Profile',
+                      icon: DashboardIcons.profile,
+                      activeIcon: DashboardIcons.profileActive,
+                    ),
+                  ],
+                  onTap: (index) {
+                    if (index == 1) {
+                      context.push(const UploadRecipeScreen());
+                      return;
+                    }
 
-            controller.setPageIndex(index);
-          },
+                    controller.setPageIndex(index);
+                  },
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

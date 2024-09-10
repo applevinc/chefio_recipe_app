@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:chefio_recipe_app/core/widgets/others/back_drop.dart';
 import 'package:chefio_recipe_app/modules/recipe/domain/entities/requests/search_filter.request.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/search/sheets/filter/search_filter.sheet.dart';
 import 'package:chefio_recipe_app/modules/recipe/view/search/search_recipe.controller.dart';
@@ -44,76 +47,81 @@ class _SearchAppBarComponentState extends State<SearchAppBarComponent> {
     final controller = context.watch<SearchRecipeController>();
     final queryController = controller.queryController;
 
-    return Column(
-      children: [
-        Padding(
-          padding: EdgeInsets.only(top: 10.h, bottom: 24.h),
-          child: Row(
-            children: [
-              IconButton(
-                padding: EdgeInsets.symmetric(horizontal: 24.w),
-                icon: Icon(
-                  Icons.chevron_left,
-                  color: AppColors.mainText,
-                  size: 24.sp,
-                ),
-                onPressed: () {
-                  context.pop();
-                },
-              ),
-              Expanded(
-                child: Hero(
-                  tag: 'search',
-                  child: Material(
-                    type: MaterialType.transparency,
-                    child: CustomTextField(
-                      controller: queryController,
-                      autofocus: true,
-                      readOnly: controller.busy(SearchLoadingState.init),
-                      prefixIcon: const TextFieldIcon(icon: AppIcons.search),
-                      suffixIcon: queryController.text.isEmpty
-                          ? null
-                          : TextFieldIcon(
-                              icon: AppIcons.closeCircle,
-                              onTap: () {
-                                queryController.clear();
-                                setState(() {});
-                              },
-                            ),
-                      hintText: 'Search',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(32.r),
-                        borderSide: BorderSide.none,
+    return Padding(
+      padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top + 10.h),
+      child: Column(
+        children: [
+          DashBackDrop(
+            child: Padding(
+              padding: EdgeInsets.only(bottom: 10.h),
+              child: Row(
+                children: [
+                  IconButton(
+                    padding: EdgeInsets.symmetric(horizontal: 24.w),
+                    icon: Icon(
+                      Platform.isAndroid ? Icons.arrow_back : Icons.arrow_back_ios,
+                      color: AppColors.mainText,
+                      size: 24.sp,
+                    ),
+                    onPressed: () {
+                      context.pop();
+                    },
+                  ),
+                  Expanded(
+                    child: Hero(
+                      tag: 'search',
+                      child: Material(
+                        type: MaterialType.transparency,
+                        child: CustomTextField(
+                          controller: queryController,
+                          autofocus: true,
+                          readOnly: controller.busy(SearchLoadingState.init),
+                          prefixIcon: const TextFieldIcon(icon: AppIcons.search),
+                          suffixIcon: queryController.text.isEmpty
+                              ? null
+                              : TextFieldIcon(
+                                  icon: AppIcons.closeCircle,
+                                  onTap: () {
+                                    queryController.clear();
+                                    setState(() {});
+                                  },
+                                ),
+                          hintText: 'Search',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(32.r),
+                            borderSide: BorderSide.none,
+                          ),
+                          fillColor: AppColors.form,
+                          onChanged: (query) => controller.search(query),
+                        ),
                       ),
-                      fillColor: AppColors.form,
-                      onChanged: (query) => controller.search(query),
                     ),
                   ),
-                ),
+                  if (controller.busy(SearchLoadingState.init))
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 24.w),
+                      child: SizedBox(
+                        width: 24.h,
+                        height: 24.h,
+                      ),
+                    ),
+                  if (!controller.busy(SearchLoadingState.init))
+                    IconButton(
+                      padding: EdgeInsets.symmetric(horizontal: 24.w),
+                      icon: SvgPicture.asset(
+                        AppIcons.filter,
+                        height: 24.h,
+                        width: 24.h,
+                      ),
+                      onPressed: onTapFilterIcon,
+                    ),
+                ],
               ),
-              if (controller.busy(SearchLoadingState.init))
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 24.w),
-                  child: SizedBox(
-                    width: 24.h,
-                    height: 24.h,
-                  ),
-                ),
-              if (!controller.busy(SearchLoadingState.init))
-                IconButton(
-                  padding: EdgeInsets.symmetric(horizontal: 24.w),
-                  icon: SvgPicture.asset(
-                    AppIcons.filter,
-                    height: 24.h,
-                    width: 24.h,
-                  ),
-                  onPressed: onTapFilterIcon,
-                ),
-            ],
+            ),
           ),
-        ),
-        const GreyDivider(),
-      ],
+          const GreyDivider(),
+        ],
+      ),
     );
   }
 }

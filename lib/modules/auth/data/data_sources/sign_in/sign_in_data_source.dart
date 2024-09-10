@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:chefio_recipe_app/core/models/failure.dart';
-import 'package:chefio_recipe_app/core/services/firebase_utils.dart';
 import 'package:chefio_recipe_app/core/services/firestore_collections.dart';
 import 'package:chefio_recipe_app/config/app_session.dart';
 import 'package:chefio_recipe_app/modules/auth/data/data_sources/sign_in/i_sign_in_data_source.dart';

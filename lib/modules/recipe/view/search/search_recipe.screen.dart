@@ -40,50 +40,47 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        bottom: false,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SearchAppBarComponent(),
-            Consumer<SearchRecipeController>(
-              builder: (context, controller, _) {
-                if (controller.busy(SearchLoadingState.init) || controller.isBuildingFrame) {
-                  return const SearchRecipeShimmer();
-                }
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SearchAppBarComponent(),
+          Consumer<SearchRecipeController>(
+            builder: (context, controller, _) {
+              if (controller.busy(SearchLoadingState.init) || controller.isBuildingFrame) {
+                return const SearchRecipeShimmer();
+              }
 
-                if (controller.busy(SearchLoadingState.search)) {
-                  return const RecipesGridShimmer(isExpanded: true);
-                }
+              if (controller.busy(SearchLoadingState.search)) {
+                return const RecipesGridShimmer(isExpanded: true);
+              }
 
-                if (controller.hasErrorForKey(SearchErrorState.init)) {
-                  return ErrorView(
-                    error: controller.error(SearchErrorState.init),
-                    refetch: init,
-                  );
-                }
-
-                final recipes = controller.recipes;
-
-                if (recipes.isEmpty) {
-                  return const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SearchHistoryComponent(),
-                      SearchSuggestionsComponent(),
-                    ],
-                  );
-                }
-
-                return RecipesGridComponent(
-                  recipes: controller.recipes,
-                  isBusy: controller.busy(SearchLoadingState.search),
-                  canRefetch: false,
+              if (controller.hasErrorForKey(SearchErrorState.init)) {
+                return ErrorView(
+                  error: controller.error(SearchErrorState.init),
+                  refetch: init,
                 );
-              },
-            ),
-          ],
-        ),
+              }
+
+              final recipes = controller.recipes;
+
+              if (recipes.isEmpty) {
+                return const Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SearchHistoryComponent(),
+                    SearchSuggestionsComponent(),
+                  ],
+                );
+              }
+
+              return RecipesGridComponent(
+                recipes: controller.recipes,
+                isBusy: controller.busy(SearchLoadingState.search),
+                canRefetch: false,
+              );
+            },
+          ),
+        ],
       ),
     );
   }

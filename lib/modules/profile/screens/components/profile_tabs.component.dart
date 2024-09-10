@@ -1,3 +1,4 @@
+import 'package:chefio_recipe_app/core/widgets/others/back_drop.dart';
 import 'package:chefio_recipe_app/core/widgets/others/custom_tabbar.dart';
 import 'package:chefio_recipe_app/core/widgets/others/sliver_appbar_delegate.dart';
 import 'package:chefio_recipe_app/styles/colors.dart';
@@ -18,16 +19,17 @@ class ProfileTabsComponent extends StatelessWidget {
         delegate: SliverAppBarDelegate(
           maxHeight: height,
           minHeight: height,
-          child: Container(
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              border: Border(bottom: BorderSide(color: AppColors.outline)),
-            ),
-            child: const CustomTabBar(
-              tabs: [
-                Tab(text: 'Recipes'),
-                Tab(text: 'Liked'),
-              ],
+          child: DashBackDrop(
+            child: Container(
+              decoration: const BoxDecoration(
+                border: Border(bottom: BorderSide(color: AppColors.outline)),
+              ),
+              child: const CustomTabBar(
+                tabs: [
+                  Tab(text: 'Recipes'),
+                  Tab(text: 'Liked'),
+                ],
+              ),
             ),
           ),
         ),
