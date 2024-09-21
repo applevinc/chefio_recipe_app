@@ -1,1 +1,0 @@
-enum NotificationAction { following, likedRecipe }
